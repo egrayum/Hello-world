@@ -13,6 +13,12 @@
   </p>
   <canvas id="testCanvas" width="640 height="320" style="border:1px solid #000000;">
   </canvas>
-  <script src="https://github.com/egrayum/Hello-world/blob/master/js/canvas.js"></script>
+  <script>
+   var c = document.getElementById("testCanvas");
+   var ctx = c.getContext("2d");
+   ctx.moveTo(20, 20);
+   ctx.lineTo(20, 120);
+   ctx.stroke();
+  </script>
  </body>
 </html>
