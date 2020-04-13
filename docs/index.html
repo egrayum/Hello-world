@@ -1,12 +1,14 @@
 <html>
  <head>
   <script>
-   var _paragraph, copy1 = "one", copy2 = "two";
+   var copy1 = "one", copy2 = "two", _paragraph = copy1;
     function changeParagraph () {
-     if (_paragraph = copy1) {
+     if (_paragraph = copy2) {
       _paragraph = copy2;
      } else {
-      _paragraph = copy1;
+      if (_paragraph = copy1) {
+      _paragraph = copy2;
+      }
      }
      document.getElementById("test").innerHTML = _paragraph;
     }
