@@ -28,8 +28,15 @@
   </h1>
   <a href="https://egrayum.github.io/Hello-world/">About me</a>
   <script>
-   function changeParagraph () {
-    document.getElementById("test").innerHTML ="Testing change of paragraph";
+   var _paragraph = "Testing change of paragraph";
+    function changeParagraph () {
+     if (_paragraph == "Testing change of paragraph") {
+      var _paragraph = "Test paragraph number 1";
+      document.getElementById("test").innerHTML = _paragraph;
+     }
+     else (_paragraph == "Test paragraph number 1") {
+      var _paragraph = "Testing change of paragraph";
+      document.getElementById("test").innerHTML = _paragraph;
    }
   </script>
   <p id="test">
