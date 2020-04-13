@@ -4,12 +4,12 @@
    var copy1 = "Testing change of paragraph", copy2 = "Test paragraph number 1";
     function changeParagraph () {
      if (_paragraph = copy2) {
+      alert("p:"+_paragraph+"c1:"+copy1+"c2:"+copy2);
       var _paragraph = copy1;
      } else {
       var _paragraph = copy2;
      }
      document.getElementById("test").innerHTML = _paragraph;
-     alert("p:"+_paragraph+"c1:"+copy1+"c2:"+copy2);
     }
   </script>
   <title>
