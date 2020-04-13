@@ -1,7 +1,8 @@
-# Hello-world
+# Cuddlekins and Turtle
 
-Hi coders,
+Welcome!
 
-I'm ethan, aka Sparky99.
-I really like biking, exploring, being outdoors and playing games.
+We are Cuddlekins and Turtle, cofounders of Turtlekins Labs.
+Our goal is to make good products that help you and the environment.
+This page is only a demo. The real one will come!
 
