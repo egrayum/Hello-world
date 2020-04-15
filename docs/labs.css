@@ -19,6 +19,7 @@
      display: inline-block;
      background-color: #666666;
      color: black:
+     height: 20px;    
     }
 
     li a:active, li a:hover {
