@@ -15,10 +15,10 @@
     }
 
     ul.nav li a {
-     text-decoration: none:
-     display: inline-block;
+     text-decoration: none;
+     display: block;
      background-color: #666666;
-     color: black:
+     color: black;
      height: 20px;    
     }
 
@@ -54,18 +54,18 @@
      text-decoration: none;
     }
      
-     button {
+    button {
       background-color: green;
       color: black;
       border-radius: 15px;
       padding: 5px 5px;
       border: none;
-     }
+    }
     
-    button:hover, button:active {
+   button:hover, button:active {
       background-color: darkgreen;
       color: black;
       border-radius: 15px;
       padding: 5px 5px;
      border: none;
-    }
+   }
