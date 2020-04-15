@@ -3,6 +3,28 @@
      color: green;
      font-family: verdana;
     }
+
+    ul {
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+    }
+
+    li {
+     list-style-type: none:   
+    }
+
+    li a {
+     text-decoration: none:
+     display: inline-block;
+     background-color: #666666;
+     color: black:
+    }
+
+    li a:active, li a:hover {
+     background-color: green;   
+    }
+
     h1 {
      color: green;
      font-family: verdana;
