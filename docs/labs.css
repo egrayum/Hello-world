@@ -5,10 +5,13 @@
      font-family: verdana;
     }
 
+    div.nbar {
+        background-color: pink;       
+    }
+
     ul.nav {
-     background-color: #666666;
-     list-style-type: none;
-     margin: 0;
+        display: inline-block;
+     margin: 0 auto;
      padding: 0;
      border: 1px solid red;
     }
@@ -20,13 +23,10 @@
     }
 
     ul.nav li a {
-     margin-left: 25%;
      text-align: center;
      text-decoration: none;
      color: blue;
-     width: 14%;
-     padding-top: 8px;
-     padding-bottom: 8px;
+     padding: 1em;
      border: 1px solid yellow;
     } 
 
