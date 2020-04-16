@@ -26,10 +26,12 @@
      text-decoration: none;
      color: blue;
      padding: 1em;
+     border: 1px solid gray;
     } 
 
     ul.nav li a:active, ul.nav li a:hover {
-     background-color: green;   
+     background-color: green;
+     border: 1px solid lightgray;
     }
 
    #content {
