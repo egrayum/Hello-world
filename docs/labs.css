@@ -5,8 +5,8 @@
      font-family: verdana;
     }
 
-    div.nbar {
-        background-color: pink;       
+    div#nbar {
+        background-color: gray;       
     }
 
     ul.nav {
