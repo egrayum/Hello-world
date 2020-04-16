@@ -10,24 +10,23 @@
     }
 
     ul.nav {
-        display: inline-block;
+     display: inline-block;
      margin: 0 auto;
      padding: 0;
-     border: 1px solid red;
+     width: fit-content;
     }
 
     ul.nav li {
      display: inline-block;
      list-style-type: none;
-     border: 1px solid green;
     }
 
     ul.nav li a {
+     display: block;
      text-align: center;
      text-decoration: none;
      color: blue;
      padding: 1em;
-     border: 1px solid yellow;
     } 
 
     ul.nav li a:active, ul.nav li a:hover {
