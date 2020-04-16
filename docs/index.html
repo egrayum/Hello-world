@@ -2,18 +2,17 @@
  <head>
   <script>
    var copy1 = "Cuddlekins, the great Inventor", copy2 = "Turtle, the master Chef", _paragraph = copy1;
-	function changeParagraph () {
-	if (_paragraph == copy2) {
-	_paragraph = copy1;
-	document.getElementById("turtleKins").src = 'https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1185.jpg';
-	document.getElementById("turtleKins").style = 'width:74px; height:95px;';
-	} else if (_paragraph == copy1) {
-	_paragraph = copy2;
-	document.getElementById("turtleKins").src = 'https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1184.jpg';
-	document.getElementById("turtleKins").style = 'width:132px; height:66px;';
-	}
-	document.getElementById("test").innerHTML = _paragraph;
-	}
+   function changeParagraph () {
+    if (_paragraph == copy2) {
+     _paragraph = copy1;
+     document.getElementById("turtleKins").src = 'https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1185.jpg';     document.getElementById("turtleKins").style = 'width:74px; height:95px;';
+    } else if (_paragraph == copy1) {
+     _paragraph = copy2;
+     document.getElementById("turtleKins").src = 'https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1184.jpg';
+     document.getElementById("turtleKins").style = 'width:132px; height:66px;';
+    }
+    document.getElementById("test").innerHTML = _paragraph;
+   }
   </script>
 	 
   <link rel="stylesheet" type="text/css" href="labs.css"> </link>
@@ -21,9 +20,11 @@
   <title>turtlekins labs test page</title>
  </head> 
  <body onload="changeParagraph()">
-  <ul class="nav">
-   <li><a href="food.html">Food branch</a></li>
-  </ul>
+  <div id="nbar">
+   <ul class="nav">
+    <li><a href="food.html">Food branch</a></li>
+   </ul>
+  </div>
   <div id="content">
    <img src="https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1183.jpg" 
    alt="Turtlekins Labs" style="max-width:100%; max-height:227px;">
