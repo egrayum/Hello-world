@@ -13,17 +13,22 @@
     }
 
     ul.nav li {
+     float: left;
      list-style-type: none;   
     }
 
     ul.nav li a {
-     display: inline-block;
+     display: block;
      text-align: center;
      text-decoration: none;
      color: black;
      width: 14%;
      padding-top: 8px;
      padding-bottom: 8px;
+    }
+
+    #food {
+     margin-left: 39%; 
     }
 
     ul.nav li a:active, ul.nav li a:hover {
