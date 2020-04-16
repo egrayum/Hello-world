@@ -28,8 +28,8 @@
      background-color: green;   
     }
 
-   div.content {
-     margin: 5px;
+   #content {
+     margin: 8px;
    }
 
     h1 {
