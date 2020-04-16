@@ -26,14 +26,6 @@
      padding-bottom: 8px;
     }
 
-    #food {
-     margin-left: 39%;   
-    }
-
-    #tech {
-     margin-right: 39%;   
-    }
-
     ul.nav li a:active, ul.nav li a:hover {
      background-color: green;   
     }
