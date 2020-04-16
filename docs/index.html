@@ -12,7 +12,14 @@
      document.getElementById("turtleKins").style = 'width:132px; height:66px;';
     }
     document.getElementById("test").innerHTML = _paragraph;
+   }  
+   function preload () {
+    if (document.images) {
+     img1 = new Image(); 
+     img1.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1185.jpg";    
+    }	   
    }
+	  
   </script>
 	 
   <link rel="stylesheet" type="text/css" href="labs.css"> </link>
@@ -29,8 +36,8 @@
   </div>
   <div id="content">
    <img src="https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1183.jpg" 
-   alt="Turtlekins Labs" style="max-width:100%; max-height:227px;">
-
+   onload="preload"alt="Turtlekins Labs" style="max-width:100%; max-height:227px;">
+  
    <h1>Welcome to the test page!</h1>
      
    <div id="cofounders">
