@@ -6,6 +6,10 @@
      font-family: verdana;
     }
 
+    p {
+     width: 800px;   
+    }  
+
     div#nbar {
      background-color: #777;       
     }
