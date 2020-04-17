@@ -6,9 +6,10 @@
      font-family: verdana;
     }
 
-    p {
-     width: 800px;   
-    }  
+    div.paragraph {
+     text-align: center;
+     width: 800px;
+    }
 
     div#nbar {
      background-color: #777;       
