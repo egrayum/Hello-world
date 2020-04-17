@@ -7,8 +7,9 @@
     }
 
     p {
-     width: 800px;   
      text-align: center;
+     margin-left: 120px;
+     width: 800px;   
     }  
 
     div#nbar {
