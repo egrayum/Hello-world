@@ -7,8 +7,6 @@
     }
 
     p {
-     text-align: center;
-     margin-left: 120px;
      width: 800px;   
     }  
 
@@ -42,8 +40,9 @@
     }
 
     #content {
+     text-align: center; 
      margin: 8px;
-   }
+    }
 
     h1 {
      color: #8f8f8f;
