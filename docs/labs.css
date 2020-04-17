@@ -1,3 +1,7 @@
+    html {
+     text-align: center;  
+    } 
+
     body {
      text-align: center;
      margin: 0;
@@ -27,7 +31,6 @@
 
     ul.nav li a {
      display: block;
-     text-align: center;
      text-decoration: none;
      color: #89cff0;
      padding: 1em;
@@ -40,7 +43,6 @@
     }
 
     #content {
-     text-align: center; 
      margin: 8px;
     }
 
