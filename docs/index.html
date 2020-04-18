@@ -70,8 +70,12 @@
     ctx.fillStyle = "#4f4f4f";
     ctx.fillRect(0, 260, 640, 60);   
     ctx.fillStyle =  "#b87333";
-    function draw() {
-     ctx.fillRect(mouseX, mouseY, 40, 8);
+    function rect() {   
+     ctx.fillRect(X, Y, 40, 8);
+    }
+    if (mouseClicked) {
+     X + 100;
+     rect();  
     }
    </script>
   </div>				
