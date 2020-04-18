@@ -69,16 +69,9 @@
     var Y = 280;
     ctx.fillStyle = "#4f4f4f";
     ctx.fillRect(0, 260, 640, 60);   
-    ctx.fillStyle =  "#b87333";  
-    ctx.fillRect(X, Y, 40, 8);
-    if (mousePressed()) {
-     if (X == mouseX) {
-      X = 300;
-      Y = 280;
-     } else {
-      X = mouseX;
-      Y = mouseY;
-     }     
+    ctx.fillStyle =  "#b87333";
+    function draw() {
+     ctx.fillRect(mouseX, mouseY, 40, 8);
     }
    </script>
   </div>				
