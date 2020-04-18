@@ -65,15 +65,20 @@
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
-    var X = 0;
-    var Y = 0;
+    var X = 300;
+    var Y = 280;
     ctx.fillStyle = "#4f4f4f";
     ctx.fillRect(0, 260, 640, 60);   
     ctx.fillStyle =  "#b87333";  
-    var wire = ctx.fillRect(X, Y, 40, 8);
+    ctx.fillRect(X, Y, 40, 8);
     if (mousePressed()) {
-     X = mouseX;
-     Y = mouseY;
+     if (X == mouseX) {
+      X = 300;
+      Y = 280;
+     } else {
+      X = mouseX;
+      Y = mouseY;
+     }     
     }
    </script>
   </div>				
