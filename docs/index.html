@@ -68,14 +68,13 @@
     var X = 0;
     var Y = 0;
     ctx.fillStyle = "#4f4f4f";
-    ctx.fillRect(0, 260, 640, 60);
-    function rect() {
-     ctx.fillRect(X, Y, 10, 10);
+    ctx.fillRect(0, 260, 640, 60);   
+    ctx.fillStyle =  "#b87333";  
+    var wire = ctx.fillRect(X, Y, 40, 8);
+    if (mousePressed()) {
+     X = mouseX;
+     Y = mouseY;
     }
-     while (X < 50) {  
-      rect();
-      X++;  
-     }    
    </script>
   </div>				
  </body>
