@@ -65,8 +65,17 @@
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
+    var X = 0;
+    var Y = 0;
     ctx.fillStyle = "#4f4f4f";
     ctx.fillRect(0, 260, 640, 60);
+    function rect() {
+     ctx.fillRect(X, Y, 10, 10);
+    }
+     while (X < 59) {  
+      rect();
+      X + 12;     
+     }    
    </script>
   </div>				
  </body>
