@@ -67,8 +67,13 @@
     var ctx = c.getContext("2d");
     var X = 300;
     var Y = 280;
-    ctx.fillStyle = "#4f4f4f";
-    ctx.fillRect(0, 260, 640, 60);
+    function quad() {
+     ctx.fillStyle = "#4f4f4f";
+     ctx.fillRect(0, 260, 64, 60);    
+    }
+    if (mouseClicked()) {
+     quad();
+    }
    </script>
   </div>				
  </body>
