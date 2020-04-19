@@ -61,14 +61,15 @@
    </div>
   </div>
   <div id="canvas" style="text-align: center;">
-   <canvas id="gameCanvas" onclick="rng()" width="640" height="320" style="background-color: #666;">
+   <canvas id="gameCanvas" onclick="document.getElementById('hello').innerHTML = rng(1, 20)" width="640" height="320" style="background-color: #666;">
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
-    function rng() {
+    function rng(min, max) {
      return Math.floor(Math.random() * (max - min + 1) ) + min; 
     }
    </script>
-  </div>				
+  </div>
+	  <p id="hello"></p>
  </body>
 </html>
