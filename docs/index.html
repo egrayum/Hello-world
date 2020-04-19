@@ -65,11 +65,13 @@
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
-    var X = 300;
-    var Y = 280;
-    function quad() {
+    var X;
+    var Y;
+    function rngQuad() {
+     X = math.floor(math.random() * 100);
+     Y = math.floor(math.random() * 100);
      ctx.fillStyle = "#4f4f4f";
-     ctx.fillRect(0, 260, 64, 60);    
+     ctx.fillRect(X, Y, 64, 60);    
     }
    </script>
   </div>				
