@@ -68,8 +68,8 @@
     var X;
     var Y;
     function rngQuad() {
-     X = math.floor(math.random() * 100);
-     Y = math.floor(math.random() * 100);
+     X = math.floor(math.random() * (max - min + 1) ) + min;
+     Y = math.floor(math.random() * (max - min + 1) ) + min;
      ctx.fillStyle = "#4f4f4f";
      ctx.fillRect(X, Y, 64, 60);    
     }
