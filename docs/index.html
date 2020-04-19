@@ -56,20 +56,22 @@
      Cuddlekins is the head of the Tech branch and has made several breakthroughs in technology development.
      Turtle is a master chef and is head of the Food branch, and creates and tests many tasty recipes. 
      Turtle is also a skilled programmer, but doesn't make many tutorials, because that's what 
-     <a class="noStyleLink" href ="https://www.w3schools.com">w3schools</a> is for!
+     <a class="noStyleLink" href ="https://www.w3schools.com">w3schools</a> is for
     </p>
    </div>
   </div>
   <div id="canvas" style="text-align: center;">
-   <canvas id="gameCanvas" onclick="document.getElementById('hello').innerHTML = rng(1, 20)" width="640" height="320" style="background-color: #666;">
+   <canvas id="gameCanvas" onclick="rng(1, 320)" width="640" height="320" style="background-color: #666;">
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
     function rng(min, max) {
-     return Math.floor(Math.random() * (max - min + 1) ) + min; 
+     var X = Math.floor(Math.random() * (max - min + 1) ) + min;
+     var Y = Math.floor(Math.random() * (max - min + 1) ) + min;
+     ctx.fillStyle = "#4f4f4f";
+     ctx.fillRect(X, Y, 50, 50);
     }
    </script>
   </div>
-	  <p id="hello"></p>
  </body>
 </html>
