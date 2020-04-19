@@ -61,17 +61,12 @@
    </div>
   </div>
   <div id="canvas" style="text-align: center;">
-   <canvas id="gameCanvas" onclick="rngQuad()" width="640" height="320" style="background-color: #666;">
+   <canvas id="gameCanvas" onclick="rng()" width="640" height="320" style="background-color: #666;">
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
-    var X;
-    var Y;
-    function rngQuad() {
-     X = math.floor(math.random() * (max - min + 1) ) + min;
-     Y = math.floor(math.random() * (max - min + 1) ) + min;
-     ctx.fillStyle = "#4f4f4f";
-     ctx.fillRect(X, Y, 64, 60);    
+    function rng() {
+     return Math.floor(Math.random() * (max - min + 1) ) + min; 
     }
    </script>
   </div>				
