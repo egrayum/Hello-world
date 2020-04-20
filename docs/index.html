@@ -65,13 +65,18 @@
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
+    var r = 0;
     function rng(min, max) {
+     var color = Math.floor(Math.random() * (max - min + 1) ) + min;
      var X = Math.floor(Math.random() * ((max * 2) - min + 1) ) + min;
      var Y = Math.floor(Math.random() * (max - min + 1) ) + min;
-     ctx.fillStyle = "#4f4f4f";
+     ctx.fillStyle = "rgb(0, 0, color)";
      ctx.fillRect(X, Y, 50, 50);
+     r++;
+     document.getElementById("rectangles").innerHTML = r;
     }
    </script>
   </div>
+  <p id="rectangles"></p>
  </body>
 </html>
