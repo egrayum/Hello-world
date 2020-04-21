@@ -65,12 +65,11 @@
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
-    var r = 0;
-    var color;	   
+    var r = 0;   
     function rng(min, max) {
      var X = Math.floor(Math.random() * ((max * 2) - min + 1) ) + min;
      var Y = Math.floor(Math.random() * (max - min + 1) ) + min;
-     color = X;
+     var color = 200;
      ctx.fillStyle = 'rgb(0, 0, 'color')';
      ctx.fillRect(X, Y, 50, 50);
      r++;
