@@ -60,6 +60,7 @@
     </p>
    </div>
   </div>
+  <p id="rectangles">Click the rectangle below to get squares.</p>	 
   <div id="canvas" style="text-align: center;">
    <canvas id="gameCanvas" onclick="rng(1, 320)" width="640" height="320" style="background-color: #666;">
    <script>
@@ -73,10 +74,9 @@
 ctx.fillStyle = "rgb(" + color +"," + color + "," + color + ")";
      ctx.fillRect(X, Y, 50, 50);
      r++;
-     document.getElementById("rectangles").innerHTML = r;
+     document.getElementById("rectangles").innerHTML = r + "squares";
     }
    </script>
   </div>
-  <p id="rectangles"></p>
  </body>
 </html>
