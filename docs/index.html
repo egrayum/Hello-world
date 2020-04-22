@@ -62,6 +62,8 @@
   </div>
   <button type="button" style="inline" onclick="rng(1, 271)">Click for squares</button>
   <button type="button" style="inline" onclick="clearCanvas()">Click to clear canvas</button>
+  <button type="button" style="inline" onclick="changes(+1)">Plus 1 squares/click</button> 
+  <button type="button" style="inline" onclick="changes(-1)">Minus 1 squares/click</button>  
   <p id="rectangles">Squares will show up on the canvas below.</p>	 
   <div id="canvas" style="text-align: center;">
    <canvas id="gameCanvas" width="640" height="320" style="background-color: #666;">
@@ -73,6 +75,7 @@
     var Y;
     var reps = 0;
     var color;
+	   
     function rng(min, max) {
      while (reps < 3) {
       X = Math.floor(Math.random() * ((max + 320) - min + 1) ) + min;
@@ -90,6 +93,9 @@
      ctx.fillStyle = "#666";
      ctx.fillRect(0, 0, 640, 320);
      r = 0;
+    }
+    function changes (pm) {
+     reps + pm;    
     }
    </script>
   </div>
