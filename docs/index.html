@@ -32,6 +32,7 @@
     <li><a href="food.html" id="food">Food branch</a></li>
     <li><a href="index.html" id="home">Home</a></li>
     <li><a href="tech.html" id="tech">Tech branch</a></li>
+    <li><a href="game.html" id="game">Turtlekins' game</a></li>
    </ul>
   </div>
   <div id="content">
@@ -59,37 +60,6 @@
      <a class="noStyleLink" href ="https://www.w3schools.com">w3schools</a> is for!
     </p>
    </div>
-  </div>
-  <p id="Mouse">Click the right side of the canvas below.</p>	 
-  <div id="canvas" style="text-align: center; margin-bottom:8px">
-   <canvas id="gameCanvas" width="960px" height="480px" onclick="moveRect()" style="background-color: #666;">
-   <script>
-    var c = document.getElementById("gameCanvas");
-    var ctx = c.getContext("2d");
-    var X = 120;
-    var Y = 120;   
-    ctx.fillStyle = "#000";
-    ctx.fillRect(X, Y, 30, 30);
-    function moveRect () {
-     var mouseX = event.clientX;
-     var mouseY = event.clientY;
-     if (X < mouseX) {
-      X += 30;  
-      ctx.fillStyle = "#666"   
-      ctx.fillRect(0, 0, 960, 480);
-      ctx.fillStyle = "#000";
-      ctx.fillRect(X, Y, 30, 30);
-     }
-     if (X > mouseX) {
-      X -= 30;
-      ctx.fillStyle = "#666"   
-      ctx.fillRect(0, 0, 960, 480);
-      ctx.fillStyle = "#000";
-      ctx.fillRect(X, Y, 30, 30);
-     }
-     document.getElementById("Mouse").innerHTML = "X: " + mouseX + " Y: " + mouseY;
-    } 
-   </script>
   </div>
  </body>
 </html>
