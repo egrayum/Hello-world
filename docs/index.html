@@ -62,8 +62,8 @@
   </div>
   <button type="button" style="inline" onclick="rng(1, 271)">Click for squares</button>
   <button type="button" style="inline" onclick="clearCanvas()">Click to clear canvas</button>
-  <button type="button" style="inline" onclick="changes(1)">Plus 1 squares/click</button> 
-  <button type="button" style="inline" onclick="changes(-1)">Minus 1 squares/click</button> 
+  <button type="button" style="inline" onclick="changeReps(1)">Plus 1 squares/click</button> 
+  <button type="button" style="inline" onclick="changeReps(-1)">Minus 1 squares/click</button> 
  
   <p id="rectangles">Squares will show up on the canvas belo.</p>	 
   <div id="canvas" style="text-align: center;">
@@ -91,14 +91,15 @@
      }
      rep = 0;
     }
-    function clearCanvas () {
+    function clearCanvas() {
      ctx.fillStyle = "#666";
      ctx.fillRect(0, 0, 640, 320);
      r = 0;
      document.getElementById("rectangles").innerHTML = r + " squares";  
     }
-    function changes (pm) {
-     reps + pm;    
+    function changeReps(pm) {
+     console.log(pm);
+     reps + pm;
     }
    </script>
   </div>
