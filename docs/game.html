@@ -3,14 +3,19 @@
   <title>turtlekins game</title>
   <link rel="stylesheet" type="text/css" href="labs.css"></link>
   <canvas id="gameCanvas" onclick="moveRect()" style="background-color: #666; width:100%; height:100%;">
-  <script>
+  <script onload="canvasSize()">
+    var canvas = document.getElementById("gameCanvas");
+    function canvasSize() {
+     canvas.width = window.innerWidth;
+     canvas.height = window.innerHeight;
+    }
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
     var X = 120;
     var Y = 120;   
     ctx.fillStyle = "#000";
     ctx.fillRect(X, Y, 30, 30);
-    function moveRect () {
+    function moveRect() {
      var mouseX = event.clientX;
      var mouseY = event.clientY;
      if (X < mouseX) {
