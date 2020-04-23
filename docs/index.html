@@ -98,7 +98,7 @@
      document.getElementById("rectangles").innerHTML = r + " squares";  
     }
     function changeReps(pm) {
-	if (reps > 0) {   
+	if (reps + pm >= 0) {   
 	 reps += pm;
 	}  
 	document.getElementById("addSquares").innerHTML = "click for " + reps + " squares";
