@@ -60,14 +60,9 @@
     </p>
    </div>
   </div>
-  <button id="addSquares" type="button" style="inline" onclick="rng(1, 271)">Click for 3 squares</button>
-  <button type="button" style="inline" onclick="clearCanvas()">Click to clear canvas</button>
-  <button type="button" style="inline" onclick="changeReps(1)">Plus 1 squares/click</button> 
-  <button type="button" style="inline" onclick="changeReps(-1)">Minus 1 squares/click</button> 
- 
-  <p id="rectangles">Squares will show up on the canvas below.</p>	 
+  <p id="rectangles">Click the right side of the canvas below..</p>	 
   <div id="canvas" style="text-align: center; margin-bottom:8px">
-   <canvas id="gameCanvas" width="640" height="320" style="background-color: #666;">
+   <canvas id="gameCanvas" width="640" height="320" onload="moveRect()" onclick="moveRect()" style="background-color: #666;">
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
