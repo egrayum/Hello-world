@@ -60,7 +60,7 @@
     </p>
    </div>
   </div>
-  <p onload="moveRect()">Click the right side of the canvas below.</p>	 
+  <p id="Mouse">Click the right side of the canvas below.</p>	 
   <div id="canvas" style="text-align: center; margin-bottom:8px">
    <canvas id="gameCanvas" width="640" height="320" onclick="moveRect()" style="background-color: #666;">
    <script>
@@ -78,9 +78,9 @@
       X += 50;     
      }
      ctx.fillStyle = "#4f4f4f";
-     ctx.fillRect(X, Y, 30, 30);
+     ctx.fillRect(mouseX, mouseY, 30, 30);
+     document.getElementById("Mouse").innerHTML = mouseX;
     } 
-    
    </script>
   </div>
  </body>
