@@ -22,11 +22,11 @@
 	  
   </script>
 	 
-  <link rel="stylesheet" type="text/css" href="labs.css"> </link>
+  <link rel="stylesheet" type="text/css" href="labs.ss"> </link>
 	
   <title>turtlekins labs test page</title>
  </head> 
- <body onload="changeParagraph()" onload="moveRect()">
+ <body onload="changeParagraph()">
   <div id="nbar">
    <ul class="nav">
     <li><a href="food.html" id="food">Food branch</a></li>
@@ -66,18 +66,20 @@
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
+    var X = 120;
+    var Y = 120;   
     ctx.fillStyle = "#000";
     ctx.fillRect(X, Y, 30, 30);
     function moveRect () {
      var mouseX = event.clientX;
      var mouseY = event.clientY;
-     var X = 120;
-     var Y = 120;
      if (mouseX > X) {
-      X += 50;     
+      X += 50;  
+      ctx.fillStyle = "#666"   
+      ctx.fillRect(0, 0, 960, 480);
+      ctx.fillStyle = "#000";
+      ctx.fillRect(X, Y, 30, 30);
      }
-     ctx.fillStyle = "#000";
-     ctx.fillRect(X, Y, 30, 30);
      document.getElementById("Mouse").innerHTML = "X: " + mouseX + " Y: " + mouseY;
     } 
    </script>
