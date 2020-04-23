@@ -74,23 +74,22 @@
     var r = 0;  
     var X;
     var Y;
-    var reps = 0;
+    var rep = 0;
     var color;
-    var rep2 = 3;
+    var reps = 3;
 	   
     function rng(min, max) {
-     console.log(rep2);
-     while (reps < 3) {
+     while (rep < reps) {
       X = Math.floor(Math.random() * ((max + 320) - min + 1) ) + min;
       Y = Math.floor(Math.random() * (max - min + 1) ) + min;
       color = Y;
       ctx.fillStyle = "rgb(" + color +"," + color + "," + color + ")";
       ctx.fillRect(X, Y, 50, 50);
       r++;
-      reps++;
+      rep++;
       document.getElementById("rectangles").innerHTML = r + " squares";
      }
-     reps = 0;
+     rep = 0;
     }
     function clearCanvas () {
      ctx.fillStyle = "#666";
@@ -99,7 +98,7 @@
      document.getElementById("rectangles").innerHTML = r + " squares";  
     }
     function changes (pm) {
-     rep2 + pm;    
+     reps + pm;    
     }
    </script>
   </div>
