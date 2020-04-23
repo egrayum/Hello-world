@@ -60,7 +60,7 @@
     </p>
    </div>
   </div>
-  <button type="button" style="inline" onclick="rng(1, 271)">Click for squares</button>
+  <button id="addSquares" type="button" style="inline" onclick="rng(1, 271)">Click for 3 squares</button>
   <button type="button" style="inline" onclick="clearCanvas()">Click to clear canvas</button>
   <button type="button" style="inline" onclick="changeReps(1)">Plus 1 squares/click</button> 
   <button type="button" style="inline" onclick="changeReps(-1)">Minus 1 squares/click</button> 
@@ -86,7 +86,7 @@
       ctx.fillStyle = "rgb(" + color +"," + color + "," + color + ")";
       ctx.fillRect(X, Y, 50, 50);
       r++;
-      rep++;
+      rep++; 
       document.getElementById("rectangles").innerHTML = r + " squares";
      }
      rep = 0;
@@ -98,9 +98,8 @@
      document.getElementById("rectangles").innerHTML = r + " squares";  
     }
     function changeReps(pm) {
-		console.log(pm);
-		console.log('Change Reps');
-		reps += pm;
+	reps += pm;
+	document.getElementById("addSquares").innerHTML = "click for " + reps + " squares";
     }
    </script>
   </div>
