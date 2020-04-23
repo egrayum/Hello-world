@@ -74,7 +74,14 @@
      var mouseX = event.clientX;
      var mouseY = event.clientY;
      if (X < mouseX) {
-      X += 50;  
+      X += 30;  
+      ctx.fillStyle = "#666"   
+      ctx.fillRect(0, 0, 960, 480);
+      ctx.fillStyle = "#000";
+      ctx.fillRect(X, Y, 30, 30);
+     }
+     if (X > mouseX) {
+      X -= 30;
       ctx.fillStyle = "#666"   
       ctx.fillRect(0, 0, 960, 480);
       ctx.fillStyle = "#000";
