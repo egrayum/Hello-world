@@ -71,38 +71,21 @@
    <script>
     var c = document.getElementById("gameCanvas");
     var ctx = c.getContext("2d");
-    var r = 0;  
-    var X;
-    var Y;
-    var rep = 0;
-    var color;
-    var reps = 3;
-	   
-    function rng(min, max) {
-     while (rep < reps) {
-      X = Math.floor(Math.random() * ((max + 320) - min + 1) ) + min;
-      Y = Math.floor(Math.random() * (max - min + 1) ) + min;
-      color = Y;
-      ctx.fillStyle = "rgb(" + color +"," + color + "," + color + ")";
-      ctx.fillRect(X, Y, 50, 50);
-      r++;
-      rep++; 
-      document.getElementById("rectangles").innerHTML = r + " squares";
+    ctx.fillStyle = "#4f4f4f";
+    ctx.fillRect(X, Y, 30, 30);
+    function moveRect () {
+     var e = window.event;
+     var mouseX = e.clientX
+     var mouseY = e.clientY
+     var X = 120;
+     var Y = 120;
+     if (mouseX > X) {
+      X += 50;     
      }
-     rep = 0;
-    }
-    function clearCanvas() {
-     ctx.fillStyle = "#666";
-     ctx.fillRect(0, 0, 640, 320);
-     r = 0;
-     document.getElementById("rectangles").innerHTML = r + " squares";  
-    }
-    function changeReps(pm) {
-	if (reps + pm >= 0) {   
-	 reps += pm;
-	}  
-	document.getElementById("addSquares").innerHTML = "click for " + reps + " squares";
-    }
+     ctx.fillStyle = "#4f4f4f";
+     ctx.fillRect(X, Y, 30, 30);
+         
+    
    </script>
   </div>
  </body>
