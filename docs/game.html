@@ -32,7 +32,20 @@
       ctx.fillStyle = "#000";
       ctx.fillRect(X, Y, 30, 30);
      }
-     document.getElementById("Mouse").innerHTML = "X: " + mouseX + " Y: " + mouseY;
+     if (Y < mouseY) {
+      Y += 30;
+      ctx.fillStyle = "#666"  
+      ctx.fillRect(0, 0, 960, 480);
+      ctx.fillStyle = "#000";
+      ctx.fillRect(X, Y, 30, 30);
+     }
+     if (Y > mouseY) {
+      Y -= 30;
+      ctx.fillStyle = "#666"  
+      ctx.fillRect(0, 0, 960, 480);
+      ctx.fillStyle = "#000";
+      ctx.fillRect(X, Y, 30, 30);
+     }
     } 
   </script>
  </head>
