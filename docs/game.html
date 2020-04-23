@@ -21,28 +21,28 @@
      if (X < mouseX) {
       X += 30;  
       ctx.fillStyle = "#666"   
-      ctx.fillRect(0, 0, 960, 480);
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#000";
       ctx.fillRect(X, Y, 30, 30);
      }
      if (X > mouseX) {
       X -= 30;
       ctx.fillStyle = "#666"  
-      ctx.fillRect(0, 0, 960, 480);
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#000";
       ctx.fillRect(X, Y, 30, 30);
      }
      if (Y < mouseY) {
       Y += 30;
       ctx.fillStyle = "#666"  
-      ctx.fillRect(0, 0, 960, 480);
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#000";
       ctx.fillRect(X, Y, 30, 30);
      }
      if (Y > mouseY) {
       Y -= 30;
-      ctx.fillStyle = "#666"  
-      ctx.fillRect(0, 0, 960, 480);
+      ctx.fillStyle = "#666";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#000";
       ctx.fillRect(X, Y, 30, 30);
      }
