@@ -1,5 +1,5 @@
 <html>
- <head style="margin:20px; padding:0;">
+ <head style="margin:20px; padding:20px;">
   <title>turtlekins game</title>
   <link rel="stylesheet" type="text/css" href="labs.css"></link>
   <canvas id="gameCanvas" onclick="drawSquare()" style="background-color: #666; width:800; height:600; text-align:center;">
@@ -9,6 +9,8 @@
     var X = 120;
     var Y = 120;
     var i;
+    var oldXs = [];
+    var oldYs = [];
     function drawSquare() { 
      ctx.fillStyle = "#000";
      ctx.fillRect(X, Y, 30, 30);
@@ -18,8 +20,6 @@
      var mouseX = event.clientX - rect.left,
      var mouseY = event.clientY - rect.top;
      var score = 0;
-     var oldXs = [];
-     var oldYs = [];
      ctx.fillStyle = "#666";
      ctx.font = "30px Arial";
      ctx.fillText("Score: " + score, 10, 50);
