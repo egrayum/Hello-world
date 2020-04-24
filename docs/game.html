@@ -2,52 +2,83 @@
  <head style="margin:0; padding:0;">
   <title>turtlekins game</title>
   <link rel="stylesheet" type="text/css" href="labs.css"></link>
-  <canvas id="gameCanvas" onclick="moveRect()" style="background-color: #666; width:750; height:1334; text-align:center;">
-  <script onload="canvasSize()">
+  <canvas id="gameCanvas" onclick="moveRect()" style="background-color: #666; width:800; height:600; text-align:center;">
+  <script onload="drawSquare()">
     var canvas = document.getElementById("gameCanvas");
-    var ctx = canvas.getContext("2d");
-    function mousePos (canvas, evt) {
-    var rect = canvas.getBoundingClientRect();  
-          var X = event.clientX - rect.left,
-          var Y = event.clientY - rect.top
-      }
-    </script>
-  </body>
-</html>
-Y = 120;   
-    ctx.fillStyle = "#000";
-    ctx.fillRect(X, Y, 30, 30);
+    var ctx = canvas.getContext("2d");  
+    var X = 120;
+    var Y = 120;
+    var i;
+    function drawSquare() { 
+     ctx.fillStyle = "#000";
+     ctx.fillRect(X, Y, 30, 30);
+    }
     function moveRect() {
-     var mouseX = event.clientX;
-     var mouseY = event.clientY;
+     var rect = canvas.getBoundingClientRect();  
+     var mouseX = event.clientX - rect.left,
+     var mouseY = event.clientY - rect.top;
+     var score = 0;
+     var oldXs = [];
+     var oldYs = [];
+     ctx.fillStyle = "#666";
+     ctx.font = "30px Arial";
+     ctx.fillText("Score: " + score, 10, 50);
      if (X < mouseX) {
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(X, Y, 30, 30);
+      oldXs.push(X);
+      oldYs.push(Y);
       X += 30;  
-      ctx.fillStyle = "#666"   
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#000";
       ctx.fillRect(X, Y, 30, 30);
+      score += 1;
      }
      if (X > mouseX) {
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(X, Y, 30, 30);
+      oldXs.push(X);
+      oldYs.push(Y);
       X -= 30;
-      ctx.fillStyle = "#666"  
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#000";
       ctx.fillRect(X, Y, 30, 30);
+      score += 1;
      }
      if (Y < mouseY) {
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(X, Y, 30, 30);
+      oldXs.push(X);
+      oldYs.push(Y);
       Y += 30;
-      ctx.fillStyle = "#666"  
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#000";
       ctx.fillRect(X, Y, 30, 30);
+      score += 1;
      }
      if (Y > mouseY) {
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(X, Y, 30, 30);
+      oldXs.push(X);
+      oldYs.push(Y);
       Y -= 30;
-      ctx.fillStyle = "#666";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#000";
       ctx.fillRect(X, Y, 30, 30);
+      score += 1;
      }
+     for (i = 0; i < oldXs.length; i++) {
+      if (X = oldXs[i]) {
+       if (Y = oldYs[i]) {
+        Y = 120;
+        X = 120;
+        score = 0;
+        ctx.fillStyle = "#666";
+        ctx.fillRect(0, 0, 800, 600);
+        ctx.fillStyle = "#000";
+        ctx.fillRect(X, Y, 30, 30);
+       }
+      }
+     }
+     ctx.fillStyle = "#000";
+     ctx.font = "30px Arial";
+     ctx.fillText("Score: " + score, 10, 50);
     } 
   </script>
  </head>
