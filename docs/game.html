@@ -2,17 +2,19 @@
  <head>
   <title>turtlekins game</title>
   <link rel="stylesheet" type="text/css" href="labs.css"></link>
-  <canvas id="gameCanvas" style="background-color: #666; width:800; height:600; text-align:center; padding:20px; margin:20px;">
+  <canvas id="gameCanvas" style="background-color: #666; width:800; height:600; text-align:center; padding:20px; margin:20px;" onclick="drawR(100, 100)">
   <script>
-    var canvas = document.getElementById("gameCanvas");
-    var ctx = canvas.getContext("2d");  
+    function drawR(rX, rY) {
+     var canvas = document.getElementById("gameCanvas");
+     var ctx = canvas.getContext("2d");  
+     ctx.fillStyle = "#000";
+     ctx.fillRect(rX, rY, 30, 30);
+    }
     var X = 120;
     var Y = 120;
     var i;
     var oldXs = [];
     var oldYs = [];
-    ctx.fillStyle = "#000";
-    ctx.fillRect(100, 100, 30, 30);
     function moveRect() {
      var rect = canvas.getBoundingClientRect();  
      var mouseX = event.clientX - rect.left,
