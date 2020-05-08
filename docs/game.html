@@ -80,12 +80,12 @@
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(500, 0, 300, c.height);
       collision(pX < 300 || pX > 450);
-      if (pX < 5) {
+      if (pY < 5) {
        room = 0;
-       pX = 740
-      } else if (pX > 745) {
+       p& = 540
+      } else if (pY > 545) {
        room = 0;
-       pX = 10;
+       pY = 10;
       }
      } else if (room == 1) { 
       ctx.fillStyle = "#333";
