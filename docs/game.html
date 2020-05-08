@@ -2,86 +2,18 @@
  <head>
   <title>turtlekins game</title>
   <link rel="stylesheet" type="text/css" href="labs.css"></link>
-  <canvas id="gameCanvas" style="background-color: #666; width:800; height:600; text-align:center; padding:20px; margin:20px;" onclick="drawR(100, 100)">
+  <canvas id="gameCanvas" style="background-color: #666; width:100%; height:100%; text-align:center;">
   <script>
-    function drawR(rX, rY) {
-     var canvas = document.getElementById("gameCanvas");
-     var ctx = canvas.getContext("2d");  
-     ctx.fillStyle = "#000";
-     ctx.fillRect(rX, rY, 30, 30);
-    }
-    var X = 120;
-    var Y = 120;
-    var i;
-    var oldXs = [];
-    var oldYs = [];
-    function moveRect() {
-     var rect = canvas.getBoundingClientRect();  
-     var mouseX = event.clientX - rect.left,
-     var mouseY = event.clientY - rect.top;
-     var score = 0;
-     ctx.fillStyle = "#666";
-     ctx.font = "30px Arial";
-     ctx.fillText("Score: " + score, 10, 50);
-     if (X < mouseX) {
-      ctx.fillStyle = "#fff";
-      ctx.fillRect(X, Y, 30, 30);
-      oldXs.push(X);
-      oldYs.push(Y);
-      X += 30;  
-      ctx.fillStyle = "#000";
-      ctx.fillRect(X, Y, 30, 30);
-      score += 1;
-     }
-     if (X > mouseX) {
-      ctx.fillStyle = "#fff";
-      ctx.fillRect(X, Y, 30, 30);
-      oldXs.push(X);
-      oldYs.push(Y);
-      X -= 30;
-      ctx.fillStyle = "#000";
-      ctx.fillRect(X, Y, 30, 30);
-      score += 1;
-     }
-     if (Y < mouseY) {
-      ctx.fillStyle = "#fff";
-      ctx.fillRect(X, Y, 30, 30);
-      oldXs.push(X);
-      oldYs.push(Y);
-      Y += 30;
-      ctx.fillStyle = "#000";
-      ctx.fillRect(X, Y, 30, 30);
-      score += 1;
-     }
-     if (Y > mouseY) {
-      ctx.fillStyle = "#fff";
-      ctx.fillRect(X, Y, 30, 30);
-      oldXs.push(X);
-      oldYs.push(Y);
-      Y -= 30;
-      ctx.fillStyle = "#000";
-      ctx.fillRect(X, Y, 30, 30);
-      score += 1;
-     }
-     for (i = 0; i < oldXs.length; i++) {
-      if (X = oldXs[i]) {
-       if (Y = oldYs[i]) {
-        Y = 120;
-        X = 120;
-        score = 0;
-        ctx.fillStyle = "#666";
-        ctx.fillRect(0, 0, 800, 600);
-        ctx.fillStyle = "#000";
-        ctx.fillRect(X, Y, 30, 30);
-       }
-      }
-     }
-     ctx.fillStyle = "#000";
-     ctx.font = "30px Arial";
-     ctx.fillText("Score: " + score, 10, 50);
-    } 
+   var c = document.getElementById("gameCanvas");
+   var ctx = c.getContext("2d");
+   function init () {
+    c.width = 800;
+    c.height = 600;
+    ctx.fillStyle = "#111";
+    ctx.fillRect(200, 200, 100, 100);
+   }
   </script>
  </head>
- <body>
+ <body onload="init()">
  </body>
 <html>
