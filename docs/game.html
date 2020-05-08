@@ -12,6 +12,9 @@
    var click;
    var screen = 1;
    var coins = 0;
+   var room;
+   var oldpX;
+   var oldpY;
    function init() {
     c.width = 800;
     c.height = 600;
@@ -56,13 +59,25 @@
      ctx.fillText("Mine", 620, 380);
      if (pX > 560 && pY > 360) {
       screen = 2;
+      //room = Math.floor(Math.random() * Math.floor(7);
+      room = 1;
       pX = 375;
       pY = 275;
      }
     }
     if (screen == 2) {
-     ctx.fillStyle = "#444";
-     ctx.fillRect(0, 0, 200, c.height);
+     if (room == 1) {
+      ctx.fillStyle = "#333";
+      ctx.fillRect(0, 0, 300, c.height);
+      ctx.fillRect(500, 0, 300, c.height);
+      if (pX < 300 || pX > 450) {
+       pX = oldpX;
+       pY = oldpY;
+      } else { 
+       oldpX = pX;
+       oldpY = pY;
+      }
+     }
     }
     if (direct == 1 && pX - 5 > 0) {
      pX -= 5;
