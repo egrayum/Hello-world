@@ -15,6 +15,15 @@
    var room;
    var oldpX;
    var oldpY;
+   function collision(ifs) {
+    if (ifs) {
+       pX = oldpX;
+       pY = oldpY;
+      } else { 
+       oldpX = pX;
+       oldpY = pY;
+      }
+   }
    function init() {
     c.width = 800;
     c.height = 600;
@@ -59,8 +68,7 @@
      ctx.fillText("Mine", 620, 380);
      if (pX > 560 && pY > 360) {
       screen = 2;
-      //room = Math.floor(Math.random() * Math.floor(7);
-      room = 1;
+      room = Math.floor(Math.random() * Math.floor(2);
       pX = 375;
       pY = 275;
      }
@@ -70,13 +78,11 @@
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(500, 0, 300, c.height);
-      if (pX < 300 || pX > 450) {
-       pX = oldpX;
-       pY = oldpY;
-      } else { 
-       oldpX = pX;
-       oldpY = pY;
-      }
+      collision(pX < 300 || pX > 450);
+     } else if (room == 2) { 
+      ctx.fillRect(0, 0, c.width, 200);
+      ctx.fillRect(0, 400, c.width, 200);
+      collision(pY < 200 || pY > 350);
      }
     }
     if (direct == 1 && pX - 5 > 0) {
