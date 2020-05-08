@@ -11,6 +11,7 @@
    var direct;
    var click;
    var screen = 1;
+   var coins = 0;
    function init() {
     c.width = 800;
     c.height = 600;
@@ -46,23 +47,35 @@
     ctx.fillRect(0, 0, c.width, c.height);
     ctx.fillStyle = "#111";
     ctx.fillRect(pX, pY, 50, 50);
+    ctx.fillStyle = "#fff";
+    ctx.font = "20px Arial";
+    ctx.fillText("Coins: " + coins, 10, 25);
     if (screen == 1) {
      ctx.fillStyle = "#DEB887";
-     ctx.fillRect(250, 80, 300, 200);
+     ctx.fillRect(250, 20, 300, 200);
      ctx.fillStyle = "#333";
      ctx.font = "35px Arial";
-     ctx.fillText("Shop", 260, 135);
+     ctx.fillText("Shop", 260, 55);
      ctx.fillStyle = "#000";
      ctx.fillRect(600, 400, 180, 180);
      ctx.fillText("Mine", 620, 380);
+     if (pX > 560 && pY > 360) {
+      screen = 2;
+      pX = 375;
+      pY = 275;
+     }
+    }
+    if (screen == 2) {
+     ctx.fillStyle = "#444";
+     ctx.fillRect(0, 0, 200, c.height);
     }
     if (direct == 1 && pX - 5 > 0) {
      pX -= 5;
     } else if (direct == 2 && pY - 5 > 0) {
      pY -= 5;
-    } else if (direct == 3 && pX + 5 < 800) {
+    } else if (direct == 3 && pX + 5 < 760) {
      pX += 5;
-    } else if (direct == 4 && pY + 5 < 600) {
+    } else if (direct == 4 && pY + 5 < 560) {
      pY += 5;
     }
    }
