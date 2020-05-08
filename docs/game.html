@@ -15,6 +15,7 @@
    var room;
    var oldpX;
    var oldpY;
+   var layout = [];
    function collision(ifs) {
     if (ifs) {
        pX = oldpX;
@@ -79,6 +80,13 @@
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(500, 0, 300, c.height);
       collision(pX < 300 || pX > 450);
+      if (pX < 5) {
+       room = 0;
+       pX = 740
+      } else if (pX > 745) {
+       room = 0;
+       pX = 10;
+      }
      } else if (room == 1) { 
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, c.width, 200);
@@ -86,13 +94,13 @@
       collision(pY < 200 || pY > 350);
      }
     }
-    if (direct == 1 && pX - 5 > 0) {
+    if (direct == 1 && pX - 5 > - 5) {
      pX -= 5;
-    } else if (direct == 2 && pY - 5 > 0) {
+    } else if (direct == 2 && pY - 5 > - 5) {
      pY -= 5;
-    } else if (direct == 3 && pX + 5 < 760) {
+    } else if (direct == 3 && pX + 5 < 755) {
      pX += 5;
-    } else if (direct == 4 && pY + 5 < 560) {
+    } else if (direct == 4 && pY + 5 < 555) {
      pY += 5;
     }
     ctx.fillStyle = "#111";
