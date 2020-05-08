@@ -45,11 +45,6 @@
    function runGame() {
     ctx.fillStyle = "#666";
     ctx.fillRect(0, 0, c.width, c.height);
-    ctx.fillStyle = "#111";
-    ctx.fillRect(pX, pY, 50, 50);
-    ctx.fillStyle = "#fff";
-    ctx.font = "20px Arial";
-    ctx.fillText("Coins: " + coins, 10, 25);
     if (screen == 1) {
      ctx.fillStyle = "#DEB887";
      ctx.fillRect(250, 20, 300, 200);
@@ -78,6 +73,11 @@
     } else if (direct == 4 && pY + 5 < 560) {
      pY += 5;
     }
+    ctx.fillStyle = "#111";
+    ctx.fillRect(pX, pY, 50, 50);
+    ctx.fillStyle = "#fff";
+    ctx.font = "20px Arial";
+    ctx.fillText("Coins: " + coins, 10, 25);
    }
   </script>
  </head>
