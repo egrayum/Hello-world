@@ -45,7 +45,7 @@
     <a class="Link" target="_blank" href="https://egrayum.github.io/Hello-world/" style="clear:both;">About Cuddlekins and Turtle</a> <br> <br>
     <img src="https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1184.jpg" id="turtleKins" alt="Turtlekins" style="width:132px; height:66px;">
     <div class="paragraph">
-     <p id="test"></p>
+     <p id="test">hello</p>
     </div>
     <button type="button" onclick="changeParagraph()">Select cofounder</button> <br>
    </div>
@@ -61,5 +61,18 @@
     </p>
    </div>
   </div>
+  <script>
+   var array1 = [];
+   array1.push([0]);
+   array1.push(["A1"]);
+   array1[0].push(1);
+   array1[1].push("A2");
+   if (array1[1].includes("A2")) {
+    document.getElementById("test").innerHTML = "true"
+   } else {
+    document.getElementById("test").innerHTML = "false"   
+   }
+    
+  </script>
  </body>
 </html>
