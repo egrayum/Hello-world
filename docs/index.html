@@ -45,8 +45,8 @@
     <a class="Link" target="_blank" href="https://egrayum.github.io/Hello-world/" style="clear:both;">About Cuddlekins and Turtle</a> <br> <br>
     <img src="https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1184.jpg" id="turtleKins" alt="Turtlekins" style="width:132px; height:66px;">
     <div class="paragraph">
-     <p id="test">help it doesn't work</p>
-    </div>
+     <p id="test">ok maybe it works now</p>
+	   </div>
     <button type="button" onclick="changeParagraph()">Select cofounder</button> <br>
    </div>
 			 
@@ -63,15 +63,19 @@
   </div>
   <script>
    var array1;
-array1 = {
+array1[0] = {
     "type":4,
     "pos":2
    };
+array1[1] = {
+	"type":3,
+	"pos":3
+};
   // array1[array.length - 1]{
     //"type":1,
    // "pos":1
  //  }
-   alert("position: " + array1.pos + "type: " + array1.type);
+   alert("room 1: " + array1[0] + " room 2: " + array1[1]);
   </script>
  </body>
 </html>
