@@ -65,6 +65,7 @@
   <script>
 	  var posChange;
 	  var Y;
+	  var type = 1;
 var X;
 var direction = "N";
 	  var currPos = "2,3";
@@ -93,6 +94,10 @@ array1[array1.length - 1] = {
 		  if (array1[i].pos = currpos) {
 		alert("true");	  
 		  }
+	  }
+	  if (type == 1) {
+		type = 2;
+		  alert(type);
 	  }
    document.getElementById("hello").innerHTML = "room 1 type: " + array1[0].type + " room 1 pos: " + array1[0].pos;
   </script>
