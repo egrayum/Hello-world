@@ -59,12 +59,13 @@
      Turtle is also a skilled programmer, but doesn't make many tutorials, because that's what 
      <a class="noStyleLink" href ="https://www.w3schools.com">w3schools</a> is for!
     </p>
-	   <p id="hello">hey</p>
+	   <p id="hello">hiiiii</p>
    </div>
   </div>
   <script>
 	  var posChange;
 	  var Y;
+var X;
 var direction = "N";
 	  var currPos = "2,3";
    var array1 = [];
@@ -80,11 +81,13 @@ array1[array1.length - 1] = {
 	   posChange = currPos.split(",");
 	  Y = posChange[1];
 	Y += 1; 
+		  X = posChange[0];
 		  alert(Y);
+		  currPos = X + "," + Y;
 	  }
 	  var i;
 	  for (i = 0; i < array1.length; i++) {
-		  if (array1[i].pos = ) {
+		  if (array1[i].pos = currpos) {
 		alert("true");	  
 		  }
 	  }
