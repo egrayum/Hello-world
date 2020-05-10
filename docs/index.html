@@ -63,22 +63,28 @@
    </div>
   </div>
   <script>
+	  var posChange;
+	  var Y;
+var direction = "N";
+	  var currPos = "2,3";
    var array1 = [];
 array1[0] = {
     "type":4,
-    "pos":2
+    "pos":"2,4"
    };
 array1[array1.length - 1] = {
 	"type":3,
-	"pos":3
+	"pos":"3,4"
 };
-  // array1[array.length - 1]{
-    //"type":1,
-   // "pos":1
- //  }
+	  if (direction == "N") {
+	   posChange = currPos.split(",");
+	  Y = posChange[1];
+	Y += 1; 
+		  alert(Y);
+	  }
 	  var i;
 	  for (i = 0; i < array1.length; i++) {
-		  if (array1[i].type == 3) {
+		  if (array1[i].pos = ) {
 		alert("true");	  
 		  }
 	  }
