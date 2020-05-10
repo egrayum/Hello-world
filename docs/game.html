@@ -134,8 +134,8 @@
       pX = 10;
      } else if (pY < 0) {
       posStore = roomPos.split(",");
-      posChangeY = parseInt(posStore[0], 10);
-      posChangeX = posStore[1];
+      posChangeY = parseInt(posStore[1], 10);
+      posChangeX = posStore[0];
       posChangeY += 1;
       posChangeY.toString(10);
       roomPos = posChangeX + "," + posChangeY;
@@ -144,8 +144,8 @@
       pY = 545;
      } else if (pY > 550) {
       posStore = roomPos.split(",");
-      posChangeY = parseInt(posStore[0], 10);
-      posChangeX = posStore[1];
+      posChangeY = parseInt(posStore[1], 10);
+      posChangeX = posStore[0];
       posChangeY -= 1;
       posChangeY.toString(10);
       roomPos = posChangeX + "," + posChangeY;
