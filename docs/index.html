@@ -79,10 +79,11 @@ array1[array1.length - 1] = {
 };
 	  if (direction == "N") {
 	   posChange = currPos.split(",");
-	  Y = posChange[1];
-	Y + 1; 
+	  Y = parseInt(posChange[1], 10);
+	Y += 1; 
 		  X = posChange[0];
 		  alert(Y);
+		  Y.toString(10);
 		  currPos = X + "," + Y;
 		  direction = undefined;
 	  }
