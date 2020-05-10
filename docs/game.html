@@ -17,7 +17,10 @@
    var oldpY;
    var layout = [];
    var roomPos;
-  // var limit = 9;
+   var posChangeX;
+   var posChangeY;
+   var posStore = [];
+   var i;
    function collision(ifs) {
     if (ifs) {
        pX = oldpX;
@@ -76,6 +79,10 @@
       roomPos = "1,1";
       pX = 375;
       pY = 275;
+      layout[0] = {
+       "type":3,
+       "pos":"1,1"
+      }
      }
     } else if (screen == 2) {
     /* if (room == 0) {
@@ -105,13 +112,29 @@
      }
      
      if (pX < 5) {
-      
+      posStore = roomPos.split(",");
+      posChangeX = parseInt(posStore[0], 10);
+      posChangeY = posStore[1];
+      posChangeY += 1;
+      posChangeY.toString(10);
+      roomPos = posChangeX + "," + posChangeY;
      } else if (pX > 750) {
       
      } else if (pY < 0) {
       
      } else if (pY > 550) {
       
+     }
+    }
+    // check if the room exists
+    function checkRoom() {
+     for (i = 0; i < layout.length; i++) {
+      if (layout[i].pos == roomPos) {
+       room = layout[i].type;
+      } 
+     }
+     if (i >= layout.length) {
+      // add room
      }
     }
     // for moving the player
