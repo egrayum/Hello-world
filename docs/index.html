@@ -68,15 +68,21 @@ array1[0] = {
     "type":4,
     "pos":2
    };
-//array1[1] = {
-	//"type":3,
-//	"pos":3
-//};
+array1[array1.length - 1] = {
+	"type":3,
+	"pos":3
+};
   // array1[array.length - 1]{
     //"type":1,
    // "pos":1
  //  }
-   document.getElementById("hello").innerHTML = "room 1: " + array1[0].type;
+	  var i;
+	  for (i = 0; i < array1.length; i++) {
+		  if (array1[i].type == 3) {
+		alert("true");	  
+		  }
+	  }
+   document.getElementById("hello").innerHTML = "room 1 type: " + array1[0].type + " room 1 pos: " + array1[0].pos;
   </script>
  </body>
 </html>
