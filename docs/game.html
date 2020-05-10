@@ -77,6 +77,7 @@
       pX = 375;
       pY = 275;
      }
+    } else if (screen == 2) {
     /* if (room == 0) {
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, 300, c.height);
@@ -93,8 +94,7 @@
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(0, 400, c.width, 200);
       collision(pY < 200 || pY > 350);
-     }
-    } */
+     } */
      if (room == 3) {
       ctx.fillStyle = "#333"; 
       ctx.fillRect(0, 0, 300, 200);
@@ -113,7 +113,7 @@
      } else if (pY > 550) {
       
      }
-    
+    }
     // for moving the player
     if (direct == 1 && pX - 5 > - 5) {
      pX -= 5;
