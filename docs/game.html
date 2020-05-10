@@ -16,7 +16,8 @@
    var oldpX;
    var oldpY;
    var layout = [];
-   var roomPos = "A1";
+   var roomPos;
+   var NEWS;
   // var limit = 9;
    function collision(ifs) {
     if (ifs) {
@@ -60,6 +61,7 @@
    function runGame() {
     ctx.fillStyle = "#666";
     ctx.fillRect(0, 0, c.width, c.height);
+    // above ground
     if (screen == 1) {
      ctx.fillStyle = "#DEB887";
      ctx.fillRect(250, 20, 300, 200);
@@ -71,60 +73,65 @@
      ctx.fillText("Mine", 620, 380);
      if (pX > 560 && pY > 360) {
       screen = 2;
-      room = 0;
-      roomPos = "C3";
+      room = 3;
+      roomPos = "1,1";
       pX = 375;
       pY = 275;
      }
-     if (room == 0) {
+    /* if (room == 0) {
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(500, 0, 300, c.height);
       collision(pX < 300 || pX > 450);
-      if (pY < 5) {
-       room = Math.floor(Math.random() * Math.floor(2));
-       pY = 540;
-      } else if (pY > 545) {
-       // add shit here
-       // put crap to set room pos here
-       if (layout.includes(roomPos)) {
-  
-       }
-       room = Math.floor(Math.random() * Math.floor(2));
-       pY = 10;
-       // put shit above this
-      }
      } else if (room == 1) {
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, 300, c.height); 
       ctx.fillRect(500, 0, 300, 200);
       ctx.fillRect(500, 400, 300, 200);
       collision(pX < 300 || pX > 450 && pY < 200 || pX > 450 && pY > 350);
-      if (pY > 545) {
-       
-      }
      } else if (room == 2) { 
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(0, 400, c.width, 200);
       collision(pY < 200 || pY > 350);
      }
-    }
+    } */
+     if (room == 3) {
+      ctx.fillStyle = "#333"; 
+      ctx.fillRect(0, 0, 300, 200);
+      ctx.fillRect(500, 0, 300, 200);
+      ctx.fillRect(500, 500, 300, 200);
+      ctx.fillRect(0, 400, 300, 200);
+      collision(pX < 300 && pY < 200 || pX > 450 && pY < 400 || pX > 450 && pY > 400 || pX < 300 && pY > 400);
+     }
+     
+     if (pX < 5) {
+      
+     } else if (pX > 750) {
+      
+     } else if (pY < 0) {
+      
+     } else if (pY > 550) {
+      
+     }
+    
+    // for moving the player
     if (direct == 1 && pX - 5 > - 5) {
      pX -= 5;
     } else if (direct == 2 && pY - 5 > - 5) {
      pY -= 5;
-    } else if (direct == 3 && pX + 5 < 755) {
+    } else if (direct == 2 && pX + 5 < 755) {
      pX += 5;
-    } else if (direct == 4 && pY + 5 < 555) {
+    } else if (direct == 2 && pY + 5 < 555) {
      pY += 5;
     }
+    //player and stats
     ctx.fillStyle = "#111";
     ctx.fillRect(pX, pY, 50, 50);
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
     ctx.fillText("Coins: " + coins, 10, 25);
-    ctx.fillText("RoomX: " + roomX + " RoomY: " + roomY, 50, 25);
+    ctx.fillText("Room position: " + roomPos, 50, 25);
    }
   </script>
  </head>
