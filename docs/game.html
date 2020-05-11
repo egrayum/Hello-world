@@ -24,7 +24,9 @@
    var direction;
    var found;
    function RNG(min, max) {
-    return Math.random() * (max - min) + min;
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    Math.random() * (max - min) + min;
    }
    function collision(ifs) {
     if (ifs) {
