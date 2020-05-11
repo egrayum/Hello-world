@@ -122,7 +122,7 @@
       direction = "W";
       checkRoom();
       pX = 745;
-     } else if (pX > 750) {
+     } else if (pX > 745) {
       posStore = roomPos.split(",");
       posChangeX = parseInt(posStore[0], 10);
       posChangeY = posStore[1];
@@ -132,7 +132,7 @@
       direction = "E";
       checkRoom();
       pX = 10;
-     } else if (pY < 0) {
+     } else if (pY < 5) {
       posStore = roomPos.split(",");
       posChangeY = parseInt(posStore[1], 10);
       posChangeX = posStore[0];
@@ -142,7 +142,7 @@
       direction = "N";
       checkRoom();
       pY = 545;
-     } else if (pY > 550) {
+     } else if (pY > 545) {
       posStore = roomPos.split(",");
       posChangeY = parseInt(posStore[1], 10);
       posChangeX = posStore[0];
