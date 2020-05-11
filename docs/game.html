@@ -76,7 +76,7 @@
      ctx.fillText("Mine", 620, 380);
      if (pX > 560 && pY > 360) {
       screen = 2;
-      room = 3;
+      room = 0;
       roomPos = "1,1";
       pX = 375;
       pY = 275;
@@ -86,24 +86,57 @@
       }
      }
     } else if (screen == 2) {
-    /* if (room == 0) {
+     // I
+     if (room == 1 || room == 10) {
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(500, 0, 300, c.height);
       collision(pX < 300 || pX > 450);
-     } else if (room == 1) {
+      // T
+     } else if (room == 2 || room == 11) {
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, 300, c.height); 
       ctx.fillRect(500, 0, 300, 200);
       ctx.fillRect(500, 400, 300, 200);
       collision(pX < 300 || pX > 450 && pY < 200 || pX > 450 && pY > 350);
-     } else if (room == 2) { 
+      // I on its side
+     } else if (room == 12) { 
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(0, 400, c.width, 200);
       collision(pY < 200 || pY > 350);
-     } */
-     if (room == 3) {
+      // T
+     } else if (room == 3 || room == 13) {
+      ctx.fillStyle = "#333";
+      ctx.fillRect(0, 0, 300, 200);
+      ctx.fillRect(500, 0, 300, c.height);
+      ctx.fillRect(0, 400, 300, 200);
+     } else if (room == 4) {
+      ctx.fillStyle = "#333";
+      ctx.fillRect(0, 0, c.width, 200);
+      ctx.fillRect(500, 400, 300, 200);
+      ctx.fillRect(0, 400, 300, 200);
+     } else if (room == 5) {
+      ctx.fillStyle = "#333";
+      ctx.fillRect(0, 0, c.width, 200);
+      ctx.fillRect(0, 0, 300, c.height);
+      ctx.fillRect(500, 400, 300, 200);
+     } else if (room == 6) {
+      ctx.fillStyle = "#333";
+      ctx.fillRect(0, 0, c.width, 200);
+      ctx.fillRect(500, 0, 300, c.height);
+      ctx.fillRect(0, 400, 300, 200);
+     } else if (room == 8) {
+      ctx.fillStyle = "#333";
+      ctx.fillRect(0, 0, 300, c.height);
+      ctx.fillStyle(0, 400, c.width, 200);
+      ctx.fillRect(500, 0, 300, 200);
+     } else if (room == 9){
+      ctx.fillStyle = "#333";
+      ctx.fillRect(0, 0, 300, 200);
+      ctx.fillRect(0, 400, c.width, 200);
+      ctx.fillRect(500, 0, 300, c.height);
+     } else if (room == 0 || room == 7 || room == 14 || room == 21) {
       ctx.fillStyle = "#333"; 
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(500, 0, 300, 200);
@@ -168,7 +201,7 @@
     // function that adds a room to the array
     function addRoom () {
      if (direction == "N") {
-      room = 3;
+      room = Math.floor(Math.random() * Math.floor(7));
       layout[layout.length - 1] = {
        "type":room,
        "pos":roomPos
