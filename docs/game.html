@@ -193,15 +193,14 @@
     }
     // check if the room exists
     function checkRoom() {
-    // for (i = 0; i < layout.length; i++) {
-   //   alert(layout[i].type);
-    //  if (layout[i].pos == roomPos) {
+     for (i = 0; i < layout.length; i++) {
+      if (layout[i].pos == roomPos) {
     //   room = layout[i].type;
-     // }
-        //  if (i >= layout.length) {
+      }
+      //  if (i >= layout.length) {
      // addRoom();
-  //   }
-  //   }
+    // }
+     }
     }
     // function that adds a room to the array
     function addRoom () {
