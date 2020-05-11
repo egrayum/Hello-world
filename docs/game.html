@@ -85,10 +85,6 @@
        "type":0,
        "pos":"1,1"
       }
-      layout[1] = {
-       "type":2,
-       "pos":"1,2"
-      }
      }
     } else if (screen == 2) {
      // I
@@ -211,26 +207,26 @@
     function addRoom () {
      if (direction == "N") {
       room = Math.floor(Math.random() * Math.floor(7));
-      layout[layout.length - 1] = {
+      layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "E") {
       room = 0;
-      layout[layout.length - 1] = {
+      layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
-      alert(layout[layout.length - 1].type);
+      alert(layout[layout.length].type);
      } else if (direction == "W") {
       room = 0;
-      layout[layout.length - 1] = {
+      layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "S") {
      room = 0;
-      layout[layout.length - 1] = {
+      layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
