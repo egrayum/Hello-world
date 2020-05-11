@@ -192,7 +192,6 @@
     function checkRoom() {
      found = 1;
      for (i = 0; i < layout.length; i++) {
-      alert(layout[i].pos);
       if (layout[i].pos == roomPos) {
        room = layout[i].type;
        found = 2;
@@ -200,7 +199,6 @@
      }
      if (found == 1) {
        addRoom();
-       alert("false");
       }
     }
     // function that adds a room to the array
