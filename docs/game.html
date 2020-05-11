@@ -191,11 +191,10 @@
     // check if the room exists
     function checkRoom() {
      found = 1;
-     alert("HELLO PLEASE WORK");
      for (i = 0; i < layout.length; i++) {
+      alert(layout[i].pos);
       if (layout[i].pos == roomPos) {
        room = layout[i].type;
-       alert(layout[i].type);
        found = 2;
       } 
       if (i >= layout.length && found == 1) {
