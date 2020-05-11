@@ -175,6 +175,7 @@
       direction = "N";
       checkRoom();
       pY = 545;
+      alert(layout[3].pos);
      } else if (pY > 545) {
       posStore = roomPos.split(",");
       posChangeY = parseInt(posStore[1], 10);
@@ -191,7 +192,6 @@
     function checkRoom() {
      for (i = 0; i < layout.length; i++) {
       if (layout[i].pos == roomPos) {
-       alert("true");
        room = layout[i].type;
       } 
      }
