@@ -197,10 +197,9 @@
       if (layout[i].pos == roomPos) {
        room = layout[i].type;
        alert(layout[i].type);
+      } else if (i >= layout.length) {
+       addRoom();
       }
-      //  if (i >= layout.length) {
-     // addRoom();
-    // }
      }
     }
     // function that adds a room to the array
