@@ -67,10 +67,12 @@
     click = 1;
    }
    c.onmousedown = function clickStuff() {
-    alert(nType.random());
     if (click == 1) {
      click = undefined;
      window.setInterval(runGame, 20);
+    }
+    if (click == undefined) {
+     alert(nType.random()); 
     }
    }
    document.addEventListener("keyup", function(event) {
