@@ -27,26 +27,18 @@
     if (direction == "N") {
      if (room == 15 || room == 23 || room == 11 || room == 18 || room == 25 || room == 12 || room == 13 || room == 27 || room == 20) {
       room = 99;
-     } else {
-      room = layout[i].type;
      }
     } else if (direction == "S") {
-     if (room == ) {
+     if (room == 15 || room == 23 || room == 4 || room == 17 || room == 24 || room == 5 || room == 6 || room == 19 || room == 26) {
       room = 100;
-     } else {
-      room = layout[i].type;  
      }
     } else if (direction == "E") {
-     if (room == ) {
+     if (room == 1 || room == 8 || room == 2 || room == 9 || room == 22 || room == 6 || room == 12 || room == 19 || room == 27) {
       room = 101;   
-     } else {
-      room = layout[i].type;     
      }
     } else if (direction == "W") {
-     if (room == ) {
+     if (room == 1 || room == 8 || room == 3 || room == 10 || room == 16 || room == 6 || room == 19 || room == 13 || room == 20) {
       room = 102;
-     } else {
-      room = layout[i].type;       
      }
     }
     found = 2;
@@ -255,7 +247,7 @@
      for (i = 0; i < layout.length; i++) {
       if (layout[i].pos == roomPos) {
        room = layout[i].type;
-       found = 2;
+       checkSecret();
       } 
      }
      if (found == 1) {
