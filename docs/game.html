@@ -48,9 +48,6 @@
     }
     found = 2;
    }
-   function RNG(min, max) {
-    return Math.round(Math.random() * (max - min) + min);
-   }
    function collision(ifs) {
     if (ifs) {
        pX = oldpX;
@@ -105,7 +102,7 @@
      ctx.fillText("Mine", 620, 380);
      if (pX > 560 && pY > 360) {
       screen = 2;
-      room = 1q;
+      room = 11;
       roomPos = "1,1";
       pX = 375;
       pY = 275;
