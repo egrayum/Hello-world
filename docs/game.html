@@ -269,7 +269,7 @@
        "pos":roomPos
       }
      } else if (direction == "W") {
-      room = RNG(21, 28);
+      room = RNG(21, 27);
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
@@ -300,7 +300,7 @@
     ctx.fillText("Coins: " + coins, 10, 25);
     ctx.fillText("Room type: " + room, 10, 75);
     if (room == 99 || room == 100 || room == 101 || room == 102) {
-     ctx.fillText("Room position: Unknown", 10, 75);
+     ctx.fillText("Room position: Unknown", 10, 50);
     } else {
      ctx.fillText("Room position: " + roomPos, 10, 50);
     }
