@@ -155,21 +155,25 @@
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(500, 400, 300, 200);
+      collision(pX < 300 || pY < 200 || pX > 450 && pY > 350);
      } else if (room == 8) {
       // Rotated L
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(500, 0, 300, c.height);
       ctx.fillRect(0, 400, 300, 200);
+      collision(pY < 200 || pX > 450 || pY > 350 && pX < 300);
      } else if (room == 9) {
       // L
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(0, 400, c.width, 200);
       ctx.fillRect(500, 0, 300, 200);
+      collision(pX < 300 || pY > 350 || pX > 450 && pY < 200);
      } else if (room == 10) {
       // Reflected L
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(0, 400, c.width, 200);
       ctx.fillRect(500, 0, 300, c.height);
+      collision(pX > 450 || pY > 350 || pY < 200 && pX < 300);
      } else if (room == 11) { 
       // Plus
       ctx.fillRect(0, 0, 300, 200);
