@@ -262,25 +262,25 @@
     // function that adds a room to the array
     function addRoom () {
      if (direction == "N") {
-      room = nType[Math.round(Math.random() * nType.length - 1)];
+      room = nType[Math.round(Math.random() * (nType.length - 1))];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "E") {
-      room = eType[Math.round(Math.random() * eType.length - 1)];
+      room = eType[Math.round(Math.random() * (eType.length - 1))];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "W") {
-      room = wType[Math.round(Math.random() * wType.length - 1)];
+      room = wType[Math.round(Math.random() * (wType.length - 1))];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "S") {
-     room = sType[Math.round(Math.random() * sType.length - 1)];
+     room = sType[Math.round(Math.random() * (sType.length - 1))];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
