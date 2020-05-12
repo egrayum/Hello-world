@@ -26,6 +26,9 @@
    var nType = [1, 2, 4, 5, 7, 8, 11];
    var sType = [1, 2, 4, 6, 9, 10, 11];
    var eType;
+   function roomTyper() {
+    alert(nType[Math.round(Math.random() * nType.length)]);
+   }
    function checkSecret() {
     if (direction == "N") {
      if (room == 15 || room == 23 || room == 11 || room == 18 || room == 25 || room == 12 || room == 13 || room == 27 || room == 20) {
@@ -70,9 +73,6 @@
     if (click == 1) {
      click = undefined;
      window.setInterval(runGame, 20);
-    }
-    if (click == undefined) {
-     alert(nType.random()); 
     }
    }
    document.addEventListener("keyup", function(event) {
