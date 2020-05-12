@@ -23,10 +23,12 @@
    var i;
    var direction;
    var found;
-   var nType = [1, 2, 4, 5, 7, 8, 11];
-   var sType = [1, 2, 4, 6, 9, 10, 11];
-   var eType = [3, 4, 5, 6, 8, 10, 11];
-   var wType = [2, 3, 5, 6, 7, 9, 11];
+   var allTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+   var incrementation = 0;
+  // var nType = [1, 2, 4, 5, 7, 8, 11];
+  // var sType = [1, 2, 4, 6, 9, 10, 11];
+  // var eType = [3, 4, 5, 6, 8, 10, 11];
+ //  var wType = [2, 3, 5, 6, 7, 9, 11];
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -72,8 +74,6 @@
     if (click == 1) {
      click = undefined;
      window.setInterval(runGame, 20);
-    } else {
-     roomTyper();
     }
    }
    document.addEventListener("keyup", function(event) {
@@ -107,12 +107,12 @@
      ctx.fillText("Mine", 620, 380);
      if (pX > 560 && pY > 360) {
       screen = 2;
-      room = 11;
+      room = 1;
       roomPos = "1,1";
       pX = 375;
       pY = 275;
       layout[0] = {
-       "type":11,
+       "type":1,
        "pos":"1,1"
       }
      }
@@ -264,25 +264,27 @@
     // function that adds a room to the array
     function addRoom () {
      if (direction == "N") {
-      room = nType[Math.round(Math.random() * nType.length)];
+      room = allTypes[incrementation];
+      incrementation += 1;
+     // room = nType[Math.round(Math.random() * nType.length)];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "E") {
-      room = eType[Math.round(Math.random() * eType.length)];
+     // room = eType[Math.round(Math.random() * eType.length)];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "W") {
-      room = wType[Math.round(Math.random() * wType.length)];
+     // room = wType[Math.round(Math.random() * wType.length)];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "S") {
-     room = sType[Math.round(Math.random() * sType.length)];
+   //  room = sType[Math.round(Math.random() * sType.length)];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
