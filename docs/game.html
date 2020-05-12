@@ -23,12 +23,10 @@
    var i;
    var direction;
    var found;
-   var allTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-   var incrementation = 0;
-  // var nType = [1, 2, 4, 5, 7, 8, 11];
-  // var sType = [1, 2, 4, 6, 9, 10, 11];
-  // var eType = [3, 4, 5, 6, 8, 10, 11];
- //  var wType = [2, 3, 5, 6, 7, 9, 11];
+   var nType = [1, 2, 4, 5, 7, 8, 11];
+   var sType = [1, 2, 4, 6, 9, 10, 11];
+   var eType = [3, 4, 5, 6, 8, 10, 11];
+   var wType = [2, 3, 5, 6, 7, 9, 11];
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -148,7 +146,7 @@
       // upside-down T
       ctx.fillRect(0, 400, c.width, 200);
       ctx.fillRect(0, 0, 300, 200);
-      ctx.fillRect(500, 400, 300, 200);
+      ctx.fillRect(500, 0, 300, 200);
      } else if (room == 7) {
       // Upside-down L
       ctx.fillRect(0, 0, c.width, 200);
@@ -264,27 +262,25 @@
     // function that adds a room to the array
     function addRoom () {
      if (direction == "N") {
-      room = allTypes[incrementation];
-      incrementation += 1;
-     // room = nType[Math.round(Math.random() * nType.length)];
+      room = nType[Math.round(Math.random() * nType.length)];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "E") {
-     // room = eType[Math.round(Math.random() * eType.length)];
+      room = eType[Math.round(Math.random() * eType.length)];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "W") {
-     // room = wType[Math.round(Math.random() * wType.length)];
+      room = wType[Math.round(Math.random() * wType.length)];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
       }
      } else if (direction == "S") {
-   //  room = sType[Math.round(Math.random() * sType.length)];
+     room = sType[Math.round(Math.random() * sType.length)];
       layout[layout.length] = {
        "type":room,
        "pos":roomPos
