@@ -27,6 +27,7 @@
    var sType = [1, 2, 4, 6, 9, 10, 11];
    var eType = [3, 4, 5, 6, 8, 10, 11];
    var wType = [2, 3, 5, 6, 7, 9, 11];
+   var roomImage = new Image();
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -191,11 +192,8 @@
       collision(pX < 100 || pX > 650 || pY < 100 || pY > 450 && pX < 300 || pY > 450 && pX > 450);
      } else if (room == 100) {
       // secret room enterable going S
-      ctx.fillRect(0, 0, 300, 100);
-      ctx.fillRect(0, 0, 100, c.height);
-      ctx.fillRect(0, 550, c.width, 100);
-      ctx.fillRect(500, 0, 300, 100);
-      ctx.fillRect(750, 0, 100, c.height);
+      roomImage.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/A8FD625B-223A-4DA2-B416-E6A69975278D.png";
+      ctx.drawImage(roomImage, 0, 0);
       collision(pX < 100 || pX > 650 || pY > 450 || pY < 100 && pX < 300 || pY < 100 && pX > 450);
      } else if (room == 101) {
       // room enterable going E
