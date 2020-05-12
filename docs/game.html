@@ -149,6 +149,7 @@
       ctx.fillRect(0, 400, c.width, 200);
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(500, 0, 300, 200);
+      collision(pY > 350 || pY < 200 && pX < 300 || pY < 200 && pX > 450);
      } else if (room == 7) {
       // Upside-down L
       ctx.fillRect(0, 0, c.width, 200);
