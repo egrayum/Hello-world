@@ -143,7 +143,7 @@
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(500, 400, 300, 200);
       ctx.fillRect(0, 400, 300, 200);
-      collision(pY < 400 || pY > 350 && pX < 300 || pY > 350 && pX > 450);
+      collision(pY < 200 || pY > 350 && pX < 300 || pY > 350 && pX > 450);
      } else if (room == 6) {
       // upside-down T
       ctx.fillRect(0, 400, c.width, 200);
@@ -183,32 +183,36 @@
       collision(pX < 300 && pY < 200 || pX > 450 && pY < 200 || pX > 450 && pY > 350 || pX < 300 && pY > 350);
      } else if (room == 99) {
       // secret room enterable going N
-      ctx.fillRect(0, 0, c.width, 50);
-      ctx.fillRect(0, 0, 50, c.height);
-      ctx.fillRect(750, 0, 50, c.height);
-      ctx.fillRect(0, 550, 300, 50);
-      ctx.fillRect(500, 550, 300, 50);
+      ctx.fillRect(0, 0, c.width, 100);
+      ctx.fillRect(0, 0, 100, c.height);
+      ctx.fillRect(750, 0, 10, c.height);
+      ctx.fillRect(0, 550, 300, 100);
+      ctx.fillRect(500, 550, 300, 100);
+      collision(pX < 100 || pX > 650 || pY < 100 || pY > 450 && pX < 300 || pY > 450 && pX > 450);
      } else if (room == 100) {
       // secret room enterable going S
-      ctx.fillRect(0, 0, 300, 50);
-      ctx.fillRect(0, 0, 50, c.height);
-      ctx.fillRect(0, 550, c.width, 50);
-      ctx.fillRect(500, 0, 300, 50);
-      ctx.fillRect(750, 0, 50, c.height);
+      ctx.fillRect(0, 0, 300, 100);
+      ctx.fillRect(0, 0, 100, c.height);
+      ctx.fillRect(0, 550, c.width, 100);
+      ctx.fillRect(500, 0, 300, 100);
+      ctx.fillRect(750, 0, 100, c.height);
+      collision(pX < 100 || pX > 650 || pY > 450 || pY < 100 && pX < 300 || pY < 100 && pX > 450);
      } else if (room == 101) {
       // room enterable going E
-      ctx.fillRect(0, 0, c.width, 50);
-      ctx.fillRect(750, 0, 50, c.height);
-      ctx.fillRect(0, 550, c.width, 50);
-      ctx.fillRect(0, 0, 50, 200);
-      ctx.fillRect(0, 400, 50, 200);
+      ctx.fillRect(0, 0, c.width, 100);
+      ctx.fillRect(750, 0, 100, c.height);
+      ctx.fillRect(0, 550, c.width, 100);
+      ctx.fillRect(0, 0, 100, 200);
+      ctx.fillRect(0, 400, 100, 200);
+      collision(pX > 650 || pY < 100 || pY > 450 || pX < 100 && pY < 300 || pX < 100 && pY > 350);
      } else if (room == 102) {
       // enterable going W
-      ctx.fillRect(0, 0, c.width, 50);
-      ctx.fillRect(0, 0, 50, c.height);
-      ctx.fillRect(0, 550, c.width, 50);
-      ctx.fillRect(750, 0, 50, 200);
-      ctx.fillRect(750, 400, 50, 200);
+      ctx.fillRect(0, 0, c.width, 100);
+      ctx.fillRect(0, 0, 100, c.height);
+      ctx.fillRect(0, 550, c.width, 100);
+      ctx.fillRect(750, 0, 100, 200);
+      ctx.fillRect(750, 400, 100, 200);
+      collision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 300 || pX > 650 && pY > 350);
      }
      
      if (pX < 5) {
