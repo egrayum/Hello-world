@@ -155,7 +155,7 @@
       ctx.fillRect(0, 0, 50, c.height);
       ctx.fillRect(750, 0, 50, c.height);
       ctx.fillRect(0, 550, 300, 50);
-      ctx.fillRect(400, 550, 300, 50);
+      ctx.fillRect(500, 550, 300, 50);
      } else if (room == 100) {
       // secret room enterable going S
       ctx.fillRect(0, 0, 300, 50);
@@ -165,10 +165,18 @@
       ctx.fillRect(750, 0, 50, c.height);
      } else if (room == 101) {
       // room enterable going E
-      
+      ctx.fillRect(0, 0, c.width, 50);
+      ctx.fillRect(750, 0, 50, c.height);
+      ctx.fillRect(0, 550, c.width, 50);
+      ctx.fillRect(0, 0, 50, 200);
+      ctx.fillRect(0, 400, 50, 200);
      } else if (room == 102) {
       // enterable going W
-      
+      ctx.fillRect(0, 0, c.width, 50);
+      ctx.fillRect(0, 0, 50, c.height);
+      ctx.fillRect(0, 550, c.width, 50);
+      ctx.fillRect(750, 0, 50, 200);
+      ctx.fillRect(750, 400, 50, 200);
      }
      
      if (pX < 5) {
