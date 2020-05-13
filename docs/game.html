@@ -28,7 +28,7 @@
    var eType = [3, 4, 5, 6, 8, 10, 11];
    var wType = [2, 3, 5, 6, 7, 9, 11];
    var roomImage = new Image();
-   var obtained = 0;
+   var tokens = 0;
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -304,17 +304,32 @@
     }
     if (roomPos == "11,11") {
      room = 15;
-     ctx.fillStyle = "#0000ff";
-     ctx.fillRect(300, 200, 200, 200);
+     if (room == 15 && tokens == 0) {
+      ctx.fillStyle = "#0000ff";
+      ctx.fillRect(300, 200, 200, 200);
+      if (pX > 250 && pX < 400 && pY > 150 && pY < 400) {
+       var int = window.setInterval(textt, 20);
+       tokens += 1;
+       coins += 50;
+      }
+     } 
+    } else if (roomPos == "11,-11") {
+     tokens(1);
+    } else if (roomPos == "-11,-11") {
+     tokens(2);
+    } else if {
+     tokens(3);
     }
-    if (room == 15 && obtained == 0) {
-     if (pX > 250 && pX < 400 && pY > 150 && pY < 400) {
-      ctx.fillStyle = "#000";
-      ctx.font = "30px Arial";
-      var int = window.setInterval(textt, 20);
-      obtained = 1;
-      coins += 50;
-     }
+    function tokens(num) {
+     room = 15;
+     if (room == 15 && tokens == num) {
+      ctx.fillStyle = "#0000ff";
+      ctx.fillRect(300, 200, 200, 200);
+      if (pX > 250 && pX < 400 && pY > 150 && pY < 400) {
+       tokens += 1;
+       coins += 50;
+      }
+     } 
     }
     // for moving the player
     if (direct == 1 && pX - 5 > - 5) {
@@ -328,7 +343,7 @@
     }
     //player and stats
     if (obtained == 1) {
-     ctx.fillStyle = "#5143f9";
+     ctx.fillStyle = "#3333ff";
     } else {
      ctx.fillStyle = "#111";
     }
@@ -344,7 +359,7 @@
     }
    }
    function textt() {
-    ctx.fillText("You got a blue token!", 10, 100);
+    ctx.fillText("Blue tokens: " + tokens, 10, 100);
    }
   </script>
  </head>
