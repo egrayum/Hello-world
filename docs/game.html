@@ -32,6 +32,7 @@
    var rand;
    var special;
    var obtain;
+   var discRooms = 0;
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -279,6 +280,7 @@
     }
     // function that adds a room to the array
     function addRoom () {
+     discRooms++;
      rand = Math.floor(Math.random() * Math.floor(16));
      if (direction == "N") {
       room = nType[Math.round(Math.random() * (nType.length - 1))];
@@ -306,6 +308,26 @@
       }
      }
     }
+    if (discRooms == 8) {
+     special = 10;
+     if (special == 10) {
+      ctx.fillStyle = "#000";
+      ctx.fillRect(300, 200, 200, 200);
+      if (pX > 250 && pX < 400 && pY > 150 && pY < 400) {
+       discRooms = 0;
+       screen = 2;
+       room = 11;
+       roomPos = "1,1";
+       pX = 375;
+       pY = 275;
+       layout = [];
+       layout[0] = {
+        "type":11,
+        "pos":"1,1"
+       } 
+      }
+     }
+    }
     if (rand == 10) {
      obtain = 0;
      special = 15;
@@ -317,6 +339,7 @@
        tokens += 1;
        coins += 50;
        rand = 0;
+       special = 0;
       }
      } 
     } 
