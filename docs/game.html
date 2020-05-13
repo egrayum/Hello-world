@@ -30,6 +30,8 @@
    var roomImage = new Image();
    var tokens = 0;
    var rand;
+   var special;
+   var obtain;
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -177,7 +179,7 @@
       ctx.fillRect(0, 400, c.width, 200);
       ctx.fillRect(500, 0, 300, c.height);
       collision(pX > 450 || pY > 350 || pY < 200 && pX < 300);
-     } else if (room == 11 || room == 15) { 
+     } else if (room == 11) { 
       // Plus
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(500, 0, 300, 200);
@@ -277,6 +279,7 @@
     }
     // function that adds a room to the array
     function addRoom () {
+     obtain = 0;
      rand = Math.floor(Math.random() * Math.floor(16));
      if (direction == "N") {
       room = nType[Math.round(Math.random() * (nType.length - 1))];
@@ -305,8 +308,9 @@
      }
     }
     if (rand == 10) {
-     room = 15;
-     if (room == 15) {
+     special = 15;
+     if (special == 15 && obtain == 0) {
+      obtain = 1;
       ctx.fillStyle = "#0000ff";
       ctx.fillRect(300, 200, 200, 200);
       if (pX > 250 && pX < 400 && pY > 150 && pY < 400) {
