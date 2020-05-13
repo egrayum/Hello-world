@@ -314,8 +314,8 @@
      special = 10;
      if (special == 10) {
       ctx.fillStyle = "#000";
-      ctx.fillRect(375, 275, 50, 50);
-      if (pX > 325 && pX < 425 && pY > 225 && pY < 275) {
+      ctx.fillRect(350, 250, 100, 100);
+      if (pX > 299 && pX < 401 && pY > 199 && pY < 301) {
        level++;
        discRooms = 0;
        screen = 2;
@@ -337,7 +337,7 @@
      if (special == 15 && obtain == 0) {
       ctx.fillStyle = "#0000ff";
       ctx.fillRect(375, 275, 50, 50);
-      if (pX > 325 && pX < 425 && pY > 225 && pY < 275) {
+      if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
        obtain = 1;
        tokens += 1;
        coins += 50;
@@ -360,7 +360,7 @@
     if (tokens > 0) {
      ctx.fillStyle = "#3333ff";
     } else {
-     ctx.fillStyle = "#111";
+     ctx.fillStyle = "#222";
     }
     ctx.fillRect(pX, pY, 50, 50);
     ctx.fillStyle = "#fff";
