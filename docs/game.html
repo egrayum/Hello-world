@@ -310,10 +310,10 @@
     if (rand == 10) {
      special = 15;
      if (special == 15 && obtain == 0) {
-      obtain = 1;
       ctx.fillStyle = "#0000ff";
       ctx.fillRect(300, 200, 200, 200);
       if (pX > 250 && pX < 400 && pY > 150 && pY < 400) {
+       obtain = 1;
        tokens += 1;
        coins += 50;
       }
