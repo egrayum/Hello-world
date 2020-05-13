@@ -192,8 +192,13 @@
       collision(pX < 100 || pX > 650 || pY < 100 || pY > 450 && pX < 300 || pY > 450 && pX > 450);
      } else if (room == 100) {
       // secret room enterable going S
-      roomImage.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/F1C10881-3FE7-4D5D-B920-669919111E1E.png";
-      ctx.drawImage(roomImage, 0, 0, 800, 600);
+      ctx.fillRect(0, 0, 100, c.height);
+      ctx.fillRect(0, 0, 300, 100);
+      ctx.fillRect(0, 500, c.width, 100);
+      ctx.fillRect(500, 0, 300, 100);
+      ctx.fillRect(700, 0, 100, c.height);
+     // roomImage.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/F1C10881-3FE7-4D5D-B920-669919111E1E.png";
+     // ctx.drawImage(roomImage, 0, 0, 800, 600);
       collision(pX < 100 || pX > 650 || pY > 450 || pY < 100 && pX < 300 || pY < 100 && pX > 450);
      } else if (room == 101) {
       // room enterable going E
