@@ -33,6 +33,7 @@
    var special;
    var obtain;
    var discRooms = 0;
+   var level = 0;
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -110,6 +111,7 @@
      ctx.fillRect(600, 400, 180, 180);
      ctx.fillText("Mine", 620, 380);
      if (pX > 560 && pY > 360) {
+      level = 1;
       screen = 2;
       room = 11;
       roomPos = "1,1";
@@ -308,12 +310,13 @@
       }
      }
     }
-    if (discRooms == 8) {
+    if (discRooms == 8 + (level * 2)) {
      special = 10;
      if (special == 10) {
       ctx.fillStyle = "#000";
       ctx.fillRect(300, 200, 200, 200);
       if (pX > 250 && pX < 400 && pY > 150 && pY < 400) {
+       level++;
        discRooms = 0;
        screen = 2;
        room = 11;
@@ -362,9 +365,9 @@
     ctx.fillRect(pX, pY, 50, 50);
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
-    ctx.fillText("Blue tokens: " + tokens, 10, 100);
+    ctx.fillText("Blue tokens: " + tokens, 10, 75);
     ctx.fillText("Coins: " + coins, 10, 25);
-    ctx.fillText("Room type: " + room, 10, 75);
+    ctx.fillText("Level: " + level, 10, 100);
     if (room == 99 || room == 100 || room == 101 || room == 102) {
      ctx.fillText("Room position: Unknown", 10, 50);
     } else {
