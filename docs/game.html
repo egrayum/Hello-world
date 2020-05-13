@@ -317,13 +317,13 @@
     } 
     // for moving the player
     if (direct == 1 && pX - 5 > - 5) {
-     pX -= 5;
+     pX -= 5 + tokens;
     } else if (direct == 2 && pY - 5 > - 5) {
-     pY -= 5;
+     pY -= 5 + tokens;
     } else if (direct == 3 && pX + 5 < 755) {
-     pX += 5;
+     pX += 5 + tokens;
     } else if (direct == 4 && pY + 5 < 555) {
-     pY += 5;
+     pY += 5 + tokens;
     }
     //player and stats
     if (tokens > 0) {
