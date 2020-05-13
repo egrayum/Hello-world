@@ -29,7 +29,6 @@
    var wType = [2, 3, 5, 6, 7, 9, 11];
    var roomImage = new Image();
    var obtained = 0;
-   localStorage.setItem("obtained", 0);
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -306,14 +305,15 @@
     if (roomPos == "11,11") {
      room = 15;
      ctx.fillStyle = "#0000ff";
-     ctx.fillRect(300, 200, 300, 200);
+     ctx.fillRect(300, 200, 200, 200);
     }
-    if (room == 15 && obtained == 0 && localStorage.getItem("obtained") == undefined) {
-     if (pX > 250 && pX < 600 && pY > 150 && pY < 400) {
+    if (room == 15 && obtained == 0) {
+     if (pX > 250 && pX < 400 && pY > 150 && pY < 400) {
       ctx.fillStyle = "#000";
+      ctx.font = "30px Arial";
       ctx.fillText("You got skeptemia!", 100, 100);
       window.setInterval(set, 1500);
-      localStorage.setItem("obtained", 1);
+      obtained = 1;
      }
     }
     // for moving the player
@@ -327,7 +327,7 @@
      pY += 5;
     }
     //player and stats
-    if (localStorage.getItem("obtained") == 1) {
+    if (obtained == 1) {
      ctx.fillStyle = "#5143f9";
     } else {
      ctx.fillStyle = "#111";
