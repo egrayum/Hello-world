@@ -279,7 +279,6 @@
     }
     // function that adds a room to the array
     function addRoom () {
-     obtain = 0;
      rand = Math.floor(Math.random() * Math.floor(16));
      if (direction == "N") {
       room = nType[Math.round(Math.random() * (nType.length - 1))];
@@ -308,6 +307,7 @@
      }
     }
     if (rand == 10) {
+     obtain = 0;
      special = 15;
      if (special == 15 && obtain == 0) {
       ctx.fillStyle = "#0000ff";
