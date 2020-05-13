@@ -311,8 +311,8 @@
      if (pX > 250 && pX < 400 && pY > 150 && pY < 400) {
       ctx.fillStyle = "#000";
       ctx.font = "30px Arial";
-      ctx.fillText("You got skeptemia!", 100, 100);
-      window.setInterval(set, 1500);
+      var int = window.setInterval(textt, 20);
+      window.setTimeout(clear, 1500);
       obtained = 1;
      }
     }
@@ -343,8 +343,11 @@
      ctx.fillText("Room position: " + roomPos, 10, 50);
     }
    }
-   function set() {
-    obtained = 1;
+   function textt() {
+    ctx.fillText("You got skeptemia!", 100, 100);
+   }
+   function clear() {
+    clearInterval(int);
    }
   </script>
  </head>
