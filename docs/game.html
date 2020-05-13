@@ -303,7 +303,6 @@
      }
     }
     if (roomPos == "5,5") {
-     alert("HEY");
      room = 15;
      if (room == 15 && tokens == 0) {
       alert("um hi");
@@ -352,6 +351,7 @@
     ctx.fillRect(pX, pY, 50, 50);
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
+    ctx.fillText("Blue tokens: " + tokens, 10, 100);
     ctx.fillText("Coins: " + coins, 10, 25);
     ctx.fillText("Room type: " + room, 10, 75);
     if (room == 99 || room == 100 || room == 101 || room == 102) {
@@ -359,10 +359,7 @@
     } else {
      ctx.fillText("Room position: " + roomPos, 10, 50);
     }
-   }
-   function textt() {
-    ctx.fillText("Blue tokens: " + tokens, 10, 100);
-   }
+   } 
   </script>
  </head>
  <body onload="init()">
