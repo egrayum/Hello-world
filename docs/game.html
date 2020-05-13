@@ -305,7 +305,6 @@
     if (roomPos == "5,5") {
      room = 15;
      if (room == 15 && tokens == 0) {
-      alert("um hi");
       ctx.fillStyle = "#0000ff";
       ctx.fillRect(300, 200, 200, 200);
       if (pX > 250 && pX < 400 && pY > 150 && pY < 400) {
@@ -315,13 +314,13 @@
       }
      } 
     } else if (roomPos == "11,-11") {
-     tokens(1);
+     token(1);
     } else if (roomPos == "-11,-11") {
-     tokens(2);
+     token(2);
     } else if (roomPos == "-11,11") {
-     tokens(3);
+     token(3);
     }
-    function tokens(num) {
+    function token(num) {
      room = 15;
      if (room == 15 && tokens == num) {
       ctx.fillStyle = "#0000ff";
