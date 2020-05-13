@@ -28,6 +28,7 @@
    var eType = [3, 4, 5, 6, 8, 10, 11];
    var wType = [2, 3, 5, 6, 7, 9, 11];
    var roomImage = new Image();
+   var obtained = 0;
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -175,7 +176,7 @@
       ctx.fillRect(0, 400, c.width, 200);
       ctx.fillRect(500, 0, 300, c.height);
       collision(pX > 450 || pY > 350 || pY < 200 && pX < 300);
-     } else if (room == 11) { 
+     } else if (room == 11 || room == 15) { 
       // Plus
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(500, 0, 300, 200);
@@ -301,6 +302,19 @@
       }
      }
     }
+    if (roomPos == "47,47") {
+     room = 15;
+     ctx.fillStyle = "#0000ff";
+     ctx.fillRect(300, 200, 300, 200);
+    }
+    if (room == 15 && obtained == 0 && localStorage.getItem("obtained") == undefined) {
+     if (pX > 250 && pX < 600 && pY > 150 && pY < 400) {
+      ctx.fillStyle = "#000";
+      ctx.fillText("You got skeptemia!", 100, 100);
+      window.setInterval(set, 1500);
+      localStorage.setItem("obtained", 1);
+     }
+    }
     // for moving the player
     if (direct == 1 && pX - 5 > - 5) {
      pX -= 5;
@@ -312,7 +326,11 @@
      pY += 5;
     }
     //player and stats
-    ctx.fillStyle = "#111";
+    if (localStorage.setItem("obtained") == 1) {
+     ctx.fillStyle = "#5143f9";
+    } else {
+     ctx.fillStyle = "#111";
+    }
     ctx.fillRect(pX, pY, 50, 50);
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
@@ -323,6 +341,9 @@
     } else {
      ctx.fillText("Room position: " + roomPos, 10, 50);
     }
+   }
+   function set() {
+    obtained = 1;
    }
   </script>
  </head>
