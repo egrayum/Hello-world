@@ -312,8 +312,8 @@
       ctx.fillStyle = "#000";
       ctx.font = "30px Arial";
       var int = window.setInterval(textt, 20);
-      window.setTimeout(clear, 1500);
       obtained = 1;
+      coins += 50;
      }
     }
     // for moving the player
@@ -344,10 +344,7 @@
     }
    }
    function textt() {
-    ctx.fillText("You got skeptemia!", 100, 100);
-   }
-   function clear() {
-    clearInterval(int);
+    ctx.fillText("You got a blue token!", 10, 100);
    }
   </script>
  </head>
