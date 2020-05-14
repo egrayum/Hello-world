@@ -2,7 +2,7 @@
  <head>
   <title>turtlekins game</title>
   <link rel="stylesheet" type="text/css" href="labs.css"></link>
-  <canvas id="gameCanvas" style="width:100%; height:100%; text-align:center;">
+  <canvas id="gameCanvas" style="background:#031a6f; width:100%; height:100%; text-align:center;">
   <script>
    var c = document.getElementById("gameCanvas");
    var ctx = c.getContext("2d");
@@ -35,7 +35,7 @@
    var discRooms = 0;
    var level = 0;
    var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#ff0a0a", "#031a6f", "#2d9186"];
-   var color = colorA[3];
+   var color = colorA[6];
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
