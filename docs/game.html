@@ -38,6 +38,13 @@
    var speed = 5;
    var dashT = 2;
    var attack;
+   var enemies;
+   var eX;
+   var eY;
+   var oldeX;
+   var oldeY;
+   var pHealth = 100;
+   var eHealth = 50;
     function resetDash() {
      dashT = 2;
     }
@@ -72,6 +79,15 @@
       } else { 
        oldpX = pX;
        oldpY = pY;
+      }
+   }
+   function eCollision(ifn) [
+    if (ifn) {
+       eX = oldeX;
+       eY = oldeY;
+      } else { 
+       eldpX = eX;
+       eldpY = eY;
       }
    }
    function init() {
@@ -150,59 +166,69 @@
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(500, 0, 300, c.height);
       collision(pX < 300 || pX > 450);
+      eCollision(pX < 300 || pX > 450);
      } else if (room == 2) {
       // T from the left
       ctx.fillRect(0, 0, 300, c.height); 
       ctx.fillRect(500, 0, 300, 200);
       ctx.fillRect(500, 400, 300, 200);
       collision(pX < 300 || pX > 450 && pY < 200 || pX > 450 && pY > 350);
+      eCollision(pX < 300 || pX > 450 && pY < 200 || pX > 450 && pY > 350);
      } else if (room == 3) { 
       // I on its side
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(0, 400, c.width, 200);
       collision(pY < 200 || pY > 350);
+      eCollision(pY < 200 || pY > 350);
      } else if (room == 4) {
       // T from the right
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(500, 0, 300, c.height);
       ctx.fillRect(0, 400, 300, 200);
       collision(pX > 450 || pX < 300 && pY > 350 || pX < 300 && pY < 200);
+      eCollision(pX > 450 || pX < 300 && pY > 350 || pX < 300 && pY < 200);
      } else if (room == 5) {
       // T
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(500, 400, 300, 200);
       ctx.fillRect(0, 400, 300, 200);
       collision(pY < 200 || pY > 350 && pX < 300 || pY > 350 && pX > 450);
+      eCollision(pY < 200 || pY > 350 && pX < 300 || pY > 350 && pX > 450);
      } else if (room == 6) {
       // upside-down T
       ctx.fillRect(0, 400, c.width, 200);
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(500, 0, 300, 200);
       collision(pY > 350 || pY < 200 && pX < 300 || pY < 200 && pX > 450);
+      eCollision(pY > 350 || pY < 200 && pX < 300 || pY < 200 && pX > 450);
      } else if (room == 7) {
       // Upside-down L
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(0, 200, 300, 400);
       ctx.fillRect(500, 400, 300, 200);
       collision(pX < 300 || pY < 200 || pX > 450 && pY > 350);
+      eCollision(pX < 300 || pY < 200 || pX > 450 && pY > 350);
      } else if (room == 8) {
       // Rotated L
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(500, 200, 300, 400);
       ctx.fillRect(0, 400, 300, 200);
       collision(pY < 200 || pX > 450 || pY > 350 && pX < 300);
+      eCollision(pY < 200 || pX > 450 || pY > 350 && pX < 300);
      } else if (room == 9) {
       // L
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(300, 400, 500, 200);
       ctx.fillRect(500, 0, 300, 200);
       collision(pX < 300 || pY > 350 || pX > 450 && pY < 200);
+      eCollision(pX < 300 || pY > 350 || pX > 450 && pY < 200);
      } else if (room == 10) {
       // Reflected L
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(0, 400, c.width, 200);
       ctx.fillRect(500, 0, 300, 400);
       collision(pX > 450 || pY > 350 || pY < 200 && pX < 300);
+      eCollision(pX > 450 || pY > 350 || pY < 200 && pX < 300);
      } else if (room == 11) { 
       // Plus
       ctx.fillRect(0, 0, 300, 200);
@@ -210,6 +236,7 @@
       ctx.fillRect(500, 400, 300, 200);
       ctx.fillRect(0, 400, 300, 200);
       collision(pX < 300 && pY < 200 || pX > 450 && pY < 200 || pX > 450 && pY > 350 || pX < 300 && pY > 350);
+      eCollision(pX < 300 && pY < 200 || pX > 450 && pY < 200 || pX > 450 && pY > 350 || pX < 300 && pY > 350);
      } else if (room == 99) {
       // secret room enterable going N
       ctx.fillRect(0, 0, c.width, 100);
@@ -218,6 +245,7 @@
       ctx.fillRect(0, 500, 300, 100);
       ctx.fillRect(500, 500, 300, 100);
       collision(pX < 100 || pX > 650 || pY < 100 || pY > 450 && pX < 300 || pY > 450 && pX > 450);
+      eCollision(pX < 100 || pX > 650 || pY < 100 || pY > 450 && pX < 300 || pY > 450 && pX > 450);
      } else if (room == 100) {
       // secret room enterable going S
       ctx.fillRect(0, 100, 100, 400);
@@ -228,6 +256,7 @@
      // roomImage.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/F1C10881-3FE7-4D5D-B920-669919111E1E.png";
      // ctx.drawImage(roomImage, 0, 0, 800, 600);
       collision(pX < 100 || pX > 650 || pY > 450 || pY < 100 && pX < 300 || pY < 100 && pX > 450);
+      eCollision(pX < 100 || pX > 650 || pY > 450 || pY < 100 && pX < 300 || pY < 100 && pX > 450);
      } else if (room == 101) {
       // room enterable going E
       ctx.fillRect(100, 0, 600, 100);
@@ -236,6 +265,7 @@
       ctx.fillRect(0, 0, 100, 200);
       ctx.fillRect(0, 400, 100, 200);
       collision(pX > 650 || pY < 100 || pY > 450 || pX < 100 && pY < 300 || pX < 100 && pY > 350);
+      eCollision(pX > 650 || pY < 100 || pY > 450 || pX < 100 && pY < 300 || pX < 100 && pY > 350);
      } else if (room == 102) {
       // enterable going W
       ctx.fillRect(100, 0, 600, 100);
@@ -244,6 +274,7 @@
       ctx.fillRect(700, 0, 100, 200);
       ctx.fillRect(700, 400, 100, 200);
       collision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 300 || pX > 650 && pY > 350);
+      eCollision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 300 || pX > 650 && pY > 350);
      }
      
      if (pX < 5) {
