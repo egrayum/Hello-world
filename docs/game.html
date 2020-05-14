@@ -37,9 +37,9 @@
    var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#ff0a0a", "#031a69", "#2d9186"];
    var color = colorA[2];
    var speed = 5;
-   var dashT = 1;
+   var dashT = 2;
     function resetDash() {
-     dashT = 0;
+     dashT = 2;
     }
     function stopDash() {
      dashT = 1;
@@ -105,7 +105,7 @@
     } else if (event.keyCode == 32 && click == 1) {
      click = undefined;
      window.setInterval(runGame, 20);
-    } else if (event.keyCode == 16) {
+    } else if (event.keyCode == 16 && dashT == 2) {
      dashT = 0;
     }
    })
@@ -375,16 +375,16 @@
     // for dashing
     if (dashT == 0) {
      if (direct == 1 && pX - 5 > - 5) {
-      pX -= speed + 5;
+      pX -= 20;
      } else if (direct == 2 && pY - 5 > - 5) {
-      pY -= speed + 5;
+      pY -= 20;
      } else if (direct == 3 && pX + 5 < 755) {
-      pX += speed + 5;
+      pX += 20;
      } else if (direct == 4 && pY + 5 < 555) {
-      pY += speed + 5;
+      pY += 20;
      }
      window.setTimeout(resetDash, 6000);
-     window.setTimeout(stopDash, 1000);
+     window.setTimeout(stopDash, 200);
     }
     //player and stats
     if (tokens > 0) {
