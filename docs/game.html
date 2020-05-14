@@ -125,7 +125,7 @@
       }
      }
     } else if (screen == 2) {
-     ctx.fillStyle = "rgba(20, 20, 20, 0.5)";
+     ctx.fillStyle = "rgba(20, 20, 20, 0.7)";
      if (room == 1) {
       // I
       ctx.fillRect(0, 0, 300, c.height);
@@ -163,26 +163,26 @@
      } else if (room == 7) {
       // Upside-down L
       ctx.fillRect(0, 0, c.width, 200);
-      ctx.fillRect(0, 0, 300, c.height);
+      ctx.fillRect(0, 200, 300, 400);
       ctx.fillRect(500, 400, 300, 200);
       collision(pX < 300 || pY < 200 || pX > 450 && pY > 350);
      } else if (room == 8) {
       // Rotated L
       ctx.fillRect(0, 0, c.width, 200);
-      ctx.fillRect(500, 0, 300, c.height);
+      ctx.fillRect(500, 200, 300, 400);
       ctx.fillRect(0, 400, 300, 200);
       collision(pY < 200 || pX > 450 || pY > 350 && pX < 300);
      } else if (room == 9) {
       // L
       ctx.fillRect(0, 0, 300, c.height);
-      ctx.fillRect(0, 400, c.width, 200);
+      ctx.fillRect(300, 400, 500, 200);
       ctx.fillRect(500, 0, 300, 200);
       collision(pX < 300 || pY > 350 || pX > 450 && pY < 200);
      } else if (room == 10) {
       // Reflected L
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(0, 400, c.width, 200);
-      ctx.fillRect(500, 0, 300, c.height);
+      ctx.fillRect(500, 0, 300, 400);
       collision(pX > 450 || pY > 350 || pY < 200 && pX < 300);
      } else if (room == 11) { 
       // Plus
@@ -361,7 +361,7 @@
     }
     //player and stats
     if (tokens > 0) {
-     ctx.fillStyle = "#3333ff";
+     ctx.fillStyle = "#5261ab";
     } else {
      ctx.fillStyle = "#222";
     }
