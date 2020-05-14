@@ -30,7 +30,6 @@
    var roomImage = new Image();
    var tokens = 0;
    var rand;
-   var special;
    var obtain;
    var discRooms = 0;
    var level = 0;
@@ -38,6 +37,7 @@
    var color = colorA[2];
    var speed = 5;
    var dashT = 2;
+   var attack;
     function resetDash() {
      dashT = 2;
     }
@@ -106,6 +106,8 @@
      // nothing yet, add run later
     } else if (event.keyCode == 16 && dashT == 2) {
      dashT = 0;
+    } else if (event.keyCode == 87) {
+     attack = 1;
     }
    })
    function runGame() {
@@ -391,6 +393,11 @@
       window.setTimeout(resetDash, 5200);
       window.setTimeout(stopDash, 200);
      }
+    }
+    // attack stuff 
+    if (attack == 1) {
+     ctx.fillStyle = "rgba(0, 0, 0, 1);
+     ctx.fillRect(pX + 16, pY - 25, 12, 25);
     }
     //player and stats
     if (dashT == 1 && tokens > 0) {
