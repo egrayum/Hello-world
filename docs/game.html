@@ -356,6 +356,7 @@
        coins += 50;
        rand = 0;
        special = 0;
+       dashT = 2;
        if (speed < 12) {
         speed++;
        }
@@ -376,15 +377,21 @@
     if (dashT == 0) {
      if (direct == 1 && pX - 5 > - 5) {
       pX -= 20;
+      window.setTimeout(resetDash, 5200);
+      window.setTimeout(stopDash, 200);
      } else if (direct == 2 && pY - 5 > - 5) {
       pY -= 20;
+      window.setTimeout(resetDash, 5200);
+      window.setTimeout(stopDash, 200);
      } else if (direct == 3 && pX + 5 < 755) {
       pX += 20;
+      window.setTimeout(resetDash, 5200);
+      window.setTimeout(stopDash, 200);
      } else if (direct == 4 && pY + 5 < 555) {
       pY += 20;
+      window.setTimeout(resetDash, 5200);
+      window.setTimeout(stopDash, 200);
      }
-     window.setTimeout(resetDash, 5200);
-     window.setTimeout(stopDash, 200);
     }
     //player and stats
     if (dashT == 1 && tokens > 0) {
