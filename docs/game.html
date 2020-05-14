@@ -79,7 +79,7 @@
     c.height = 600;
     ctx.fillStyle = "#111";
     ctx.font = "20px Arial";
-    ctx.fillText("Press space or click to start", 250, 320);
+    ctx.fillText("Click to start", 250, 320);
     click = 1;
    }
    c.onmousedown = function clickStuff() {
@@ -102,9 +102,8 @@
      direct = 3;
     } else if (event.keyCode == 40) {
      direct = 4;
-    } else if (event.keyCode == 32 && click == 1) {
-     click = undefined;
-     window.setInterval(runGame, 20);
+    } else if (event.keyCode == 32) {
+     // nothing yet, add run later
     } else if (event.keyCode == 16 && dashT == 2) {
      dashT = 0;
     }
