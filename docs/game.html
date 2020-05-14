@@ -34,7 +34,8 @@
    var obtain;
    var discRooms = 0;
    var level = 0;
-   var color = [100, 100, 100];
+   var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#ff0a0a", "#031a6f", "#2d9186"];
+   var color = colorA[3];
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -99,7 +100,7 @@
     }
    })
    function runGame() {
-    ctx.fillStyle = "rgba(" + color[0] + ", " + color[1] + ", " + color[2] + ", 1)";
+    ctx.fillStyle = color;
     ctx.fillRect(0, 0, c.width, c.height);
     // above ground
     if (screen == 1) {
@@ -124,7 +125,7 @@
       }
      }
     } else if (screen == 2) {
-     ctx.fillStyle = "#333";
+     ctx.fillStyle = "rgba(20, 20, 20, 0.5)";
      if (room == 1) {
       // I
       ctx.fillRect(0, 0, 300, c.height);
@@ -317,11 +318,7 @@
       ctx.fillStyle = "#000";
       ctx.fillRect(350, 250, 100, 100);
       if (pX > 299 && pX < 401 && pY > 199 && pY < 301) {
-       if (Math.floor(Math.random() * Math.floor(2)) == 0) {
-        color[Math.round(Math.random() * (color.length - 1))] += 150;
-       } else {
-        color[Math.round(Math.random() * (color.length - 1))] -= 150;
-       }
+       color = colorA[Math.round(Math.random() * (color.length - 1))];
        level++;
        discRooms = 0;
        screen = 2;
