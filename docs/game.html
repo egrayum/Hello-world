@@ -46,6 +46,8 @@
    var pHealth = 100;
    var eHealth = 50;
    var eDirect;
+   var secretA = [];
+   var sfound;
     function resetDash() {
      dashT = 2;
     }
@@ -277,7 +279,6 @@
       collision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 300 || pX > 650 && pY > 350);
       eCollision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 300 || pX > 650 && pY > 350);
      }
-     
      if (pX < 5) {
       posStore = roomPos.split(",");
       posChangeX = parseInt(posStore[0], 10);
@@ -341,7 +342,6 @@
       eY = 200;
      }
      discRooms++;
-     rand = Math.floor(Math.random() * Math.floor(16));
      if (direction == "N") {
       room = nType[Math.round(Math.random() * (nType.length - 1))];
       layout[layout.length] = {
@@ -387,6 +387,21 @@
         "type":11,
         "pos":"1,1"
        } 
+      }
+     }
+    }
+    if (room == 99 || room == 100 || room == 101 || room == 102) {
+     sfound = 1;
+     for (i = 0; i < secretA.length; i++) {
+      if (secretA[i].pos == roomPos) {
+       rand = 11;
+       sfound = 2;
+      } 
+     }
+     if (sfound == 1) {
+      rand = 10;
+      secretA[secretA.length] = {
+       "pos":roomPos
       }
      }
     }
