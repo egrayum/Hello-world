@@ -459,6 +459,8 @@
      ctx.fillStyle = "rgba(0, 0, 0, 1)";
     }
     ctx.fillRect(pX, pY, 50, 50);
+    ctx.fillStyle = "#22ff22";
+    ctx.fillRect(pX, pY - 41, pHealth/2, 8);
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
     ctx.fillText("Blue tokens: " + tokens, 10, 75);
