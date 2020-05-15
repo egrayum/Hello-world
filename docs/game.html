@@ -381,13 +381,13 @@
     }
     if (discRooms == 8 + (level * 2)) {
      ctx.fillStyle = "#000";
-     rad = 75;
      ctx.beginPath();
      ctx.arc(400, 300, rad, 0, 2 * Math.PI);
      ctx.fill();
      if (pX > 299 && pX < 451 && pY > 199 && pY < 351 && rad < 820) {
       rad += 10;
       window.setTimeout(nextLevel, 3000);
+      discRooms = 0;
      }
     }
     function beenHere() {
@@ -538,10 +538,8 @@
     }
    }
    function nextLevel() {
-    color = colorA[Math.round(Math.random() * (color.length - 1))];
-       rad = 500;
+     color = colorA[Math.round(Math.random() * (color.length - 1))];
        level++;
-       discRooms = 0;
        screen = 2;
        room = 11;
        roomPos = "1,1";
