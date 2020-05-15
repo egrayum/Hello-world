@@ -465,8 +465,12 @@
     }
     ctx.fillRect(pX, pY, 50, 50);
     if (enemies == 1) {
-     1qaActx.fillStyle = "#ff0000";
+     ctx.fillStyle = "#ff0000";
      ctx.fillRect(eX, eY, 50, 50);
+    }
+    if (health < 1) {
+     screen = 1;
+     coins /= 1.5;
     }
     ctx.fillStyle = "#2543e6";
     ctx.fillRect(275, 10, pHealth * 5, 24);
