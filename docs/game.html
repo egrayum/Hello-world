@@ -460,13 +460,13 @@
     }
     ctx.fillRect(pX, pY, 50, 50);
     ctx.fillStyle = "#22ff22";
-    ctx.fillRect(275, 20, pHealth * 5, 24);
+    ctx.fillRect(275, 10, pHealth * 5, 24);
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
     ctx.fillText("Blue tokens: " + tokens, 10, 75);
     ctx.fillText("Coins: " + coins, 10, 25);
     ctx.fillText("Level: " + level, 10, 100);
-    ctx.fillText("health: " + pHealth + "/100", 175, 44);
+    ctx.fillText("health: " + pHealth + "/100", 295, 30);
     if (room == 99 || room == 100 || room == 101 || room == 102) {
      ctx.fillText("Room position: Unknown", 10, 50);
     } else {
