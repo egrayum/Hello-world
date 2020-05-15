@@ -105,7 +105,7 @@
     if (click == 1) {
      click = undefined;
      window.setInterval(runGame, 20);
-     window.setInterval(attacks, 200);
+     window.setInterval(attacks, 400);
     }
    }
    document.addEventListener("keyup", function(event) {
@@ -509,6 +509,20 @@
     ctx.fillText("Coins: " + coins, 10, 25);
     ctx.fillText("Level: " + level, 10, 100);
     ctx.fillText("health: " + pHealth + "/100", 295, 30);
+    ctx.fillStyle = "rgba(0, 0, 0, 1)";
+    if (attack == 1) {
+     ctx.fillRect(pX - 5, pY - 28, 10, 28);
+     ctx.fillRect(pX + 45, pY - 28, 10, 28);
+    } else if (attack == 2) {
+     ctx.fillRect(pX - 28, pY - 5, 28, 10);
+     ctx.fillRect(pX - 28, pY + 45, 28, 10);
+    } else if (attack == 3) {
+     ctx.fillRect(pX - 5, pY + 50, 10, 28);
+     ctx.fillRect(pX + 45, pY + 50, 10, 28);
+    } else if (attack == 4) {
+     ctx.fillRect(pX + 50, pY - 5, 28, 10);
+     ctx.fillRect(pX + 50, pY + 45, 28, 10);
+    }
     if (room == 99 || room == 100 || room == 101 || room == 102) {
      ctx.fillText("Room position: Unknown", 10, 50);
     } else {
@@ -523,23 +537,15 @@
     // attack stuff 
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
     if (attack == 1) {
-     ctx.fillRect(pX - 5, pY - 28, 10, 28);
-     ctx.fillRect(pX + 45, pY - 28, 10, 28);
      if (eX > pX - 55 && eX < pX + 55 && eY > pY - 78 && eY < pY - 51) {
        eHealth -= 8;
      }
     } else if (attack == 2) {
-     ctx.fillRect(pX - 28, pY - 5, 28, 10);
-     ctx.fillRect(pX - 28, pY + 45, 28, 10);
     } else if (attack == 3) {
-     ctx.fillRect(pX - 5, pY + 50, 10, 28);
-     ctx.fillRect(pX + 45, pY + 50, 10, 28);
      if (eX > pX - 55 && eX < pX + 55 && eY > pY + 51 && eY < pY + 78) {
       eHealth -= 8;
      }
     } else if (attack == 4) {
-     ctx.fillRect(pX + 50, pY - 5, 28, 10);
-     ctx.fillRect(pX + 50, pY + 45, 28, 10);
     }
    }
   </script>
