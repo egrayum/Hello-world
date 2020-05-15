@@ -39,8 +39,8 @@
    var dashT = 2;
    var attack;
    var enemies;
-   var eX;
-   var eY;
+   var eX = 300;
+   var eY = 200;
    var oldeX;
    var oldeY;
    var pHealth = 100;
@@ -334,6 +334,7 @@
     }
     // function that adds a room to the array
     function addRoom () {
+     enemies = 1;
      discRooms++;
      rand = Math.floor(Math.random() * Math.floor(16));
      if (direction == "N") {
@@ -433,6 +434,10 @@
       window.setTimeout(stopDash, 200);
      }
     }
+    // for taking damage
+    if (pX > eX - 50 && pX < eX + 50 && pY > eY - 50 && pY < eY + 50) {
+     health -= 5;
+    }
     // attack stuff 
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
     if (attack == 1) {
@@ -459,6 +464,10 @@
      ctx.fillStyle = "rgba(0, 0, 0, 1)";
     }
     ctx.fillRect(pX, pY, 50, 50);
+    if (enemies == 1) {
+     1qaActx.fillStyle = "#ff0000";
+     ctx.fillRect(eX, eY, 50, 50);
+    }
     ctx.fillStyle = "#2543e6";
     ctx.fillRect(275, 10, pHealth * 5, 24);
     ctx.fillStyle = "#fff";
