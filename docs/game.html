@@ -138,6 +138,8 @@
      attack = 3;
     } else if (event.keyCode == 68) {
      attack = 4;
+    } else if (event.keyCode == 87 && event.keyCode == 37) {
+     window.setTimeout(resetDash, 3200);
     }
    })
    function runGame() {
