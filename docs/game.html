@@ -341,8 +341,11 @@
     function addRoom () {
      if (enemies == 0) {
       enemies = Math.floor(Math.random() * Math.floor(4));
-      eX = 300;
-      eY = 200;
+      if (enemies == 1) {
+       eHealth = 50;
+       eX = 300;
+       eY = 200;
+      }
      }
      discRooms++;
      if (direction == "N") {
@@ -502,7 +505,6 @@
     }
     ctx.fillRect(pX, pY, 50, 50);
     if (enemies == 1) {
-     eHealth = 50;
      ctx.fillStyle = "#ff0000";
      ctx.fillRect(eX, eY, 50, 50);
      ctx.fillRect(eX, eY - 24, eHealth, 8);
