@@ -45,6 +45,7 @@
    var oldeY;
    var pHealth = 100;
    var eHealth = 50;
+   var eDirect;
     function resetDash() {
      dashT = 2;
     }
@@ -404,6 +405,14 @@
       }
      } 
     } 
+    // enemy AI
+    if (pX + 49 < eX) {
+     eX -= 7;
+     eDirect = 2;
+    } else if (pX > eX + 49) {
+     eX += 7;
+     eDirect = 4;
+    }
     // for moving the player
     if (direct == 1 && pX - 5 > - 5) {
      pX -= speed;
@@ -435,8 +444,11 @@
      }
     }
     // for taking damage
-    if (pX > eX - 50 && pX < eX + 50 && pY > eY - 50 && pY < eY + 50) {
+    if (pX > eX - 50 && pX < eX + 50 && pY > eY - 50 && pY < eY + 50 && pHealth > 0) {
      pHealth -= 5;
+    }
+    if (pHealth < 1) {
+     pHealth = 0;
     }
     // attack stuff 
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
