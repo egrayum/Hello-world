@@ -386,6 +386,7 @@
       rad = 38;
       ctx.beginPath();
       ctx.arc(200, 300, rad, 0, 2 * Math.PI);
+      ctx.fill();
       if (pX > 299 && pX < 451 && pY > 199 && pY < 351 && rad < 450) {
        rad += 5;
        window.setTimeout(nextLevel, 1300);
