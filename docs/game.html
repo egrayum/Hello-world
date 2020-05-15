@@ -150,6 +150,7 @@
      ctx.fillStyle = "#000";
      ctx.fillRect(600, 400, 180, 180);
      ctx.fillText("Mine", 620, 380);
+     enemies = 0;
      if (pX > 560 && pY > 360) {
       level = 1;
       screen = 2;
@@ -337,7 +338,7 @@
     // function that adds a room to the array
     function addRoom () {
      if (enemies == 0) {
-      enemies = 1;
+      enemies = Math.floor(Math.random() * Math.floor(4));
       eX = 300;
       eY = 200;
      }
@@ -466,9 +467,6 @@
     if (pX > eX - 50 && pX < eX + 50 && pY > eY - 50 && pY < eY + 50 && pHealth > 0) {
      pHealth -= 5;
     }
-    if (pHealth < 1) {
-     pHealth = 0;
-    }
     // attack stuff 
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
     if (attack == 1) {
@@ -501,13 +499,15 @@
      ctx.fillStyle = "rgba(0, 0, 0, 1)";
     }
     ctx.fillRect(pX, pY, 50, 50);
-    if (enemies == 1 && screen == 2) {
+    if (enemies == 1) {
      ctx.fillStyle = "#ff0000";
      ctx.fillRect(eX, eY, 50, 50);
+     ctx.fillRect(eX, eY - 24, eHealth, 8);
     }
     if (pHealth < 1) {
      screen = 1;
      coins /= 1.5;
+     pHealth = 100;
     }
     ctx.fillStyle = "#2543e6";
     ctx.fillRect(275, 10, pHealth * 5, 24);
