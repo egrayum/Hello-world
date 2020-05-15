@@ -380,17 +380,14 @@
      }
     }
     if (discRooms == 8 + (level * 2)) {
-     special = 10;
-     if (special == 10) {
-      ctx.fillStyle = "#000";
-      rad = 38;
-      ctx.beginPath();
-      ctx.arc(200, 300, rad, 0, 2 * Math.PI);
-      ctx.fill();
-      if (pX > 299 && pX < 451 && pY > 199 && pY < 351 && rad < 450) {
-       rad += 5;
-       window.setTimeout(nextLevel, 1300);
-      }
+     ctx.fillStyle = "#000";
+     rad = 75;
+     ctx.beginPath();
+     ctx.arc(400, 300, rad, 0, 2 * Math.PI);
+     ctx.fill();
+     if (pX > 299 && pX < 451 && pY > 199 && pY < 351 && rad < 820) {
+      rad += 10;
+      window.setTimeout(nextLevel, 3000);
      }
     }
     function beenHere() {
