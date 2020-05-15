@@ -150,6 +150,8 @@
      ctx.fillStyle = "#000";
      ctx.fillRect(600, 400, 180, 180);
      ctx.fillText("Mine", 620, 380);
+     eX = undefined;
+     eY = undefined;
      enemies = 0;
      if (pX > 560 && pY > 360) {
       level = 1;
@@ -500,6 +502,7 @@
     }
     ctx.fillRect(pX, pY, 50, 50);
     if (enemies == 1) {
+     eHealth = 50;
      ctx.fillStyle = "#ff0000";
      ctx.fillRect(eX, eY, 50, 50);
      ctx.fillRect(eX, eY - 24, eHealth, 8);
@@ -508,6 +511,11 @@
      screen = 1;
      coins /= 1.5;
      pHealth = 100;
+    }
+    if (eHealth < 1) {
+     eHealth = 0;
+     eX = undefined;
+     eY = undefined;
     }
     ctx.fillStyle = "#2543e6";
     ctx.fillRect(275, 10, pHealth * 5, 24);
