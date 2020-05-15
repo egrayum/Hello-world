@@ -48,6 +48,7 @@
    var eDirect;
    var secretA = [];
    var sfound;
+   var rad;
     function resetDash() {
      dashT = 2;
     }
@@ -382,22 +383,12 @@
      special = 10;
      if (special == 10) {
       ctx.fillStyle = "#000";
-      ctx.fillRect(350, 250, 100, 100);
-      if (pX > 299 && pX < 451 && pY > 199 && pY < 351) {
-       color = colorA[Math.round(Math.random() * (color.length - 1))];
-       level++;
-       discRooms = 0;
-       screen = 2;
-       room = 11;
-       roomPos = "1,1";
-       pX = 375;
-       pY = 275;
-       layout = [];
-       layout[0] = {
-        "type":11,
-        "pos":"1,1"
-       } 
-       secretA = [];aqw1
+      rad = 38;
+      ctx.beginPath();
+      ctx.arc(200, 300, rad, 0, 2 * Math.PI);
+      if (pX > 299 && pX < 451 && pY > 199 && pY < 351 && rad < 450) {
+       rad += 5;
+       window.setTimeout(nextLevel, 1300);
       }
      }
     }
@@ -547,6 +538,22 @@
      }
     } else if (attack == 4) {
     }
+   }
+   function nextLevel() {
+    color = colorA[Math.round(Math.random() * (color.length - 1))];
+       level++;
+       discRooms = 0;
+       screen = 2;
+       room = 11;
+       roomPos = "1,1";
+       pX = 375;
+       pY = 275;
+       layout = [];
+       layout[0] = {
+        "type":11,
+        "pos":"1,1"
+       } 
+       secretA = [];
    }
   </script>
  </head>
