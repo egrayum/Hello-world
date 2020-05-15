@@ -38,9 +38,9 @@
    var speed = 5;
    var dashT = 2;
    var attack;
-   var enemies;
-   var eX = 300;
-   var eY = 200;
+   var enemies = 0;
+   var eX;
+   var eY;
    var oldeX;
    var oldeY;
    var pHealth = 100;
@@ -335,7 +335,11 @@
     }
     // function that adds a room to the array
     function addRoom () {
-     enemies = 1;
+     if (enemies == 0) [
+      enemies = 1;
+      eX = 300;
+      eY = 200;
+     }
      discRooms++;
      rand = Math.floor(Math.random() * Math.floor(16));
      if (direction == "N") {
