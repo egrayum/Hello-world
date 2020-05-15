@@ -291,6 +291,7 @@
       roomPos = posChangeX + "," + posChangeY;
       direction = "W";
       checkRoom();
+      beenHere();
       pX = 745;
      } else if (pX > 745) {
       posStore = roomPos.split(",");
@@ -301,6 +302,7 @@
       roomPos = posChangeX + "," + posChangeY;
       direction = "E";
       checkRoom();
+      beenHere();
       pX = 10;
      } else if (pY < 5) {
       posStore = roomPos.split(",");
@@ -311,6 +313,7 @@
       roomPos = posChangeX + "," + posChangeY;
       direction = "N";
       checkRoom();
+      beenHere();
       pY = 545;
      } else if (pY > 545) {
       posStore = roomPos.split(",");
@@ -321,6 +324,7 @@
       roomPos = posChangeX + "," + posChangeY;
       direction = "S";
       checkRoom();
+      beenHere();
       pY = 10;
      }
     }
@@ -395,18 +399,20 @@
       }
      }
     }
+    function beenHere() {
     if (room == 99 || room == 100 || room == 101 || room == 102) {
-     sfound = 1;
-     for (i = 0; i < secretA.length; i++) {
-      if (secretA[i].pos == roomPos) {
-       rand = 11;
-       sfound = 2;
-      } 
-     }
-     if (sfound == 1) {
-      rand = 10;
-      secretA[secretA.length] = {
-       "pos":roomPos
+      sfound = 1;
+      for (i = 0; i < secretA.length; i++) {
+       if (secretA[i].pos == roomPos) {
+        rand = 0;
+        sfound = 2;
+       } 
+      }
+      if (sfound == 1) {
+       rand = 10;
+       secretA[secretA.length] = {
+        "pos":roomPos
+       }
       }
      }
     }
@@ -514,8 +520,7 @@
      pHealth = 100;
     }
     if (eHealth < 1) {
-     eHealth = 50q
-     q12;
+     eHealth = 50;
      eX = undefined;
      eY = undefined;
     }
