@@ -364,12 +364,10 @@
     function addRoom () {
      i = 2;
      rad = 75;
-     if (enemies == 0) {
-      enemies = Math.round(Math.floor(Math.random() * Math.floor(3)));
-      if (enemies == 1) {
-       eX = 300;
-       eY = 200;
-      }
+     enemies = 1;
+     if (enemies == 1) {
+      eX = 300;
+      eY = 200;
      }
      discRooms++;
      if (direction == "N") {
