@@ -365,7 +365,7 @@
      i = 2;
      rad = 75;
      if (enemies == 0) {
-      enemies = 1;
+      enemies = Math.floor(Math.random() * Math.floor(4));
       if (enemies == 1) {
        eX = 300;
        eY = 200;
@@ -449,10 +449,10 @@
     } 
     // enemy AI
     if (pX + 49 < eX) {
-     eX -= 7;
+     eX -= 5 + level/4;
      eDirect = 2;
     } else if (pX > eX + 49) {
-     eX += 7;
+     eX += 5 + level/4;
      eDirect = 4;
     }
     // for moving the player
@@ -517,6 +517,7 @@
      pHealth = 100;
     }
     if (eHealth < 1) {
+     enemies = 0;
      eHealth = 50;
      eX = undefined;
      eY = undefined;
