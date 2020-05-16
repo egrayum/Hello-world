@@ -336,6 +336,15 @@
       beenHere();
       pY = 10;
      }
+     ctx.fillStyle = "#fff";
+     ctx.font = "20px Arial";
+     ctx.fillText("health: " + pHealth + "/100", 280, 30);
+     ctx.fillStyle = "#2543e6";
+     ctx.fillRect(275, 10, pHealth * 5, 24);
+     ctx.fillStyle = "#d37112";
+     ctx.fillRect(275, 34, hunger * 50, 16);\
+     ctx.font = "12px Arial";
+     ctx.fillText("hunger: " + Math.round(hunger) + "/10", 280, 46);
     }
     // check if the room exists
     function checkRoom() {
@@ -511,23 +520,16 @@
      eX = undefined;
      eY = undefined;
     }
-    ctx.fillStyle = "#2543e6";
-    ctx.fillRect(275, 10, pHealth * 5, 24);
-    ctx.fillStyle = "#d37112";
-    ctx.fillRect(275, 34, hunger * 50, 16);
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
     ctx.fillText("Blue tokens: " + tokens, 10, 75);
     ctx.fillText("Coins: " + coins, 10, 25);
     ctx.fillText("Level: " + level, 10, 100);
-    ctx.fillText("health: " + pHealth + "/100", 280, 30);
     if (room == 99 || room == 100 || room == 101 || room == 102) {
      ctx.fillText("Room position: Unknown", 10, 50);
     } else {
      ctx.fillText("Room position: " + roomPos, 10, 50);
     }
-    ctx.font = "12px Arial";
-    ctx.fillText("hunger: " + Math.round(hunger) + "/10", 280, 46);
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
     if (attack == 1) {
      ctx.fillRect(pX - 5, pY - 28, 10, 28);
