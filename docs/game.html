@@ -620,12 +620,15 @@
     // attack stuff 
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
     if (attack == 1) {
-     if (eX > pX - 55 && eX < pX + 55 && eY > pY - 78 && eY < pY - 51) {
+     if (eX > pX - 75 && eX < pX + 75 && eY > pY - 100 && eY < pY - 51) {
        eHealth -= 8;
      }
     } else if (attack == 2) {
+     if (eX > pX - 100 && eX < pX - 51 && eY > pY - 75 && eY < pY + 75) {
+      eHealth -= 8;
+     }
     } else if (attack == 3) {
-     if (eX > pX - 55 && eX < pX + 55 && eY > pY + 51 && eY < pY + 78) {
+     if (eX > pX - 75 && eX < pX + 75 && eY > pY + 51 && eY < pY + 100) {
       eHealth -= 8;
      }
     } else if (attack == 4) {
