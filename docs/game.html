@@ -49,6 +49,8 @@
    var secretA = [];
    var sfound;
    var rad = 75;
+   var hunger = 10;
+   var run = 0;
     function resetDash() {
      dashT = 2;
     }
@@ -115,6 +117,8 @@
      direct = undefined; 
     } else if (event.keyCode == 87 || event.keyCode == 65 || event.keyCode == 68 || event.keyCode == 83) {
      attack = 0;
+    } else if (event.keyCode == 32) {
+     run = 0;
     }
    })
    document.addEventListener("keydown", function(event) {
@@ -127,7 +131,7 @@
     } else if (event.keyCode == 40) {
      direct = 4;
     } else if (event.keyCode == 32) {
-     // nothing yet, add run later
+     run = 1;
     } else if (event.keyCode == 16 && dashT == 2) {
      dashT = 0;
     } else if (event.keyCode == 87) {
@@ -442,14 +446,24 @@
      eDirect = 4;
     }
     // for moving the player
-    if (direct == 1 && pX - 5 > - 5) {
-     pX -= speed;
-    } else if (direct == 2 && pY - 5 > - 5) {
-     pY -= speed;
-    } else if (direct == 3 && pX + 5 < 755) {
-     pX += speed;
-    } else if (direct == 4 && pY + 5 < 555) {
-     pY += speed;
+    function move(speeds) {
+     if (direct == 1 && pX - 5 > - 5) {
+      pX -= speed;
+     } else if (direct == 2 && pY - 5 > - 5) {
+      pY -= speed;
+     } else if (direct == 3 && pX + 5 < 755) {
+      pX += speed;
+     } else if (direct == 4 && pY + 5 < 555) {
+      pY += speed;
+     }
+    }
+    move(speed);
+    // for running
+    if (run == 0 && hunger < 10) {
+     hunger += 0.05;
+    } else if (run == 1 && hunger > 0) {
+     hunger -= 0.1;
+     move(speed + 3);
     }
     // for dashing
     if (dashT == 0) {
@@ -499,12 +513,16 @@
     }
     ctx.fillStyle = "#2543e6";
     ctx.fillRect(275, 10, pHealth * 5, 24);
+    ctx.fillStyle = "#d37112";
+    ctx.fillRect(275, 34, hunger * 50, 16);
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
     ctx.fillText("Blue tokens: " + tokens, 10, 75);
     ctx.fillText("Coins: " + coins, 10, 25);
     ctx.fillText("Level: " + level, 10, 100);
     ctx.fillText("health: " + pHealth + "/100", 295, 30);
+    ctx.font = "12px Arial";
+    ctx.fillText("hunger: " + hunger + "/10", 295, 48);
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
     if (attack == 1) {
      ctx.fillRect(pX - 5, pY - 28, 10, 28);
