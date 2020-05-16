@@ -521,6 +521,11 @@
     ctx.fillText("Coins: " + coins, 10, 25);
     ctx.fillText("Level: " + level, 10, 100);
     ctx.fillText("health: " + pHealth + "/100", 280, 30);
+    if (room == 99 || room == 100 || room == 101 || room == 102) {
+     ctx.fillText("Room position: Unknown", 10, 50);
+    } else {
+     ctx.fillText("Room position: " + roomPos, 10, 50);
+    }
     ctx.font = "12px Arial";
     ctx.fillText("hunger: " + Math.round(hunger) + "/10", 280, 46);
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
@@ -536,11 +541,6 @@
     } else if (attack == 4) {
      ctx.fillRect(pX + 50, pY - 5, 28, 10);
      ctx.fillRect(pX + 50, pY + 45, 28, 10);
-    }
-    if (room == 99 || room == 100 || room == 101 || room == 102) {
-     ctx.fillText("Room position: Unknown", 10, 50);
-    } else {
-     ctx.fillText("Room position: " + roomPos, 10, 50);
     }
    } 
    function attacks() {
