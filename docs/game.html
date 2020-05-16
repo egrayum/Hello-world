@@ -68,7 +68,7 @@
    var obtain;
    var discRooms = 0;
    var level = 0;
-   var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#ff0a0a", "#031a69", "#2d9186"];
+   var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#031a69", "#2d9186"];
    var color = colorA[2];
    var speed = 5;
    var dashT = 2;
@@ -384,15 +384,15 @@
       pY = 10;
      }
      // health and hunger
-     ctx.fillStyle = "#2543e6";
+     ctx.fillStyle = "#f41a1a";
      ctx.fillRect(275, 10, pHealth * 5, 24);
-     ctx.fillStyle = "#d37112";
+     ctx.fillStyle = "#2543e6";
      ctx.fillRect(275, 34, hunger * 50, 16);
      ctx.fillStyle = "#fff";
      ctx.font = "20px Arial";
      ctx.fillText("health: " + pHealth + "/100", 280, 30);
      ctx.font = "12px Arial";
-     ctx.fillText("hunger: " + Math.round(hunger) + "/10", 280, 46);
+     ctx.fillText("energy: " + Math.round(hunger) + "/10", 280, 46);
     }
     // check if the room exists
     function checkRoom() {
@@ -569,8 +569,12 @@
     // enemy and enemy health
     if (enemies == 1) {
      ctx.fillStyle = "#ff0000";
-     ctx.fillRect(eX, eY, 50, 50);
      ctx.fillRect(eX, eY - 24, eHealth, 8);
+     ctx.moveTo(eX, eY);
+     ctx.lineTo(eX, eY + 50);
+     ctx.lineTo(eX + 50, eY + 25);
+     ctx.closePath();
+     ctx.fill();
     }
     // death for player and enemy
     if (pHealth < 1) {
@@ -618,19 +622,19 @@
     // attack stuff 
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
     if (attack == 1) {
-     if (eX > pX - 75 && eX < pX + 75 && eY > pY - 100 && eY < pY - 51) {
+     if (eX > pX - 75 && eX < pX + 75 && eY > pY - 100 && eY < pY - 45) {
        eHealth -= 8;
      }
     } else if (attack == 2) {
-     if (eX > pX - 100 && eX < pX - 51 && eY > pY - 75 && eY < pY + 75) {
+     if (eX > pX - 100 && eX < pX - 45 && eY > pY - 75 && eY < pY + 75) {
       eHealth -= 8;
      }
     } else if (attack == 3) {
-     if (eX > pX - 75 && eX < pX + 75 && eY > pY + 51 && eY < pY + 100) {
+     if (eX > pX - 75 && eX < pX + 75 && eY > pY + 45 && eY < pY + 100) {
       eHealth -= 8;
      }
     } else if (attack == 4) {
-     if (eX > pX + 50 && eX < pX + 100 && eY > pY - 75 && eY < pY + 75) {
+     if (eX > pX + 45 && eX < pX + 100 && eY > pY - 75 && eY < pY + 75) {
       eHealth -= 8; 
      }
     }
