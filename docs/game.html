@@ -570,11 +570,9 @@
     if (enemies == 1) {
      ctx.fillStyle = "#ff0000";
      ctx.fillRect(eX, eY - 24, eHealth, 8);
-     ctx.moveTo(eX, eY);
-     ctx.lineTo(eX, eY + 50);
-     ctx.lineTo(eX + 50, eY + 25);
-     ctx.lineTo(eX, eY);
-     ctx.fill();
+     ctx.fillRect(eX + 25, eY, 25, 50);
+     ctx.fillStyle = "#990000";
+     ctx.fillRect(eX, eY, 25, 50);
     }
     // death for player and enemy
     if (pHealth < 1) {
