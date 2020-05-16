@@ -364,7 +364,7 @@
     function addRoom () {
      i = 2;
      rad = 75;
-     enemies = 1;
+     enemies = Math.floor(Math.random() * Math.floor(4));
      if (enemies == 1) {
       eX = 300;
       eY = 200;
@@ -450,11 +450,15 @@
     } 
     // enemy AI
     if (pX + 49 < eX) {
-     eX -= 5 + level/4;
+     eX -= 4 + level/3;
      eDirect = 2;
     } else if (pX > eX + 49) {
-     eX += 5 + level/4;
+     eX += 4 + level/3;
      eDirect = 4;
+    } else if (pY > eY + 49) {
+     eY -= 4 + level/3;
+    } else if (pY < eY - 49) {
+     eY += 4 + level/3;
     }
     // for moving the player
     function move(speeds) {
