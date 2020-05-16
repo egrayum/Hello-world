@@ -4,6 +4,41 @@
   <link rel="stylesheet" type="text/css" href="labs.css"></link>
   <canvas id="gameCanvas" style="background:#047018; width:100%; height:100%; text-align:center;">
   <script>
+   // dashing things (89)
+   // secret room check (96)
+   // collision (119)
+   // initiation (138)
+   // Controls (147)
+     // click to start (148)
+     // keyup (156)
+     // main keyboard controls (166)
+   // The Game (192)
+     // above ground (196)
+     // in the cave (221)
+       // room types (223)
+       // changing room position (340)
+       // health and hunger (386)
+     // check room FOR loop (397)
+     // add room function (411)
+     // portal/hole (447)
+     // check secret room FOR loop (461)
+     // blue tokens (478)
+     // enemy AI (502)
+     // player movement (514)
+       // standard movement (514)
+       // running (527)
+       // dashing (537)
+     // dash viuals (557)
+     // player (567)
+     // enemy (569)
+     // death (575)
+     // info (587)
+     // attack visuals (598)
+   // seperate attack function (614)
+     // taking damage (616)
+     // attacking (620)
+   // resetting map and stuff when you go to the next level (637)
+   
    var c = document.getElementById("gameCanvas");
    var ctx = c.getContext("2d");
    var pX = 100;
@@ -51,12 +86,14 @@
    var rad = 75;
    var hunger = 10;
    var run = 0;
+   // some dash things
     function resetDash() {
      dashT = 2;
     }
     function stopDash() {
      dashT = 1;
     }
+   // for seeing if you are going into a secret room
    function checkSecret() {
     room = layout[i].type;
     if (direction == "N") {
@@ -79,6 +116,7 @@
     }
     found = 2;
    }
+   // collision for player and enemy
    function collision(ifs) {
     if (ifs) {
        pX = oldpX;
@@ -97,6 +135,7 @@
        eldpY = eY;
       }
    }
+   // function to be run onload
    function init() {
     c.width = 800;
     c.height = 600;
@@ -105,6 +144,8 @@
     ctx.fillText("Click to start", 250, 320);
     click = 1;
    }
+   // CONTROLS
+   // clicking to start
    c.onmousedown = function clickStuff() {
     if (click == 1) {
      click = undefined;
@@ -112,6 +153,7 @@
      window.setInterval(attacks, 400);
     }
    }
+   // keyup for cancelling things
    document.addEventListener("keyup", function(event) {
     if (event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
      direct = undefined; 
@@ -121,6 +163,7 @@
      run = 0;
     }
    })
+   // controls
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 37) {
      direct = 1;
@@ -146,6 +189,7 @@
      window.setTimeout(resetDash, 3200);
     }
    })
+   // running the game 50 times per second
    function runGame() {
     ctx.fillStyle = color;
     ctx.fillRect(0, 0, c.width, c.height);
@@ -174,7 +218,9 @@
        "pos":"1,1"
       }
      }
+     // cave
     } else if (screen == 2) {
+     // room types
      ctx.fillStyle = "rgba(20, 20, 20, 0.7)";
      if (room == 1) {
       // I
@@ -291,6 +337,7 @@
       collision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 200 || pX > 650 && pY > 350);
       eCollision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 300 || pX > 650 && pY > 350);
      }
+     // changing room position
      if (pX < 5) {
       posStore = roomPos.split(",");
       posChangeX = parseInt(posStore[0], 10);
@@ -336,6 +383,7 @@
       beenHere();
       pY = 10;
      }
+     // health and hunger
      ctx.fillStyle = "#2543e6";
      ctx.fillRect(275, 10, pHealth * 5, 24);
      ctx.fillStyle = "#d37112";
@@ -396,6 +444,7 @@
       }
      }
     }
+    // portal to next level
     if (discRooms == 8 + (level * 2)) {
      ctx.fillStyle = "#000";
      ctx.beginPath();
@@ -409,6 +458,7 @@
       }
      }
     }
+    // secret room check for blue tokens
     function beenHere() {
     if (room == 99 || room == 100 || room == 101 || room == 102) {
       sfound = 1;
@@ -426,6 +476,7 @@
       }
      }
     }
+    // blue tokens
     if (rand == 10) {
      obtain = 0;
      special = 15;
@@ -456,9 +507,9 @@
      eX += 4 + level/3;
      eDirect = 4;
     } else if (pY > eY + 49) {
-     eY -= 4 + level/3;
-    } else if (pY < eY - 49) {
      eY += 4 + level/3;
+    } else if (pY < eY - 49) {
+     eY -= 4 + level/3;
     }
     // for moving the player
     function move(speeds) {
@@ -503,7 +554,7 @@
       window.setTimeout(stopDash, 200);
      }
     }
-    //player and stats
+    // dash visuals
     if (dashT == 1 && tokens > 0) {
      ctx.fillStyle = "rgba(20, 20, 20, 0.6)";
     } else if (dashT == 1 && tokens < 1) {
@@ -513,12 +564,15 @@
     } else if (dashT != 1 && tokens < 1) {
      ctx.fillStyle = "rgba(0, 0, 0, 1)";
     }
+    //player
     ctx.fillRect(pX, pY, 50, 50);
+    // enemy and enemy health
     if (enemies == 1) {
      ctx.fillStyle = "#ff0000";
      ctx.fillRect(eX, eY, 50, 50);
      ctx.fillRect(eX, eY - 24, eHealth, 8);
     }
+    // death for player and enemy
     if (pHealth < 1) {
      screen = 1;
      coins /= 1.5;
@@ -530,6 +584,7 @@
      eX = undefined;
      eY = undefined;
     }
+    // info
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
     ctx.fillText("Blue tokens: " + tokens, 10, 75);
@@ -540,6 +595,7 @@
     } else {
      ctx.fillText("Room position: " + roomPos, 10, 50);
     }
+    // attack visuals
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
     if (attack == 1) {
      ctx.fillRect(pX - 5, pY - 28, 10, 28);
@@ -555,6 +611,7 @@
      ctx.fillRect(pX + 50, pY + 45, 28, 10);
     }
    } 
+   // attacking and taking damage 
    function attacks() {
     // for taking damage
     if (pX > eX - 50 && pX < eX + 50 && pY > eY - 50 && pY < eY + 50 && pHealth > 0) {
@@ -577,6 +634,7 @@
      pHealth -= 2;
     }
    }
+   // going to next level
    function nextLevel() {
      color = colorA[Math.round(Math.random() * (color.length - 1))];
     discRooms = 0;
