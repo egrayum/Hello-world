@@ -460,9 +460,9 @@
     move(speed);
     // for running
     if (run == 0 && hunger < 10) {
-     hunger += 0.05;
+     hunger += 0.01;
     } else if (run == 1 && hunger > 0) {
-     hunger -= 0.1;
+     hunger -= 0.05;
      move(speed + 3);
     }
     // for dashing
@@ -520,9 +520,9 @@
     ctx.fillText("Blue tokens: " + tokens, 10, 75);
     ctx.fillText("Coins: " + coins, 10, 25);
     ctx.fillText("Level: " + level, 10, 100);
-    ctx.fillText("health: " + pHealth + "/100", 295, 30);
+    ctx.fillText("health: " + pHealth + "/100", 280, 30);
     ctx.font = "12px Arial";
-    ctx.fillText("hunger: " + hunger + "/10", 295, 48);
+    ctx.fillText("hunger: " + Math.round(hunger) + "/10", 280, 46);
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
     if (attack == 1) {
      ctx.fillRect(pX - 5, pY - 28, 10, 28);
