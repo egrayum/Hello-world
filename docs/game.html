@@ -475,6 +475,9 @@
      hunger -= 0.05;
      move(speed + 3);
     }
+    if (hunger < 0) {
+     hunger = 0;
+    }
     // for dashing
     if (dashT == 0) {
      if (direct == 1 && pX - 5 > - 5) {
@@ -564,6 +567,9 @@
       eHealth -= 8;
      }
     } else if (attack == 4) {
+    }
+    if (hunger < 1) {
+     pHealth -= 2;
     }
    }
    function nextLevel() {
