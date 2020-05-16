@@ -246,7 +246,7 @@
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(500, 0, 300, c.height);
       ctx.fillRect(0, 400, 300, 200);
-      collision(pX > 450 || pX < 300 && pY > 350 || pX < 300 && pY < 200);
+      collision(p8969X > 450 || pX < 300 && pY > 350 || pX < 300 && pY < 200);
       eCollision(pX > 450 || pX < 300 && pY > 350 || pX < 300 && pY < 200);
      } else if (room == 5) {
       // T
@@ -568,12 +568,13 @@
     ctx.fillRect(pX, pY, 50, 50);
     // enemy and enemy health
     if (enemies == 1) {
-     ctx.fillStyle = "#ff0000";
+     ctx.strokeStyle = "#ff0000";
      ctx.fillRect(eX, eY - 24, eHealth, 8);
      ctx.moveTo(eX, eY);
      ctx.lineTo(eX, eY + 50);
      ctx.lineTo(eX + 50, eY + 25);
      ctx.closePath();
+     ctx.stroke();
     }
     // death for player and enemy
     if (pHealth < 1) {
