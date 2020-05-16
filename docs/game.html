@@ -279,7 +279,7 @@
       ctx.fillRect(100, 500, 600, 100);
       ctx.fillRect(0, 0, 100, 200);
       ctx.fillRect(0, 400, 100, 200);
-      collision(pX > 650 || pY < 100 || pY > 450 || pX < 100 && pY < 300 || pX < 100 && pY > 350);
+      collision(pX > 650 || pY < 100 || pY > 450 || pX < 100 && pY < 200 || pX < 100 && pY > 350);
       eCollision(pX > 650 || pY < 100 || pY > 450 || pX < 100 && pY < 300 || pX < 100 && pY > 350);
      } else if (room == 102) {
       // enterable going W
@@ -288,7 +288,7 @@
       ctx.fillRect(100, 500, 600, 100);
       ctx.fillRect(700, 0, 100, 200);
       ctx.fillRect(700, 400, 100, 200);
-      collision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 300 || pX > 650 && pY > 350);
+      collision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 200 || pX > 650 && pY > 350);
       eCollision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 300 || pX > 650 && pY > 350);
      }
      if (pX < 5) {
