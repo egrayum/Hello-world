@@ -47,6 +47,7 @@
    var tokenTier;
    var maxHunger = 10;
    var goUp;
+   var bronzeTokens = 0;
    // for updating arrays
    function updateSecretA(position, attr, value) {
     for (i = 0; i < secretA.length; i++) {
@@ -144,6 +145,14 @@
       ctx.fillText("Go to level 3 in the mine and bring back a red token.", 150, 180);
       if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && tokenTier == 1) {
        quests = 2;
+       maxHunger += 1;
+      }
+     } else if (quests == 2) {
+      ctx.fillText("Quest 2: Bronze Token", 200, 120);
+      ctx.font = "20px Arial";
+      ctx.fillText("Go to level 5 in the mine and bring back a bronze token.", 150, 180);
+      if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && tokenTier == 2) {
+       quests = 3;
        maxHunger += 1;
       }
      }
@@ -366,7 +375,7 @@
      }
     }
     // portal to next level
-    if (tokens > level - 1 && discRooms > 0 && roomPos == "1,1") {
+    if (tokens > level - 1 && discRooms > 0 && roomPos == "1,1" && screen == 2) {
      ctx.fillStyle = "#000";
      ctx.beginPath();
      ctx.arc(400, 300, rad, 0, 2 * Math.PI);
@@ -406,6 +415,8 @@
      tokenType = "blue";
     } else if (level > 2 && level < 5) {
      tokenType = "red";
+    } else if (level > 4 && level < 8) {
+     tokenType = "bronze";
     }
     if (secret == true && obtained == false) {
      if (tokenType == "blue") {
@@ -433,6 +444,10 @@
       if (tokenType == "red") {
        tokenTier = 1;
       }
+      if (tokenType == "bronze") {
+       tokenTier = 2;
+       bronzeTokens += 1;
+      }
      }
     } 
     // for moving the player
@@ -449,7 +464,7 @@
     }
     move(speed);
     // for running
-    if (run == 0 && hunger < 10) {
+    if (run == 0 && hunger < maxHunger) {
      hunger += 0.01;
     } else if (run == 1 && hunger > 0) {
      hunger -= 0.05;
@@ -462,16 +477,16 @@
     if (dashT == 0 && hunger > 4) {
      if (direct == 1 && pX - 5 > - 5) {
       pX -= 20;
-      hunger -= 0.2;
+      hunger -= 0.1;
      } else if (direct == 2 && pY - 5 > - 5) {
       pY -= 20;
-      hunger -= 0.2;
+      hunger -= 0.1;
      } else if (direct == 3 && pX + 5 < 755) {
       pX += 20;
-      hunger -= 0.2;
+      hunger -= 0.1;
      } else if (direct == 4 && pY + 5 < 555) {
       pY += 20;
-      hunger -= 0.2; 
+      hunger -= 0.1; 
      }
     }
     //player
