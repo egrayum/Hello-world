@@ -42,27 +42,30 @@
    var pHealth = 100;
    var run = 0;
    var portal;
+   var secret = false;
    // for seeing if you are going into a secret room
    function checkSecret() {
-    room = layout[i].type;
     if (direction == "N") {
      if (room == 3 || room == 6 || room == 9 || room == 10) {
       room = 99;
+      secret = true;
      }
     } else if (direction == "S") {
      if (room == 3 || room == 5 || room == 7 || room == 8) {
       room = 100;
+      secret = true;
      }
     } else if (direction == "E") {
      if (room == 1 || room == 7 || room == 2 || room == 9) {
       room = 101;
+      secret = true;
      }
     } else if (direction == "W") {
      if (room == 1 || room == 4 || room == 8 || room == 10) {
       room = 102;
+      secret = true;
      }
     }
-    found = 2;
    }
    // collision for player
    function collision(ifs) {
@@ -290,6 +293,7 @@
     // check if the room exists
     function checkRoom() {
      found = 1;
+     secret = false;
      for (i = 0; i < layout.length; i++) {
       if (layout[i].pos == roomPos) {
        room = layout[i].type;
@@ -368,11 +372,12 @@
         "pos":roomPos,
         "obtained":false
        }
+       obtained = false;
       }
      }
     }
     // blue tokens
-    if (obtained == false) {
+    if (secret == true && obtained == false) {
      ctx.fillStyle = "#0000ff";
      ctx.fillRect(375, 275, 50, 50);
      // check if player picks up token
