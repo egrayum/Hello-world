@@ -51,10 +51,10 @@
    var run = 0;
    var secret = false;
    // for updating arrays
-   function updateArray(array, position, attribute, value) {
-    for (i = 0; i < array.length; i++) {
-     if (array[i].pos == position) {
-      array[i].attribute = value; 
+   function updateArray(position, attribute, value) {
+    for (i = 0; i < secretA.length; i++) {
+     if (secretA[i].pos == position) {
+      secretA[i].obtained = value; 
      } 
     }
    }
@@ -358,6 +358,7 @@
      ctx.beginPath();
      ctx.arc(400, 300, rad, 0, 2 * Math.PI);
      ctx.fill();
+     ctx.noStroke();
      if (pX > 274 && pX < 426 && pY > 174 && pY < 326 && rad < 550) {
       rad += 10;
       if (i == 2) {
@@ -396,7 +397,7 @@
      if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
       obtained = true;
       // record obtained in array 
-      updateArray(secretA, roomPos, obtained, true);
+      updateArray(roomPos, obtained, true);
       tokens += 1;
       coins += 10;
       dashT = 2;
