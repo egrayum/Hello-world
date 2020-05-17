@@ -23,20 +23,14 @@
      // portal/hole (447)
      // check secret room FOR loop (461)
      // blue tokens (478)
-     // enemy AI (502)
      // player movement (514)
        // standard movement (514)
        // running (527)
        // dashing (537)
      // dash viuals (557)
      // player (567)
-     // enemy (569)
-     // death (575)
      // info (587)
      // attack visuals (598)
-   // seperate attack function (614)
-     // taking damage (616)
-     // attacking (620)
    // resetting map and stuff when you go to the next level (637)
    
    var c = document.getElementById("gameCanvas");
@@ -72,21 +66,11 @@
    var color = colorA[2];
    var speed = 5;
    var dashT = 2;
-   var attack;
-   var enemies = 0;
-   var eX;
-   var eY;
-   var oldeX;
-   var oldeY;
-   var pHealth = 100;
-   var eHealth = 50;
-   var eDirect;
    var secretA = [];
    var sfound;
    var rad = 75;
    var hunger = 10;
    var run = 0;
-   var att = 0;
    // some dash things
     function resetDash() {
      dashT = 2;
@@ -125,15 +109,6 @@
       } else { 
        oldpX = pX;
        oldpY = pY;
-      }
-   }
-   function eCollision(ifn) {
-    if (ifn) {
-       eX = oldeX;
-       eY = oldeY;
-      } else { 
-       eldpX = eX;
-       eldpY = eY;
       }
    }
    // function to be run onload
@@ -196,6 +171,8 @@
     ctx.fillRect(0, 0, c.width, c.height);
     // above ground
     if (screen == 1) {
+     ctx.fillStyle = "#7aa5f6";
+     ctx.fillRect(0, 0, c.width, c.height);
      ctx.fillStyle = "#DEB887";
      ctx.fillRect(250, 20, 300, 200);
      ctx.fillStyle = "#333";
@@ -204,9 +181,6 @@
      ctx.fillStyle = "#000";
      ctx.fillRect(600, 400, 180, 180);
      ctx.fillText("Mine", 620, 380);
-     eX = undefined;
-     eY = undefined;
-     enemies = 0;
      if (pX > 560 && pY > 360) {
       level = 1;
       screen = 2;
@@ -228,69 +202,59 @@
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(500, 0, 300, c.height);
       collision(pX < 300 || pX > 450);
-      eCollision(pX < 300 || pX > 450);
      } else if (room == 2) {
       // T from the left
       ctx.fillRect(0, 0, 300, c.height); 
       ctx.fillRect(500, 0, 300, 200);
       ctx.fillRect(500, 400, 300, 200);
       collision(pX < 300 || pX > 450 && pY < 200 || pX > 450 && pY > 350);
-      eCollision(pX < 300 || pX > 450 && pY < 200 || pX > 450 && pY > 350);
      } else if (room == 3) { 
       // I on its side
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(0, 400, c.width, 200);
       collision(pY < 200 || pY > 350);
-      eCollision(pY < 200 || pY > 350);
      } else if (room == 4) {
       // T from the right
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(500, 0, 300, c.height);
       ctx.fillRect(0, 400, 300, 200);
       collision(pX > 450 || pX < 300 && pY > 350 || pX < 300 && pY < 200);
-      eCollision(pX > 450 || pX < 300 && pY > 350 || pX < 300 && pY < 200);
      } else if (room == 5) {
       // T
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(500, 400, 300, 200);
       ctx.fillRect(0, 400, 300, 200);
       collision(pY < 200 || pY > 350 && pX < 300 || pY > 350 && pX > 450);
-      eCollision(pY < 200 || pY > 350 && pX < 300 || pY > 350 && pX > 450);
      } else if (room == 6) {
       // upside-down T
       ctx.fillRect(0, 400, c.width, 200);
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(500, 0, 300, 200);
       collision(pY > 350 || pY < 200 && pX < 300 || pY < 200 && pX > 450);
-      eCollision(pY > 350 || pY < 200 && pX < 300 || pY < 200 && pX > 450);
      } else if (room == 7) {
       // Upside-down L
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(0, 200, 300, 400);
       ctx.fillRect(500, 400, 300, 200);
       collision(pX < 300 || pY < 200 || pX > 450 && pY > 350);
-      eCollision(pX < 300 || pY < 200 || pX > 450 && pY > 350);
      } else if (room == 8) {
       // Rotated L
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(500, 200, 300, 400);
       ctx.fillRect(0, 400, 300, 200);
       collision(pY < 200 || pX > 450 || pY > 350 && pX < 300);
-      eCollision(pY < 200 || pX > 450 || pY > 350 && pX < 300);
      } else if (room == 9) {
       // L
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(300, 400, 500, 200);
-      ctx.fillRect(500, 0, 300, 200);
-      collision(pX < 300 || pY > 350 || pX > 450 && pY < 200);
-      eCollision(pX < 300 || pY > 350 || pX > 450 && pY < 200);
+      ctx.fillRect(500, 0, 300, 200);z
+      collision(pY > 350 || pX < 300 || pY < 200 && pX > 450);
      } else if (room == 10) {
       // Reflected L
       ctx.fillRect(0, 0, 300, 200);
       ctx.fillRect(0, 400, c.width, 200);
       ctx.fillRect(500, 0, 300, 400);
       collision(pX > 450 || pY > 350 || pY < 200 && pX < 300);
-      eCollision(pX > 450 || pY > 350 || pY < 200 && pX < 300);
      } else if (room == 11) { 
       // Plus
       ctx.fillRect(0, 0, 300, 200);
@@ -298,7 +262,6 @@
       ctx.fillRect(500, 400, 300, 200);
       ctx.fillRect(0, 400, 300, 200);
       collision(pX < 300 && pY < 200 || pX > 450 && pY < 200 || pX > 450 && pY > 350 || pX < 300 && pY > 350);
-      eCollision(pX < 300 && pY < 200 || pX > 450 && pY < 200 || pX > 450 && pY > 350 || pX < 300 && pY > 350);
      } else if (room == 99) {
       // secret room enterable going N
       ctx.fillRect(0, 0, c.width, 100);
@@ -307,7 +270,6 @@
       ctx.fillRect(0, 500, 300, 100);
       ctx.fillRect(500, 500, 300, 100);
       collision(pX < 100 || pX > 650 || pY < 100 || pY > 450 && pX < 300 || pY > 450 && pX > 450);
-      eCollision(pX < 100 || pX > 650 || pY < 100 || pY > 450 && pX < 300 || pY > 450 && pX > 450);
      } else if (room == 100) {
       // secret room enterable going S
       ctx.fillRect(0, 100, 100, 400);
@@ -318,7 +280,6 @@
      // roomImage.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/F1C10881-3FE7-4D5D-B920-669919111E1E.png";
      // ctx.drawImage(roomImage, 0, 0, 800, 600);
       collision(pX < 100 || pX > 650 || pY > 450 || pY < 100 && pX < 300 || pY < 100 && pX > 450);
-      eCollision(pX < 100 || pX > 650 || pY > 450 || pY < 100 && pX < 300 || pY < 100 && pX > 450);
      } else if (room == 101) {
       // room enterable going E
       ctx.fillRect(100, 0, 600, 100);
@@ -327,7 +288,6 @@
       ctx.fillRect(0, 0, 100, 200);
       ctx.fillRect(0, 400, 100, 200);
       collision(pX > 650 || pY < 100 || pY > 450 || pX < 100 && pY < 200 || pX < 100 && pY > 350);
-      eCollision(pX > 650 || pY < 100 || pY > 450 || pX < 100 && pY < 300 || pX < 100 && pY > 350);
      } else if (room == 102) {
       // enterable going W
       ctx.fillRect(100, 0, 600, 100);
@@ -336,7 +296,6 @@
       ctx.fillRect(700, 0, 100, 200);
       ctx.fillRect(700, 400, 100, 200);
       collision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 200 || pX > 650 && pY > 350);
-      eCollision(pX < 100 || pY < 100 || pY > 450 || pX > 650 && pY < 300 || pX > 650 && pY > 350);
      }
      // changing room position
      if (pX < 5) {
@@ -384,16 +343,6 @@
       beenHere();
       pY = 10;
      }
-     // health and hunger
-     ctx.fillStyle = "#f41a1a";
-     ctx.fillRect(275, 10, pHealth * 5, 24);
-     ctx.fillStyle = "#2543e6";
-     ctx.fillRect(275, 34, hunger * 50, 16);
-     ctx.fillStyle = "#fff";
-     ctx.font = "20px Arial";
-     ctx.fillText("health: " + pHealth + "/100", 280, 30);
-     ctx.font = "12px Arial";
-     ctx.fillText("energy: " + Math.round(hunger) + "/10", 280, 46);
     }
     // check if the room exists
     function checkRoom() {
@@ -413,11 +362,6 @@
     function addRoom () {
      i = 2;
      rad = 75;
-     enemies = Math.floor(Math.random() * Math.floor(4));
-     if (enemies == 1) {
-      eX = 300;
-      eY = 200;
-     }
      discRooms++;
      if (direction == "N") {
       room = nType[Math.round(Math.random() * (nType.length - 1))];
@@ -500,18 +444,6 @@
       }
      } 
     } 
-    // enemy AI
-    if (pX + 49 < eX) {
-     eX -= 4 + level/3;
-     eDirect = 2;
-    } else if (pX > eX + 49) {
-     eX += 4 + level/3;
-     eDirect = 4;
-    } else if (pY > eY + 49) {
-     eY += 4 + level/3;
-    } else if (pY < eY - 49) {
-     eY -= 4 + level/3;
-    }
     // for moving the player
     function move(speeds) {
      if (direct == 1 && pX - 5 > - 5) {
@@ -567,25 +499,17 @@
     }
     //player
     ctx.fillRect(pX, pY, 50, 50);
-    // enemy and enemy health
-    if (enemies == 1) {
-     ctx.fillStyle = "#ff0000";
-     ctx.fillRect(eX, eY - 24, eHealth, 8);
-     ctx.fillRect(eX + 25, eY, 25, 50);
-     ctx.fillStyle = "#990000";
-     ctx.fillRect(eX, eY, 25, 50);
-    }
-    // death for player and enemy
-    if (pHealth < 1) {
-     screen = 1;
-     coins /= 1.5;
-     pHealth = 100;
-    }
-    if (eHealth < 1) {
-     enemies = 0;
-     eHealth = 50;
-     eX = undefined;
-     eY = undefined;
+    if (screen == 2) {
+     // health and hunger
+     ctx.fillStyle = "#f41a1a";
+     ctx.fillRect(275, 10, pHealth * 5, 24);
+     ctx.fillStyle = "#2543e6";
+     ctx.fillRect(275, 34, hunger * 50, 16);
+     ctx.fillStyle = "#fff";
+     ctx.font = "20px Arial";
+     ctx.fillText("health: " + pHealth + "/100", 280, 30);
+     ctx.font = "12px Arial";
+     ctx.fillText("energy: " + Math.round(hunger) + "/10", 280, 46);
     }
     // info
     ctx.fillStyle = "#fff";
@@ -598,57 +522,6 @@
     } else {
      ctx.fillText("Room position: " + roomPos, 10, 50);
     }
-    // attack visuals
-    ctx.fillStyle = "rgba(0, 0, 0, 1)";
-    if (attack == 1) {
-     ctx.beginPath();
-     ctx.arc(pX + 25, pY, 50, 0, Math.PI, true);
-     ctx.fill();
-    } else if (attack == 2) {
-     
-    } else if (attack == 3) {
-     
-    } else if (attack == 4) {
-     
-    }
-    if (pX < eX - 25 && pX > eX - 50 && pY > eY - 25 && pY < eY + 25 && dashT == 0) {
-     att = 1;
-    } else {
-     att = 0;
-    }
-   } 
-   // attacking and taking damage 
-   function attacks() {
-    if (att == 1) {
-     eHealth -= 30; 
-    }
-    // for taking damage
-    if (pX > eX - 25 && pX < eX + 50 && pY > eY - 50 && pY < eY + 50 && pHealth > 0) {
-     pHealth -= 10;
-    }
-    // attack stuff 
-    ctx.fillStyle = "rgba(0, 0, 0, 1)";
-    if (attack == 1) {
-     if (eX > pX - 75 && eX < pX + 75 && eY > pY - 100 && eY < pY - 45) {
-       eHealth -= 8;
-     }
-    } else if (attack == 2) {
-     if (eX > pX - 100 && eX < pX - 45 && eY > pY - 75 && eY < pY + 75) {
-      eHealth -= 8;
-     }
-    } else if (attack == 3) {
-     if (eX > pX - 75 && eX < pX + 75 && eY > pY + 45 && eY < pY + 100) {
-      eHealth -= 8;
-     }
-    } else if (attack == 4) {
-     if (eX > pX + 45 && eX < pX + 100 && eY > pY - 75 && eY < pY + 75) {
-      eHealth -= 8; 
-     }
-    }
-    if (hunger < 1) {
-     pHealth -= 2;
-    }
-   }
    // going to next level
    function nextLevel() {
      color = colorA[Math.round(Math.random() * (color.length - 1))];
