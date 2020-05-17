@@ -50,6 +50,14 @@
    var pHealth = 100;
    var run = 0;
    var secret = false;
+   // for updating arrays
+   function updateArray(array, position, attribute, value) {
+    for (i = 0; i < array.length; i++) {
+     if (array[i].pos == position) {
+      array[i].attribute = value; 
+     } 
+    }
+   }
    // for seeing if you are going into a secret room
    function checkSecret() {
     if (direction == "N") {
@@ -387,7 +395,8 @@
      // check if player picks up token
      if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
       obtained = true;
-      // TO DO - record obtained in array 
+      // record obtained in array 
+      updateArray(secretA, roomPos, obtained, true);
       tokens += 1;
       coins += 10;
       dashT = 2;
