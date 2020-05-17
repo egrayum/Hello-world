@@ -452,6 +452,10 @@
     ctx.fillRect(pX, pY, 50, 50);
     if (screen == 2) {
      // health and hunger (energy)
+     ctx.strokeStyle = "#333";
+     ctx.rect(273, 8, 504, 28);
+     ctx.rect(273, 36, 504, 20);
+     ctx.stroke();
      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
      ctx.fillRect(275, 10, pHealth * 5, 24);
      ctx.fillRect(275, 38, hunger * 50, 16);
