@@ -28,8 +28,7 @@
    var wType = [2, 3, 5, 6, 7, 9, 11];
    var roomImage = new Image();
    var tokens = 0;
-   var rand;
-   var obtain;
+   var obtained; // Have you picked up the token in this room?
    var discRooms = 0;
    var level = 0;
    var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#031a69", "#2d9186", "#222222"];
@@ -48,22 +47,18 @@
     room = layout[i].type;
     if (direction == "N") {
      if (room == 3 || room == 6 || room == 9 || room == 10) {
-      beenHere();
       room = 99;
      }
     } else if (direction == "S") {
      if (room == 3 || room == 5 || room == 7 || room == 8) {
-      beenHere();
       room = 100;
      }
     } else if (direction == "E") {
      if (room == 1 || room == 7 || room == 2 || room == 9) {
-      beenHere();
       room = 101;
      }
     } else if (direction == "W") {
      if (room == 1 || room == 4 || room == 8 || room == 10) {
-      beenHere();
       room = 102;
      }
     }
@@ -355,40 +350,39 @@
       }
      }
     }
-    // secret room check for blue tokens
+    // secret room check if you've been here, if not add the room to the array
     function beenHere() {
     if (room == 99 || room == 100 || room == 101 || room == 102) {
-      sfound = 1;
+      sfound = false;
+      // check if room is in secret room array
       for (i = 0; i < secretA.length; i++) {
        if (secretA[i].pos == roomPos) {
-        rand = 0;
-        sfound = 2;
-       } 
-       if (secretA[i].obtain == 0) {
-        rand = 10;
-        obtain = 0;
+          sfound = true;
+          // handle token
+          if (secretA[i].obtained == 0) {
+           obtained = 0;
+          }
        }
       }
-      if (sfound == 1
-         ) {
-       rand = 10;
-       secretA[secretA.length] = {
+      // add room to array
+      if (sfound == false) {
+        secretA[secretA.length] = {
         "pos":roomPos,
-        "obtain":obtain
+        "obtained":0
        }
       }
      }
     }
     // blue tokens
-    if (obtain == 0 && rand == 10) {
+    if (obtained == 0) {
      ctx.fillStyle = "#0000ff";
      ctx.fillRect(375, 275, 50, 50);
+     // check if player picks up token
      if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
-      obtain = 1;
+      obtained = 1;
+      // record obtained in array 
       tokens += 1;
       coins += 10;
-      rand = 0;
-      special = 0;
       dashT = 2;
       if (pHealth < 80) {
        pHealth += 15;
