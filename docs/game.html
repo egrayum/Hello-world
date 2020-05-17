@@ -446,30 +446,31 @@
      }
     }
     //player
-    ctx.fillStyle = "rgba(0, 0, 0, 0.9)";
+    ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+    ctx.arc(pX + 25, pY + 25, 50, 0, 2 * Math.PI);
+    ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
     ctx.fillRect(pX, pY, 50, 50);
     if (screen == 2) {
      // health and hunger (energy)
-     ctx.fillStyle = "#f41a1a";
+     ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
      ctx.fillRect(275, 10, pHealth * 5, 24);
-     ctx.fillStyle = "#2543e6";
-     ctx.fillRect(275, 34, hunger * 50, 16);
-     ctx.fillStyle = "#fff";
+     ctx.fillRect(275, 38, hunger * 50, 16);
+     ctx.fillStyle = "#000";
      ctx.font = "20px Arial";
      ctx.fillText("health: " + pHealth + "/100", 280, 30);
      ctx.font = "12px Arial";
-     ctx.fillText("energy: " + Math.round(hunger) + "/10", 280, 46);
+     ctx.fillText("energy: " + Math.round(hunger) + "/10", 280, 50);
     }
     // info
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
-    ctx.fillText("Blue tokens: " + tokens, 10, 75);
+    ctx.fillText("Blue tokens: " + tokens, 10, 100);
     ctx.fillText("Coins: " + coins, 10, 25);
-    ctx.fillText("Level: " + level, 10, 100);
+    ctx.fillText("Level: " + level, 10, 50);
     if (room == 99 || room == 100 || room == 101 || room == 102) {
-     ctx.fillText("Room position: Unknown", 10, 50);
+     ctx.fillText("Room position: Unknown", 10, 75);
     } else {
-     ctx.fillText("Room position: " + roomPos, 10, 50);
+     ctx.fillText("Room position: " + roomPos, 10, 75);
     }
    }
    // going to next level
