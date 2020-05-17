@@ -112,7 +112,7 @@
    })
    // running the game 50 times per second
    function runGame() {
-    ctx.fillStyle = color;
+    ctx.fillStyle = colorA[2];
     ctx.fillRect(0, 0, c.width, c.height);
     // above ground
     if (screen == 1) {
@@ -304,7 +304,10 @@
       }
     }
     // portal to next level
-    if (discRooms == 8 + (level * 2)) {
+    if (tokens > 1 + level && roomPos == "1,1") {
+     portal = 1;
+    }
+    if (portal == 1) {
      ctx.fillStyle = "#000";
      ctx.beginPath();
      ctx.arc(400, 300, rad, 0, 2 * Math.PI);
