@@ -402,9 +402,9 @@
      }
     }
     // tokens
-    if (tokens > -1 && level > -1) {
+    if (level < 3) {
      tokenType = "blue";
-    } else if (level > 2) {
+    } else if (level > 2 && level < 5) {
      tokenType = "red";
     }
     if (secret == true && obtained == false) {
