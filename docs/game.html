@@ -112,11 +112,9 @@
    })
    // running the game 50 times per second
    function runGame() {
-    ctx.fillStyle = colorA[2];
-    ctx.fillRect(0, 0, c.width, c.height);
     // above ground
     if (screen == 1) {
-     ctx.fillStyle = "#7aa5f6";
+     ctx.fillStyle = colorA[2];
      ctx.fillRect(0, 0, c.width, c.height);
      ctx.fillStyle = "#DEB887";
      ctx.fillRect(250, 20, 300, 200);
@@ -343,7 +341,7 @@
      ctx.beginPath();
      ctx.arc(400, 300, rad, 0, 2 * Math.PI);
      ctx.fill();
-     if (pX > 299 && pX < 451 && pY > 199 && pY < 351 && rad < 420) {
+     if (pX > 274 && pX < 426 && pY > 174 && pY < 326 && rad < 420) {
       rad += 10;
       if (i == 2) {
        window.setTimeout(nextLevel, 1500);
@@ -379,7 +377,7 @@
       if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
        obtain = 1;
        tokens += 1;
-       coins += 50;
+       coins += 10;
        rand = 0;
        special = 0;
        dashT = 2;
@@ -419,21 +417,21 @@
     if (dashT == 0 && hunger > 4) {
      if (direct == 1 && pX - 5 > - 5) {
       pX -= 20;
-      hunger -= 0.5;
+      hunger -= 0.3;
      } else if (direct == 2 && pY - 5 > - 5) {
       pY -= 20;
-      hunger -= 0.5;
+      hunger -= 0.3;
      } else if (direct == 3 && pX + 5 < 755) {
       pX += 20;
-      hunger -= 0.5;
+      hunger -= 0.3;
      } else if (direct == 4 && pY + 5 < 555) {
       pY += 20;
-      hunger -= 0.5; 
+      hunger -= 0.3; 
      }
     }
     //player
     ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
-    ctx.arc(pX + 25, pY + 25, 50, 0, 2 * Math.PI);
+    ctx.arc(pX + 25, pY + 25, 75, 0, 2 * Math.PI);
     ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
     ctx.fillRect(pX, pY, 50, 50);
     if (screen == 2) {
