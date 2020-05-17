@@ -56,12 +56,11 @@
      }
     } else if (direction == "E") {
      if (room == 1 || room == 7 || room == 2 || room == 9) {
-      room = 101;   
+      room = 101;
      }
     } else if (direction == "W") {
      if (room == 1 || room == 4 || room == 8 || room == 10) {
       room = 102;
-      pX = 744;
      }
     }
     found = 2;
@@ -122,7 +121,7 @@
      ctx.fillRect(250, 20, 300, 200);
      ctx.fillStyle = "#333";
      ctx.font = "35px Arial";
-     ctx.fillText("Shop", 260, 55);
+     ctx.fillText("Quests", 260, 55);
      ctx.fillStyle = "#000";
      ctx.fillRect(600, 400, 180, 180);
      ctx.fillText("Mine", 620, 380);
@@ -352,24 +351,6 @@
       }
      }
     }
-    // secret room check for blue tokens
-    function beenHere() {
-    if (room == 99 || room == 100 || room == 101 || room == 102) {
-      sfound = 1;
-      for (i = 0; i < secretA.length; i++) {
-       if (secretA[i].pos == roomPos) {
-        rand = 0;
-        sfound = 2;
-       } 
-      }
-      if (sfound == 1) {
-       rand = 10;
-       secretA[secretA.length] = {
-        "pos":roomPos
-       }
-      }
-     }
-    }
     // blue tokens
     if (rand == 10) {
      obtain = 0;
@@ -393,6 +374,28 @@
       }
      } 
     } 
+    // secret room check for blue tokens
+    function beenHere() {
+    if (room == 99 || room == 100 || room == 101 || room == 102) {
+      sfound = 1;
+      for (i = 0; i < secretA.length; i++) {
+       if (secretA[i].pos == roomPos) {
+        rand = 0;
+        sfound = 2;
+       } 
+       if (secretA[i].obtain == 0) {
+        rand = 10;
+       }
+      }
+      if (sfound == 1) {
+       rand = 10;
+       secretA[secretA.length] = {
+        "pos":roomPos,
+        "obtain":obtain
+       }
+      }
+     }
+    }
     // for moving the player
     function move(speeds) {
      if (direct == 1 && pX - 5 > - 5) {
