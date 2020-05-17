@@ -352,27 +352,23 @@
      }
     }
     // blue tokens
-    if (rand == 10) {
-     obtain = 0;
-     special = 15;
-     if (special == 15 && obtain == 0) {
-      ctx.fillStyle = "#0000ff";
-      ctx.fillRect(375, 275, 50, 50);
-      if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
-       obtain = 1;
-       tokens += 1;
-       coins += 10;
-       rand = 0;
-       special = 0;
-       dashT = 2;
-       if (pHealth < 80) {
-        pHealth += 15;
-       }
-       if (speed < 12) {
-        speed++;
-       }
+    if (obtain == 0 && rand == 10) {
+     ctx.fillStyle = "#0000ff";
+     ctx.fillRect(375, 275, 50, 50);
+     if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
+      obtain = 1;
+      tokens += 1;
+      coins += 10;
+      rand = 0;
+      special = 0;
+      dashT = 2;
+      if (pHealth < 80) {
+       pHealth += 15;
       }
-     } 
+      if (speed < 12) {
+       speed++;
+      }
+     }
     } 
     // secret room check for blue tokens
     function beenHere() {
@@ -385,9 +381,11 @@
        } 
        if (secretA[i].obtain == 0) {
         rand = 10;
+        obtain = 0;
        }
       }
-      if (sfound == 1) {
+      if (sfound == 1
+         ) {
        rand = 10;
        secretA[secretA.length] = {
         "pos":roomPos,
