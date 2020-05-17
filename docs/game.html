@@ -28,7 +28,7 @@
    var wType = [2, 3, 5, 6, 7, 9, 11];
    var roomImage = new Image();
    var tokens = 0;
-   var obtained; // Have you picked up the token in this room?
+   var obtained = false; // Have you picked up the token in this room?
    var discRooms = 0;
    var level = 0;
    var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#031a69", "#2d9186", "#222222"];
@@ -359,28 +359,26 @@
        if (secretA[i].pos == roomPos) {
           sfound = true;
           // handle token
-          if (secretA[i].obtained == 0) {
-           obtained = 0;
-          }
+          obtained = secretA[i].obtained;
        }
       }
       // add room to array
       if (sfound == false) {
         secretA[secretA.length] = {
         "pos":roomPos,
-        "obtained":0
+        "obtained":false
        }
       }
      }
     }
     // blue tokens
-    if (obtained == 0) {
+    if (obtained == false) {
      ctx.fillStyle = "#0000ff";
      ctx.fillRect(375, 275, 50, 50);
      // check if player picks up token
      if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
-      obtained = 1;
-      // record obtained in array 
+      obtained = true;
+      // TO DO - record obtained in array 
       tokens += 1;
       coins += 10;
       dashT = 2;
