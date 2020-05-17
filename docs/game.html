@@ -507,11 +507,13 @@
      ctx.font = "30px Arial";
      ctx.fillText("Do you want to go back to the surface?", 150, 290);
      ctx.fillText("Yes", 160, 340);
-     ctx.fillText("No", 350, 340);
+     ctx.fillText("No", 350, 450);
      c.onclick = function toSurface() {
-      if (event.pageX < 240) {
+      if (event.pageX < 300) {
        screen = 1;
        goUp = false;
+       pX = 100;
+       pY = 400;
       } else if (event.pageX > 240) {
        goUp = false;
       }
