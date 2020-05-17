@@ -509,12 +509,12 @@
      ctx.fillText("Yes", 160, 340);
      ctx.fillText("No", 350, 450);
      c.onclick = function toSurface() {
-      if (event.pageX < 300) {
+      if (event.pageX < 200) {
        screen = 1;
        goUp = false;
        pX = 100;
        pY = 400;
-      } else if (event.pageX > 240) {
+      } else if (event.pageX > 320) {
        goUp = false;
       }
      }
