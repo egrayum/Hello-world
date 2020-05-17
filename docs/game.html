@@ -48,18 +48,22 @@
     room = layout[i].type;
     if (direction == "N") {
      if (room == 3 || room == 6 || room == 9 || room == 10) {
+      beenHere();
       room = 99;
      }
     } else if (direction == "S") {
      if (room == 3 || room == 5 || room == 7 || room == 8) {
+      beenHere();
       room = 100;
      }
     } else if (direction == "E") {
      if (room == 1 || room == 7 || room == 2 || room == 9) {
+      beenHere();
       room = 101;
      }
     } else if (direction == "W") {
      if (room == 1 || room == 4 || room == 8 || room == 10) {
+      beenHere();
       room = 102;
      }
     }
@@ -351,25 +355,6 @@
       }
      }
     }
-    // blue tokens
-    if (obtain == 0 && rand == 10) {
-     ctx.fillStyle = "#0000ff";
-     ctx.fillRect(375, 275, 50, 50);
-     if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
-      obtain = 1;
-      tokens += 1;
-      coins += 10;
-      rand = 0;
-      special = 0;
-      dashT = 2;
-      if (pHealth < 80) {
-       pHealth += 15;
-      }
-      if (speed < 12) {
-       speed++;
-      }
-     }
-    } 
     // secret room check for blue tokens
     function beenHere() {
     if (room == 99 || room == 100 || room == 101 || room == 102) {
@@ -394,6 +379,25 @@
       }
      }
     }
+    // blue tokens
+    if (obtain == 0 && rand == 10) {
+     ctx.fillStyle = "#0000ff";
+     ctx.fillRect(375, 275, 50, 50);
+     if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
+      obtain = 1;
+      tokens += 1;
+      coins += 10;
+      rand = 0;
+      special = 0;
+      dashT = 2;
+      if (pHealth < 80) {
+       pHealth += 15;
+      }
+      if (speed < 12) {
+       speed++;
+      }
+     }
+    } 
     // for moving the player
     function move(speeds) {
      if (direct == 1 && pX - 5 > - 5) {
