@@ -70,7 +70,7 @@
    var sfound;
    var rad = 75;
    var hunger = 10;
-   var health = 100;
+   var pHealth = 100;
    var run = 0;
    // some dash things
     function resetDash() {
@@ -247,7 +247,7 @@
       // L
       ctx.fillRect(0, 0, 300, c.height);
       ctx.fillRect(300, 400, 500, 200);
-      ctx.fillRect(500, 0, 300, 200);z
+      ctx.fillRect(500, 0, 300, 200);
       collision(pY > 350 || pX < 300 || pY < 200 && pX > 450);
      } else if (room == 10) {
       // Reflected L
