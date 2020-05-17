@@ -7,7 +7,7 @@
    var c = document.getElementById("gameCanvas");
    var ctx = c.getContext("2d");
    var pX = 100;
-   var pY = 100;
+   var pY = 400;
    var direct;
    var screen = 1;
    var coins = 0;
@@ -43,6 +43,9 @@
    var run = 0;
    var secret = false;
    var quests = 1;
+   var tokenType;
+   var tokenTier;
+   var maxHunger = 10;
    // for updating arrays
    function updateSecretA(position, attr, value) {
     for (i = 0; i < secretA.length; i++) {
@@ -127,11 +130,21 @@
     if (screen == 1) {
      ctx.fillStyle = colorA[2];
      ctx.fillRect(0, 0, c.width, c.height);
-     ctx.fillStyle = "#DEB887";
-     ctx.fillRect(250, 20, 300, 200);
+     ctx.fillStyle = "#000";
+     ctx.font = "40px Arial";
+     ctx.fillStyle = "#b26a25";
+     ctx.fillRect(200, 200, 400, 150);
+     if (quests == 1) {
+      ctx.fillText("Quest 1: Red Token", 200, 120);
+      ctx.font = "20px Arial";
+      ctx.fillText("Go to level 3 in the mine and bring back a red token.", 150, 180);
+      if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && tokenTier == 1) {
+       quests = 2;
+       maxHunger += 1;
+      }
+     }
      ctx.fillStyle = "#333";
      ctx.font = "35px Arial";
-     ctx.fillText("Quests", 260, 55);
      ctx.fillStyle = "#000";
      ctx.fillRect(600, 400, 180, 180);
      ctx.fillText("Mine", 620, 380);
@@ -146,9 +159,6 @@
        "type":11,
        "pos":"1,1"
       }
-     }
-     if (pX > 210 && pX < 550 && pY > 0 && pY < 220) {
-      screen = 3;
      }
      // cave
     } else if (screen == 2) {
@@ -385,9 +395,20 @@
       }
      }
     }
-    // blue tokens
+    // tokens
+    if (tokens > -1 && level > -1) {
+     tokenType = "blue";
+    } else if (tokens > 4 && level > 2) {
+     tokenType = "bronze";
+    }
     if (secret == true && obtained == false) {
-     ctx.fillStyle = "#0000ff";
+     if (tokenType == "blue") {
+      ctx.fillStyle = "#0000ff";
+     } else if (tokenType == "red") {
+      ctx.fillStyle = "#ff0000";
+     } else if (tokenType == "bronze") {
+      ctx.fillStyle = "#cd7f32";
+     }
      ctx.fillRect(375, 275, 50, 50);
      // check if player picks up token
      if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
@@ -402,6 +423,9 @@
       }
       if (speed < 12) {
        speed++;
+      }
+      if (tokenType == "red") {
+       tokenTier = 1;
       }
      }
     } 
@@ -451,12 +475,12 @@
      // health and hunger (energy)
      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
      ctx.fillRect(275, 10, pHealth * 5, 24);
-     ctx.fillRect(275, 38, hunger * 50, 16);
+     ctx.fillRect(275, 38, (hunger/maxHunger) * 500, 16);
      ctx.fillStyle = "#000";
      ctx.font = "20px Arial";
      ctx.fillText("health: " + pHealth + "/100", 280, 30);
      ctx.font = "12px Arial";
-     ctx.fillText("energy: " + Math.round(hunger) + "/10", 280, 50);
+     ctx.fillText("energy: " + Math.round(hunger) + "/" + maxHunger, 280, 50);
     }
     // info
     ctx.fillStyle = "#fff";
@@ -468,20 +492,6 @@
      ctx.fillText("Room position: Unknown", 10, 75);
     } else {
      ctx.fillText("Room position: " + roomPos, 10, 75);
-    } 
-    if (screen == 3) {
-     ctx.strokeStyle = "#000";
-     ctx.lineWidth = 10;
-     ctx.strokeRect(48, 48, c.width - 96, c.height - 96);
-     ctx.fillStyle = "#666";
-     ctx.fillRect(50, 50, c.width - 100, c.height - 100);
-     ctx.fillStyle = "#000";
-     ctx.font = "40px Arial";
-     if (quests == 1) {
-      ctx.fillText("Quest 1: Bronze Token", 200, 120);
-      ctx.font = "20px Arial";
-      ctx.fillText("Go to level 5 in the mine and bring back a bronze token.", 150, 180);
-     }
     }
    }
    // going to next level
