@@ -127,6 +127,7 @@
      ctx.fillRect(600, 400, 180, 180);
      ctx.fillText("Mine", 620, 380);
      if (pX > 560 && pY > 360) {
+      color = "#222";
       level = 1;
       screen = 2;
       room = 11;
@@ -141,7 +142,7 @@
      // cave
     } else if (screen == 2) {
      // room types
-     ctx.fillStyle = "rgba(20, 20, 20, 0.7)";
+     ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
      if (room == 1) {
       // I
       ctx.fillRect(0, 0, 300, c.height);
@@ -433,10 +434,12 @@
      }
     }
     //player
-    ctx.fillStyle = "rgba(255, 255, 255, 1)";
-    ctx.arc(pX + 25, pY + 25, 75, 0, 2 * Math.PI);
-  //  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
-  //  ctx.fillRect(pX, pY, 50, 50);
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.arc(pX + 25, pY + 25, 50, 0, 2 * Math.PI);
+    ctx.arc(pX + 25, pY + 25, 80, 0, 2 * Math.PI);
+    ctx.arc(pX + 25, pY + 25, 120, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.fillRect(pX, pY, 50, 50);
     if (screen == 2) {
      // health and hunger (energy)
      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
@@ -462,7 +465,8 @@
    }
    // going to next level
    function nextLevel() {
-       color = colorA[Math.round(Math.random() * (color.length - 1))];
+    color = "#222";
+      // color = colorA[Math.round(Math.random() * (color.length - 1))];
        discRooms = 0;
        level++;
        screen = 2;
