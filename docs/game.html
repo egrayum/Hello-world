@@ -112,6 +112,8 @@
    })
    // running the game 50 times per second
    function runGame() {
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, c.width, c.height);
     // above ground
     if (screen == 1) {
      ctx.fillStyle = colorA[2];
