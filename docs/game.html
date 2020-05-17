@@ -471,8 +471,9 @@
     } 
     if (screen == 3) {
      ctx.strokeStyle = "#000";
-     ctx.rect(48, 48, c.width - 96, c.height - 96);
      ctx.strokeWeight(10);
+     ctx.rect(48, 48, c.width - 96, c.height - 96);
+     ctx.stroke();
      ctx.fillStyle = "#666";
      ctx.fillRect(50, 50, c.width - 100, c.height - 100);
      ctx.fillStyle = "#000";
