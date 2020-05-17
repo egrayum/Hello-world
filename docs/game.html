@@ -51,10 +51,10 @@
    var run = 0;
    var secret = false;
    // for updating arrays
-   function updateArray(position, attribute, value) {
+   function updateSecretA(position, value) {
     for (i = 0; i < secretA.length; i++) {
      if (secretA[i].pos == position) {
-      secretA[i]. + attribute = value; 
+      secretA[i].obtained = value; 
      } 
     }
    }
@@ -397,7 +397,7 @@
      if (pX > 324 && pX < 426 && pY > 224 && pY < 326) {
       obtained = true;
       // record obtained in array 
-      updateArray(roomPos, obtained, true);
+      updateSecretA(roomPos, true);
       tokens += 1;
       coins += 10;
       dashT = 2;
