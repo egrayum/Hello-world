@@ -32,7 +32,7 @@
    var obtain;
    var discRooms = 0;
    var level = 0;
-   var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#031a69", "#2d9186"];
+   var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#031a69", "#2d9186", "#222222"];
    var color = colorA[2];
    var speed = 5;
    var dashT = 2;
@@ -127,7 +127,6 @@
      ctx.fillRect(600, 400, 180, 180);
      ctx.fillText("Mine", 620, 380);
      if (pX > 560 && pY > 360) {
-      color = "#222";
       level = 1;
       screen = 2;
       room = 11;
@@ -434,10 +433,7 @@
      }
     }
     //player
-    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-    ctx.arc(pX + 25, pY + 25, 120, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
     ctx.fillRect(pX, pY, 50, 50);
     if (screen == 2) {
      // health and hunger (energy)
@@ -464,8 +460,7 @@
    }
    // going to next level
    function nextLevel() {
-    color = "#222";
-      // color = colorA[Math.round(Math.random() * (color.length - 1))];
+       color = colorA[Math.round(Math.random() * (color.length - 1))];
        discRooms = 0;
        level++;
        screen = 2;
