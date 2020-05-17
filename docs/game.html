@@ -341,7 +341,7 @@
     if (tokens > level - 1 && roomPos == "1,1") {
      portal = 1;
     }
-    if (portal == 1) {
+    if (portal == 1 && discRooms > 0) {
      ctx.fillStyle = "#000";
      ctx.beginPath();
      ctx.arc(400, 300, rad, 0, 2 * Math.PI);
