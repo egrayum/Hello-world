@@ -54,7 +54,7 @@
    function updateArray(position, attribute, value) {
     for (i = 0; i < secretA.length; i++) {
      if (secretA[i].pos == position) {
-      secretA[i].obtained = value; 
+      secretA[i].attribute = value; 
      } 
     }
    }
@@ -453,10 +453,6 @@
     ctx.fillRect(pX, pY, 50, 50);
     if (screen == 2) {
      // health and hunger (energy)
-     ctx.strokeStyle = "#000";
-     ctx.rect(273, 8, 504, 28);
-     ctx.rect(273, 36, 504, 20);
-     ctx.stroke();
      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
      ctx.fillRect(275, 10, pHealth * 5, 24);
      ctx.fillRect(275, 38, hunger * 50, 16);
