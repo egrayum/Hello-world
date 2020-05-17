@@ -9,7 +9,6 @@
    var pX = 100;
    var pY = 100;
    var direct;
-   var click;
    var screen = 1;
    var coins = 0;
    var room;
@@ -80,19 +79,9 @@
    function init() {
     c.width = 800;
     c.height = 600;
-    ctx.fillStyle = "#111";
-    ctx.font = "20px Arial";
-    ctx.fillText("Click to start", 250, 320);
-    click = 1;
+    screen = 1;
    }
    // CONTROLS
-   // clicking to start
-   c.onmousedown = function clickStuff() {
-    if (click == 1) {
-     click = undefined;
-     window.setInterval(runGame, 20);
-    }
-   }
    // keyup for cancelling things
    document.addEventListener("keyup", function(event) {
     if (event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
