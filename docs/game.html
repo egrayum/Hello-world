@@ -495,8 +495,8 @@
     if (screen == 2) {
      // health and hunger (energy)
      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-     ctx.fillRect(275, 10, pHealth * 5, 24);
-     ctx.fillRect(275, 38, (hunger/maxHunger) * 500, 16);
+     ctx.fillRect(525, 10, pHealth * 2.5, 24);
+     ctx.fillRect(525, 38, hunger * 10, 16);
      ctx.fillStyle = "#000";
      ctx.font = "20px Arial";
      ctx.fillText("health: " + pHealth + "/100", 280, 30);
