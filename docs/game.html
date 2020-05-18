@@ -31,7 +31,7 @@
    var obtained = false; // Have you picked up the token in this room?
    var discRooms = 0;
    var level = 0;
-   var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#031a69", "#2d9186", "#222222"];
+   var colorA = ["#f9ae0d", "#7aa5f6", "#047018", "#742727", "#d74805", "#031a69", "#2d9186", "#555555"];
    var color = colorA[2];
    var speed = 5;
    var dashT = 2;
@@ -582,7 +582,7 @@
    // going to next level
    function nextLevel() {
        rad = 75;
-       color = colorA[Math.round(Math.random() * (color.length - 1))];
+       color = colorA[Math.round(Math.random() * (color.length))];
        discRooms = 0;
        level++;
        screen = 2;
