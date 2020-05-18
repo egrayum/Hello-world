@@ -48,6 +48,7 @@
    var maxHunger = 10;
    var goUp;
    var bronzeTokens = 0;
+   var speedChange;
    // for updating arrays
    function updateSecretA(position, attr, value) {
     for (i = 0; i < secretA.length; i++) {
@@ -439,7 +440,7 @@
        pHealth += 15;
       }
       if (speed < 12) {
-       speed++;
+       speedChange += 0.5;
       }
       if (tokenType == "red") {
        tokenTier = 1;
@@ -506,7 +507,7 @@
     // info
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
-    ctx.fillText("Blue tokens: " + tokens, 10, 100);
+    ctx.fillText("Tokens: " + tokens, 10, 100);
     ctx.fillText("Coins: " + coins, 10, 25);
     ctx.fillText("Level: " + level, 10, 50);
     if (room == 99 || room == 100 || room == 101 || room == 102) {
