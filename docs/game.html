@@ -100,6 +100,8 @@
     c.height = 600;
     screen = 1;
     window.setInterval(runGame, 20);
+    var plusImg = new Image();
+    plusImg.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/F498BCA9-A4EE-4948-B8E2-5058E1BBEA5E.png";
    }
    // CONTROLS
    // keyup for cancelling things
@@ -259,10 +261,11 @@
       collision(pX > 450 || pY > 350 || pY < 200 && pX < 300);
      } else if (room == 11) { 
       // Plus
-      ctx.fillRect(0, 0, 300, 200);
-      ctx.fillRect(500, 0, 300, 200);
-      ctx.fillRect(500, 400, 300, 200);
-      ctx.fillRect(0, 400, 300, 200);
+     // ctx.fillRect(0, 0, 300, 200);
+     // ctx.fillRect(500, 0, 300, 200);
+    //  ctx.fillRect(500, 400, 300, 200);
+     // ctx.fillRect(0, 400, 300, 200);
+    //  ctx.drawImage(roomImage, 0, 0);
       collision(pX < 300 && pY < 200 || pX > 450 && pY < 200 || pX > 450 && pY > 350 || pX < 300 && pY > 350);
      } else if (room == 99) {
       // secret room enterable going N
