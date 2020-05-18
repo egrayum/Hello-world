@@ -49,6 +49,9 @@
    var goUp;
    var bronzeTokens = 0;
    var speedChange = 0;
+   var showTokens = false;
+   var blueTokens = 0;
+   var redTokens = 0;
    // for updating arrays
    function updateSecretA(position, attr, value) {
     for (i = 0; i < secretA.length; i++) {
@@ -107,6 +110,8 @@
      run = 0;
     } else if (event.keyCode == 16) {
      dashT = 2;
+    } else if (event.keyCode == 87) {
+     showTokens = false;
     }
    })
    // controls
@@ -125,6 +130,8 @@
      dashT = 0;
     } else if (event.keyCode == 77) {
      goUp = true;
+    } else if (event.keyCode == 87) {
+     showTokens = true;
     }
    })
    // running the game 50 times per second
@@ -152,6 +159,9 @@
        speed += speedChange;
        speedChange = 0;
        tokens = 0;
+       blueTokens = 0;
+       redTokens = 0;
+       bronzeTokens = 0;
       }
      } else if (quests == 2) {
       ctx.fillText("Quest 2: Bronze Token", 200, 120);
@@ -163,6 +173,9 @@
        speed += speedChange;
        speedChange = 0;
        tokens = 0;
+       blueTokens = 0;
+       redTokens = 0;
+       bronzeTokens = 0;
       }
      }
      ctx.fillStyle = "#333";
@@ -447,12 +460,17 @@
       if (speedChange < 4 && speed < 9) {
        speedChange += 0.5;
       }
+      if (tokenType == "blue") {
+       tokenTier = 0;
+       blueTokens++;
+      }
       if (tokenType == "red") {
        tokenTier = 1;
+       redTokens++;
       }
       if (tokenType == "bronze") {
        tokenTier = 2;
-       bronzeTokens += 1;
+       bronzeTokens++;
       }
      }
     } 
@@ -537,6 +555,22 @@
       } else if (event.pageX > 410) {
        goUp = false;
       }
+     }
+    }
+    if (showTokens == true) {
+     ctx.fillStyle = "#000";
+     ctx.fillRect(50, 50, c.width - 100, c.height - 100);
+     ctx.fillStyle = "#fff";
+     ctx.font = "20px Arial";
+     ctx.fillText("Total tokens: " + tokens, 150, 90);
+     if (blueTokens > 0) {
+      ctx.fillText("Blue tokens: " + blueTokens, 70, 140);
+     }
+     if (redTokens > 0) {
+      ctx.fillText("Red tokens: " + redTokens, 70, 170);
+     }
+     if (bronzeTokens > 0) {
+      ctx.fillText("Bronze tokens: " + bronzeTokens, 70, 200);
      }
     }
    }
