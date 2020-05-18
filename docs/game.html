@@ -547,13 +547,15 @@
      ctx.fillText("Yes", 160, 340);
      ctx.fillText("No", 450, 340);
      c.onclick = function toSurface() {
-      if (event.pageX < 250) {
-       screen = 1;
-       goUp = false;
-       pX = 100;
-       pY = 400;
-      } else if (event.pageX > 410) {
-       goUp = false;
+      if (goUp == true) {
+       if (event.pageX < 250) {
+        screen = 1;
+        goUp = false;
+        pX = 100;
+        pY = 400;
+       } else if (event.pageX > 410) {
+        goUp = false;
+       }
       }
      }
     }
