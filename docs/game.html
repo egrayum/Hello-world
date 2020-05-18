@@ -147,6 +147,9 @@
       if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && tokenTier == 1) {
        quests = 2;
        maxHunger += 1;
+       speed += speedChange;
+       speedChange = 0;
+       tokens = 0;
       }
      } else if (quests == 2) {
       ctx.fillText("Quest 2: Bronze Token", 200, 120);
@@ -155,6 +158,9 @@
       if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && tokenTier == 2) {
        quests = 3;
        maxHunger += 1;
+       speed += speedChange;
+       speedChange = 0;
+       tokens = 0;
       }
      }
      ctx.fillStyle = "#333";
@@ -439,7 +445,7 @@
       if (pHealth < 80) {
        pHealth += 15;
       }
-      if (speed < 12) {
+      if (speedChange < 4 && speed < 9) {
        speedChange += 0.5;
       }
       if (tokenType == "red") {
@@ -454,13 +460,13 @@
     // for moving the player
     function move(speeds) {
      if (direct == 1 && pX - 5 > - 5) {
-      pX -= speed;
+      pX -= speed + speedChange;
      } else if (direct == 2 && pY - 5 > - 5) {
-      pY -= speed;
+      pY -= speed + speedChange;
      } else if (direct == 3 && pX + 5 < 755) {
-      pX += speed;
+      pX += speed + speedChange;
      } else if (direct == 4 && pY + 5 < 555) {
-      pY += speed;
+      pY += speed + speedChange;
      }
     }
     move(speed);
