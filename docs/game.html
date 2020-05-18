@@ -121,9 +121,11 @@
      direct = 4;
     } else if (event.keyCode == 32) {
      run = 1;
-    } else if (event.keyCode == 16 && hunger > 4) {
+    } else if (event.keyCode == 16 && hunger > 3) {
      dashT = 0;
-    } 
+    } else if (event.keyCode == 77) {
+     goUp = true;
+    }
    })
    // running the game 50 times per second
    function runGame() {
@@ -340,9 +342,6 @@
        room = layout[i].type;
        checkSecret();
        found = 2;
-       if (roomPos == "1,1") {
-        goUp = true;
-       }
       } 
      }
      if (found == 1) {
