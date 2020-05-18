@@ -394,7 +394,7 @@
      }
     }
     // portal to next level
-    if (tokens > level - 1 && discRooms > 0 && roomPos == "1,1" && screen == 2) {
+    if (tokens > (level * 3) - 1 && discRooms > 0 && roomPos == "1,1" && screen == 2) {
      ctx.fillStyle = "#000";
      ctx.beginPath();
      ctx.arc(400, 300, rad, 0, 2 * Math.PI);
