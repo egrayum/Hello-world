@@ -48,6 +48,7 @@
    var maxHunger = 10;
    var goUp;
    var bronzeTokens = 0;
+   var portal = false;
    // for updating arrays
    function updateSecretA(position, attr, value) {
     for (i = 0; i < secretA.length; i++) {
@@ -376,6 +377,7 @@
     }
     // portal to next level
     if (tokens > level - 1 && discRooms > 0 && roomPos == "1,1" && screen == 2) {
+     portal = true;
      ctx.fillStyle = "#000";
      ctx.beginPath();
      ctx.arc(400, 300, rad, 0, 2 * Math.PI);
@@ -514,7 +516,7 @@
     } else {
      ctx.fillText("Room position: " + roomPos, 10, 75);
     }
-    if (goUp == true) {
+    if (goUp == true && portal == false) {
      ctx.fillStyle = "#000";
      ctx.fillRect(100, 250, 600, 100);
      ctx.fillStyle = "#fff";
@@ -536,7 +538,8 @@
    }
    // going to next level
    function nextLevel() {
-    rad = 75;
+       portal = false;
+       rad = 75;
        color = colorA[Math.round(Math.random() * (color.length - 1))];
        discRooms = 0;
        level++;
