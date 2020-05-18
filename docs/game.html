@@ -134,7 +134,7 @@
      direct = 4;
     } else if (event.keyCode == 32) {
      run = 1;
-    } else if (event.keyCode == 16 && hunger > 3) {
+    } else if (event.keyCode == 16 && hunger > 3 && dashT == 2) {
      dashT = 1;
      window.setTimeout(dashStop, 200);
      window.setTimeout(dashCooldown, 3200);
