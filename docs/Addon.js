@@ -9,10 +9,7 @@ var fY;
 var rounds = 0;
 var fireball = false;
 var fDirect;
-var safeX;
-var safeY;
 var bossHealth = 250;
-var barricadeHealth = 75;
 
 function boss() {
  if (bossFight == true) {
@@ -39,9 +36,11 @@ function boss() {
    if (bY > 425 && bX > 75) {
     bX -= 8;
    }
-   if (bY > 75 && bX < 75) {
+   if (bY > 70 && bX < 75) {
     bY -= 8;
-    rounds++;
+   }
+   if (bX > 340 && bX < 360 && bY < 80) {
+    rounds++;  
    }
    // for firing fireballs
    if (bX > 575 && bY > 225 && bY < 233) {
@@ -73,18 +72,26 @@ function boss() {
      fireball = false;
     }
    }
+   if (fDirect == "down") {
+    fY += 7;
+    if (fX > pX - 40 && fX < pX + 50 && fY > pY - 40 || fY > 510) {
+     fireball = false;
+    }
+   }
   }
   if (rounds == 4) {
    phase = "barricade";
-   rounds = 0;
   }
   // barricade phase
   if (phase == "barricade") {
-   safeX = pX;
-   safeY = pY;
+   bX = 350;
+   bY = 75;
    ctx.strokeStyle = "#000";
    ctx.lineWidth = 10;
    ctx.strokeRect(pX - 25, pY - 25, 100, 100);
+   if (fireball == false) {
+    window.setTimeout(fireBallDown, 50);
+   }
   }
   // boss
   ctx.fillStyle = "rgba(255, 30, 30, " + solidity + ")";
@@ -93,4 +100,10 @@ function boss() {
  //if (pX > bX - 50 && pX < bX + 100 && pY > bY - 50 && pY < bY + 75) {
   //damage = true;
  //}
+}
+function fireBallDown() {
+ fX = bX + 15;
+   fY = bY + 45;
+   fireball = true;
+   fDirect = "down";
 }
