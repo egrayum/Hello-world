@@ -27,16 +27,16 @@ function boss() {
   }
   // phase 1- circling
   if (phase == "circle") {
-   if (bY < 100 && bX < 625) {
+   if (bY < 100 && bX < 625 && phase == "circle") {
     bX += 8;
    } 
-   if (bY < 450 && bX > 620) {
+   if (bY < 450 && bX > 620 && phase == "circle") {
     bY += 8;
    } 
-   if (bY > 425 && bX > 75) {
+   if (bY > 425 && bX > 75 && phase == "circle") {
     bX -= 8;
    }
-   if (bY > 70 && bX < 75) {
+   if (bY > 70 && bX < 75 && phase == "circle") {
     bY -= 8;
    }
    if (bX > 250 && bX < 260 && bY < 100 && phase == "circle") {
@@ -103,7 +103,7 @@ function barricaded() {
   function randomX(min, max) {
    bX = Math.random() * (max - min) + min;
   }
-  randomX(75, 175);
+  randomX(75, 425);
   fireBallDown();
  }
 }
