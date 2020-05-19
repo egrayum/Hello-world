@@ -39,7 +39,7 @@ function boss() {
    if (bY > 70 && bX < 75) {
     bY -= 8;
    }
-   if (bX > 340 && bX < 360 && bY < 80) {
+   if (bX > 340 && bX < 380 && bY < 100) {
     rounds++;  
    }
    // for firing fireballs
