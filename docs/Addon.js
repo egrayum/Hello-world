@@ -39,7 +39,7 @@ function boss() {
    if (bY > 70 && bX < 75) {
     bY -= 8;
    }
-   if (bX > 340 && bX < 380 && bY < 100) {
+   if (bX > 250 && bX < 260 && bY < 100) {
     rounds = 4;  
    }
    // for firing fireballs
@@ -84,14 +84,10 @@ function boss() {
   }
   // barricade phase
   if (phase == "barricade") {
-   bX = 350;
-   bY = 75;
    ctx.strokeStyle = "#000";
    ctx.lineWidth = 10;
    ctx.strokeRect(pX - 25, pY - 25, 100, 100);
-   if (fireball == false) {
-    window.setTimeout(fireBallDown, 50);
-   }
+   barricaded();
   }
   // boss
   ctx.fillStyle = "rgba(255, 30, 30, " + solidity + ")";
@@ -100,6 +96,16 @@ function boss() {
  //if (pX > bX - 50 && pX < bX + 100 && pY > bY - 50 && pY < bY + 75) {
   //damage = true;
  //}
+}
+function barricaded() {
+ if (fireball == false) {
+  bY = 75;
+  function randomX(min, max) {
+   bX = Math.random() * (max - min) + min;
+  }
+  randomX(75, 175);
+  fireBallDown();
+ }
 }
 function fireBallDown() {
  fX = bX + 15;
