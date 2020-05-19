@@ -11,7 +11,7 @@
    var pY = 400;
    var direct;
    var screen = 1;
-   var coins = 0;
+   var points = 0;
    var room;
    var oldpX;
    var oldpY;
@@ -224,7 +224,7 @@
       pY = 275;
       layout[0] = {
        "type":11,
-       "pos":"1,1"
+       "pos":"0,0"
       }
      }
      // cave
@@ -398,6 +398,7 @@
     }
     // function that adds a room to the array
     function addRoom () {
+     points++;
      i = 2;
      rad = 75;
      discRooms++;
@@ -428,7 +429,7 @@
      }
     }
     // portal to next level
-    if (tokens > (level * 3) - 1 && discRooms > 0 && roomPos == "1,1" && screen == 2) {
+    if (tokens > (level * 3) - 1 && discRooms > 0 && roomPos == "0,0" && screen == 2) {
      ctx.fillStyle = "#000";
      ctx.beginPath();
      ctx.arc(400, 300, rad, 0, 2 * Math.PI);
@@ -485,7 +486,7 @@
       // record obtained in array 
       updateSecretA(roomPos, 'obtained', true);
       tokens += 1;
-      coins += 10;
+      points += 10;
       dashT = 2;
       if (pHealth < 80) {
        pHealth += 15;
@@ -564,7 +565,7 @@
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
     ctx.fillText("Tokens: " + tokens, 10, 100);
-    ctx.fillText("Coins: " + coins, 10, 25);
+    ctx.fillText("Points: " + points, 10, 25);
     ctx.fillText("Level: " + level, 10, 50);
     if (room == 99 || room == 100 || room == 101 || room == 102) {
      ctx.fillText("Room position: Unknown", 10, 75);
@@ -582,6 +583,9 @@
      c.onclick = function toSurface() {
       if (goUp == true) {
        if (event.pageX < 300) {
+        if (roomPos != "0,0") {
+         points = 0;
+        }
         screen = 1;
         goUp = false;
         pX = 100;
@@ -627,7 +631,7 @@
        layout = [];
        layout[0] = {
         "type":11,
-        "pos":"1,1"
+        "pos":"0,0"
        } 
        secretA = [];
    }
