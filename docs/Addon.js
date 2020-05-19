@@ -19,16 +19,16 @@ function boss() {
    phase = "circle"
   }
   if (phase == "circle") {
-   if (bY < 150 && bX < 675) {
+   if (bY < 150 && bX < 575) {
     bX += 8;
    } 
-   if (bY < 400 && bX > 650) {
+   if (bY < 400 && bX > 575) {
     bY += 8;
    } 
    if (bY > 375 && bX > 125) {
     bX -= 8;
    }
-   if (bY > 140 && bX < 200) {
+   if (bY > 125 && bX < 125) {
     bY -= 8;
    }
   }
