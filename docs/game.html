@@ -302,27 +302,27 @@
       collision(pX < 50 || pX > 700 || pY < 50 || pY > 500 && pX < 300 || pY > 500 && pX > 450);
      } else if (room == 100) {
       // secret room enterable going S
-      ctx.fillRect(0, 100, 50, 400);
+      ctx.fillRect(0, 50, 50, 500);
       ctx.fillRect(0, 0, 300, 50);
-      ctx.fillRect(0, 500, c.width, 50);
+      ctx.fillRect(0, 550, c.width, 50);
       ctx.fillRect(500, 0, 300, 50);
-      ctx.fillRect(700, 100, 50, 400);
+      ctx.fillRect(700, 50, 50, 500);
      // roomImage.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/F1C10881-3FE7-4D5D-B920-669919111E1E.png";
      // ctx.drawImage(roomImage, 0, 0, 800, 600);
       collision(pX < 50 || pX > 700 || pY > 500 || pY < 50 && pX < 300 || pY < 50 && pX > 450);
      } else if (room == 101) {
       // room enterable going E
-      ctx.fillRect(100, 0, 600, 50);
+      ctx.fillRect(50, 0, 700, 50);
       ctx.fillRect(700, 0, 50, c.height);
-      ctx.fillRect(50, 500, 600, 100);
+      ctx.fillRect(50, 500, 700, 50);
       ctx.fillRect(0, 0, 50, 200);
       ctx.fillRect(0, 400, 50, 200);
       collision(pX > 700 || pY < 50 || pY > 500 || pX < 150 && pY < 200 || pX < 50 && pY > 350);
      } else if (room == 102) {
       // enterable going W
-      ctx.fillRect(100, 0, 600, 50);
+      ctx.fillRect(50, 0, 600, 50);
       ctx.fillRect(0, 0, 50, c.height);
-      ctx.fillRect(100, 500, 600, 50);
+      ctx.fillRect(50, 500, 700, 50);
       ctx.fillRect(700, 0, 50, 200);
       ctx.fillRect(700, 400, 50, 200);
       collision(pX < 50 || pY < 50 || pY > 500 || pX > 700 && pY < 200 || pX > 750 && pY > 350);
