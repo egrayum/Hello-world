@@ -12,8 +12,8 @@ function boss() {
   }
   screen = 2;
   room = 100;
-  if (phase == "spawn") {
-   solidity += 0.02;
+  if (phase == "spawn" && solidity < 1.1) {
+   solidity += 0.005;
   }
   ctx.fillStyle = "rgba(255, 30, 30, " + solidity + ")";
   ctx.fillRect(bX, bY, 100, 75);
