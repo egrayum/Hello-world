@@ -1,7 +1,7 @@
 // For add-ons for the maze generator.
 // Currenty being used for testing enemy AI.
-var bX;
-var bY = ;
+var bX = 350;
+var bY = 100;
 var solidity = 0;
 var phase = "none";
 
@@ -14,5 +14,5 @@ if (bossFight == true) {
   solidity += 0.02;
  }
  ctx.fillStyle = "rgba(255, 30, 30, " + solidity + ")";
- ctx.fillRect(350, 100, 100, 75);
+ ctx.fillRect(bX, bY, 100, 75);
 }
