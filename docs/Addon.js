@@ -4,6 +4,11 @@ var bX = 350;
 var bY = 125;
 var solidity = 0;
 var phase = "none";
+var fX;
+var fY;
+var rounds = 0;
+var fireball = false;
+var fDirect;
 
 function boss() {
  if (bossFight == true) {
@@ -30,6 +35,23 @@ function boss() {
    }
    if (bY > 125 && bX < 125) {
     bY -= 8;
+    rounds++;
+   }
+   if (bX > 575 && bY > 200 && bY < 208) {
+    fY = bY + 25;
+    fX = bX;
+    fireball = true;
+    fDirect = "left";
+   }
+  }
+  if (fireball == true) {
+   ctx.fillStyle = "#cf5446";
+   ctx.fillRect(fX, fY, 25, 25);
+   if (fDirect == "left") {
+    fX -= 7;
+    if (fX < pX - 40 || fX < 100) {
+     fireball = false;
+    }
    }
   }
   ctx.fillStyle = "rgba(255, 30, 30, " + solidity + ")";
