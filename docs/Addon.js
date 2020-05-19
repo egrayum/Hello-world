@@ -37,11 +37,15 @@ function boss() {
     bY -= 8;
     rounds++;
    }
-   if (bX > 575 && bY > 275 && bY < 308) {
+   if (bX > 575 && bY > 225 && bY < 233) {
     fY = bY + 15;
     fX = bX;
     fireball = true;
     fDirect = "left";
+   }
+   if (bX < 75 && bY > 225 && bY < 233) {
+    fireball = true;
+    fDirect = "right";
    }
   }
   if (fireball == true) {
@@ -50,6 +54,12 @@ function boss() {
    if (fDirect == "left") {
     fX -= 7;
     if (fX < pX + 40 && fY > pY - 45 && fY < pY + 45 || fX < 50) {
+     fireball = false;
+    }
+   }
+   if (fDirect == "right") {
+    fX += 7;
+    if (fX > pX - 40 && fY > pY - 45 && fY < pY + 45 || fX > 705) {
      fireball = false;
     }
    }
