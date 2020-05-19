@@ -54,11 +54,7 @@
    var blueTokens = 0;
    var redTokens = 0;
    var silverTokens = 0;
-   var plusImg = new Image();
-   var tImg = new Image();
    var bossFight = false;
-   var imgLoaded = window.setInterval(loaded, 50);
-   var img = document.querySelector('img');
    function dashStop() {
     dashT = 0;
    }
@@ -108,20 +104,6 @@
       }
    }
    // function to be run onload
-   function loadImg() {
-    plusImg.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/F498BCA9-A4EE-4948-B8E2-5058E1BBEA5E.png";
-    tImg.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1282.PNG";
-    imgLoaded;
-   }
-   function loaded() {
-    if (img.complete) {
-     alert("Images have loaded! Yay!");
-     window.clearInterval(imgLoaded);
-     init();
-    } else {
-     alert("Images haven't loaded yet. Sorry.");
-    }
-   }
    function init() {
     c.width = 800;
     c.height = 600;
@@ -266,7 +248,6 @@
       ctx.fillRect(0, 0, c.width, 200);
       ctx.fillRect(0, 400, 300, 200);
       ctx.fillRect(500, 400, 300, 200);
-      ctx.drawImage(tImg, 0, 0);
       collision(pY < 200 || pY > 350 && pX < 300 || pY > 350 && pX > 450);
      } else if (room == 6) {
       // upside-down T
@@ -304,7 +285,6 @@
       ctx.fillRect(0, 400, 300, 200);
       ctx.fillRect(500, 0, 300, 200);
       ctx.fillRect(500, 400, 300, 200);
-      ctx.drawImage(plusImg, 0, 0);
       collision(pX < 300 && pY < 200 || pX > 450 && pY < 200 || pX > 450 && pY > 350 || pX < 300 && pY > 350);
      } else if (room == 99) {
       // secret room enterable going N
@@ -321,8 +301,6 @@
       ctx.fillRect(0, 550, c.width, 50);
       ctx.fillRect(500, 0, 300, 50);
       ctx.fillRect(750, 50, 50, 500);
-     // roomImage.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/F1C10881-3FE7-4D5D-B920-669919111E1E.png";
-     // ctx.drawImage(roomImage, 0, 0, 800, 600);
       collision(pX < 50 || pX > 700 || pY > 500 || pY < 50 && pX < 300 || pY < 50 && pX > 450);
      } else if (room == 101) {
       // room enterable going E
@@ -660,6 +638,6 @@
    }
   </script>
  </head>
- <body onload="loadImg()">
+ <body onload="init()">
  </body>
 <html>
