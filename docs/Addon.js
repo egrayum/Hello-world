@@ -1,7 +1,7 @@
 // For add-ons for the maze generator.
 // Currenty being used for testing enemy AI.
 var bX = 350;
-var bY = 125;
+var bY = 75;
 var solidity = 0;
 var phase = "none";
 var fX;
@@ -24,20 +24,20 @@ function boss() {
    phase = "circle"
   }
   if (phase == "circle") {
-   if (bY < 150 && bX < 575) {
+   if (bY < 100 && bX < 625) {
     bX += 8;
    } 
-   if (bY < 400 && bX > 575) {
+   if (bY < 450 && bX > 620) {
     bY += 8;
    } 
-   if (bY > 375 && bX > 125) {
+   if (bY > 425 && bX > 75) {
     bX -= 8;
    }
-   if (bY > 125 && bX < 125) {
+   if (bY > 75 && bX < 75) {
     bY -= 8;
     rounds++;
    }
-   if (bX > 575 && bY > 300 && bY < 308) {
+   if (bX > 575 && bY > 275 && bY < 308) {
     fY = bY + 15;
     fX = bX;
     fireball = true;
@@ -45,11 +45,11 @@ function boss() {
    }
   }
   if (fireball == true) {
-   ctx.fillStyle = "#cf5446";
+   ctx.fillStyle = "#dd1111";
    ctx.fillRect(fX, fY, 45, 45);
    if (fDirect == "left") {
     fX -= 7;
-    if (fX < pX - 40 && fY > pY && fY < pY + 45 || fX < 100) {
+    if (fX < pX + 40 && fY > pY - 45 && fY < pY + 45 || fX < 50) {
      fireball = false;
     }
    }
