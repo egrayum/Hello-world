@@ -39,7 +39,7 @@ function boss() {
    if (bY > 70 && bX < 75) {
     bY -= 8;
    }
-   if (bX > 250 && bX < 260 && bY < 100) {
+   if (bX > 250 && bX < 260 && bY < 100 && phase == "circle") {
     rounds = 4;  
    }
    // for firing fireballs
