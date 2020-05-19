@@ -213,19 +213,13 @@
      ctx.fillStyle = "#333";
      ctx.font = "35px Arial";
      ctx.fillStyle = "#000";
-     ctx.fillRect(600, 400, 180, 180);
+     ctx.beginPath();
+     ctx.arc(690, 490, rad, 0, 2 * Math.PI);
+     ctx.fill();
      ctx.fillText("Mine", 620, 380);
-     if (pX > 560 && pY > 360) {
-      level = 1;
-      screen = 2;
-      room = 11;
-      roomPos = "1,1";
-      pX = 375;
-      pY = 275;
-      layout[0] = {
-       "type":11,
-       "pos":"0,0"
-      }
+     if (pX > 560 && pY > 360 && rad < 600) {
+      rad += 10;
+      window.setTimeout(enterMine, 1500);
      }
      // cave
     } else if (screen == 2) {
@@ -429,19 +423,22 @@
      }
     }
     // portal to next level
-    if (tokens > (level * 3) - 1 && discRooms > 0 && roomPos == "0,0" && screen == 2) {
-     ctx.fillStyle = "#000";
-     ctx.beginPath();
-     ctx.arc(400, 300, rad, 0, 2 * Math.PI);
-     ctx.fill();
-     if (pX > 274 && pX < 426 && pY > 174 && pY < 326 && rad < 550) {
-      rad += 10;
-      if (i == 2) {
-       window.setTimeout(nextLevel, 1500);
-       i = 0;
+    function portal(cX, cY) {
+     if (tokens > (level * 3) - 1 && discRooms > 0 && roomPos == "0,0" && screen == 2) {
+      ctx.fillStyle = "#000";
+      ctx.beginPath();
+      ctx.arc(cX, cY, rad, 0, 2 * Math.PI);
+      ctx.fill();
+      if (pX > 274 && pX < 426 && pY > 174 && pY < 326 && rad < 550) {
+       rad += 10;
+       if (i == 2) {
+        window.setTimeout(nextLevel, 1500);
+        i = 0;
+       }
       }
      }
     }
+    portal(400, 300);
     // secret room check if you've been here, if not add the room to the array
     function beenHere() {
     if (room == 99 || room == 100 || room == 101 || room == 102) {
@@ -625,7 +622,7 @@
        level++;
        screen = 2;
        room = 11;
-       roomPos = "1,1";
+       roomPos = "0,0";
        pX = 375;
        pY = 275;
        layout = [];
@@ -634,6 +631,18 @@
         "pos":"0,0"
        } 
        secretA = [];
+   }
+   function enterMine() {
+    level = 1;
+    screen = 2;
+    room = 11;
+    roomPos = "1,1";
+    pX = 375;
+    pY = 275;
+    layout[0] = {
+     "type":11,
+     "pos":"0,0"
+    }
    }
   </script>
  </head>
