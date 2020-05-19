@@ -37,8 +37,8 @@ function boss() {
     bY -= 8;
     rounds++;
    }
-   if (bX > 575 && bY > 200 && bY < 208) {
-    fY = bY + 25;
+   if (bX > 575 && bY > 300 && bY < 308) {
+    fY = bY + 15;
     fX = bX;
     fireball = true;
     fDirect = "left";
@@ -46,10 +46,10 @@ function boss() {
   }
   if (fireball == true) {
    ctx.fillStyle = "#cf5446";
-   ctx.fillRect(fX, fY, 25, 25);
+   ctx.fillRect(fX, fY, 45, 45);
    if (fDirect == "left") {
     fX -= 7;
-    if (fX < pX - 40 || fX < 100) {
+    if (fX < pX - 40 && fY > pY && fY < pY + 45 || fX < 100) {
      fireball = false;
     }
    }
