@@ -10,6 +10,7 @@ function boss() {
   if (phase = "none") {
    phase = "spawn"; 
   }
+  screen = 2;
   room = 100;
   if (phase == "spawn") {
    solidity += 0.02;
