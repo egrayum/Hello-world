@@ -513,9 +513,11 @@
       pY += speed + speedChange;
      }
     }
-    move(speed);
+    if (phase != "barricade") {
+     move(speed);
+    }
     // for running
-    if (run == 0 && hunger < maxHunger) {
+    if (run == 0 && hunger < maxHunger && phase != "barricade") {
      hunger += 0.01;
     } else if (run == 1 && hunger > 0) {
      hunger -= 0.05;
