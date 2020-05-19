@@ -106,13 +106,27 @@
       }
    }
    // function to be run onload
+   function loadImg() {
+    plusImg.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/F498BCA9-A4EE-4948-B8E2-5058E1BBEA5E.png";
+    tImg.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1282.PNG";
+    var img = document.querySelector('img');
+    var imgLoaded = window.setInterval(loaded, 50);
+    imgLoaded;
+   }
+   function loaded() {
+    if (img.complete) {
+     alert("Images have loaded! Yay!");
+     window.clearInterval(imgLoaded);
+     init();
+    } else {
+     alert("Images haven't loaded yet. Sorry.");
+    }
+   }
    function init() {
     c.width = 800;
     c.height = 600;
     screen = 1;
     window.setInterval(runGame, 20);
-    plusImg.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/F498BCA9-A4EE-4948-B8E2-5058E1BBEA5E.png";
-    tImg.src = "https://raw.githubusercontent.com/egrayum/Hello-world/master/IMG/IMG_1282.PNG";
    }
    // CONTROLS
    // keyup for cancelling things
@@ -646,6 +660,6 @@
    }
   </script>
  </head>
- <body onload="init()">
+ <body onload="loadImg()">
  </body>
 <html>
