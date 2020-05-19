@@ -216,10 +216,10 @@
      ctx.beginPath();
      ctx.arc(690, 490, rad, 0, 2 * Math.PI);
      ctx.fill();
-     ctx.fillText("Mine", 620, 380);
-     if (pX > 560 && pY > 360 && rad < 600) {
+     ctx.fillText("Mine", 640, 380);
+     if (pX > 560 && pY > 360 && rad < 1000) {
       rad += 10;
-      window.setTimeout(enterMine, 1500);
+      window.setTimeout(enterMine, 2250);
      }
      // cave
     } else if (screen == 2) {
