@@ -50,14 +50,3 @@ function boss() {
   }
  }
 }
-function fire() {
- if (fireball == false) {
-  fX = pX - 15;
-  fY = pY - 15;
-  destX = event.pageX;
-  destY = event.pageY;
-  xDist = destX - pX;
-  yDist = destY - pY;
-  fireball = true;
- } 
-}
