@@ -49,8 +49,8 @@ function boss() {
  }
  if (fireball == true) {
    fX -= dX/100;
-   fY -= dY/100;
-   if (fY > dY - 10 && fY < dY + 10 && fX > dX - 10 && fX < dX + 10) {
+   fY += dY/100;
+   if (fY < 0 || fY > 570 || fX < 0 || fX > 770) {
     fireball = false;
    }
    ctx.fillStyle = "#c97f1d";
