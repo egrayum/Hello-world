@@ -48,8 +48,18 @@ function boss() {
   }
  }
  if (fireball == true) {
-   fX -= dX/100;
-   fY += dY/100;
+  if (dX > pX) {
+   fX += (dX - pX)/50;
+  }
+  if (dX < pX) {
+   fX -= (pX - dX)/50;
+  }
+  if (dY < pY) {
+   fY -= (pY - dY)/50;
+  }
+  if (dY > pY) {
+   fY += (dY - pY)/50;
+  }
    if (fY < 0 || fY > 570 || fX < 0 || fX > 770) {
     fireball = false;
    }
