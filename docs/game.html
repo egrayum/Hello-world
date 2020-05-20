@@ -640,12 +640,24 @@
    }
    function fire() {
     if (fireball == false) {
-     fX = pX - 15;
-     fY = pY - 15;
+     fX = pX + 25;
+     fY = pY + 25;
      destX = event.pageX;
      destY = event.pageY;
-     xDist = destX - pX;
-     yDist = destY - pY;
+     xDist = destX - (pX + 25);
+     yDist = destY - (pY + 25);
+     if (xDist > 10) {
+      xDist = 10;
+     }
+     if (yDist > 10) {
+      yDist = 10;
+     }
+     if (xDist < -10) {
+      xDist = -10;
+     }
+     if (yDist < -10) {
+      yDist = -10;
+     }
      fireball = true;
     } 
    }
