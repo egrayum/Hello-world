@@ -22,25 +22,25 @@ function boss() {
    solidity += 0.01;
   }
   // triggers phase 1
-  if (solidity > 1) {
+  if (solidity > 0.9 && solidity < 1) {
    phase = "circle"
   }
   // phase 1- circling
   if (phase == "circle") {
-   if (bY < 100 && bX < 625 && phase == "circle") {
+   if (bY < 100 && bX < 625) {
     bX += 8;
    } 
-   if (bY < 450 && bX > 620 && phase == "circle") {
+   if (bY < 450 && bX > 620) {
     bY += 8;
    } 
-   if (bY > 425 && bX > 75 && phase == "circle") {
+   if (bY > 425 && bX > 75) {
     bX -= 8;
    }
-   if (bY > 70 && bX < 75 && phase == "circle") {
+   if (bY > 70 && bX < 75) {
     bY -= 8;
    }
-   if (bX > 250 && bX < 260 && bY < 100 && phase == "circle") {
-    rounds = 4;  
+   if (bX > 250 && bX < 260) {
+    phase = "barricade";
    }
    // for firing fireballs
    if (bX > 575 && bY > 225 && bY < 233) {
@@ -78,9 +78,6 @@ function boss() {
      fireball = false;
     }
    }
-  }
-  if (rounds == 4) {
-   phase = "barricade";
   }
   // barricade phase
   if (phase == "barricade") {
