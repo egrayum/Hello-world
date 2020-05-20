@@ -12,6 +12,9 @@ var fDirect;
 var bossHealth = 250;
 var dX;
 var dY;
+var oX;
+var oY;
+var iFrames = false;
 
 function boss() {
  if (bossFight == true) {
@@ -36,7 +39,7 @@ function boss() {
   ctx.fillRect(bX, bY, 100, 75);
   ctx.fillRect(150, 500, bossHealth * 2, 40);
   ctx.fillStyle = "#fff";
-  ctx.fillText("Sceris, Spirit of Evil health: " + bossHealth + "/250", 200, 550);
+  ctx.fillText("Sceris, Spirit of Evil: " + bossHealth + "/250", 200, 550);
  }
  c.onclick = function fire() {
   if (fireball == false) {
@@ -44,26 +47,36 @@ function boss() {
    dY = event.pageY;
    fX = pX + 10;
    fY = pY + 10; 
+   oX = pX;
+   oY = pY;
    fireball = true;
   }
  }
  if (fireball == true) {
   if (dX > pX) {
-   fX += (dX - pX)/50;
+   fX += (dX - oX)/50;
   }
   if (dX < pX) {
-   fX -= (pX - dX)/50;
+   fX -= (oX - dX)/50;
   }
   if (dY < pY) {
-   fY -= (pY - dY)/50;
+   fY -= (oY - dY)/50;
   }
   if (dY > pY) {
-   fY += (dY - pY)/50;
+   fY += (dY - oY)/50;
   }
-   if (fY < 0 || fY > 570 || fX < 0 || fX > 770) {
-    fireball = false;
-   }
-   ctx.fillStyle = "#c97f1d";
-   ctx.fillRect(fX, fY, 30, 30);
+  if (fY < 0 || fY > 570 || fX < 0 || fX > 770) {
+   fireball = false;
   }
+  ctx.fillStyle = "#c97f1d";
+  ctx.fillRect(fX - 15, fY - 15, 30, 30);
+  if (fX > bX - 15 && fX < bX + 115 && fY > bY - 15 && fY < bY + 90 && iFrames == false) {
+   bossHealth -= 10;
+   iFrames = true;
+   window.setTimeout(resetFrames, 50);
+  }
+ }
+}
+function resetFrames() {
+ iFrames = false;
 }
