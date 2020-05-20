@@ -22,7 +22,7 @@ function boss() {
    solidity += 0.01;
   }
   // triggers phase 1
-  if (solidity > 0.9 && solidity < 1) {
+  if (solidity > 0.9 && phase != "barricade") {
    phase = "circle"
   }
   // phase 1- circling
