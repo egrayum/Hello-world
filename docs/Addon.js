@@ -22,7 +22,7 @@ function boss() {
    solidity += 0.01;
   }
   // triggers phase 1
-  if (solidity > 0.9 && phase != "barricade") {
+  if (solidity > 0.9 && solidity < 1) {
    phase = "circle"
   }
   // phase 1- circling
@@ -39,7 +39,7 @@ function boss() {
    if (bY > 70 && bX < 75) {
     bY -= 8;
    }
-   if (bX > 250 && bX < 260) {
+   if (bX > 250 && bX < 260 && bY < 100) {
     phase = "barricade";
    }
    // for firing fireballs
@@ -89,11 +89,8 @@ function boss() {
   // boss
   ctx.fillStyle = "rgba(255, 30, 30, " + solidity + ")";
   ctx.fillRect(bX, bY, 100, 75);
+  }
  }
- //if (pX > bX - 50 && pX < bX + 100 && pY > bY - 50 && pY < bY + 75) {
-  //damage = true;
- //}
-}
 function barricaded() {
  if (fireball == false) {
   bY = 75;
