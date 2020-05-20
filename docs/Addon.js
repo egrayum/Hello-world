@@ -10,6 +10,11 @@ var rounds = 0;
 var fireball = false;
 var fDirect;
 var bossHealth = 250;
+var destX;
+var destY;
+var xDist;
+var yDist;
+var bulletSpeed = 8;
 
 function boss() {
  if (bossFight == true) {
@@ -34,9 +39,25 @@ function boss() {
   ctx.fillRect(bX, bY, 100, 75);
   ctx.fillRect(150, 500, bossHealth * 2, 40);
   ctx.fillStyle = "#fff";
-  ctx.fillText("Sceris, Spirit of Evil: " + bossHealth + "/250", 200, 550);
+  ctx.fillText("Sceris, Spirit of Evil: " + bossHealth + "/250", 200, 535);
+  if (fireball == true) {
+   fX += xDist/speed;
+   fY += yDist/speed;
+   ctx.fillRect(fX - 15, fY - 15, 30, 30);
+  }
+  if (fX < 0 || fY < 0 || fX > 770 || fY > 570) {
+   fireball = false;
+  }
  }
 }
 c.onclick = function fire() {
-  
+ if (fireball == false) {
+  fX = pX - 15;
+  fY = pY - 15;
+  destX = event.pageX;
+  destY = event.pageY;
+  xDist = destX - pX;
+  yDist = destY - pY;
+  fireball = true;
+ } 
 }
