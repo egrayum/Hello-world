@@ -50,7 +50,7 @@ function boss() {
   }
  }
 }
-c.onclick = function fire() {
+function fire() {
  if (fireball == false) {
   fX = pX - 15;
   fY = pY - 15;
