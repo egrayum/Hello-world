@@ -10,8 +10,6 @@ var rounds = 0;
 var fireball = false;
 var fDirect;
 var bossHealth = 250;
-var j;
-var rectY = 100;
 
 function boss() {
  if (bossFight == true) {
@@ -41,11 +39,4 @@ function boss() {
 }
 c.onclick = function fire() {
   
-}
-for (j = 100; j < 700; j += 50) {
- new Rectangle(j, rectY, 75, 75);
-}
-function Rectangle(X, Y, Width, Height) {
- ctx.fillStyle = "#000";
- ctx.fillRect(X, Y, Width, Height);
 }
