@@ -45,14 +45,15 @@ function boss() {
    fX = pX + 10;
    fY = pY + 10; 
    fireball = true;
-  } else if (fireball == true) {
-   fX += dX/100;
-   fY += dY/100;
+  }
+ }
+ if (fireball == true) {
+   fX -= dX/100;
+   fY -= dY/100;
    if (fY > dY - 10 && fY < dY + 10 && fX > dX - 10 && fX < dX + 10) {
     fireball = false;
    }
    ctx.fillStyle = "#c97f1d";
    ctx.fillRect(fX, fY, 30, 30);
   }
- }
 }
