@@ -10,11 +10,8 @@ var rounds = 0;
 var fireball = false;
 var fDirect;
 var bossHealth = 250;
-var dX;
-var dY;
-var oX;
-var oY;
-var iFrames = false;
+var j;
+var rectY = 100;
 
 function boss() {
  if (bossFight == true) {
@@ -41,42 +38,14 @@ function boss() {
   ctx.fillStyle = "#fff";
   ctx.fillText("Sceris, Spirit of Evil: " + bossHealth + "/250", 200, 550);
  }
- c.onclick = function fire() {
-  if (fireball == false) {
-   dX = event.pageX;
-   dY = event.pageY;
-   fX = pX + 10;
-   fY = pY + 10; 
-   oX = pX;
-   oY = pY;
-   fireball = true;
-  }
- }
- if (fireball == true) {
-  if (dX > pX) {
-   fX += (dX - oX)/50;
-  }
-  if (dX < pX) {
-   fX -= (oX - dX)/50;
-  }
-  if (dY < pY) {
-   fY -= (oY - dY)/50;
-  }
-  if (dY > pY) {
-   fY += (dY - oY)/50;
-  }
-  if (fY < 0 || fY > 570 || fX < 0 || fX > 770) {
-   fireball = false;
-  }
-  ctx.fillStyle = "#c97f1d";
-  ctx.fillRect(fX - 15, fY - 15, 30, 30);
-  if (fX > bX - 15 && fX < bX + 115 && fY > bY - 15 && fY < bY + 90 && iFrames == false) {
-   bossHealth -= 10;
-   iFrames = true;
-   window.setTimeout(resetFrames, 50);
-  }
- }
 }
-function resetFrames() {
- iFrames = false;
+c.onclick = function fire() {
+  
+}
+for (j = 100; j < 700; j += 50) {
+ new Rectangle(j, rectY, 75, 75);
+}
+function Rectangle(X, Y, Width, Height) {
+ ctx.fillStyle = "#000";
+ ctx.fillRect(X, Y, Width, Height);
 }
