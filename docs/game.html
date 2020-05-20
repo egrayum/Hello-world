@@ -55,6 +55,8 @@
    var redTokens = 0;
    var silverTokens = 0;
    var bossFight = false;
+   var j;
+   var rectY = 100;
    function dashStop() {
     dashT = 0;
    }
@@ -607,6 +609,9 @@
      }
     }
     boss();
+    for (j = 100; j < 700; j += 50) {
+     new Rectangle(j, rectY, 75, 75);
+    }
    }
    // going to next level
    function nextLevel() {
@@ -637,6 +642,10 @@
      "type":11,
      "pos":"0,0"
     }
+   }
+   function Rectangle(X, Y, Width, Height) {
+    ctx.fillStyle = "#000";
+    ctx.fillRect(X, Y, Width, Height);
    }
   </script>
  </head>
