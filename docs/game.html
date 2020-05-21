@@ -2,7 +2,7 @@
  <head>
   <title>turtlekins game</title>
   <link rel="stylesheet" type="text/css" href="labs.css"></link>
-  <canvas onclick="fire()" id="gameCanvas" style="background:#047018; width:100%; height:100%; text-align:center;">
+  <canvas id="gameCanvas" style="background:#047018; width:100%; height:100%; text-align:center;">
   <script type="text/javascript" src="Addon.js"></script>
   <script>
    var c = document.getElementById("gameCanvas");
@@ -639,7 +639,7 @@
      "pos":"0,0"
     }
    }
-   function fire() {
+   c.onclick = function fire() {
     if (fireball != true) {
      fX = pX + 25;
      fY = pY + 25;
