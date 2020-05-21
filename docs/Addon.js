@@ -3,7 +3,6 @@
 var bX = 350;
 var bY = 75;
 var solidity = 0;
-var phase = "none";
 var fX = 100;
 var fY = 100;
 var rounds = 0;
