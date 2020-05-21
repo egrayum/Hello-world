@@ -9,11 +9,8 @@ var rounds = 0;
 var fireball = false;
 var fDirect;
 var bossHealth = 250;
-var destX;
-var destY;
-var xDist;
-var yDist;
-var bulletSpeed = 10;
+var fireX;
+var fireY;
 
 function boss() {
  if (bossFight == true) {
@@ -32,7 +29,7 @@ function boss() {
    if (bY < 100) {
     bX += 8;
    }
-   if (bX > 525) {
+   if (bX > 580) {
     bY += 8;
    }
    if (bY > 450) {
@@ -42,7 +39,9 @@ function boss() {
     bY -= 8;
    }
    if (bX > 510 && bY < 300 && bY > 250) {
-   // bossFire("left");
+    fDirect = "left";
+    fireX = bX;
+    fireY = bY - 15;
    }
   }
   if (phase == "barricade") {
@@ -60,6 +59,11 @@ function boss() {
   }
   if (fX < 0 || fY < 0 || fX > 770 || fY > 570) {
    fireball = false;
+  }
+  if (fDirect == "left") {
+   fireX -= 10;
+   ctx.fillStyle = "#d6a192";
+   ctx.fillRect(fireX, fireY, 40, 40);
   }
  }
 }
