@@ -30,7 +30,18 @@ function boss() {
    phase = "circle";
   }
   if (phase == "circle") {
-   
+   if (bY < 100) {
+    bX += 8;
+   }
+   if (bX > 525) {
+    bY += 8;
+   }
+   if (bY > 450) {
+    bX -= 8;
+   }
+   if (bX < 100) {
+    bY -= 8;
+   }
   }
   if (phase == "barricade") {
    
@@ -41,8 +52,8 @@ function boss() {
   ctx.fillStyle = "#fff";
   ctx.fillText("Sceris, Spirit of Evil: " + bossHealth + "/250", 200, 530);
   if (fireball == true) {
-   xVel = xDist/bulletSpeed * 10;
-   yVel = yDist/bulletSpeed * 10;
+   xVel = xDist/(bulletSpeed * 10);
+   yVel = yDist/(bulletSpeed * 10);
    fX += xVel;
    fY += yVel;
    ctx.fillRect(fX - 15, fY - 15, 30, 30);
