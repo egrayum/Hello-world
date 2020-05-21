@@ -645,14 +645,11 @@
      fY = pY + 25;
     if (event.pageX > pX + 150) {
      xVel = 12;
-    }
-    if (event.pageY > pY + 150) {
+    } else if (event.pageY > pY + 150) {
      yVel = 12;
-    } 
-    if (event.pageX < pX - 100) {
+    } else if (event.pageX < pX - 100) {
      xVel = -12;
-    } 
-    if (event.pageY < pY - 100) {
+    } else if (event.pageY < pY - 100) {
      yVel = -12;   
     } 
      fireball = true;
