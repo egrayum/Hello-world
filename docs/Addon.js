@@ -17,7 +17,7 @@ var bulletSpeed = 10;
 
 function boss() {
  if (bossFight == true) {
-  if (phase = "none") {
+  if (phase == "none") {
    phase = "spawn"; 
   }
   screen = 2;
@@ -40,6 +40,9 @@ function boss() {
    }
    if (bX < 100) {
     bY -= 8;
+   }
+   if (bX > 510 && bY < 300 && bY > 250) {
+   // bossFire("left");
    }
   }
   if (phase == "barricade") {
