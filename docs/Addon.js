@@ -51,8 +51,6 @@ function boss() {
   ctx.fillStyle = "#fff";
   ctx.fillText("Sceris, Spirit of Evil: " + bossHealth + "/250", 200, 530);
   if (fireball == true) {
-   xVel = xDist/(bulletSpeed * 10);
-   yVel = yDist/(bulletSpeed * 10);
    fX += xVel;
    fY += yVel;
    ctx.fillRect(fX - 15, fY - 15, 30, 30);
