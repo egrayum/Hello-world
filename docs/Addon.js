@@ -65,5 +65,8 @@ function boss() {
    fX += xVel;
    fY += yVel;
    ctx.fillRect(fX - 15, fY - 15, 30, 30);
+   if (fX < 0 || fY < 0 || fY > 585 || fX > 785) {
+    fireball = false;
+   }
   }
 }
