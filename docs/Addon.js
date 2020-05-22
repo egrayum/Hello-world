@@ -52,9 +52,6 @@ function boss() {
   ctx.fillRect(150, 500, bossHealth * 2, 40);
   ctx.fillStyle = "#fff";
   ctx.fillText("Sceris, Spirit of Evil: " + bossHealth + "/250", 200, 530);
-  if (fX < 0 || fY < 0 || fX > 770 || fY > 570) {
-   fireball = false;
-  }
   if (fDirect == "left") {
    fireX -= 10;
    ctx.fillStyle = "#d6a192";
@@ -62,8 +59,11 @@ function boss() {
   }
  }
  if (fireball == true) {
-   fX += xVel;
-   fY += yVel;
-   ctx.fillRect(fX - 15, fY - 15, 30, 30);
+  fX += xVel;
+  fY += yVel;
+  ctx.fillRect(fX - 15, fY - 15, 30, 30);
+  if (fX < 0 || fY < 0 || fX > 770 || fY > 570) {
+   fireball = false;
   }
+ }
 }
