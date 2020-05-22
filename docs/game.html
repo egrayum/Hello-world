@@ -28,7 +28,7 @@
    var eType = [3, 4, 5, 6, 8, 10, 11];
    var wType = [2, 3, 5, 6, 7, 9, 11];
    var roomImage = new Image();
-   var tokens = 0;
+   var builds = 0;
    var obtained = false; // Have you picked up the token in this room?
    var discRooms = 0;
    var level = 0;
@@ -44,14 +44,14 @@
    var run = 0;
    var secret = false;
    var quests = 1;
-   var tokenType;
-   var tokenTier;
+   var buildType;
+   var buildTier;
    var maxHunger = 10;
    var goUp;
    var bronzeTokens = 0;
    var speedChange = 0;
    var showTokens = false;
-   var blueTokens = 0;
+   var bricks = 0;
    var redTokens = 0;
    var silverTokens = 0;
    var bossFight = false;
@@ -170,8 +170,8 @@
        maxHunger += 1;
        speed += speedChange;
        speedChange = 0;
-       tokens = 0;
-       blueTokens = 0;
+       builds = 0;
+       bricks = 0;
        redTokens = 0;
        bronzeTokens = 0;
       }
@@ -185,8 +185,8 @@
        maxHunger += 1;
        speed += speedChange;
        speedChange = 0;
-       tokens = 0;
-       blueTokens = 0;
+       builds = 0;
+       bricks = 0;
        redTokens = 0;
        bronzeTokens = 0;
       }
@@ -201,8 +201,8 @@
        maxHunger += 1;
        speed += speedChange;
        speedChange = 0;
-       tokens = 0;
-       blueTokens = 0;
+       builds = 0;
+       bricks = 0;
        redTokens = 0;
        bronzeTokens = 0;
       }
@@ -456,16 +456,16 @@
     }
     // tokens
     if (level < 2) {
-     tokenType = "blue";
+     buildType = "brick";
      ctx.fillStyle = "#0000ff";
     } else if (level > 1 && level < 4) {
-     tokenType = "red";
+     buildType = "red";
      ctx.fillStyle = "#ff0000";
     } else if (level > 3 && level < 5) {
-     tokenType = "bronze";
+     buildType = "bronze";
      ctx.fillStyle = "#cd7f32";
     } else if (level > 4 && level < 7) {
-     tokenType = "silver";
+     buildType = "silver";
      ctx.fillStyle = "#c6c3bf";
     }
     if (secret == true && obtained == false) {
@@ -475,7 +475,7 @@
       obtained = true;
       // record obtained in array 
       updateSecretA(roomPos, 'obtained', true);
-      tokens += 1;
+      builds += 1;
       points += 10;
       dashT = 2;
       if (pHealth < 80) {
@@ -484,20 +484,20 @@
       if (speedChange < 4 && speed < 9) {
        speedChange += 0.5;
       }
-      if (tokenType == "blue") {
-       tokenTier = 0;
-       blueTokens++;
+      if (buildType == "bricks") {
+       buildTier = 0;
+       bricks++;
       }
       if (tokenType == "red") {
-       tokenTier = 1;
+       buildTier = 1;
        redTokens++;
       }
-      if (tokenType == "bronze") {
-       tokenTier = 2;
+      if (buildType == "bronze") {
+       buildTier = 2;
        bronzeTokens++;
       }
-      if (tokenType == "silver") {
-       tokenTier = 3;
+      if (buildType == "silver") {
+       buildTier = 3;
        silverTokens++;
       }
      }
@@ -556,7 +556,7 @@
     // info
     ctx.fillStyle = "#fff";
     ctx.font = "20px Arial";
-    ctx.fillText("Tokens: " + tokens, 10, 100);
+    ctx.fillText("Tokens: " + builds, 10, 100);
     ctx.fillText("Points: " + points, 10, 25);
     ctx.fillText("Level: " + level, 10, 50);
     if (room == 99 || room == 100 || room == 101 || room == 102) {
@@ -593,9 +593,9 @@
      ctx.fillRect(50, 50, c.width - 100, c.height - 100);
      ctx.fillStyle = "#fff";
      ctx.font = "20px Arial";
-     ctx.fillText("Total tokens: " + tokens, 150, 90);
+     ctx.fillText("Total materials: " + builds, 150, 90);
      if (blueTokens > 0) {
-      ctx.fillText("Blue tokens: " + blueTokens, 70, 140);
+      ctx.fillText("Bricks: " + bricks, 70, 140);
      }
      if (redTokens > 0) {
       ctx.fillText("Red tokens: " + redTokens, 70, 170);
@@ -653,7 +653,7 @@
      yVel = -12;   
     } 
      fireball = true;
-     alert(fireball);
+     alert("yes");
     } 
    }
 
