@@ -56,6 +56,8 @@
    var lumber = 0;
    var bossFight = false;
    var phase = "none";
+   var yVel;
+   var xVel;
    function dashStop() {
     dashT = 0;
    }
@@ -497,7 +499,7 @@
        buildTier = 0;
        bricks++;
       }
-      if (tokenType == "mortar") {
+      if (buildType == "mortar") {
        buildTier = 1;
        mortar++;
       }
