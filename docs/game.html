@@ -53,7 +53,7 @@
    var showTokens = false;
    var bricks = 0;
    var mortar = 0;
-   var silverTokens = 0;
+   var lumber = 0;
    var bossFight = false;
    var phase = "none";
    function dashStop() {
@@ -165,7 +165,7 @@
       ctx.fillText("Quest 1: Mortar", 200, 120);
       ctx.font = "20px Arial";
       ctx.fillText("Go to level 2 in the mine and bring back some mortar.", 150, 180);
-      if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && tokenTier == 1) {
+      if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && buildTier == 1) {
        quests = 2;
        maxHunger += 1;
        speed += speedChange;
@@ -174,13 +174,14 @@
        bricks = 0;
        mortar = 0;
        iron = 0;
+       lumber = 0;
       }
      } else if (quests == 2) {
       ctx.font = "40px Arial";
       ctx.fillText("Quest 2: iron", 200, 120);
       ctx.font = "20px Arial";
       ctx.fillText("Go to level 4 in the mine and bring back some iron.", 150, 180);
-      if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && tokenTier == 2) {
+      if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && buildTier == 2) {
        quests = 3;
        maxHunger += 1;
        speed += speedChange;
@@ -189,14 +190,15 @@
        bricks = 0;
        mortar = 0;
        iron = 0;
+       lumber = 0;
       }
      } else if (quests == 3) {
       ctx.font = "40px Arial";
       ctx.fillText("Quest 3: Silver Trophy", 200, 120);
       ctx.font = "20px Arial";
-      ctx.fillText("Go to level 5. Bring back a silver trophy. Be careful though, a monster waits for you.", 150, 180);
+      ctx.fillText("Go to level 5. Bring back lumber. Be careful though, a monster waits for you.", 150, 180);
       ctx.font = "40px Arial";
-      if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && tokenTier == 3) {
+      if (pY < 350 && pX < 600 && pX > 150 && pY > 150 && buildTier == 3) {
        quests = 4;
        maxHunger += 1;
        speed += speedChange;
@@ -205,6 +207,7 @@
        bricks = 0;
        mortar = 0;
        iron = 0;
+       lumber = 0;
       }
      }
      ctx.fillStyle = "#333";
@@ -464,10 +467,10 @@
      ctx.fillStyle = "#9d8460";
     } else if (level > 3 && level < 5) {
      buildType = "iron";
-     ctx.fillStyle = "#cd7f32";
+     ctx.fillStyle = "#958f8d";
     } else if (level > 4 && level < 7) {
-     buildType = "silver";
-     ctx.fillStyle = "#c6c3bf";
+     buildType = "lumber";
+     ctx.fillStyle = "#924f1d";
     }
     if (secret == true && obtained == false) {
      ctx.fillRect(375, 275, 50, 50);
@@ -497,9 +500,9 @@
        buildTier = 2;
        iron++;
       }
-      if (buildType == "silver") {
+      if (buildType == "lumber") {
        buildTier = 3;
-       silverTokens++;
+       lumber++;
       }
      }
     } 
@@ -602,10 +605,10 @@
       ctx.fillText("mortar: " + mortar, 70, 170);
      }
      if (iron > 0) {
-      ctx.fillText("Bronze tokens: " + iron, 70, 200);
+      ctx.fillText("Iron: " + iron, 70, 200);
      }
-     if (silverTokens > 0) {
-      ctx.fillText("Silver tokens: " + silverTokens, 70, 230);
+     if (lumber > 0) {
+      ctx.fillText("Lumber: " + lumber, 70, 230);
      }
     }
     boss();
