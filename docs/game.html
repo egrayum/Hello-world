@@ -428,14 +428,19 @@
       if (pX > 274 && pX < 426 && pY > 174 && pY < 326 && rad < 550) {
        goUp = true;
        rad += 10;
-       if (i == 2 && goUp == false) {
-        window.setTimeout(nextLevel, 1500);
-        i = 0;
-       }
+       var nextL = window.setInterval(next, 20);
       }
      }
     }
     portal(400, 300);
+    
+    function next() {
+     if (goUp == "no" && i == 2) {
+      window.setTimeout(nextLevel, 1500);
+      i = 0;
+      clearInterval(nextL);
+     }
+    }
     // secret room check if you've been here, if not add the room to the array
     function beenHere() {
     if (room == 99 || room == 100 || room == 101 || room == 102) {
@@ -587,7 +592,7 @@
         pX = 100;
         pY = 400;
        } else if (event.pageX > 410) {
-        goUp = false;
+        goUp = "no";
        }
       }
      }
