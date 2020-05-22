@@ -58,6 +58,7 @@
    var phase = "none";
    var yVel;
    var xVel;
+   var nextL;
    function dashStop() {
     dashT = 0;
    }
@@ -430,7 +431,7 @@
       if (pX > 274 && pX < 426 && pY > 174 && pY < 326 && rad < 550) {
        goUp = true;
        rad += 10;
-       var nextL = window.setInterval(next, 20);
+       nextL = window.setInterval(next, 20);
       }
      }
     }
