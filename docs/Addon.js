@@ -61,6 +61,7 @@ function boss() {
  if (fireball == true) {
   fX += xVel;
   fY += yVel;
+  ctx.fillStyle = "#ffdddd";
   ctx.fillRect(fX - 15, fY - 15, 30, 30);
   if (fX < 0 || fY < 0 || fX > 770 || fY > 570) {
    fireball = false;
