@@ -571,6 +571,7 @@
     ctx.fillText("Tokens: " + builds, 10, 100);
     ctx.fillText("Points: " + points, 10, 25);
     ctx.fillText("Level: " + level, 10, 50);
+    ctx.fillText("Points highscore: " + localStorage.getItem("highscore"), 10, 100);
     if (room == 99 || room == 100 || room == 101 || room == 102) {
      ctx.fillText("Room position: Unknown", 10, 75);
     } else {
@@ -594,6 +595,10 @@
         goUp = false;
         pX = 100;
         pY = 400;
+        if (localStorage.getItem("highscore") == undefined || localStorage.getItem("highscore") < points) {
+         localStorage.removeItem("highscore");
+         localStorage.setItem("highscore", points);
+        }
        } else if (event.pageX > 410) {
         goUp = "no";
        }
