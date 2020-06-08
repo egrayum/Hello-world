@@ -4,9 +4,33 @@
   <script> 
    var c = document.getElementById("gameCanvas");
    var ctx = c.getContext("2d");
+   var pX = 50;
+   var pY = 400;
+   var lx1 = 0;
+   var ly1 = 500;
+   var lw1 = 800;
+   var lh1 = 100;
+   var lx2 = 300;
+   var ly2 = 300;
+   var lw2 = 500;
+   var lh2 = 50;
    function init() {
     c.width = "800px";
     c.height = "600px";
+    window.setInterval(runGame, 20);
+   }
+   function player() {
+    ctx.fillStyle = "#000";
+    ctx.fillRect(pX, pY, 30, 30);
+   }
+   function level() {
+    ctx.fillStyle = "#444"; 
+    ctx.fillRect(lx1, ly1, lw1, lh1);
+    ctx.fillRect(lx2, ly2, lw2, lh2);
+   }
+   function runGame() {
+    player();
+    level();
    }
   </script>
  </head>
