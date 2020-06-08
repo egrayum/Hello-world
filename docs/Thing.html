@@ -4,27 +4,13 @@
   <script> 
    var c = document.getElementById("gameCanvas");
    var ctx = c.document.getContext("2d");
-   var pX = 50;
-   var pY = 400;
    function init() {
     c.width = "800px";
     c.height = "600px";
     alert("version 0.003");
-    window.setInterval(runGame, 20);
-   }
-   function player() {
     ctx.fillStyle = "#000";
-    ctx.fillRect(pX, pY, 30, 30);
+    ctx.fillRect(0, 0, 50, 50);
    }
-   function level() {
-    ctx.fillStyle = "#444"; 
-    ctx.fillRect(0, 500, 800, 100);
-    ctx.fillRect(500, 350, 300, 50);
-   }
-   function runGame() {
-    player();
-    level();
-   } 
   </script>
  </head>
  <body onload="init()">
