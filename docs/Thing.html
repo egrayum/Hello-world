@@ -4,12 +4,31 @@
   <script> 
    var c = document.getElementById("gameCanvas");
    var ctx = c.getContext("2d");
+   var i;
+   var j;
+   var robots = [];
+   var x = [];
+   var xChange;
    function init() {
     c.width = "800px";
     c.height = "600px";
-    alert("version 0.004");
-    ctx.fillStyle = "#000";
-    ctx.fillRect(0, 0, 50, 50);
+    alert("version 0.005");
+    for (i = 0; i < 10; i++) {
+     robots.push(new robot());
+    }
+    for (i = 0; i < 50; i++) {
+     for (j = 0; j < robots.length + 1; j++) {
+      xChange = Math.floor(Math.random() * Math.floor(2));
+      if (xChange == 0) {
+       x[j]++;
+      } else if (xChange == 1) {
+       x[j] -= 1;
+      }
+     }
+    }
+   }
+   function robot() {
+    x.push(0);   
    }
   </script>
  </head>
