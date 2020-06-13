@@ -11,12 +11,19 @@
    var xChange;
    var probability;
    var zeros = 0;
-   var robos = 20;
+   var robos = 200;
    var steps = 20;
+   document.addEventListener("keydown", function(event) [
+    if (event.keyCode == 82) {
+     step();
+    } 
+   })
    function init() {
     c.width = "800px";
     c.height = "600px";
-    alert("version 0.006");
+    alert("version 0.007");
+   }
+   function step() {
     for (i = 0; i < robos; i++) {
      robots.push(new robot());
     }
@@ -36,8 +43,7 @@
       zeros++;
      }
     }
-    probability = zeros/robots.length;
-    alert(robos + " robots, " + steps + " steps. Probability for 0: " + probability);
+    alert(robos + " robots, " + steps + " steps. Probability to end up at 0: " + zeros + "/" + robos);
    }
    function robot() {
     x.push(0);   
