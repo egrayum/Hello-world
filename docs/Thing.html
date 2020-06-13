@@ -12,7 +12,7 @@
    function init() {
     c.width = "800px";
     c.height = "600px";
-    alert("version 0.005");
+    alert("version 0.006");
     for (i = 0; i < 10; i++) {
      robots.push(new robot());
     }
@@ -29,7 +29,8 @@
     ctx.fillStyle = "#000";
     ctx.font = "15px Arial";
     for (i = 0; i < robots.length; i++) { 
-     ctx.fillText(x[i], 10, i * 18);
+     ctx.fillText("TEST", 10, i * 18);
+     alert("TEST");
     }
    }
    function robot() {
