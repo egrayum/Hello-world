@@ -10,8 +10,8 @@
    var x = [];
    var xChange;
    var zeros = 0;
-   var robos = 100;
-   var steps = 20;
+   var robos = 10000;
+   var steps = 50;
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 82) {
      step();
@@ -20,7 +20,7 @@
    function init() {
     c.width = "800px";
     c.height = "600px";
-    alert("version 0.010");
+    alert("version 1");
     robots = [];
     x = [];
     ctx.fillStyle = "#000";
