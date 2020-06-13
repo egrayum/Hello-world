@@ -9,14 +9,18 @@
    var robots = [];
    var x = [];
    var xChange;
+   var probability;
+   var zeros = 0;
+   var robos = 20;
+   var steps = 20;
    function init() {
     c.width = "800px";
     c.height = "600px";
     alert("version 0.006");
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < robos; i++) {
      robots.push(new robot());
     }
-    for (i = 0; i < 50; i++) {
+    for (i = 0; i < steps; i++) {
      for (j = 0; j < robots.length; j++) {
       xChange = Math.floor(Math.random() * Math.floor(2));
       if (xChange == 0) {
@@ -26,9 +30,14 @@
       }
      }
     }
-    for (i = 0; i < robots.length; i++) { 
-     alert(x[i]);
+    alert(x);
+    for (j = 0; j < robots.length; j++) {
+     if (x[j] = 0) {
+      zeros++;
+     }
     }
+    probability = zeros/robots.length;
+    alert(robos + " robots, " + steps + " steps. Probability for 0: " + probability);
    }
    function robot() {
     x.push(0);   
