@@ -10,7 +10,7 @@
    var x = [];
    var xChange;
    var zeros = 0;
-   var robos = 200;
+   var robos = 100;
    var steps = 20;
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 82) {
@@ -21,6 +21,8 @@
     c.width = "800px";
     c.height = "600px";
     alert("version 0.008");
+    robots = [];
+    x = [];
    }
    function step() {
     for (i = 0; i < robos; i++) {
@@ -36,6 +38,7 @@
       }
      }
     }
+    alert(x);
     for (j = 0; j < robots.length; j++) {
      if (x[j] = 0) {
       zeros++;
