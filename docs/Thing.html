@@ -17,7 +17,7 @@
      robots.push(new robot());
     }
     for (i = 0; i < 50; i++) {
-     for (j = 0; j < robots.length + 1; j++) {
+     for (j = 0; j < robots.length; j++) {
       xChange = Math.floor(Math.random() * Math.floor(2));
       if (xChange == 0) {
        x[j]++;
@@ -25,6 +25,11 @@
        x[j] -= 1;
       }
      }
+    }
+    ctx.fillStyle = "#000";
+    ctx.font = "15px Arial";
+    for (i = 0; i < robots.length; i++) { 
+     ctx.fillText(x[i], 10, i * 18);
     }
    }
    function robot() {
