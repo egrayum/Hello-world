@@ -11,18 +11,18 @@
    var xChange;
    var zeros = 0;
    var robos = 10000;
-   var steps = 50;
+   var steps = 100;
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 82) {
+     robots = [];
+     x = [];
      step();
     } 
    })
    function init() {
     c.width = "800px";
     c.height = "600px";
-    alert("version 1");
-    robots = [];
-    x = [];
+    alert("version 1.1");
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 100, 50, 78);
    }
