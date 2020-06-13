@@ -22,7 +22,7 @@
    function init() {
     c.width = "800px";
     c.height = "600px";
-    alert("version 1.1");
+    alert("version 1.15");
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 100, 50, 78);
    }
@@ -40,13 +40,13 @@
       }
      }
     }
-    alert(x);
+    alert("Final X positions: " + x);
     for (j = 0; j < robots.length; j++) {
      if (x[j] == 0) {
       zeros++;
      }
     }
-    alert(robos + " robots, " + steps + " steps. Probability to end up at 0: " + zeros + "/" + robos);
+    alert(robos + " robots, " + steps + " steps. Probability to end up back at 0: " + zeros + "/" + robots.length);
    }
    function robot() {
     x.push(0);   
