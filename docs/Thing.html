@@ -16,6 +16,7 @@
     if (event.keyCode == 82) {
      robots = [];
      x = [];
+     zeros = 0;
      step();
     } 
    })
@@ -46,7 +47,7 @@
       zeros++;
      }
     }
-    alert(robos + " robots, " + steps + " steps. Probability to end up back at 0: " + zeros + "/" + robots.length);
+    alert(robos + " robots, " + steps + " steps. Probability to end up back at 0: " + zeros + "/" + x.length);
    }
    function robot() {
     x.push(0);   
