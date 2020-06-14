@@ -10,7 +10,6 @@
    var isKeyDown = false;
    var score = 0;
    var interval;
-   alert("version 0.15");
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 88 && play == false) {
      play = true;
@@ -59,10 +58,10 @@
    function text() {
     ctx.fillStyle = "#000";
     ctx.font = "50px Arial";
-    ctx.fillText("Fragile Bird", 280, 300);
+    ctx.fillText("Fragile Bird", 280, 180);
     ctx.font = "20px Arial";
-    ctx.fillText("A flappy bird remake", 300, 330);
-    ctx.fillText("Press X to start", 320, 360);
+    ctx.fillText("A flappy bird remake", 310, 210);
+    ctx.fillText("Press X to start", 330, 240);
    }
    function scorer() {
     ctx.fillStyle = "#000";
