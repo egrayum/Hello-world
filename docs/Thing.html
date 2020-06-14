@@ -15,7 +15,7 @@
    var types = [];
    var type;
    var pipeHeight;
-   alert("version 1.0");
+   alert("version 1.01");
    // starts the game and makes you go up
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 88 && play == false) {
@@ -30,7 +30,7 @@
       types.push(Math.floor(Math.random() * Math.floor(5)));
      }
     } else if (event.keyCode == 38 && isKeyDown == false) {
-     yVel = 10;
+     yVel = 6;
      isKeyDown = true;
     }
    })
@@ -70,19 +70,19 @@
      type = types[i];
      // specifies pipe types
      if (type == 0) {
-      pipeHeight = 200;
+      pipeHeight = 160;
      } else if (type == 1) {
-      pipeHeight = 240;
+      pipeHeight = 200;
      } else if (type == 2) {
-      pipeHeight = 280;
+      pipeHeight = 240;
      } else if (type == 3) {
-      pipeHeight = 320;
+      pipeHeight = 280;
      } else if (type == 4) {
-      pipeHeight = 360;
+      pipeHeight = 320;
      }
      // renders pipes
      ctx.fillRect(pipeX[i], 0, 100, pipeHeight); 
-     ctx.fillRect(pipeX[i], pipeHeight + 150, 100, c.height - (pipeHeight + 150));
+     ctx.fillRect(pipeX[i], pipeHeight + 200, 100, c.height - (pipeHeight + 200));
      // pipe scrolling
      if (pipeX[i] < -100) {
       pipeX[i] = 1400;
