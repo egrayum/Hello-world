@@ -14,15 +14,19 @@
    var steps = 100;
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 82) {
+     x = [];
+     robots = [];
+     zeros = 0;
      step();
     } 
    })
    function init() {
     c.width = "800px";
     c.height = "600px";
-    alert("version 1");
+    alert("version 1.1");
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 100, 50, 78);
+    alert("Press R to run simulation");
    }
    function step() {
     for (i = 0; i < robos; i++) {
@@ -38,7 +42,6 @@
       }
      }
     }
-    alert("Final X positions: " + x);
     for (j = 0; j < robots.length; j++) {
      if (x[j] == 0) {
       zeros++;
