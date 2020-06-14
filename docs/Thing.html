@@ -12,6 +12,7 @@
    var interval;
    var pipeX = [];
    var i;
+   alert("version 0.18");
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 88 && play == false) {
      pipeX = [];
@@ -21,7 +22,7 @@
      yVel = 0;
      interval = window.setInterval(runGame, 20);
      for (i = 0; i < 5; i++) {
-      pipeX.push(500 + (i * 200));
+      pipeX.push(500 + (i * 300));
      }
     } else if (event.keyCode == 38 && isKeyDown == false) {
      yVel = 10;
@@ -56,9 +57,9 @@
     ctx.fillRect(0, 520, c.width, 81);
     for (i = 0; i < 5; i++) {
      pipeX[i] -= 4;
-     ctx.fillRect(pipeX[i], 0, 50, c.height);
-     if (pipeX[i] < -50) {
-      pipeX[i] = pipeX[pipeX.length - 1] + 200;
+     ctx.fillRect(pipeX[i], 0, 100, c.height);
+     if (pipeX[i] < -100) {
+      pipeX[i] = 1400;
      }
     }
     if (yPos < 0 || yPos > 480 || play == false) {
