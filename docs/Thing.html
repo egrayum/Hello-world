@@ -15,7 +15,7 @@
    var types = [];
    var type;
    var pipeHeight;
-   alert("version 1.21");
+   alert("version 1.22");
    // controls
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 88 && play == false) {
@@ -30,7 +30,7 @@
       types.push(Math.floor(Math.random() * Math.floor(5)));
      }
     } else if (event.keyCode == 38 && isKeyDown == false) {
-     yVel = 9;
+     yVel = 8;
      isKeyDown = true;
     }
    })
