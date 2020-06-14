@@ -25,7 +25,7 @@
    function init() {
     c.width = 800;
     c.height = 600;
-    alert("version 0.001");
+    alert("version 0.002");
     ctx.fillStyle = "#000";
     ctx.font = "50px Arial";
     ctx.fillText("Fragile Bird", 300, 300);
@@ -39,11 +39,12 @@
    function runGame() {
     ctx.fillStyle = "#666";
     ctx.fillRect(0, 0, c.width, c.height);
-    yVel -= 0.75;
+    yVel -= 0.1;
     yPos -= yVel;
     player();
     ctx.fillStyle = "#000";
     ctx.fillText(yVel, 20, 80);
+    ctx.fillText(isKeyDown, 20, 20);
    }
   </script>
  </head>
