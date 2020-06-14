@@ -27,8 +27,9 @@
    function init() {
     c.width = 800;
     c.height = 600;
-    alert("version 0.11");
+    alert("version 0.12");
     text();
+    scorer();
    }
    function player() {
     ctx.fillStyle = "#000";
@@ -39,6 +40,7 @@
     ctx.fillRect(0, 0, c.width, c.height);
     yVel -= 0.4;
     yPos -= yVel;
+    scorer();
     if (play == true) {
      player();
     }
@@ -53,7 +55,12 @@
     ctx.fillText("Fragile Bird", 300, 300);
     ctx.font = "20px Arial";
     ctx.fillText("Press X to start", 320, 360);
+   }
+   function scorer() {
+    ctx.fillStyle = "#000";
+    ctx.font = "50px Arial";
     ctx.fillText("Score: " + score, 20, 30);
+    ctx.fillText(play, 50, 50);
    }
   </script>
  </head>
