@@ -15,16 +15,17 @@
     } else if (event.keyCode == 38 && isKeyDown == false) {
      yVel = 6;
      isKeyDown = true;
-     window.setTimeout(setKeyDown, 500);
     }
    })
-   function setKeyDown() {
-    isKeyDown = false; 
-   }
+   document.addEventListener("keyup", function(event) {
+    if (event.keyCode == 38) {
+     isKeyDown = false; 
+    }
+   })
    function init() {
     c.width = 800;
     c.height = 600;
-    alert("version 0.003");
+    alert("version 0.004");
     ctx.fillStyle = "#000";
     ctx.font = "50px Arial";
     ctx.fillText("Fragile Bird", 300, 300);
