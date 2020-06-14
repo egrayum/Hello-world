@@ -60,7 +60,6 @@
     ctx.fillRect(0, 0, c.width, c.height);
     yVel -= 0.38;
     yPos -= yVel;
-    scorer();
     player();
     ctx.fillStyle = "#222";
     ctx.fillRect(0, 520, c.width, 81);
@@ -97,12 +96,13 @@
      }
      if (yPos < 0 || yPos > 480) {
      die();
+     }
+     if (pipeX[i] < 50 && scoreUP == false) {
+      scoreUP = true;
+      score++;
+     }
     }
-    if (pipeX[i] < 50 && scoreUP == false) {
-     scoreUP = true;
-     score++;
-    }
-    }
+    scorer();
    }
    // menu text
    function text() {
@@ -110,7 +110,7 @@
     ctx.font = "50px Arial";
     ctx.fillText("Fragile Bird", 280, 200);
     ctx.font = "30px Arial";
-    ctx.fillText("Your highscore: " + localStorage.getItem("yourBest"), 250, 38);
+    ctx.fillText("Your highscore: " + localStorage.getItem("yourBest"), 255, 38);
     ctx.font = "20px Arial";
     ctx.fillText("A flappy bird remake", 310, 230);
     ctx.fillText("Press X to start", 330, 260);
@@ -118,7 +118,7 @@
    }
    // score text
    function scorer() {
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = "#fff";
     ctx.font = "30px Arial";
     ctx.fillText("Score: " + score, 10, 38);
    }
