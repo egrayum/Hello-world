@@ -29,17 +29,21 @@
     ctx.fillStyle = "#000";
     ctx.font = "50px Arial";
     ctx.fillText("Fragile Bird", 300, 300);
-    ctx.font = "30px Arial";
-    ctx.fillText("Press X to start", 350, 380);
+    ctx.font = "20px Arial";
+    ctx.fillText("Press X to start", 320, 360);
    }
    function player() {
     ctx.fillStyle = "#000";
     ctx.fillRect(150, yPos, 50, 50);
    }
    function runGame() {
+    ctx.fillStyle = "#666";
+    ctx.fillRect(0, 0, c.width, c.height);
     yVel -= 0.75;
-    yPos += yVel;
+    yPos -= yVel;
     player();
+    ctx.fillStyle = "#000";
+    ctx.fillText(yVel, 20, 80);
    }
   </script>
  </head>
