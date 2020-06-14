@@ -30,7 +30,9 @@
    function init() {
     c.width = 800;
     c.height = 600;
-    alert("version 0.13");
+    ctx.fillStyle = "#666";
+    ctx.fillRect(0, 0, c.width, c.height);
+    alert("version 0.14");
     text();
     scorer();
    }
@@ -50,7 +52,8 @@
     if (yPos < 0 || yPos > 550 || play == false) {
      play = false; 
      text();
-     window.clearInterval(interval);12
+     window.clearInterval(interval);
+     init();
     }
    }
    function text() {
