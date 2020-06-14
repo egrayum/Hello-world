@@ -17,7 +17,7 @@
    var pipeHeight;
    var scoreUP = false;
    // controls
-   c.onmousedown = function clicky() {
+   c.onclick = function clicky() {
     if (play == false) {
      pipeX = [];
      play = true;
@@ -29,13 +29,9 @@
       pipeX.push(500 + (i * 300));
       types.push(Math.floor(Math.random() * Math.floor(5)));
      } 
-    } else if (isKeyDown == false) {
+    } else {
      yVel = 8.5;
-     isKeyDown = true;
     }
-   }
-   c.onmouseup = function anticlicky() {
-    isKeyDown = false; 
    }
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 88 && play == false) {
