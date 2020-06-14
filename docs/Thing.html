@@ -39,12 +39,9 @@
    function runGame() {
     ctx.fillStyle = "#666";
     ctx.fillRect(0, 0, c.width, c.height);
-    yVel -= 0.1;
+    yVel -= 0.4;
     yPos -= yVel;
     player();
-    ctx.fillStyle = "#000";
-    ctx.fillText(yVel, 20, 80);
-    ctx.fillText(isKeyDown, 20, 20);
    }
   </script>
  </head>
