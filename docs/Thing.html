@@ -4,55 +4,15 @@
   <script> 
    var c = document.getElementById("gameCanvas");
    var ctx = c.getContext("2d");
-   var i;
-   var j;
-   var robots = [];
-   var x = [];
-   var xChange;
-   var zeros = 0;
-   var robos = 10000;
-   var steps = 100;
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 82) {
-     x = [];
-     robots = [];
-     zeros = 0;
-     step();
-     ctx.fillStyle = "#000000";
+     ctx.fillStyle = "#000";
      ctx.fillRect(0, 0, 30, 30);
     } 
    })
    function init() {
-    c.width = "800px";
-    c.height = "600px";
-    alert("version 1.11");
-    ctx.fillStyle = "#000";
-    ctx.fillRect(0, 100, 50, 78);
-    alert("Press R to run simulation");
-   }
-   function step() {
-    for (i = 0; i < robos; i++) {
-     robots.push(new robot());
-    }
-    for (i = 0; i < steps; i++) {
-     for (j = 0; j < robots.length; j++) {
-      xChange = Math.floor(Math.random() * Math.floor(2));
-      if (xChange == 0) {
-       x[j]++;
-      } else if (xChange == 1) {
-       x[j] -= 1;
-      }
-     }
-    }
-    for (j = 0; j < robots.length; j++) {
-     if (x[j] == 0) {
-      zeros++;
-     }
-    }
-    alert(robos + " robots, " + steps + " steps. Probability to end up back at 0: " + zeros + "/" + x.length);
-   }
-   function robot() {
-    x.push(0);   
+    c.width = 800;
+    c.height = 600;
    }
   </script>
  </head>
