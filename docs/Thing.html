@@ -17,6 +17,26 @@
    var pipeHeight;
    var scoreUP = false;
    // controls
+   c.onmousedown = function clicky() {
+    if (play == false) {
+     pipeX = [];
+     play = true;
+     score = 0;
+     yPos = 0;
+     yVel = 0;
+     interval = window.setInterval(runGame, 20);
+     for (i = 0; i < 5; i++) {
+      pipeX.push(500 + (i * 300));
+      types.push(Math.floor(Math.random() * Math.floor(5)));
+     } 
+    } else if (isKeyDown == false) {
+     yVel = 8.5;
+     isKeyDown = true;
+    }
+   }
+   c.onmouseup = function anticlicky() {
+    isKeyDown = false; 
+   }
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 88 && play == false) {
      pipeX = [];
@@ -113,8 +133,8 @@
     ctx.fillText("Your highscore: " + localStorage.getItem("yourBest"), 255, 38);
     ctx.font = "20px Arial";
     ctx.fillText("A flappy bird remake", 310, 230);
-    ctx.fillText("Press X to start", 330, 260);
-    ctx.fillText("Up arrow key to control the square", 260, 290)
+    ctx.fillText("Press X or tap to start", 310, 260);
+    ctx.fillText("Up arrow key or tap to control the square", 240, 290)
    }
    // score text
    function scorer() {
