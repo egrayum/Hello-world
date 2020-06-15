@@ -74,8 +74,13 @@
    function runGame() {
     ctx.fillStyle = "#2864ff";
     ctx.fillRect(0, 0, c.width, c.height);
+    // player phyics
     yVel -= 0.38;
-    yPos -= yVel;
+    if (yVel < 10) {
+     yPos -= yVel;
+    } else {
+     yVel = 10;
+    }
     player();
     ctx.fillStyle = "#222";
     ctx.fillRect(0, 520, c.width, 81);
@@ -111,8 +116,9 @@
       }
      }
      if (yPos < 0 || yPos > 480) {
-     die();
+      die();
      }
+     // scoring
      if (pipeX[i] < 50 && scoreUP == false) {
       scoreUP = true;
       score++;
@@ -144,6 +150,7 @@
     text();
     window.clearInterval(interval);
     i = 10;
+    // high score stuff
     if (localStorage.getItem("yourBest") == undefined || score > localStorage.getItem("yourBest")) {
       localStorage.removeItem("yourBest");
       localStorage.setItem("yourBest", score);
