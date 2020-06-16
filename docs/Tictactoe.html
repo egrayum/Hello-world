@@ -4,14 +4,26 @@
   <script>
    var c = document.getElementById("gameCanvas");
    var ctx = c.getContext("2d");
+   var i;
    function init() {
     c.width = 800;
     c.height = 600;
-    ctx.fillStyle = "#333";
+    // draws the board
+    ctx.fillStyle = "#222";
     ctx.fillRect(198, 75, 4, 450);
     ctx.fillRect(348, 75, 4, 450);
     ctx.fillRect(50, 223, 450, 4);
     ctx.fillRect(50, 373, 450, 4);
+    ctx.strokeStyle = "#222";
+    ctx.lineWidth(4);
+    ctx.strokeRect(25, 50, 500, 500);
+    ctx.fillStyle = "#666";
+    ctx.font = "100px Arial";
+    for (i = 1; i < 9; i++) {
+     if (i < 4) {
+      ctx.fillText(i, 75 + ((i - 1) * 150), 200);
+     }
+    }
    }
   </script>
  </head>
