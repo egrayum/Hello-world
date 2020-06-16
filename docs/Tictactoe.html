@@ -18,6 +18,15 @@
     ctx.fillRect(348, 75, 4, 450);
     ctx.fillRect(50, 223, 450, 4);
     ctx.fillRect(50, 373, 450, 4);
+    ctx.fillStyle = "#555";
+    ctx.font = "100px Arial";
+    for (i = 0; i < 8; i++) {
+     if (i < 3) {
+      ctx.fillText(i + 1, 75 + (i * 150), 200);
+     } else {
+      ctx.fillText("i", 400, 400);
+     }
+    }
    }
   </script>
  </head>
