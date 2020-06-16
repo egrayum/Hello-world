@@ -1,11 +1,12 @@
 <html>
  <head>
-  <canvas id="gameCanvas" style="background: #18aa56; width: 100%; height: 100%;">
+  <canvas id="gameCanvas" style="background: #888; width: fit-content; height: fit-content;">
   <script>
    function init() {
     c.width = 800;
     c.height = 600;
-    ctx.strokeStyle = "#888";
+    ctx.strokeStyle = "#333";
+    ctx.lineWidth(5);
     ctx.goTo(200, 75);
     ctx.lineTo(200, 525);
     ctx.goTo(400, 75);
