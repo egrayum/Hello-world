@@ -1,16 +1,15 @@
 <html>
  <head>
-  <canvas id="gameCanvas" style="background: #888; width: fit-content; height: fit-content;">
+  <canvas id="gameCanvas" style="background: #888; width: fit-content; height: fit-content; text-align: center;">
   <script>
    function init() {
     c.width = 800;
     c.height = 600;
-    ctx.strokeStyle = "#333";
-    ctx.lineWidth(5);
-    ctx.goTo(200, 75);
-    ctx.lineTo(200, 525);
-    ctx.goTo(400, 75);
-    ctx.lineTo(400, 525);
+    ctx.fillStyle = "#333";
+    ctx.fillRect(188, 75, 4, 450);
+    ctx.fillRect(388, 75, 4, 450);
+    ctx.fillRect(50, 223, 450, 4);
+    ctx.fillRect(50, 373, 450, 4);
    }
   </script>
  </head>
