@@ -5,10 +5,12 @@
    var c = document.getElementById("gameCanvas");
    var ctx = c.getContext("2d");
    var i;
-   var command;
+   var command = "none";
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 191) {
      command = "/";
+    } else if (event.keyCode == 13) {
+     command = "none";
     }
    })
    function init() {
@@ -16,12 +18,10 @@
     c.height = 600;
     // draws the board
     drawBoard();
-    ctx.font = "30px Arial";
-    ctx.fillText("Type a command", 545, 535);
     window.setInterval(game, 20);
    }
    function game() {
-    ctx.fillstyle = "#888";
+    ctx.fillStyle = "#888";
     ctx.fillRect(0, 0, c.width, c.height);
     drawBoard();
     if (command == "/") {
@@ -55,6 +55,11 @@
      } else {
       ctx.fillText(i + 1, 100 + ((i - 6) * 150), 500);
      }
+    }
+    if (command == "none") {
+     ctx.fillStyle = "#666";
+     ctx.font = "30px Arial";
+     ctx.fillText("Type a command", 545, 535);
     }
    }
   </script>
