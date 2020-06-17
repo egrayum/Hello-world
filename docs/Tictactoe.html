@@ -6,11 +6,14 @@
    var ctx = c.getContext("2d");
    var i;
    var command = "none";
+   alert("version 0.01");
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 191) {
      command = "/";
     } else if (event.keyCode == 13) {
      command = "none";
+    } else {
+     command += event.key;
     }
    })
    function init() {
@@ -24,10 +27,10 @@
     ctx.fillStyle = "#888";
     ctx.fillRect(0, 0, c.width, c.height);
     drawBoard();
-    if (command == "/") {
+    if (command != "none") {
      ctx.font = "30px Arial";
      ctx.fillStyle = "#222";
-     ctx.fillText("/", 545, 535);
+     ctx.fillText(command, 545, 535);
     }
    }
    function drawBoard() {
