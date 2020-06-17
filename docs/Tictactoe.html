@@ -7,7 +7,7 @@
    var i;
    var command = "none";
    var key;
-   var play;
+   var play = false;
    var display = "start";
    var spots = [];
    var turn = "player";
@@ -21,7 +21,7 @@
     } else if (event.keyCode == 8) {
      command = "none";
     } else if (event.keyCode > 48 && event.keyCode < 58) {
-     if (turn == "player") {
+     if (turn == "player" && play == true) {
       found = false;
       for (i = 0; i < spots.length; i++) {
        if (spots[i] == event.key) {
@@ -30,6 +30,10 @@
       }
       if (found == false) { 
        spots.push(event.key);
+       spots.push("X");
+       turn = "bot";
+       // bot
+       turn = "player";
       }
      }
     } else {
