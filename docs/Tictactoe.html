@@ -12,7 +12,7 @@
    var spots = [];
    var turn = "player";
    var found = false;
-   alert("version 0.02");
+   alert("version 0.05");
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 55) {
      command = "/";
@@ -61,9 +61,10 @@
        display = "list";
      } else if (command == "/startgame") {
       play == true;
+      alert(play);
      }
-     key = 0;
      command = "none";
+     key = 0;
     }
    }
    function drawBoard() {
