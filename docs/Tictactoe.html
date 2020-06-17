@@ -24,9 +24,9 @@
      if (i < 3) {
       ctx.fillText(i + 1, 100 + (i * 150), 200);
      } else if (i < 6) {
-      ctx.fillText(i + 1, 100 + (i * 150), 350);
+      ctx.fillText(i + 1, 100 + ((i - 3) * 150), 350);
      } else {
-      ctx.fillText(i + 1, 100 + (i * 150), 500);
+      ctx.fillText(i + 1, 100 + ((i - 6) * 150), 500);
      }
     }
    }
