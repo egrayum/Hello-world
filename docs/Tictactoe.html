@@ -10,6 +10,8 @@
    var play;
    var display = "start";
    var spots = [];
+   var turn = "player";
+   var found = false;
    alert("version 0.02");
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 191) {
@@ -19,8 +21,17 @@
     } else if (event.keyCode == 8) {
      command = "none";
     } else if (event.keyCode > 48 && event.keyCode < 58) {
-      
-    }
+     if (turn == "player") {
+      found = false;
+      for (i = 0; i < spots.length; i++) {
+       if (spots[i] == event.key) {
+        found = true;
+       }
+      }
+      if (found == false) { 
+       spots.push(event.key);
+      }
+     }
     } else {
      command += event.key;
     }
