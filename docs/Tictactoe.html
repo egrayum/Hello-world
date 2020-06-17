@@ -5,6 +5,12 @@
    var c = document.getElementById("gameCanvas");
    var ctx = c.getContext("2d");
    var i;
+   var command;
+   document.addEventListener("keydown", function(event) {
+    if (event.keyCode == 191) {
+     command = "/";
+    }
+   })
    function init() {
     c.width = 800;
     c.height = 600;
