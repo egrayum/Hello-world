@@ -19,6 +19,9 @@
     ctx.fillRect(50, 223, 450, 4);
     ctx.fillRect(50, 373, 450, 4);
     ctx.fillRect(550, 545, 225, 4); 
+    ctx.font = "20px Arial";
+    ctx.fillText("Welcome to tic-tac-toe bot!", 545, 465);
+    ctx.fillText("Type /commands for a list of commands.", 545, 500);
     ctx.fillStyle = "#6e6e6e";
     ctx.font = "125px Arial";
     for (i = 0; i < 9; i++) {
@@ -31,7 +34,7 @@
      }
     }
     ctx.font = "30px Arial";
-    ctx.fillText("Type /startgame", 540, 535);
+    ctx.fillText("Type a command", 545, 535);
    }
   </script>
  </head>
