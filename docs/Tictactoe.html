@@ -45,7 +45,11 @@
     window.setInterval(game, 20);
    }
    function game() {
-    
+    if (command == "/") {
+     ctx.font = "30px Arial";
+     ctx.fillStyle = "#222";
+     ctx.fillText("/", 545, 535);
+    }
    }
   </script>
  </head>
