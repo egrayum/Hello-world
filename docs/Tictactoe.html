@@ -89,11 +89,29 @@
     ctx.font = "125px Arial";
     for (i = 0; i < 9; i++) {
      if (i < 3) {
-      ctx.fillText(i + 1, 100 + (i * 150), 200);
+      if (spots[i] == i) {
+       ctx.fillStyle = "#222";
+       ctx.fillText(spots[i] + 1, 100 + (i * 150), 200);
+      } else {
+       ctx.fillStyle = "#666";
+       ctx.fillText(i + 1, 100 + (i * 150), 200);
+      }
      } else if (i < 6) {
-      ctx.fillText(i + 1, 100 + ((i - 3) * 150), 350);
+      if (spots[i] == i) {
+       ctx.fillStyle = "#222";
+       ctx.fillText(spots[i] + 1, 100 + ((i - 3) * 150), 200);
+      } else {
+       ctx.fillStyle = "#666";
+       ctx.fillText(i + 1, 100 + ((i - 3) * 150), 350);
+      }
      } else {
-      ctx.fillText(i + 1, 100 + ((i - 6) * 150), 500);
+      if (spots[i] == i) {
+       ctx.fillStyle = "#222";
+       ctx.fillText(spots[i] + 1, 100 + ((i - 6) * 150), 200);
+      } else {
+       ctx.fillStyle = "#666";
+       ctx.fillText(i + 1, 100 + ((i - 6) * 150), 500);
+      }
      }
     }
     if (command == "none") {
