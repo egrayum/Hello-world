@@ -15,6 +15,22 @@
     c.width = 800;
     c.height = 600;
     // draws the board
+    drawBoard();
+    ctx.font = "30px Arial";
+    ctx.fillText("Type a command", 545, 535);
+    window.setInterval(game, 20);
+   }
+   function game() {
+    ctx.fillstyle = "#888";
+    ctx.fillRect(0, 0, c.width, c.height);
+    drawBoard();
+    if (command == "/") {
+     ctx.font = "30px Arial";
+     ctx.fillStyle = "#222";
+     ctx.fillText("/", 545, 535);
+    }
+   }
+   function drawBoard() {
     ctx.fillStyle = "#222";
     ctx.fillRect(25, 50, 500, 500);
     ctx.fillStyle = "#888";
@@ -39,16 +55,6 @@
      } else {
       ctx.fillText(i + 1, 100 + ((i - 6) * 150), 500);
      }
-    }
-    ctx.font = "30px Arial";
-    ctx.fillText("Type a command", 545, 535);
-    window.setInterval(game, 20);
-   }
-   function game() {
-    if (command == "/") {
-     ctx.font = "30px Arial";
-     ctx.fillStyle = "#222";
-     ctx.fillText("/", 545, 535);
     }
    }
   </script>
