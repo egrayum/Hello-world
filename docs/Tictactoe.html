@@ -12,7 +12,7 @@
    var spots = [];
    var turn = "player";
    var found = false;
-   alert("version 0.05");
+   alert("version 0.06");
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 55) {
      command = "/";
@@ -61,7 +61,6 @@
        display = "list";
      } else if (command == "/startgame") {
       play = true;
-      alert(play);
      }
      command = "none";
      key = 0;
@@ -100,6 +99,7 @@
      } else if (i < 6) {
       if (spots[(i * 2) - 1] == i) {
        ctx.fillStyle = "#222";
+       alert("hello");
        ctx.fillText(spots[i * 2], 100 + ((i - 3) * 150), 200);
       } else {
        ctx.fillStyle = "#666";
