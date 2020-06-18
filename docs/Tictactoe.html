@@ -12,6 +12,7 @@
    var spots = [];
    var turn = "player";
    var found = false;
+   var X;
    alert("version 0.06");
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 55) {
@@ -87,11 +88,12 @@
     }
     ctx.fillStyle = "#6e6e6e";
     ctx.font = "125px Arial";
+    X = spots[2];
     for (i = 0; i < 9; i++) {
      if (i < 3) {
       if (spots[(i * 2) - 1] == i) {
        ctx.fillStyle = "#222";
-       ctx.fillText(spots[i * 2], 100 + (i * 150), 200);
+       ctx.fillText(X, 100 + (i * 150), 200);
       } else {
        ctx.fillStyle = "#666";
        ctx.fillText(i + 1, 100 + (i * 150), 200);
@@ -99,7 +101,6 @@
      } else if (i < 6) {
       if (spots[(i * 2) - 1] == i) {
        ctx.fillStyle = "#222";
-       alert("hello");
        ctx.fillText(spots[i * 2], 100 + ((i - 3) * 150), 200);
       } else {
        ctx.fillStyle = "#666";
