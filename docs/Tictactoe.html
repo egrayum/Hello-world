@@ -92,7 +92,7 @@
      if (i < 3) {
       if (spots[i] == i) {
        ctx.fillStyle = "#222";
-       ctx.fillText(spots[i * 2] + 1, 100 + (i * 150), 200);
+       ctx.fillText(spots[(i * 2) - 1] + 1, 100 + (i * 150), 200);
       } else {
        ctx.fillStyle = "#666";
        ctx.fillText(i + 1, 100 + (i * 150), 200);
@@ -100,7 +100,7 @@
      } else if (i < 6) {
       if (spots[i] == i) {
        ctx.fillStyle = "#222";
-       ctx.fillText(spots[i * 2] + 1, 100 + ((i - 3) * 150), 200);
+       ctx.fillText(spots[(i * 2) - 1] + 1, 100 + ((i - 3) * 150), 200);
       } else {
        ctx.fillStyle = "#666";
        ctx.fillText(i + 1, 100 + ((i - 3) * 150), 350);
@@ -108,7 +108,7 @@
      } else {
       if (spots[i] == i) {
        ctx.fillStyle = "#222";
-       ctx.fillText(spots[i * 2] + 1, 100 + ((i - 6) * 150), 200);
+       ctx.fillText(spots[(i * 2) - 1] + 1, 100 + ((i - 6) * 150), 200);
       } else {
        ctx.fillStyle = "#666";
        ctx.fillText(i + 1, 100 + ((i - 6) * 150), 500);
