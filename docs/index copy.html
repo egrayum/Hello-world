@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      .top {
+        text-align: center;
+        color: #6e6e6e;
+      }
+      body {
+        background-color: #000;
+      }
+      p {
+        color: #6e6e6e;
+      }
+      div.slide {
+        display: flex;
+        margin-left: 80%;
+        width: 300px;
+        height: 300px;
+        border-radius: 20px;
+        background-color: #006887;
+        animation-name: "test";
+        animation-duration: 1s;
+      }
+      @keyframes test {
+        0% {margin-left: 80%; width: 300px; height: 300px; border-radius: 20px; background-color: #006887;}
+        100% {margin-left: 25%; width: 100px; height: 100px; border-radius: 50%; background-color: #006817;}
+      }
+    </style>
+    <script>
+    </script>
+  </head>
+  <body>
+    <h1 class="top">A test CSS game</h1>
+    <h4 class="top">A game made with only CSS/HTML!</h4>
+    <div class="slide"></div>
+  </body>
+</html>
