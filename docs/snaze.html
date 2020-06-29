@@ -161,21 +161,21 @@
       if (event.keyCode == 37) {
         if (play == true) {
           k.left = 1;
-        } else {
+        } else if (play == false) {
           play = true;
         }
       }
       if (event.keyCode == 39) {
         if (play == true) {
           k.right = 1;
-        } else {
+        } else if (play == false) {
           play = true;
         }
       }
       if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a") {
         if (play == true) {
           jumpy();
-        } else {
+        } else if (play == false) {
           play = true;
         }
       }
