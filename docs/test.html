@@ -8,9 +8,14 @@
     var j;
     var c;
     var jump = false;
-    var interval;
     var level = 1;
     var collectibles = 0;
+    var hours = 00;
+    var minutes = 00;
+    var seconds = 00;
+    var ms = 000;
+    var deaths = 0;
+    var play = false;
     var jumpgrade = 0; // jump upgrade
     var rows = [];
     // map
@@ -31,7 +36,8 @@
         rows[12] = ["a","0","0","0","0","0","a","a","0","0","a","a","0","a","a","a","0","a","l","l","l","a"];
         rows[13] = ["a","a","0","0","0","0","0","0","0","a","a","0","0","0","0","0","0","a","a","a","a","a"];
         rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-      } else if (level == 2) {
+      }
+      if (level == 2) {
         rows[0] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
         rows[1] = ["a","a","0","a","a","a","a","a","a","a","0","a","a","0","a","a","0","0","0","a","f","f"];
         rows[2] = ["a","0","0","0","a","a","0","a","0","a","0","0","0","0","0","0","0","a","0","a","f","a"];
@@ -47,7 +53,8 @@
         rows[12] = ["a","0","0","a","0","0","a","a","0","a","a","a","a","b","of","0","0","0","0","0","0","0"];
         rows[13] = ["a","a","0","a","a","0","0","0","0","a","a","a","a","a","a","a","l","l","a","a","0","a"];
         rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-      } else if (level == 3) {
+      }
+      if (level == 3) {
         rows[0] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
         rows[1] = ["a","0","0","0","0","a","a","a","0","0","0","a","a","a","0","a","a","a","0","a","0","0"];
         rows[2] = ["a","0","0","a","0","a","a","0","0","a","0","a","a","0","0","0","a","0","0","0","0","a"];
@@ -63,7 +70,8 @@
         rows[12] = ["a","a","a","0","0","0","0","0","0","a","0","a","a","a","a","a","0","0","f","a","f","f"];
         rows[13] = ["a","a","a","l","l","l","l","l","l","a","0","0","0","0","0","0","0","a","f","f","f","a"];
         rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-      } else if (level == 4) {
+      }
+      if (level == 4) {
         rows[0] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
         rows[1] = ["a","a","0","0","a","0","0","0","0","0","0","a","a","a","0","0","0","a","a","0","a","a"];
         rows[2] = ["a","0","0","0","0","0","0","0","0","0","0","0","a","0","0","a","0","a","0","0","0","a"];
@@ -78,6 +86,23 @@
         rows[11] = ["a","0","a","0","0","0","0","0","a","a","0","0","0","0","a","a","0","0","0","0","a","a"];
         rows[12] = ["a","0","0","0","p","0","0","0","0","0","0","a","a","0","a","a","0","0","0","0","0","0"];
         rows[13] = ["a","0","0","a","a","a","0","0","a","a","l","l","l","l","a","a","a","a","0","0","a","a"];
+        rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+      }
+      if (level == 5) {
+        rows[0] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[1] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[2] = ["a","a","0","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[3] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[4] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[5] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[6] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[7] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[8] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[9] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[10] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[11] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[12] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[13] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
         rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
       }
     }
@@ -104,6 +129,11 @@
       }
       window.setTimeout(setjump, 250 * (jumpgrade + 1));
     }
+    c.onclick = function() {
+      if (play == false) {
+        play = true;
+      }
+    }
     document.addEventListener("keydown", function(event) {
       if (event.keyCode == 37) {
         if (rows[p.y][p.x - 1] != "a") {
@@ -129,6 +159,19 @@
       ctx.fillRect(0, 0, c.width, c.height);
     }
     function renderMap() {
+      ctx.fillStyle = "#000";
+      ctx.font = "60px Arial";
+      ctx.fillText ("Minileste", 280, 65);
+      if (play == false) {
+        ctx.font = "20px Arial";
+        ctx.fillText('Click to start', 70, 40);
+        ctx.fillText("Arrow keys to move", 70, 65)
+      } else {
+        ctx.font = "30px Arial";
+        ctx.fillText("Deaths: " + deaths, 70, 65)
+      }
+      ctx.font = "30px Arial";
+      ctx.fillText(hours + ":" + minutes + ":" + seconds + "." + ms, 540, 65);
       ctx.fillStyle = "#1362a3";
       ctx.fillRect(70 + (p.x * 30), 70 + (p.y * 30), 30, 30);
       for (i = 0; i < rows.length; i ++) {
@@ -164,17 +207,37 @@
         level++;
         levelData();
       }
+      // collect berry
       if (rows[p.y][p.x] == "b") {
         rows[p.y][p.x] = "0";
         collectibles++;
       }
+      // die to lava
       if (rows[p.y][p.x] == "l") {
         p.x = 2;
         p.y = 2;
+        deaths++;
       }
+      // collect upgrade
       if (rows[p.y][p.x] == "p") {
         rows[p.y][p.x] = "0";
         jumpgrade = 1;
+      }
+      // timer
+      if (play == true) {
+        ms += 20;
+        if (ms > 999) {
+          seconds++;
+          ms -= 1000;
+        }
+        if (seconds > 59) {
+          minutes++;
+          seconds -= 60;
+        }
+        if (minutes > 59) {
+          hours++;
+          minutes -= 60;
+        }
       }
     }
     // set canvas size and stuff
@@ -185,7 +248,7 @@
       renderCanvas();
       renderMap();
       window.setInterval(update, 20);
-      interval = window.setInterval(fall, 100);
+      window.setInterval(fall, 100);
     }
     </script>
   </head>
