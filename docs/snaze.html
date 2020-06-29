@@ -17,6 +17,11 @@
     var deaths = 0;
     var play = false;
     var jumpgrade = 0; // jump upgrade
+    var k = {
+      up: 0,
+      left: 0,
+      right: 0
+    }
     var rows = [];
     // map
     function levelData() {
@@ -153,17 +158,24 @@
     }
     document.addEventListener("keydown", function(event) {
       if (event.keyCode == 37 && play == true) {
-        if (rows[p.y][p.x - 1] != "a") {
-          p.x -= 1;
-        }
+        k.left = 1;
       }
       if (event.keyCode == 39 && play == true) {
-        if (rows[p.y][p.x + 1] != "a") {
-          p.x += 1;
-        };
+        k.right = 1;
       }
       if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a" && play == true) {
         jumpy();
+      }
+    })
+    document.addEventListener("keyup", function(event) {
+      if (event.keyCode == 37 && play == true) {
+        k.left = 0;
+      }
+      if (event.keyCode == 39 && play == true) {
+        k.right = 0;
+      }
+      if (event.keyCode == 38 && play == true) {
+        k.up = 0; 
       }
     })
     function fall() {
@@ -276,6 +288,16 @@
       }
       if (rows[p.y][p.x] == "e") {
         play = 2;
+      }
+      if (k.right == 1) {
+        if (rows[p.y][p.x + 1] != "a") {
+          p.x += 1;
+        }
+      }
+      if (k.left == 1) {
+        if (rows[p.y][p.x - 1] != "a") {
+          p.x -= 1;
+        }
       }
     }
     // set canvas size and stuff
