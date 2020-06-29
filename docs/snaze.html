@@ -16,6 +16,7 @@
     var ms = 000;
     var deaths = 0;
     var play = false;
+    var move = false;
     var jumpgrade = 0; // jump upgrade
     var k = {
       up: 0,
@@ -183,18 +184,9 @@
         p.y += 1;
       } 
     }
-      function move() {
-        if (k.right == 1) {
-          if (rows[p.y][p.x + 1] != "a") {
-            p.x += 1;
-          }
-        }
-        if (k.left == 1) {
-          if (rows[p.y][p.x - 1] != "a") {
-            p.x -= 1;
-          }
-        }
-      }
+    function mover() {
+      move = false;  
+    }
     function renderCanvas() {
       ctx.fillStyle = "#618291";
       ctx.fillRect(0, 0, c.width, c.height);
@@ -302,6 +294,20 @@
       if (rows[p.y][p.x] == "e") {
         play = 2;
       }
+      if (k.right == 1 && move == false) {
+          if (rows[p.y][p.x + 1] != "a") {
+            p.x += 1;
+            move = true;
+            window.setTimeout(mover, 150);
+          }
+        }
+        if (k.left == 1 && move == false) {
+          if (rows[p.y][p.x - 1] != "a") {
+            p.x -= 1;
+            move = true;
+            window.setTimeout(mover, 150);
+          }
+        }
     }
     // set canvas size and stuff
     function init() {
