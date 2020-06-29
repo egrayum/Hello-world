@@ -167,6 +167,21 @@
       if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a" && play == true) {
         jumpy();
       }
+      if (event.keyCode == 82) {
+        init();
+        level = 1;
+        collectibles = 0;
+        p.x = 2;
+        p.y = 2;
+        ms = 0;
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        deaths = 0;
+        play = false;
+        jumpgrade = 0;
+        jump = false;
+      }
     })
     document.addEventListener("keyup", function(event) {
       if (event.keyCode == 37 && play == true) {
