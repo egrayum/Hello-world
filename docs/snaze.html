@@ -189,6 +189,8 @@
       }
       ctx.font = "30px Arial";
       ctx.fillText(hours + ":" + minutes + ":" + seconds + "." + ms, 540, 65);
+      ctx.font = "20px Arial";
+      ctx.fillText("Berries: " + collectibles, 70, 555);
       for (i = 0; i < rows.length; i ++) {
         for (j = 0; j < rows[i].length; j++) {
           if (rows[i][j] == "a") { // block
