@@ -182,6 +182,16 @@
       if (rows[p.y + 1][p.x] != "a" && jump == false) {
         p.y += 1;
       }
+      if (k.right == 1) {
+        if (rows[p.y][p.x + 1] != "a") {
+          p.x += 1;
+        }
+      }
+      if (k.left == 1) {
+        if (rows[p.y][p.x - 1] != "a") {
+          p.x -= 1;
+        }
+      }
     }
     function renderCanvas() {
       ctx.fillStyle = "#618291";
@@ -288,16 +298,6 @@
       }
       if (rows[p.y][p.x] == "e") {
         play = 2;
-      }
-      if (k.right == 1) {
-        if (rows[p.y][p.x + 1] != "a") {
-          p.x += 1;
-        }
-      }
-      if (k.left == 1) {
-        if (rows[p.y][p.x - 1] != "a") {
-          p.x -= 1;
-        }
       }
     }
     // set canvas size and stuff
