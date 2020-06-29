@@ -158,21 +158,21 @@
       }
     }
     document.addEventListener("keydown", function(event) {
-      if (event.keyCode == 37 && play == true) {
+      if (event.keyCode == 37) {
         if (play == true) {
           k.left = 1;
         } else {
           play = true;
         }
       }
-      if (event.keyCode == 39 && play == true) {
+      if (event.keyCode == 39) {
         if (play == true) {
           k.right = 1;
         } else {
           play = true;
         }
       }
-      if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a" && play == true) {
+      if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a") {
         if (play == true) {
           jumpy();
         } else {
@@ -224,7 +224,7 @@
       ctx.fillText ("Snaze", 280, 65);
       if (play == false) {
         ctx.font = "20px Arial";
-        ctx.fillText('Click to start', 70, 40);
+        ctx.fillText('Arrow key to start', 70, 40);
         ctx.fillText("Arrow keys to move", 70, 65)
       } else {
         ctx.font = "30px Arial";
