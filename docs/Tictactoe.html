@@ -9,9 +9,12 @@
    var command = "none";
    var key;
    var play = false;
-   // renders the X's and O's
-
-   // controls
+   var display = "start";
+   var spots = [];
+   var turn = "player";
+   var found = false;
+   var X;
+   alert("version 0.06");
    document.addEventListener("keydown", function(event) {
     if (event.keyCode == 55 && play == false|| event.keyCode == 191 && play == false) {
       command = "/";
@@ -20,8 +23,21 @@
     } else if (event.keyCode == 8) {
       command = "none";
     } else if (event.keyCode > 48 && event.keyCode < 58) {
-      // players turn
-
+     if (turn == "player" && play == true) {
+      found = false;
+      for (i = 0; i < spots.length; i++) {
+       if (spots[i] == event.key) {
+        found = true;
+       }
+      }
+      if (found == false) {
+       spots.push(parseInt(event.key));
+       spots.push("X");
+       turn = "bot";
+       // bot
+       turn = "player";
+      }
+     }
     } else {
       command += event.key;
     }
@@ -35,13 +51,19 @@
    }
    // run game
    function game() {
-     ctx.fillStyle = "#888";
-     ctx.fillRect(0, 0, c.width, c.height);
-     drawBoard();
-     if (command != "none") {
-       ctx.font = "30px Arial";
-       ctx.fillStyle = "#222";
-       ctx.fillText(command, 545, 535);
+    ctx.fillStyle = "#888";
+    ctx.fillRect(0, 0, c.width, c.height);
+    drawBoard();
+    if (command != "none") {
+     ctx.font = "30px Arial";
+     ctx.fillStyle = "#222";
+     ctx.fillText(command, 545, 535);
+    }
+    if (key == 1) {
+     if (command == "/commands") {
+       display = "list";
+     } else if (command == "/startgame") {
+      play = true;
      }
      // commands
      if (key == 1) {
@@ -77,13 +99,32 @@
     }
     ctx.fillStyle = "#6e6e6e";
     ctx.font = "125px Arial";
+    X = spots[2];
     for (i = 0; i < 9; i++) {
      if (i < 3) {
-      search(200, 0);
+      if (spots[(i * 2) - 1] == i) {
+       ctx.fillStyle = "#222";
+       ctx.fillText(X, 100 + (i * 150), 200);
+      } else {
+       ctx.fillStyle = "#666";
+       ctx.fillText(i + 1, 100 + (i * 150), 200);
+      }
      } else if (i < 6) {
-      search(350, 3);
+      if (spots[(i * 2) - 1] == i) {
+       ctx.fillStyle = "#222";
+       ctx.fillText(spots[i * 2], 100 + ((i - 3) * 150), 200);
+      } else {
+       ctx.fillStyle = "#666";
+       ctx.fillText(i + 1, 100 + ((i - 3) * 150), 350);
+      }
      } else {
-      search(500, 6);
+      if (spots[(i * 2) - 1] == i) {
+       ctx.fillStyle = "#222";
+       ctx.fillText(spots[i * 2], 100 + ((i - 6) * 150), 200);
+      } else {
+       ctx.fillStyle = "#666";
+       ctx.fillText(i + 1, 100 + ((i - 6) * 150), 500);
+      }
      }
     }
     if (command == "none") {
