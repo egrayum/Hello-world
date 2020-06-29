@@ -7,6 +7,7 @@
     var i;
     var j;
     var c;
+    var t = 0;
     var jump = false;
     var level = 1;
     var collectibles = 0;
@@ -179,17 +180,25 @@
       }
     })
     function fall() {
-      if (rows[p.y + 1][p.x] != "a" && jump == false) {
-        p.y += 1;
+      t++;
+      if (t == 100000) {
+        t = 1;
       }
-      if (k.right == 1) {
-        if (rows[p.y][p.x + 1] != "a") {
-          p.x += 1;
+      if (t/2 == 1) {
+        if (rows[p.y + 1][p.x] != "a" && jump == false) {
+          p.y += 1;
         }
       }
-      if (k.left == 1) {
-        if (rows[p.y][p.x - 1] != "a") {
-          p.x -= 1;
+      if (t/3 == 1) {
+        if (k.right == 1) {
+          if (rows[p.y][p.x + 1] != "a") {
+            p.x += 1;
+          }
+        }
+        if (k.left == 1) {
+          if (rows[p.y][p.x - 1] != "a") {
+            p.x -= 1;
+          }
         }
       }
     }
@@ -308,7 +317,7 @@
       renderCanvas();
       renderMap();
       window.setInterval(update, 20);
-      window.setInterval(fall, 150);
+      window.setInterval(fall, 50);
     }
     </script>
   </head>
