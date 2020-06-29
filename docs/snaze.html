@@ -159,13 +159,25 @@
     }
     document.addEventListener("keydown", function(event) {
       if (event.keyCode == 37 && play == true) {
-        k.left = 1;
+        if (play == true) {
+          k.left = 1;
+        } else {
+          play = true;
+        }
       }
       if (event.keyCode == 39 && play == true) {
-        k.right = 1;
+        if (play == true) {
+          k.right = 1;
+        } else {
+          play = true;
+        }
       }
       if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a" && play == true) {
-        jumpy();
+        if (play == true) {
+          jumpy();
+        } else {
+          play = true;
+        }
       }
       if (event.keyCode == 82) {
         level = 1;
@@ -306,8 +318,11 @@
           minutes -= 60;
         }
       }
-      if (rows[p.y][p.x] == "e") {
+      if (rows[p.y][p.x] == "e") { // touch end
         play = 2;
+        k.up = 0;
+        k.left = 0;
+        k.right = 0;
       }
       if (k.right == 1 && move == false) {
           if (rows[p.y][p.x + 1] != "a") {
