@@ -18,26 +18,6 @@ var i;
       right: 0
     }
     var rows = [];
-    // map
-    function levelData() {
-      if (level == 1) {
-        rows[0] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[1] = ["a","a","at","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[2] = ["a","ar","0","al","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[3] = ["a","a","ab","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[4] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[5] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[6] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[7] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[8] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[9] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[10] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[11] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[12] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[13] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-      }
-    }
     var p = {
       x: 2,
       y: 2
@@ -55,7 +35,7 @@ var i;
         window.setTimeout(upone, 150);
       }
       function upone() {
-        if (rows[p.y - 1][p.x] != "a") {
+        if (rows[p.y - 1][p.x] != "a" && rows[p.y - 1][p.x] != "al" && rows[p.y - 1][p.x] != "ar" && rows[p.y - 1][p.x] != "at" && rows[p.y - 1][p.x] != "ab" && rows[p.y - 1][p.x] != "abr" && rows[p.y - 1][p.x] != "abl" && rows[p.y - 1][p.x] != "atr" && rows[p.y - 1][p.x] != "atl"  && rows[p.y - 1][p.x] != "abro" && rows[p.y - 1][p.x] != "ablo" && rows[p.y - 1][p.x] != "atro" && rows[p.y - 1][p.x] != "atlo") {
           p.y -= 1;
         }
       }
@@ -76,11 +56,13 @@ var i;
           play = true;
         }
       }
-      if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a") {
-        if (play == true) {
-          jumpy();
-        } else if (play == false) {
-          play = true;
+      if (event.keyCode == 38) {
+        if (rows[p.y + 1][p.x] == "a" || rows[p.y + 1][p.x] == "al" || rows[p.y + 1][p.x] == "ar" || rows[p.y + 1][p.x] == "at" || rows[p.y + 1][p.x] == "ab" || rows[p.y + 1][p.x] == "abr" || rows[p.y + 1][p.x] == "abl" || rows[p.y + 1][p.x] == "atr" || rows[p.y + 1][p.x] == "atl"  || rows[p.y + 1][p.x] == "abro" || rows[p.y + 1][p.x] == "ablo" || rows[p.y + 1][p.x] == "atro" || rows[p.y + 1][p.x] == "atlo") {
+          if (play == true) {
+            jumpy();
+          } else if (play == false) {
+            play = true;
+          }
         }
       }
       if (event.keyCode == 82) {
@@ -111,8 +93,10 @@ var i;
       }
     })
     function fall() {
-      if (rows[p.y + 1][p.x] != "a" && jump == false) {
-        p.y += 1;
+      if (jump == false) {
+        if (rows[p.y + 1][p.x] != "a" && rows[p.y + 1][p.x] != "al" && rows[p.y + 1][p.x] != "ar" && rows[p.y + 1][p.x] != "at" && rows[p.y + 1][p.x] != "ab" && rows[p.y + 1][p.x] != "abr" && rows[p.y + 1][p.x] != "abl" && rows[p.y + 1][p.x] != "atr" && rows[p.y + 1][p.x] != "atl"  && rows[p.y + 1][p.x] != "abro" && rows[p.y + 1][p.x] != "ablo" && rows[p.y + 1][p.x] != "atro" && rows[p.y + 1][p.x] != "atlo") {
+          p.y += 1;
+        }
       }
     }
     function mover() {
@@ -138,22 +122,46 @@ var i;
       ctx.fillText(hours + ":" + minutes + ":" + seconds + "." + ms, 540, 65);
       for (i = 0; i < rows.length; i ++) {
         for (j = 0; j < rows[i].length; j++) {
-          if (rows[i][j] == "atl") { // top left corner
+          if (rows[i][j] == "atro") { // top right corner outer
+            ctx.fillStyle = "#653e13";
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
+            ctx.fillStyle = "#1a631c";
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 10, 30);
+            ctx.fillRect(70 + (j * 30), 90 + (i * 30), 30, 10);
+          } else if (rows[i][j] == "atlo") { // top left corner outer
+            ctx.fillStyle = "#653e13";
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
+            ctx.fillStyle = "#1a631c";
+            ctx.fillRect(70 + (j * 30), 90 + (i * 30), 30, 10);
+            ctx.fillRect(90 + (j * 30), 70 + (i * 30), 10, 30);
+          } else if (rows[i][j] == "ablo") { // bottom left corner outer
+            ctx.fillStyle = "#653e13";
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
+            ctx.fillStyle = "#1a631c";
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 10);
+            ctx.fillRect(90 + (j * 30), 70 + (i * 30), 10, 30);
+          } else if (rows[i][j] == "abro") { // bottom right corner outer
+            ctx.fillStyle = "#653e13";
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
+            ctx.fillStyle = "#1a631c";
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 10);
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 10, 30);
+          } else if (rows[i][j] == "atl") { // top left corner inner
             ctx.fillStyle = "#653e13";
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
             ctx.fillStyle = "#1a631c";
             ctx.fillRect(90 + (j * 30), 90 + (i * 30), 10, 10);
-          } else if (rows[i][j] == "atr") { // top right corner
+          } else if (rows[i][j] == "atr") { // top right corner inner
             ctx.fillStyle = "#653e13";
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
             ctx.fillStyle = "#1a631c";
             ctx.fillRect(70 + (j * 30), 90 + (i * 30), 10, 10);
-          } else if (rows[i][j] == "abl") { // bottom left corner
+          } else if (rows[i][j] == "abl") { // bottom left corner inner
             ctx.fillStyle = "#653e13";
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
             ctx.fillStyle = "#1a631c";
             ctx.fillRect(90 + (j * 30), 70 + (i * 30), 10, 10);
-          } else if (rows[i][j] == "abr") { // bottom right corner
+          } else if (rows[i][j] == "abr") { // bottom right corner inner
             ctx.fillStyle = "#653e13";
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
             ctx.fillStyle = "#1a631c";
@@ -168,12 +176,12 @@ var i;
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
             ctx.fillStyle = "#1a631c";
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 10);
-          } else if (rows[i][j] == "al") { // left grass
+          } else if (rows[i][j] == "ar") { // right side block
             ctx.fillStyle = "#653e13";
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
             ctx.fillStyle = "#1a631c";
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 10, 30);
-          } else if (rows[i][j] == "ar") { // block facing right
+          } else if (rows[i][j] == "al") { // block on left
             ctx.fillStyle = "#653e13";
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
             ctx.fillStyle = "#1a631c";
@@ -269,19 +277,19 @@ var i;
         k.right = 0;
       }
       if (k.right == 1 && move == false) {
-          if (rows[p.y][p.x + 1] != "a") {
-            p.x += 1;
-            move = true;
-            window.setTimeout(mover, 150);
-          }
+        if (rows[p.y][p.x + 1] != "a" && rows[p.y][p.x + 1] != "al" && rows[p.y][p.x + 1] != "ar" && rows[p.y][p.x + 1] != "at" && rows[p.y][p.x + 1] != "ab" && rows[p.y][p.x + 1] != "abr" && rows[p.y][p.x + 1] != "abl" && rows[p.y][p.x + 1] != "atr" && rows[p.y][p.x + 1] != "atl"  && rows[p.y][p.x + 1] != "abro" && rows[p.y][p.x + 1] != "ablo" && rows[p.y][p.x + 1] != "atro" && rows[p.y][p.x + 1] != "atlo") {
+          p.x += 1;
+          move = true;
+          window.setTimeout(mover, 150);
         }
-        if (k.left == 1 && move == false) {
-          if (rows[p.y][p.x - 1] != "a") {
-            p.x -= 1;
-            move = true;
-            window.setTimeout(mover, 150);
-          }
+      }
+      if (k.left == 1 && move == false) {
+        if (rows[p.y][p.x - 1] != "a" && rows[p.y][p.x - 1] != "al" && rows[p.y][p.x - 1] != "ar" && rows[p.y][p.x - 1] != "at" && rows[p.y][p.x - 1] != "ab" && rows[p.y][p.x - 1] != "abr" && rows[p.y][p.x - 1] != "abl" && rows[p.y][p.x - 1] != "atr" && rows[p.y][p.x - 1] != "atl"  && rows[p.y][p.x - 1] != "abro" && rows[p.y][p.x - 1] != "ablo" && rows[p.y][p.x - 1] != "atro" && rows[p.y][p.x - 1] != "atlo") {
+          p.x -= 1;
+          move = true;
+          window.setTimeout(mover, 150);
         }
+      }
     }
     // set canvas size and stuff
     function init2() {
@@ -293,4 +301,24 @@ var i;
       window.setInterval(update, 20);
       window.setInterval(fall, 100);
       window.setInterval(move, 150);
+    }
+    // map
+    function levelData() {
+      if (level == 1) {
+        rows[0] = ["a","atl","at","atr","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[1] = ["atl","atlo","0","atro","at","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[2] = ["al","0","0","0","0","0","0","0","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[3] = ["abl","ablo","0","abro","ablo","0","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[4] = ["a","abl","ab","abr","abl","ab","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[5] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[6] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[7] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[8] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[9] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[10] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[11] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[12] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[13] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+      }
     }
