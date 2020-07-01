@@ -1,8 +1,10 @@
-var i;
+    var c = document.getElementById("gameCanvas");
+    var ctx = c.getContext("2d");
+    var i;
     var j;
     var c;
     var jump = false;
-    var level = 1;
+    var level = 2;
     var collectibles = 0;
     var hours = 00;
     var minutes = 00;
@@ -11,6 +13,9 @@ var i;
     var deaths = 0;
     var play = false;
     var move = false;
+    var posStore = [];
+    var posChangeX;
+    var posChangeY;
     var jumpgrade = 0; // jump upgrade
     var k = {
       up: 0,
@@ -18,6 +23,43 @@ var i;
       right: 0
     }
     var rows = [];
+    // map
+    function levelData() {
+      if (level == 1) {
+        rows[0] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[1] = ["a","a","0","a","0","a","a","a","a","0","a","a","a","a","b","0","a","a","a","a","a","0"];
+        rows[2] = ["a","0","0","0","0","0","a","a","0","0","0","a","a","a","0","0","0","a","a","0","0","0"];
+        rows[3] = ["a","0","0","0","0","a","a","0","0","0","0","0","a","a","l","0","0","a","0","0","a","0"];
+        rows[4] = ["a","0","0","a","a","a","0","0","a","l","a","0","a","a","a","a","0","a","a","0","0","a"];
+        rows[5] = ["a","0","a","a","a","0","0","0","a","a","0","0","a","ll","0","0","0","a","ll","0","a","a"];
+        rows[6] = ["a","0","a","a","a","0","0","a","a","ll","0","0","a","ll","0","a","a","a","a","0","0","a"];
+        rows[7] = ["a","0","0","a","a","a","0","0","a","0","0","0","a","a","0","0","a","a","a","a","0","a"];
+        rows[8] = ["a","0","0","0","a","a","0","0","a","0","0","l","a","a","a","0","a","a","0","0","0","a"];
+        rows[9] = ["a","a","0","0","lr","a","0","a","a","0","a","a","0","0","0","0","a","0","0","a","a","a"];
+        rows[10] = ["a","a","0","0","lr","ll","0","0","f","0","a","a","0","a","0","a","a","0","a","a","0","a"];
+        rows[11] = ["a","a","ll","0","0","a","a","0","a","0","0","0","0","a","0","0","a","0","0","0","0","a"];
+        rows[12] = ["a","a","ll","0","0","0","0","0","a","a","a","l","a","a","a","0","0","a","a","a","0","a"];
+        rows[13] = ["a","a","a","a","a","a","0","a","a","a","a","a","a","a","a","a","0","0","0","0","0","a"];
+        rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+      }
+      if (level == 2) {
+        rows[0] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[1] = ["0","a","a","ll","b","0","0","0","0","0","0","0","0","0","f","f","f","0","0","0","0","a"];
+        rows[2] = ["0","0","0","a","a","a","pd","a","a","pu","0","a","a","0","a","f","0","0","0","a","0","a"];
+        rows[3] = ["0","0","0","0","0","0","0","a","a","l","l","a","a","pu","a","a","0","0","a","a","0","a"];
+        rows[4] = ["a","a","a","0","a","0","0","0","lr","a","a","ll","0","0","lr","0","0","a","a","a","0","a"];
+        rows[5] = ["a","a","0","0","a","a","0","lr","a","a","a","a","ll","pu","a","0","0","a","a","0","0","a"];
+        rows[6] = ["a","a","a","0","0","a","0","lr","a","a","a","a","ll","0","lr","0","a","a","ll","0","0","a"];
+        rows[7] = ["a","a","a","a","0","a","0","0","a","0","0","a","0","pu","a","0","0","a","ll","0","lr","a"];
+        rows[8] = ["a","ll","0","0","0","a","l","0","0","0","0","0","0","l","a","a","0","a","ll","0","lr","a"];
+        rows[9] = ["a","ll","0","a","a","a","a","a","a","a","a","a","a","a","0","0","0","a","ll","0","lr","a"];
+        rows[10] = ["a","ll","0","lr","a","0","0","0","0","0","a","a","a","a","0","0","a","a","a","0","0","a"];
+        rows[11] = ["a","ll","0","0","a","0","0","a","a","0","a","0","0","0","a","0","0","a","0","0","0","0"];
+        rows[12] = ["a","a","ll","0","lr","a","0","a","ll","0","a","0","l","0","a","0","a","a","0","0","0","0"];
+        rows[13] = ["a","a","ll","0","0","0","0","a","ll","0","0","0","a","0","0","0","a","ll","0","a","0","a"];
+        rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+      }
+    }
     var p = {
       x: 2,
       y: 2
@@ -35,11 +77,16 @@ var i;
         window.setTimeout(upone, 150);
       }
       function upone() {
-        if (rows[p.y - 1][p.x] != "a" && rows[p.y - 1][p.x] != "al" && rows[p.y - 1][p.x] != "ar" && rows[p.y - 1][p.x] != "at" && rows[p.y - 1][p.x] != "ab" && rows[p.y - 1][p.x] != "abr" && rows[p.y - 1][p.x] != "abl" && rows[p.y - 1][p.x] != "atr" && rows[p.y - 1][p.x] != "atl"  && rows[p.y - 1][p.x] != "abro" && rows[p.y - 1][p.x] != "ablo" && rows[p.y - 1][p.x] != "atro" && rows[p.y - 1][p.x] != "atlo") {
+        if (rows[p.y - 1][p.x] != "a" && rows[p.y - 1][p.x] != "pd") {
           p.y -= 1;
         }
       }
       window.setTimeout(setjump, 250 * (jumpgrade + 1));
+    }
+    c.onclick = function() {
+      if (play == false) {
+        play = true;
+      }
     }
     document.addEventListener("keydown", function(event) {
       if (event.keyCode == 37) {
@@ -56,13 +103,11 @@ var i;
           play = true;
         }
       }
-      if (event.keyCode == 38) {
-        if (rows[p.y + 1][p.x] == "a" || rows[p.y + 1][p.x] == "al" || rows[p.y + 1][p.x] == "ar" || rows[p.y + 1][p.x] == "at" || rows[p.y + 1][p.x] == "ab" || rows[p.y + 1][p.x] == "abr" || rows[p.y + 1][p.x] == "abl" || rows[p.y + 1][p.x] == "atr" || rows[p.y + 1][p.x] == "atl"  || rows[p.y + 1][p.x] == "abro" || rows[p.y + 1][p.x] == "ablo" || rows[p.y + 1][p.x] == "atro" || rows[p.y + 1][p.x] == "atlo") {
-          if (play == true) {
-            jumpy();
-          } else if (play == false) {
-            play = true;
-          }
+      if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a" || event.keyCode == 38 && rows[p.y + 1][p.x] == "pu") {
+        if (play == true) {
+          jumpy();
+        } else if (play == false) {
+          play = true;
         }
       }
       if (event.keyCode == 82) {
@@ -93,10 +138,8 @@ var i;
       }
     })
     function fall() {
-      if (jump == false) {
-        if (rows[p.y + 1][p.x] != "a" && rows[p.y + 1][p.x] != "al" && rows[p.y + 1][p.x] != "ar" && rows[p.y + 1][p.x] != "at" && rows[p.y + 1][p.x] != "ab" && rows[p.y + 1][p.x] != "abr" && rows[p.y + 1][p.x] != "abl" && rows[p.y + 1][p.x] != "atr" && rows[p.y + 1][p.x] != "atl"  && rows[p.y + 1][p.x] != "abro" && rows[p.y + 1][p.x] != "ablo" && rows[p.y + 1][p.x] != "atro" && rows[p.y + 1][p.x] != "atlo") {
-          p.y += 1;
-        }
+      if (rows[p.y + 1][p.x] != "a" && jump == false && rows[p.y + 1][p.x] != "pu") {
+        p.y += 1;
       }
     }
     function mover() {
@@ -122,72 +165,14 @@ var i;
       ctx.fillText(hours + ":" + minutes + ":" + seconds + "." + ms, 540, 65);
       for (i = 0; i < rows.length; i ++) {
         for (j = 0; j < rows[i].length; j++) {
-          if (rows[i][j] == "atro") { // top right corner outer
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 10, 30);
-            ctx.fillRect(70 + (j * 30), 90 + (i * 30), 30, 10);
-          } else if (rows[i][j] == "atlo") { // top left corner outer
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(70 + (j * 30), 90 + (i * 30), 30, 10);
-            ctx.fillRect(90 + (j * 30), 70 + (i * 30), 10, 30);
-          } else if (rows[i][j] == "ablo") { // bottom left corner outer
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 10);
-            ctx.fillRect(90 + (j * 30), 70 + (i * 30), 10, 30);
-          } else if (rows[i][j] == "abro") { // bottom right corner outer
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 10);
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 10, 30);
-          } else if (rows[i][j] == "atl") { // top left corner inner
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(90 + (j * 30), 90 + (i * 30), 10, 10);
-          } else if (rows[i][j] == "atr") { // top right corner inner
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(70 + (j * 30), 90 + (i * 30), 10, 10);
-          } else if (rows[i][j] == "abl") { // bottom left corner inner
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(90 + (j * 30), 70 + (i * 30), 10, 10);
-          } else if (rows[i][j] == "abr") { // bottom right corner inner
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 10, 10);
-          } else if (rows[i][j] == "at") { // top grass
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(70 + (j * 30), 90 + (i * 30), 30, 10);
-          } else if (rows[i][j] == "ab") { // bottom grass
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 10);
-          } else if (rows[i][j] == "ar") { // right side block
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 10, 30);
-          } else if (rows[i][j] == "al") { // block on left
-            ctx.fillStyle = "#653e13";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-            ctx.fillStyle = "#1a631c";
-            ctx.fillRect(90 + (j * 30), 70 + (i * 30), 10, 30);
+          if (rows[i][j] == "pu") {
+            ctx.fillStyle = "#222";
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 15);
+          } else if (rows[i][j] == "pd") {
+            ctx.fillStyle = "#222";
+            ctx.fillRect(70 + (j * 30), 85 + (i * 30), 30, 15);
           } else if (rows[i][j] == "a") { // block
-            ctx.fillStyle = "#653e13";
+            ctx.fillStyle = "#000";
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
           } else if (rows[i][j] == "b") { // berry
             ctx.fillStyle = "#116101";
@@ -197,7 +182,7 @@ var i;
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
           } else if (rows[i][j] == "l") { // lava
             ctx.fillStyle = "#ff0000";
-            ctx.fillRect(70 + (j * 30), 80 + (i * 30), 30, 20);
+            ctx.fillRect(70 + (j * 30), 85 + (i * 30), 30, 15);
           } else if (rows[i][j] == "of") { // obvious fake block
             ctx.fillStyle = "#222";
             ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
@@ -206,13 +191,16 @@ var i;
             ctx.fillRect(75 + (j * 30), 75 + (i * 30), 20, 25);
           } else if (rows[i][j] == "ll") { // lava left
             ctx.fillStyle = "#ff0000";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 20, 30);
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 15, 30);
           } else if (rows[i][j] == "lr") { // lava right
             ctx.fillStyle = "#ff0000";
-            ctx.fillRect(80 + (j * 30), 70 + (i * 30), 20, 30);
+            ctx.fillRect(85 + (j * 30), 70 + (i * 30), 15, 30);
           } else if (rows[i][j] == "e") { // end token
             ctx.fillStyle = "#f17221";
             ctx.fillRect(75 + (j * 30), 75 + (i * 30), 20, 20);
+          } else if (rows[i][j] == "lt") {
+            ctx.fillStyle = "#ff0000";
+            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 15);
           }
         }
       }
@@ -231,12 +219,26 @@ var i;
     }
     function update() {
       renderCanvas();
-      renderMap();
       if (p.x == 21) {
-        p.x = 2;
-        p.y = 2;
-        level++;
-        levelData();
+        if (level == 1 || level == 2) {
+          level++;
+          p.x = 0
+          levelData()
+        }
+      }
+      if (p.x == 0) {
+        if (level == 4) {
+          level++;
+          p.x = 21
+          levelData()
+        }
+      }
+      if (p.y == 0) {
+        if (level == 3 || level == 5) {
+          level++;
+          p.y = 14
+          levelData()
+        }
       }
       // collect berry
       if (rows[p.y][p.x] == "b") {
@@ -244,7 +246,7 @@ var i;
         collectibles++;
       }
       // die to lava
-      if (rows[p.y][p.x] == "l" || rows[p.y][p.x] == "ll" || rows[p.y][p.x] == "lr") {
+      if (rows[p.y][p.x] == "l" || rows[p.y][p.x] == "ll" || rows[p.y][p.x] == "lr"  || rows[p.y][p.x] == "lt") {
         p.x = 2;
         p.y = 2;
         deaths++;
@@ -277,19 +279,20 @@ var i;
         k.right = 0;
       }
       if (k.right == 1 && move == false) {
-        if (rows[p.y][p.x + 1] != "a" && rows[p.y][p.x + 1] != "al" && rows[p.y][p.x + 1] != "ar" && rows[p.y][p.x + 1] != "at" && rows[p.y][p.x + 1] != "ab" && rows[p.y][p.x + 1] != "abr" && rows[p.y][p.x + 1] != "abl" && rows[p.y][p.x + 1] != "atr" && rows[p.y][p.x + 1] != "atl"  && rows[p.y][p.x + 1] != "abro" && rows[p.y][p.x + 1] != "ablo" && rows[p.y][p.x + 1] != "atro" && rows[p.y][p.x + 1] != "atlo") {
-          p.x += 1;
-          move = true;
-          window.setTimeout(mover, 150);
+          if (rows[p.y][p.x + 1] != "a") {
+            p.x += 1;
+            move = true;
+            window.setTimeout(mover, 150);
+          }
         }
-      }
-      if (k.left == 1 && move == false) {
-        if (rows[p.y][p.x - 1] != "a" && rows[p.y][p.x - 1] != "al" && rows[p.y][p.x - 1] != "ar" && rows[p.y][p.x - 1] != "at" && rows[p.y][p.x - 1] != "ab" && rows[p.y][p.x - 1] != "abr" && rows[p.y][p.x - 1] != "abl" && rows[p.y][p.x - 1] != "atr" && rows[p.y][p.x - 1] != "atl"  && rows[p.y][p.x - 1] != "abro" && rows[p.y][p.x - 1] != "ablo" && rows[p.y][p.x - 1] != "atro" && rows[p.y][p.x - 1] != "atlo") {
-          p.x -= 1;
-          move = true;
-          window.setTimeout(mover, 150);
+        if (k.left == 1 && move == false) {
+          if (rows[p.y][p.x - 1] != "a") {
+            p.x -= 1;
+            move = true;
+            window.setTimeout(mover, 150);
+          }
         }
-      }
+        renderMap();
     }
     // set canvas size and stuff
     function init2() {
@@ -301,24 +304,4 @@ var i;
       window.setInterval(update, 20);
       window.setInterval(fall, 100);
       window.setInterval(move, 150);
-    }
-    // map
-    function levelData() {
-      if (level == 1) {
-        rows[0] = ["a","atl","at","atr","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[1] = ["atl","atlo","0","atro","at","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[2] = ["al","0","0","0","0","0","0","0","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[3] = ["abl","ablo","0","abro","ablo","0","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[4] = ["a","abl","ab","abr","abl","ab","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[5] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[6] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[7] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[8] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[9] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[10] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[11] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[12] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[13] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-      }
     }
