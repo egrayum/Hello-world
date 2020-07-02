@@ -4,7 +4,7 @@
     var j;
     var c;
     var jump = false;
-    var level = 2;
+    var level = 1;
     var collectibles = 0;
     var hours = 00;
     var minutes = 00;
@@ -16,6 +16,9 @@
     var posStore = [];
     var posChangeX;
     var posChangeY;
+    var creepBerry = 0;
+    var creep = false;
+    var levelBerry = 0;
     var jumpgrade = 0; // jump upgrade
     var k = {
       up: 0,
@@ -26,38 +29,106 @@
     // map
     function levelData() {
       if (level == 1) {
-        rows[0] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[1] = ["a","a","0","a","0","a","a","a","a","0","a","a","a","a","b","0","a","a","a","a","a","0"];
-        rows[2] = ["a","0","0","0","0","0","a","a","0","0","0","a","a","a","0","0","0","a","a","0","0","0"];
-        rows[3] = ["a","0","0","0","0","a","a","0","0","0","0","0","a","a","l","0","0","a","0","0","a","0"];
-        rows[4] = ["a","0","0","a","a","a","0","0","a","l","a","0","a","a","a","a","0","a","a","0","0","a"];
-        rows[5] = ["a","0","a","a","a","0","0","0","a","a","0","0","a","ll","0","0","0","a","ll","0","a","a"];
-        rows[6] = ["a","0","a","a","a","0","0","a","a","ll","0","0","a","ll","0","a","a","a","a","0","0","a"];
-        rows[7] = ["a","0","0","a","a","a","0","0","a","0","0","0","a","a","0","0","a","a","a","a","0","a"];
-        rows[8] = ["a","0","0","0","a","a","0","0","a","0","0","l","a","a","a","0","a","a","0","0","0","a"];
-        rows[9] = ["a","a","0","0","lr","a","0","a","a","0","a","a","0","0","0","0","a","0","0","a","a","a"];
-        rows[10] = ["a","a","0","0","lr","ll","0","0","f","0","a","a","0","a","0","a","a","0","a","a","0","a"];
-        rows[11] = ["a","a","ll","0","0","a","a","0","a","0","0","0","0","a","0","0","a","0","0","0","0","a"];
-        rows[12] = ["a","a","ll","0","0","0","0","0","a","a","a","l","a","a","a","0","0","a","a","a","0","a"];
-        rows[13] = ["a","a","a","a","a","a","0","a","a","a","a","a","a","a","a","a","0","0","0","0","0","a"];
-        rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[0] = ["s","s","s","a","s","s","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a"];
+        rows[1] = ["a","s","0","a","0","a","a","s","a","0","s","s","s","s","b","0","s","a","a","s","a","0"];
+        rows[2] = ["a","0","0","0","0","0","s","a","0","0","0","a","a","s","0","0","0","a","a","0","0","0"];
+        rows[3] = ["a","0","0","0","0","t","a","0","0","0","0","0","s","s","l","0","0","a","0","0","t","0"];
+        rows[4] = ["a","0","0","t","t","a","0","0","t","l","t","0","s","s","s","t","0","s","s","0","0","t"];
+        rows[5] = ["a","0","t","a","a","0","0","0","a","s","0","0","s","ll","0","0","0","s","ll","0","s","s"];
+        rows[6] = ["a","0","a","a","a","0","0","t","s","ll","0","0","a","ll","0","t","a","a","s","0","0","s"];
+        rows[7] = ["a","0","0","a","a","t","0","0","s","ll","0","0","a","s","0","0","a","a","a","t","0","a"];
+        rows[8] = ["a","0","0","0","s","a","0","0","a","0","0","t","a","a","t","0","a","a","0","0","0","a"];
+        rows[9] = ["a","t","0","0","s","s","0","t","a","0","t","a","0","0","0","0","a","0","0","t","t","a"];
+        rows[10] = ["a","a","0","0","s","ll","0","0","f","0","a","a","0","t","0","t","a","0","t","a","0","a"];
+        rows[11] = ["a","a","ll","0","0","s","t","0","s","0","0","0","0","a","0","0","a","0","0","0","0","a"];
+        rows[12] = ["a","s","ll","0","0","0","0","0","a","t","s","l","s","a","t","0","0","t","t","t","0","a"];
+        rows[13] = ["a","s","s","s","t","t","0","t","a","a","s","s","s","s","a","t","0","c","0","0","0","a"];
+        rows[14] = ["s","s","s","s","s","a","t","a","a","s","s","s","a","a","s","a","t","t","t","t","t","a"];
       }
       if (level == 2) {
-        rows[0] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
-        rows[1] = ["0","a","a","ll","b","0","0","0","0","0","0","0","0","0","f","f","f","0","0","0","0","a"];
-        rows[2] = ["0","0","0","a","a","a","pd","a","a","pu","0","a","a","0","a","f","0","0","0","a","0","a"];
-        rows[3] = ["0","0","0","0","0","0","0","a","a","l","l","a","a","pu","a","a","0","0","a","a","0","a"];
-        rows[4] = ["a","a","a","0","a","0","0","0","lr","a","a","ll","0","0","lr","0","0","a","a","a","0","a"];
-        rows[5] = ["a","a","0","0","a","a","0","lr","a","a","a","a","ll","pu","a","0","0","a","a","0","0","a"];
-        rows[6] = ["a","a","a","0","0","a","0","lr","a","a","a","a","ll","0","lr","0","a","a","ll","0","0","a"];
-        rows[7] = ["a","a","a","a","0","a","0","0","a","0","0","a","0","pu","a","0","0","a","ll","0","lr","a"];
-        rows[8] = ["a","ll","0","0","0","a","l","0","0","0","0","0","0","l","a","a","0","a","ll","0","lr","a"];
-        rows[9] = ["a","ll","0","a","a","a","a","a","a","a","a","a","a","a","0","0","0","a","ll","0","lr","a"];
-        rows[10] = ["a","ll","0","lr","a","0","0","0","0","0","a","a","a","a","0","0","a","a","a","0","0","a"];
-        rows[11] = ["a","ll","0","0","a","0","0","a","a","0","a","0","0","0","a","0","0","a","0","0","0","0"];
-        rows[12] = ["a","a","ll","0","lr","a","0","a","ll","0","a","0","l","0","a","0","a","a","0","0","0","0"];
-        rows[13] = ["a","a","ll","0","0","0","0","a","ll","0","0","0","a","0","0","0","a","ll","0","a","0","a"];
-        rows[14] = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"];
+        rows[0] = ["a","a","s","s","a","a","s","a","s","s","s","a","a","s","a","a","a","s","s","a","a","a"];
+        rows[1] = ["0","a","s","ll","b","0","0","0","0","0","0","0","0","0","f","f","f","0","0","0","0","a"];
+        rows[2] = ["0","0","a","s","t","t","pd","s","s","pu","0","s","s","0","a","f","0","0","0","t","0","a"];
+        rows[3] = ["0","c","0","0","0","0","0","s","s","l","l","s","s","pu","s","s","0","0","t","a","0","a"];
+        rows[4] = ["t","t","t","0","t","0","0","0","lr","s","s","ll","0","0","lr","0","0","t","a","a","0","a"];
+        rows[5] = ["a","s","0","0","a","t","0","lr","s","s","s","s","ll","pu","s","0","0","a","a","0","0","a"];
+        rows[6] = ["a","s","t","0","0","a","0","lr","s","s","s","s","ll","0","lr","0","t","a","ll","0","s","s"];
+        rows[7] = ["a","s","a","t","0","a","0","0","s","0","0","s","0","pu","s","0","0","a","ll","0","lr","a"];
+        rows[8] = ["s","ll","0","0","0","s","l","0","0","0","0","0","0","l","s","t","0","a","ll","0","lr","s"];
+        rows[9] = ["s","ll","0","s","t","a","s","s","t","t","t","t","s","s","0","0","0","a","ll","0","lr","s"];
+        rows[10] = ["s","ll","0","lr","a","0","0","0","0","0","a","a","a","a","0","0","t","a","s","0","0","a"];
+        rows[11] = ["s","ll","0","0","s","0","0","t","s","0","a","0","0","0","t","0","0","a","0","0","0","0"];
+        rows[12] = ["s","s","ll","0","lr","s","0","s","ll","0","s","0","l","0","a","0","a","s","0","0","0","0"];
+        rows[13] = ["a","s","ll","0","0","0","0","a","ll","0","0","0","a","0","0","0","s","ll","0","t","0","t"];
+        rows[14] = ["a","s","s","t","t","t","t","a","s","t","t","t","a","t","t","t","a","s","s","a","t","a"];
+      }
+      if (level == 3) {
+        rows[0] = ["a","ll","0","a","a","a","a","a","a","a","a","a","s","a","a","a","a","a","a","s","a","a"];
+        rows[1] = ["s","ll","0","0","0","a","a","a","s","a","s","0","0","0","0","0","0","0","0","0","s","a"];
+        rows[2] = ["a","s","s","t","0","0","a","s","s","s","a","0","t","t","0","0","0","t","0","0","0","a"];
+        rows[3] = ["a","b","s","a","t","0","0","0","0","c","a","0","0","a","pu","0","pu","a","t","0","0","a"];
+        rows[4] = ["a","0","0","0","0","0","0","s","l","s","s","0","0","s","l","l","l","s","0","0","t","a"];
+        rows[5] = ["a","0","0","s","t","t","0","0","a","a","s","l","0","s","s","s","s","a","l","0","0","a"];
+        rows[6] = ["a","t","0","s","a","0","0","0","0","0","a","s","0","s","s","a","a","a","s","t","0","a"];
+        rows[7] = ["a","ll","0","0","0","0","s","l","t","0","0","0","0","a","s","s","s","a","0","0","0","a"];
+        rows[8] = ["s","a","s","l","s","t","a","s","a","t","0","0","0","a","a","a","s","a","0","0","s","a"];
+        rows[9] = ["s","0","0","a","a","a","a","s","a","a","t","t","l","s","a","a","s","s","t","0","lr","s"];
+        rows[10] = ["0","0","0","0","0","0","0","a","s","a","s","a","a","a","0","0","0","0","a","0","0","a"];
+        rows[11] = ["0","0","0","0","s","0","0","s","0","a","0","s","0","0","0","0","0","0","0","s","0","a"];
+        rows[12] = ["0","0","0","s","s","pu","0","s","0","0","0","a","0","s","s","0","0","0","0","0","0","a"];
+        rows[13] = ["t","t","t","s","ll","0","0","0","0","l","0","0","0","lr","s","l","0","l","s","t","t","a"];
+        rows[14] = ["a","s","s","s","a","t","t","t","t","s","s","t","t","s","s","s","s","a","s","a","a","a"];
+      }
+      if (level == 4) {
+        rows[0] = ["a","s","s","a","a","s","s","a","s","a","a","a","s","a","a","a","a","a","a","s","a","a"];
+        rows[1] = ["a","0","0","s","a","0","0","0","a","a","a","a","s","a","s","a","a","a","a","b","a","a"];
+        rows[2] = ["0","0","0","0","a","0","t","0","0","0","0","lr","s","a","a","a","a","a","0","0","0","a"];
+        rows[3] = ["0","0","0","0","s","0","s","t","t","t","0","s","a","a","s","a","ll","0","0","0","t","a"];
+        rows[4] = ["t","0","0","0","0","0","0","a","a","0","0","lr","s","s","a","a","ll","0","s","l","a","a"];
+        rows[5] = ["a","0","t","s","l","l","0","lr","s","0","t","a","s","a","a","a","0","0","lr","s","a","a"];
+        rows[6] = ["a","0","0","a","a","s","0","lr","s","0","0","0","0","a","a","a","0","t","a","s","a","a"];
+        rows[7] = ["a","t","0","0","0","0","0","a","s","t","t","t","0","0","s","f","0","0","0","0","0","a"];
+        rows[8] = ["a","a","s","s","l","t","t","a","a","a","a","a","s","0","0","0","t","s","l","s","0","a"];
+        rows[9] = ["a","a","a","a","s","a","a","a","a","a","a","a","s","t","s","0","0","0","s","0","0","a"];
+        rows[10] = ["a","a","a","a","s","s","s","s","a","a","s","lt","0","0","0","0","0","0","0","0","t","a"];
+        rows[11] = ["a","s","s","0","a","s","0","0","0","s","a","0","0","t","t","a","0","0","s","s","a","a"];
+        rows[12] = ["a","s","0","0","0","0","c","0","0","0","a","0","s","a","a","a","l","l","a","s","s","a"];
+        rows[13] = ["s","ll","0","0","t","t","s","l","l","0","0","0","lr","a","s","a","a","s","s","s","a","a"];
+        rows[14] = ["s","ll","0","t","a","a","a","a","s","t","t","t","s","a","a","s","a","a","a","s","a","a"];
+      }
+      if (level == 5) {
+        rows[0] = ["a","lt","lt","lt","a","s","s","a","s","a","a","a","s","a","a","a","a","0","lr","s","a","a"];
+        rows[1] = ["a","0","0","0","0","s","0","0","0","a","a","0","s","0","a","0","0","0","lr","s","a","a"];
+        rows[2] = ["a","0","s","t","0","0","0","l","0","0","a","0","0","0","0","0","0","l","s","s","0","0"];
+        rows[3] = ["a","0","0","a","t","s","s","s","s","0","0","0","l","s","0","0","t","s","s","0","0","0"];
+        rows[4] = ["a","s","0","lr","a","s","s","a","s","a","t","s","s","s","0","t","a","s","0","0","0","t"];
+        rows[5] = ["s","0","0","a","a","s","s","b","s","a","a","a","s","a","0","a","0","0","0","0","t","a"];
+        rows[6] = ["ll","0","s","a","s","s","s","0","0","a","s","0","0","0","0","a","s","0","s","l","s","a"];
+        rows[7] = ["ll","0","0","0","a","s","s","0","t","a","0","0","l","0","a","s","ll","0","0","0","s","a"];
+        rows[8] = ["a","t","t","0","0","ll","0","0","0","0","0","s","s","s","a","s","ll","s","0","0","a","a"];
+        rows[9] = ["a","s","0","0","0","br","0","t","s","t","t","a","s","a","a","a","ll","0","0","s","s","a"];
+        rows[10] = ["a","0","0","a","a","s","s","a","s","a","a","a","s","a","a","s","ll","0","0","lr","a","a"];
+        rows[11] = ["a","0","0","0","0","0","0","0","0","0","a","a","s","a","a","s","0","0","s","s","s","a"];
+        rows[12] = ["a","t","0","0","0","0","s","l","s","0","lt","0","0","0","0","s","s","0","lr","s","s","a"];
+        rows[13] = ["a","s","0","0","l","0","lr","s","ll","c","0","0","0","0","0","0","0","0","lr","s","s","a"];
+        rows[14] = ["a","s","s","t","s","s","s","s","s","t","t","s","0","0","t","t","s","s","s","s","a","a"];
+      }
+      if (level == 6) {
+        rows[0] = ["s","a","s","a","a","s","s","a","s","a","a","a","s","a","a","a","a","a","a","s","a","a"];
+        rows[1] = ["s","s","0","0","a","s","0","a","0","0","a","a","s","0","a","a","0","a","a","s","a","a"];
+        rows[2] = ["a","s","0","0","a","0","0","0","0","0","0","a","0","0","a","0","0","0","a","s","a","a"];
+        rows[3] = ["a","0","0","0","0","0","0","0","0","0","0","0","0","pu","0","0","0","0","0","a","s","a"];
+        rows[4] = ["a","t","0","0","0","0","0","0","0","e","0","0","0","0","0","0","0","0","0","s","a","a"];
+        rows[5] = ["a","a","t","0","0","0","0","0","s","s","s","0","0","0","0","0","0","pu","pu","s","a","a"];
+        rows[6] = ["a","a","a","pu","0","0","0","t","a","a","a","t","0","0","0","0","0","0","0","a","a","a"];
+        rows[7] = ["a","a","0","0","0","0","t","a","a","a","a","a","0","0","t","t","t","0","0","a","s","a"];
+        rows[8] = ["a","0","0","0","0","0","0","a","0","a","0","0","0","s","a","a","a","pu","0","s","s","a"];
+        rows[9] = ["a","0","0","0","0","0","0","0","0","0","0","0","0","0","s","s","0","0","0","a","a","a"];
+        rows[10] = ["a","t","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","t","s","a","s"];
+        rows[11] = ["a","a","t","t","0","t","0","t","t","0","0","0","0","t","0","0","0","t","s","a","a","a"];
+        rows[12] = ["a","a","a","a","t","a","t","a","s","t","t","0","t","a","t","0","0","0","0","a","a","a"];
+        rows[13] = ["a","s","a","a","a","a","s","a","s","a","a","t","s","a","a","t","0","0","0","s","a","a"];
+        rows[14] = ["a","a","s","s","a","s","a","a","s","a","a","a","s","a","a","a","t","0","t","s","a","a"];
       }
     }
     var p = {
@@ -77,7 +148,7 @@
         window.setTimeout(upone, 150);
       }
       function upone() {
-        if (rows[p.y - 1][p.x] != "a" && rows[p.y - 1][p.x] != "pd") {
+        if (rows[p.y - 1][p.x] != "a" && rows[p.y - 1][p.x] != "pd" && rows[p.y - 1][p.x] != "t" && rows[p.y - 1][p.x] != "s") {
           p.y -= 1;
         }
       }
@@ -92,26 +163,25 @@
       if (event.keyCode == 37) {
         if (play == true) {
           k.left = 1;
-        } else if (play == false) {
-          play = true;
         }
       }
       if (event.keyCode == 39) {
         if (play == true) {
           k.right = 1;
-        } else if (play == false) {
-          play = true;
         }
       }
-      if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a" || event.keyCode == 38 && rows[p.y + 1][p.x] == "pu") {
+      if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a" || event.keyCode == 38 && rows[p.y + 1][p.x] == "pu" || event.keyCode == 38 && rows[p.y + 1][p.x] == "s"  || event.keyCode == 38 && rows[p.y + 1][p.x] == "t") {
         if (play == true) {
           jumpy();
-        } else if (play == false) {
-          play = true;
         }
       }
       if (event.keyCode == 82) {
-        level = 1;
+        if (creepBerry == 5 && rows[p.y][p.x] == "e") {
+          creep = true;
+        }
+        level = 1
+        levelBerry = 0;
+        creepBerry = 0;
         collectibles = 0;
         p.x = 2;
         p.y = 2;
@@ -123,6 +193,9 @@
         play = false;
         jumpgrade = 0;
         jump = false;
+      }
+      if (event.keyCode == 83) {
+        play = true;
         levelData();
       }
     })
@@ -138,7 +211,7 @@
       }
     })
     function fall() {
-      if (rows[p.y + 1][p.x] != "a" && jump == false && rows[p.y + 1][p.x] != "pu") {
+      if (rows[p.y + 1][p.x] != "a" && jump == false && rows[p.y + 1][p.x] != "pu" && rows[p.y + 1][p.x] != "t" && rows[p.y + 1][p.x] != "s") {
         p.y += 1;
       }
     }
@@ -146,84 +219,192 @@
       move = false;
     }
     function renderCanvas() {
-      ctx.fillStyle = "#618291";
+      ctx.fillStyle = "#000033";
       ctx.fillRect(0, 0, c.width, c.height);
     }
     function renderMap() {
-      ctx.fillStyle = "#000";
-      ctx.font = "60px Arial";
-      ctx.fillText ("Snaze 2", 280, 65);
+      ctx.fillStyle = "#fff";
       if (play == false) {
-        ctx.font = "20px Arial";
-        ctx.fillText('Arrow key to start', 70, 40);
-        ctx.fillText("Arrow keys to move", 70, 65)
+        ctx.font = "60px Arial";
+        ctx.fillText ("Snaze 2", 280, 105);
+        ctx.font = "25px Arial";
+        ctx.fillText('Press S to start', 300, 140);
+        ctx.fillText("Arrow keys to move", 280, 170)
       } else {
+        ctx.font = "60px Arial";
+        ctx.fillText ("Snaze 2", 280, 65);
         ctx.font = "30px Arial";
         ctx.fillText("Deaths: " + deaths, 70, 65);
-      }
-      ctx.font = "30px Arial";
-      ctx.fillText(hours + ":" + minutes + ":" + seconds + "." + ms, 540, 65);
-      for (i = 0; i < rows.length; i ++) {
-        for (j = 0; j < rows[i].length; j++) {
-          if (rows[i][j] == "pu") {
-            ctx.fillStyle = "#222";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 15);
-          } else if (rows[i][j] == "pd") {
-            ctx.fillStyle = "#222";
-            ctx.fillRect(70 + (j * 30), 85 + (i * 30), 30, 15);
-          } else if (rows[i][j] == "a") { // block
-            ctx.fillStyle = "#000";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-          } else if (rows[i][j] == "b") { // berry
-            ctx.fillStyle = "#116101";
-            ctx.fillRect(75 + (j * 30), 75 + (i * 30), 20, 20);
-          } else if (rows[i][j] == "f") { // fake block
-            ctx.fillStyle = "#090909";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-          } else if (rows[i][j] == "l") { // lava
-            ctx.fillStyle = "#ff0000";
-            ctx.fillRect(70 + (j * 30), 85 + (i * 30), 30, 15);
-          } else if (rows[i][j] == "of") { // obvious fake block
-            ctx.fillStyle = "#222";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
-          } else if (rows[i][j] == "p") { // powerup
-            ctx.fillStyle = "#d4af37";
-            ctx.fillRect(75 + (j * 30), 75 + (i * 30), 20, 25);
-          } else if (rows[i][j] == "ll") { // lava left
-            ctx.fillStyle = "#ff0000";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 15, 30);
-          } else if (rows[i][j] == "lr") { // lava right
-            ctx.fillStyle = "#ff0000";
-            ctx.fillRect(85 + (j * 30), 70 + (i * 30), 15, 30);
-          } else if (rows[i][j] == "e") { // end token
-            ctx.fillStyle = "#f17221";
-            ctx.fillRect(75 + (j * 30), 75 + (i * 30), 20, 20);
-          } else if (rows[i][j] == "lt") {
-            ctx.fillStyle = "#ff0000";
-            ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 15);
-          }
+        // text
+        ctx.fillStyle = "#fff";
+        ctx.font = "30px Arial";
+        ctx.fillText("Berries: " + collectibles, 70, 555);
+        ctx.fillText("Level " + level, 600, 555);
+        ctx.font = "30px Arial";
+        if (hours < 10) {
+          ctx.fillText("0" + hours + ":", 522, 65);
+        } else {
+          ctx.fillText(hours + ":", 522, 65);
+        }
+        if (minutes < 10) {
+          ctx.fillText("0" + minutes + ":", 565, 65);
+        } else {
+          ctx.fillText(minutes + ":", 565, 65);
+        }
+        if (seconds < 10) {
+          ctx.fillText("0" + seconds + ".", 608, 65);
+        } else {
+          ctx.fillText(seconds + ".", 608, 65);
+        }
+        if (ms < 10) {
+          ctx.fillText("00" + ms, 651, 65);
+        } else if (ms < 100) {
+          ctx.fillText("0" + ms, 651, 65);
+        } else {
+          ctx.fillText(ms, 651, 65);
         }
       }
-      // player
-      ctx.fillStyle = "#1362a3";
-      ctx.fillRect(70 + (p.x * 30), 70 + (p.y * 30), 30, 30);
-      if (play == 2) {
-        ctx.font = "40px Arial";
-        ctx.fillStyle = "#f17221";
-        ctx.fillText("Congratulations!", 280, 300);
+      if (play != false) {
+        for (i = 0; i < rows.length; i ++) {
+          for (j = 0; j < rows[i].length; j++) {
+            if (rows[i][j] == "c") { // creeper
+              ctx.fillStyle = "#02960d";
+              ctx.fillRect(74 + (j * 30), 70 + (i * 30), 22, 30);
+              ctx.fillRect(70 + (j * 30), 74 + (i * 30), 30, 22);
+              ctx.fillStyle = "#111";
+              ctx.fillRect(74 + (j * 30), 74 + (i * 30), 8, 8);
+              ctx.fillRect(88 + (j * 30), 74 + (i * 30), 8, 8);
+              ctx.fillRect(78 + (j * 30), 86 + (i * 30), 4, 11);
+              ctx.fillRect(89 + (j * 30), 86 + (i * 30), 4, 11);
+              ctx.fillRect(82 + (j * 30), 82 + (i * 30), 7, 11);
+            } else
+            if (rows[i][j] == "br") { // barrier right
+              ctx.fillStyle = "#c2813c";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 15, 15);
+              ctx.fillStyle = "#b2713b";
+              ctx.fillRect(70 + (j * 30), 85 + (i * 30), 15, 15);
+            } else if (rows[i][j] == "s") { // stone
+              ctx.fillStyle = "#5b5959";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
+              ctx.fillStyle = "#504c4c";
+              ctx.fillRect(70 + (j * 30), 85 + (i * 30), 15, 15);
+              ctx.fillStyle = "#605a5a";
+              ctx.fillRect(85 + (j * 30), 85 + (i * 30), 15, 15);
+              ctx.fillStyle = "#535252";
+              ctx.fillRect(85 + (j * 30), 70 + (i * 30), 15, 15);
+            } else if (rows[i][j] == "t") { // grass
+              ctx.fillStyle = "#6e492c";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
+              ctx.fillStyle = "#7e593c";
+              ctx.fillRect(70 + (j * 30), 85 + (i * 30), 15, 15);
+              ctx.fillStyle = "#02960d";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 15, 15);
+              ctx.fillStyle = "#12a61d";
+              ctx.fillRect(85 + (j * 30), 70 + (i * 30), 15, 15);
+            } else if (rows[i][j] == "pu") { // platform up
+              ctx.fillStyle = "#c2813c";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 15);
+              ctx.fillStyle = "#b2713b";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 15, 15);
+            } else if (rows[i][j] == "pd") { // platform down
+              ctx.fillStyle = "#c2813c";
+              ctx.fillRect(70 + (j * 30), 85 + (i * 30), 30, 15);
+              ctx.fillStyle = "#b2713b";
+              ctx.fillRect(70 + (j * 30), 85 + (i * 30), 15, 15);
+            } else if (rows[i][j] == "a") { // block
+              ctx.fillStyle = "#6e492c";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
+              ctx.fillStyle = "#7e593c";
+              ctx.fillRect(70 + (j * 30), 85 + (i * 30), 15, 15);
+              ctx.fillStyle = "#755234";
+              ctx.fillRect(85 + (j * 30), 70 + (i * 30), 15, 15);
+            } else if (rows[i][j] == "b") { // berry
+              ctx.fillStyle = "#c13101";
+              ctx.fillRect(75 + (j * 30), 75 + (i * 30), 20, 20);
+              ctx.fillStyle = "#b12101";
+              ctx.fillRect(75 + (j * 30), 75 + (i * 30), 10, 10);
+              ctx.fillStyle = "#c82908";
+              ctx.fillRect(85 + (j * 30), 85 + (i * 30), 10, 10);
+              ctx.fillStyle = "#c52f15";
+              ctx.fillRect(85 + (j * 30), 75 + (i * 30), 10, 10);
+            } else if (rows[i][j] == "f") { // fake block
+              ctx.fillStyle = "#734f34";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 30);
+              ctx.fillStyle = "#7f5d45";
+              ctx.fillRect(70 + (j * 30), 85 + (i * 30), 15, 15);
+              ctx.fillStyle = "#7b5935";
+              ctx.fillRect(85 + (j * 30), 70 + (i * 30), 15, 15);
+            } else if (rows[i][j] == "l") { // lava
+              ctx.fillStyle = "#ff0000";
+              ctx.fillRect(70 + (j * 30), 85 + (i * 30), 30, 15);
+              ctx.fillStyle = "#e22122";
+              ctx.fillRect(70 + (j * 30), 85 + (i * 30), 15, 15);
+            } else if (rows[i][j] == "p") { // powerup
+              ctx.fillStyle = "#d4af37";
+              ctx.fillRect(75 + (j * 30), 75 + (i * 30), 20, 25);
+            } else if (rows[i][j] == "ll") { // lava left
+              ctx.fillStyle = "#ff0000";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 15, 30);
+              ctx.fillStyle = "#e22122";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 15, 15);
+            } else if (rows[i][j] == "lr") { // lava right
+              ctx.fillStyle = "#ff0000";
+              ctx.fillRect(85 + (j * 30), 70 + (i * 30), 15, 30);
+              ctx.fillStyle = "#e22122";
+              ctx.fillRect(85 + (j * 30), 85 + (i * 30), 15, 15);
+            } else if (rows[i][j] == "e") { // end token
+              ctx.fillStyle = "#f17221";
+              ctx.fillRect(75 + (j * 30), 75 + (i * 30), 20, 20);
+            } else if (rows[i][j] == "lt") {
+              ctx.fillStyle = "#ff0000";
+              ctx.fillRect(70 + (j * 30), 70 + (i * 30), 30, 15);
+            }
+          }
+        }
+        // player
+        if (creep == false) {
+          ctx.fillStyle = "#1362a3";
+          ctx.fillRect(74 + (p.x * 30), 70 + (p.y * 30), 22, 30);
+          ctx.fillRect(70 + (p.x * 30), 74 + (p.y * 30), 30, 22);
+          ctx.fillStyle = "#111";
+          ctx.fillRect(78 + (p.x * 30), 78 + (p.y * 30), 4, 4);
+          ctx.fillRect(88 + (p.x * 30), 78 + (p.y * 30), 4, 4);
+          ctx.fillRect(78 + (p.x * 30), 86 + (p.y * 30), 4, 4);
+          ctx.fillRect(88 + (p.x * 30), 86 + (p.y * 30), 4, 4);
+          ctx.fillRect(78 + (p.x * 30), 90 + (p.y * 30), 14, 4);
+        } else {
+          ctx.fillStyle = "#02960d";
+          ctx.fillRect(74 + (p.x * 30), 70 + (p.y * 30), 22, 30);
+          ctx.fillRect(70 + (p.x * 30), 74 + (p.y * 30), 30, 22);
+          ctx.fillStyle = "#111";
+          ctx.fillRect(74 + (p.x * 30), 74 + (p.y * 30), 8, 8);
+          ctx.fillRect(88 + (p.x * 30), 74 + (p.y * 30), 8, 8);
+          ctx.fillRect(78 + (p.x * 30), 86 + (p.y * 30), 4, 11);
+          ctx.fillRect(89 + (p.x * 30), 86 + (p.y * 30), 4, 11);
+          ctx.fillRect(82 + (p.x * 30), 82 + (p.y * 30), 7, 11);
+        }
       }
-      ctx.fillStyle = "#000";
-      ctx.font = "30px Arial";
-      ctx.fillText("Berries: " + collectibles, 70, 555);
-      ctx.fillText("Level " + level, 600, 555);
+      if (play == false) {
+        ctx.fillStyle = "#1362a3";
+        ctx.fillRect(364, 200, 22, 30);
+        ctx.fillRect(360, 204, 30, 22);
+        ctx.fillStyle = "#111";
+        ctx.fillRect(368, 208, 4, 4);
+        ctx.fillRect(378, 208, 4, 4);
+        ctx.fillRect(368, 216, 4, 4);
+        ctx.fillRect(378, 216, 4, 4);
+        ctx.fillRect(368, 220, 14, 4);
+      }
     }
     function update() {
       renderCanvas();
+      // next level
       if (p.x == 21) {
         if (level == 1 || level == 2) {
           level++;
           p.x = 0
           levelData()
+          levelBerry = 0;
         }
       }
       if (p.x == 0) {
@@ -231,25 +412,28 @@
           level++;
           p.x = 21
           levelData()
+          levelBerry = 0;
         }
       }
       if (p.y == 0) {
         if (level == 3 || level == 5) {
           level++;
-          p.y = 14
+          p.y = 13
+          p.x += 1
           levelData()
+          levelBerry = 0;
         }
+      }
+      // creeper
+      if (rows[p.y][p.x] == "c" && levelBerry == 1) {
+        creepBerry++;
+        levelBerry = 0;
       }
       // collect berry
       if (rows[p.y][p.x] == "b") {
         rows[p.y][p.x] = "0";
         collectibles++;
-      }
-      // die to lava
-      if (rows[p.y][p.x] == "l" || rows[p.y][p.x] == "ll" || rows[p.y][p.x] == "lr"  || rows[p.y][p.x] == "lt") {
-        p.x = 2;
-        p.y = 2;
-        deaths++;
+        levelBerry = 1;
       }
       // collect upgrade
       if (rows[p.y][p.x] == "p") {
@@ -279,20 +463,50 @@
         k.right = 0;
       }
       if (k.right == 1 && move == false) {
-          if (rows[p.y][p.x + 1] != "a") {
+          if (rows[p.y][p.x + 1] != "a" && rows[p.y][p.x + 1] != "t" && rows[p.y][p.x + 1] != "s" && rows[p.y][p.x + 1] != "br") {
             p.x += 1;
             move = true;
             window.setTimeout(mover, 150);
           }
         }
         if (k.left == 1 && move == false) {
-          if (rows[p.y][p.x - 1] != "a") {
+          if (rows[p.y][p.x - 1] != "a" && rows[p.y][p.x - 1] != "t"  && rows[p.y][p.x - 1] != "s") {
             p.x -= 1;
             move = true;
             window.setTimeout(mover, 150);
           }
         }
+        if (p.x < 0) {
+          p.x = 0;
+        }
+        if (p.x > 21) {
+          p.x = 21;
+        }
         renderMap();
+        // die to lava and edge
+        if (rows[p.y][p.x] == "l" || rows[p.y][p.x] == "ll" || rows[p.y][p.x] == "lr"  || rows[p.y][p.x] == "lt" || p.y == 14) {
+          if (level == 1 || level == 2) {
+            p.x = 2;
+            p.y = 2;
+          }
+          if (level == 3) {
+            p.x = 1;
+            p.y = 11;
+          }
+          if (level == 4) {
+            p.x = 3;
+            p.y = 13;
+          }
+          if (level == 5) {
+            p.x = 20;
+            p.y = 3;
+          }
+          if (level == 6) {
+            p.x = 18;
+            p.y = 13;
+          }
+          deaths++;
+        }
     }
     // set canvas size and stuff
     function init2() {
