@@ -202,6 +202,12 @@
           play = true;
           levelData();
         }
+        if (event.keyCode == 40 && levelBerry == 1) {
+          creepBerry++;
+          levelBerry = 0;
+          collectibles--;
+          rows[p.y][p.x] = "hc";
+        }
       })
       document.addEventListener("keyup", function(event) {
         if (event.keyCode == 37 && play == true) {
@@ -271,7 +277,17 @@
         if (play != false) {
           for (i = 0; i < rows.length; i ++) {
             for (j = 0; j < rows[i].length; j++) {
-              if (rows[i][j] == "c") { // creeper
+              if (rows[i][j] == "hc") { // happy creeper
+                ctx.fillStyle = "#02960d";
+                ctx.fillRect(74 + (j * 30), 70 + (i * 30), 22, 30);
+                ctx.fillRect(70 + (j * 30), 74 + (i * 30), 30, 22);
+                ctx.fillStyle = "#111";
+                ctx.fillRect(78 + (j * 30), 78 + (i * 30), 4, 4);
+                ctx.fillRect(88 + (j * 30), 78 + (i * 30), 4, 4);
+                ctx.fillRect(78 + (j * 30), 86 + (i * 30), 4, 4);
+                ctx.fillRect(88 + (j * 30), 86 + (i * 30), 4, 4);
+                ctx.fillRect(78 + (j * 30), 90 + (i * 30), 14, 4);
+              } else if (rows[i][j] == "c") { // creeper
                 ctx.fillStyle = "#02960d";
                 ctx.fillRect(74 + (j * 30), 70 + (i * 30), 22, 30);
                 ctx.fillRect(70 + (j * 30), 74 + (i * 30), 30, 22);
@@ -281,8 +297,7 @@
                 ctx.fillRect(78 + (j * 30), 86 + (i * 30), 4, 11);
                 ctx.fillRect(89 + (j * 30), 86 + (i * 30), 4, 11);
                 ctx.fillRect(82 + (j * 30), 82 + (i * 30), 7, 11);
-              } else
-              if (rows[i][j] == "br") { // barrier right
+              } else if (rows[i][j] == "br") { // barrier right
                 ctx.fillStyle = "#c2813c";
                 ctx.fillRect(70 + (j * 30), 70 + (i * 30), 15, 15);
                 ctx.fillStyle = "#b2713b";
@@ -427,11 +442,6 @@
             levelData()
             levelBerry = 0;
           }
-        }
-        // creeper
-        if (rows[p.y][p.x] == "c" && levelBerry == 1) {
-          creepBerry++;
-          levelBerry = 0;
         }
         // collect berry
         if (rows[p.y][p.x] == "b") {
