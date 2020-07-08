@@ -1,0 +1,600 @@
+<html>
+  <head>
+    <canvas id="gameCanvas" style="height: 90%; margin-left: auto; margin-right: auto; background: #666; display: block;"></canvas>
+    <script>
+      var c = document.getElementById("gameCanvas");
+      var ctx = c.getContext("2d");
+      var i;
+      var j;
+      var z;
+      var q;
+      var jump = false;
+      var level = 2;
+      var collectibles = 0;
+      var hours = 00;
+      var minutes = 00;
+      var seconds = 00;
+      var ms = 000;
+      var deaths = 0;
+      var play = false;
+      var move = false;
+      var posStore = [];
+      var posChangeX;
+      var posChangeY;
+      var creepBerry = 0;
+      var creep = false;
+      var key = false;
+      var levelBerry = 0;
+      var found = false;
+      var jumpgrade = 0; // jump upgrade
+      var spawnScrollX = -5;
+      var spawnScrollY = -200;
+      //var oldScrollX = -5;
+      var oldScrollX = 0;
+      //var oldScrollY = -200;
+      var oldScrollY = -135;
+      var spawnX = 385;
+      var spawnY = 285;
+      var friction = 0.3;
+      //var scrollx = -5;
+      var scrollx = 0;
+      //var scrolly = -200;
+      var scrolly = -135;
+      var gravity = 0.25;
+      var k = {
+        up: 0,
+        left: 0,
+        right: 0,
+        down: 0
+      }
+      var rows = [];
+      // map
+      function levelData() {
+        if (level == 1) {
+          rows[0] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","a","a","a","s","s","a","a","s","s","0","0","0","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[1] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","t","s","a","a","a","s","s","a","a","s","s","0","0","0","s","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a"];
+          rows[2] = ["0","0","0","0","0","0","0","0","0","0","0","0","t","s","s","a","a","a","s","a","a","a","s","0","0","0","0","s","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a"];
+          rows[3] = ["0","0","0","0","0","0","0","0","0","0","0","s","s","s","0","0","0","0","0","0","s","a","s","0","0","0","s","s","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a"];
+          rows[4] = ["0","0","0","0","0","0","0","0","0","s","s","s","a","0","0","0","0","0","0","0","a","a","s","0","0","0","0","s","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a"];
+          rows[5] = ["0","0","0","0","0","0","0","0","s","s","s","a","0","0","0","s","s","ll","0","0","s","a","a","t","0","0","0","0","0","0","0","a","a","s","a","a","a","a","a","a","s","s","a","a"];
+          rows[6] = ["0","0","0","0","0","0","0","0","s","a","0","0","0","0","t","a","s","s","0","0","s","s","a","a","s","t","0","0","0","0","0","0","a","0","0","0","0","a","a","a","s","s","a","a"];
+          rows[7] = ["0","0","0","0","0","0","0","t","s","0","0","0","0","t","a","k","0","0","0","0","s","a","a","s","s","s","t","t","0","0","0","0","0","0","0","0","0","0","a","a","s","s","a","a"];
+          rows[8] = ["0","0","0","0","0","0","t","s","s","0","0","t","t","s","s","ll","cp","0","0","s","a","a","a","s","s","s","s","s","l","l","t","0","0","0","t","t","0","0","a","a","s","s","a","a"];
+          rows[9] = ["0","0","0","0","0","0","a","s","s","0","0","0","s","s","s","s","s","l","l","s","a","a","s","a","s","0","0","s","s","s","a","t","s","s","a","0","0","0","a","a","s","s","a","a"];
+          rows[10] = ["0","0","0","0","0","t","s","a","s","s","0","0","0","0","s","s","a","s","a","s","a","s","s","0","0","0","0","0","s","a","a","a","s","0","0","0","0","t","a","0","s","s","a","a"];
+          rows[11] = ["0","0","0","0","t","a","s","s","a","s","0","0","0","0","0","0","0","a","s","s","a","s","0","0","0","0","0","0","0","0","a","0","0","0","0","0","t","s","0","0","0","0","a","a"];
+          rows[12] = ["0","0","0","s","s","s","a","s","s","a","t","s","t","0","0","0","0","0","s","s","a","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","a","0","0","0","0","0","0","a"];
+          rows[13] = ["0","0","s","s","s","a","a","s","s","s","a","s","s","t","t","t","0","0","0","s","a","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","a","0","0","0","0","0","0","a"];
+          rows[14] = ["0","0","s","s","s","s","a","s","s","a","s","s","a","a","a","a","s","0","0","s","a","s","0","0","0","0","0","0","0","0","0","0","0","0","a","a","a","t","0","0","0","0","0","c"];
+          rows[15] = ["0","0","0","s","s","s","s","s","a","a","a","0","0","0","0","0","0","0","0","s","a","s","0","0","0","0","0","0","0","0","0","s","s","s","a","a","a","a","s","s","0","0","t","t"];
+          rows[16] = ["0","0","0","s","s","s","a","s","s","0","0","0","0","0","0","0","0","0","s","s","a","s","t","0","0","0","0","0","0","0","s","s","s","s","a","a","a","a","a","a","0","0","a","a"];
+          rows[17] = ["0","0","0","0","s","s","a","a","s","0","0","0","0","ca","0","0","0","t","s","s","a","s","a","0","0","0","0","0","0","0","s","a","a","s","a","a","s","s","0","0","0","s","a","a"];
+          rows[18] = ["0","0","0","0","s","s","s","s","0","0","0","0","t","t","t","0","0","0","s","s","a","a","s","s","0","0","0","0","0","0","0","0","0","0","s","s","s","0","0","0","0","s","a","a"];
+          rows[19] = ["0","0","0","0","s","s","s","0","0","0","0","t","a","a","s","0","0","0","s","s","a","a","a","s","0","0","0","0","0","0","0","0","0","0","0","s","0","0","0","t","t","s","a","a"];
+          rows[20] = ["0","0","0","0","0","s","0","0","0","0","0","0","s","s","0","0","0","0","s","s","a","a","0","0","0","0","0","t","t","t","t","0","0","0","0","0","0","0","0","a","s","s","a","a"];
+          rows[21] = ["0","0","0","0","0","s","0","0","t","0","0","0","0","s","0","0","0","t","s","s","s","0","0","0","0","0","t","s","s","s","0","0","t","t","0","0","0","0","t","a","s","s","a","a"];
+          rows[22] = ["0","0","0","0","s","s","0","t","a","t","0","0","0","0","0","0","0","s","s","0","0","0","0","0","t","t","s","s","a","0","0","0","a","s","s","s","t","t","a","a","s","s","a","a"];
+          rows[23] = ["0","0","0","0","s","s","0","0","0","s","t","0","0","0","0","0","0","0","0","0","0","0","t","t","a","a","0","a","a","0","0","a","s","a","a","a","s","s","a","s","s","s","a","a"];
+          rows[24] = ["0","0","0","0","0","s","s","0","0","0","a","s","t","t","0","0","0","0","0","0","t","t","s","s","0","0","0","0","0","pu","pu","a","a","s","a","s","0","0","0","0","s","s","a","a"];
+          rows[25] = ["0","0","0","0","0","s","s","0","0","0","a","s","a","a","t","t","s","l","l","s","a","a","s","0","0","0","0","0","0","0","0","s","s","s","a","0","0","0","cs","0","0","s","a","a"];
+          rows[26] = ["0","0","0","0","s","s","s","ll","0","s","a","s","a","a","s","s","a","s","s","s","0","0","0","0","0","0","0","0","t","0","0","0","0","0","0","0","0","s","s","s","0","s","s","a"];
+          rows[27] = ["0","0","t","s","s","s","s","s","0","a","0","0","0","0","0","lt","0","0","0","0","0","0","0","0","s","s","l","l","a","t","0","0","0","0","0","0","0","0","0","0","0","s","a","s"];
+          rows[28] = ["t","t","s","a","s","a","a","s","0","0","0","0","l","0","0","0","0","0","s","s","l","l","s","s","s","s","s","s","a","s","t","s","l","l","s","t","t","0","0","0","t","s","a","a"];
+          rows[29] = ["a","s","s","s","s","s","a","s","t","t","t","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","t","t","t","s","s","a","a"];
+        }
+        if (level == 2) {
+          rows[0] = ["a","s","s","s","s","s","a","s","s","a","a","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","s","s","s","s","a","a"];
+          rows[1] = ["a","a","0","0","0","s","a","s","a","s","s","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","a","a","s","s","a","a"];
+          rows[2] = ["a","0","0","0","0","0","0","s","s","0","0","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","s","a","s","s","a","a"];
+          rows[3] = ["a","t","0","p","0","0","0","s","0","0","0","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","a","a","s","s","s","a","a"];
+          rows[4] = ["a","s","t","t","t","0","0","c","0","0","0","0","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","a","s","s","s","a","a"];
+          rows[5] = ["a","s","s","s","s","s","t","t","t","t","0","0","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","a","a","s","s","a","a"];
+          rows[6] = ["a","a","s","a","s","s","a","s","0","0","0","0","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","s","a","s","s","a","a"];
+          rows[7] = ["a","s","s","a","a","s","a","s","s","0","0","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","s","t","s","s","a","a"];
+          rows[8] = ["a","a","a","s","s","s","a","s","0","0","lr","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","a","s","s","s","a","a"];
+          rows[9] = ["a","s","s","s","a","s","a","s","0","0","s","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","a","a","a","s","s","a","a"];
+          rows[10] = ["a","s","s","s","a","s","a","s","ll","0","0","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","s","a","s","a","a","s","s","a","a"];
+          rows[11] = ["a","s","a","a","s","s","a","s","s","0","0","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","a","s","s","s","a","a"];
+          rows[12] = ["a","s","s","s","s","a","a","s","a","0","0","0","s","s","a","a","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","a","s","a","s","s","a","a"];
+          rows[13] = ["a","0","0","s","s","s","s","s","s","s","0","0","a","s","s","a","s","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","a","s","a","s","s","a","a"];
+          rows[14] = ["0","cp","0","0","0","a","s","s","a","0","0","0","s","lt","a","s","s","t","s","s","0","0","0","0","0","0","s","s","s","s","s","a","s","s","a","a","a","a","s","s","s","s","a","a"];
+          rows[15] = ["t","t","0","0","0","0","a","0","0","0","0","s","s","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","a","s","s","a","s","s","a","a"];
+          rows[16] = ["a","a","t","0","0","0","s","0","0","cp","0","0","0","0","t","0","0","0","0","0","0","lr","s","s","ll","0","0","0","0","0","0","0","0","0","0","0","0","0","s","a","s","s","a","a"];
+          rows[17] = ["a","s","0","0","0","s","ll","0","0","t","t","0","0","s","a","s","l","l","s","s","a","a","s","s","s","s","t","t","t","0","0","0","0","0","cp","0","0","0","0","s","s","s","a","a"];
+          rows[18] = ["a","s","ll","0","0","a","ll","0","0","0","0","t","t","s","s","s","s","s","s","s","a","a","s","s","s","s","s","s","s","l","l","l","l","s","t","t","0","0","lr","t","s","s","a","a"];
+          rows[19] = ["s","s","s","0","0","s","s","s","0","0","0","s","s","s","a","s","a","s","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","0","0","0","s","s","s","s","a","a"];
+          rows[20] = ["a","s","0","0","lr","s","s","0","0","0","t","s","s","s","s","a","s","a","s","s","a","a","s","s","s","0","0","0","s","s","s","a","s","s","a","0","0","0","a","a","s","s","a","a"];
+          rows[21] = ["a","s","ll","0","s","s","ll","0","0","0","a","s","s","a","a","a","s","s","s","s","a","a","s","s","0","0","0","0","s","s","s","s","0","s","a","s","0","0","s","s","s","s","a","a"];
+          rows[22] = ["a","s","s","0","s","s","ll","0","0","t","s","s","s","a","s","a","a","a","s","s","a","a","s","0","0","0","0","0","0","s","s","0","0","0","a","0","0","0","s","a","s","s","a","a"];
+          rows[23] = ["a","0","0","0","s","a","ll","0","0","a","s","a","s","s","s","s","0","0","0","0","0","0","s","0","0","lr","ll","0","0","0","0","0","0","0","0","0","0","t","a","s","s","s","a","a"];
+          rows[24] = ["a","0","0","s","s","a","a","s","0","s","a","a","a","s","a","s","0","cs","0","0","0","0","0","0","s","s","s","s","0","0","0","s","l","l","s","t","t","s","s","a","s","s","a","a"];
+          rows[25] = ["s","ll","0","0","a","s","0","0","0","s","a","s","a","a","a","a","t","t","t","l","l","l","s","0","0","0","0","0","0","0","t","a","s","s","a","a","a","s","a","s","s","s","a","a"];
+          rows[26] = ["s","s","0","0","0","0","0","0","t","a","s","s","s","s","s","s","a","a","a","s","s","s","s","s","s","0","l","l","0","0","s","a","s","s","a","s","a","a","a","a","s","s","a","a"];
+          rows[27] = ["s","s","0","0","0","0","0","t","a","a","s","a","a","s","s","a","a","a","a","s","a","a","s","s","s","s","s","s","s","a","a","s","a","a","s","s","a","a","a","s","s","s","a","a"];
+          rows[28] = ["a","s","l","l","s","t","t","s","a","a","a","s","a","a","s","a","a","a","s","s","a","a","s","s","s","s","s","s","s","s","a","s","s","s","a","a","a","s","a","a","s","s","a","a"];
+          rows[29] = ["a","s","s","s","s","s","a","s","s","s","a","s","s","s","a","s","s","a","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","s","a","s","s","a","a"];
+        }
+      }
+      var p = {
+        //x: 385,
+        x: 28,
+        y: 285,
+        xvel: 0,
+        yvel: 0,
+        oldy: 130,
+        oldx: 130
+      }
+      document.addEventListener("keydown", function(event) {
+        if (event.keyCode == 37) {
+          if (play == true) {
+            k.left = 1;
+          }
+        }
+        if (event.keyCode == 39) {
+          if (play == true) {
+            k.right = 1;
+          }
+        }
+        if (event.keyCode == 38) {
+          k.up = 1;
+        }
+        if (event.keyCode == 40) {
+          k.down = 1;
+        }
+        if (event.keyCode == 82) {
+          level = 1
+          levelBerry = 0;
+          creepBerry = 0;
+          collectibles = 0;
+          p.x = 385;
+          p.y = 285;
+          ms = 0;
+          seconds = 0;
+          minutes = 0;
+          hours = 0;
+          deaths = 0;
+          play = false;
+          jumpgrade = 0;
+          jump = false;
+          scrollx = -5;
+          scrolly = -200;
+          p.yvel = 0;
+          p.xvel = 0
+        }
+        if (event.keyCode == 83 && play == false) {
+          play = true;
+          levelData();
+        }
+      })
+      document.addEventListener("keyup", function(event) {
+        if (event.keyCode == 37 && play == true) {
+          k.left = 0;
+        }
+        if (event.keyCode == 39 && play == true) {
+          k.right = 0;
+        }
+        if (event.keyCode == 38 && play == true) {
+          k.up = 0;
+        }
+        if (event.keyCode == 40 && play == true) {
+          k.down = 0;
+        }
+      })
+      function mover() {
+        move = false;
+      }
+      function renderCanvas() {
+        ctx.fillStyle = "#000033";
+        ctx.fillRect(0, 0, c.width, c.height);
+      }
+      function renderMap() {
+        if (play == false) {
+          ctx.fillStyle = "#fff";
+          ctx.font = "60px Arial";
+          ctx.fillText ("Snaze 3", 280, 105);
+          ctx.font = "25px Arial";
+          ctx.fillText('Press S to start', 300, 140);
+          ctx.fillText("Arrow keys to move", 280, 170)
+        }
+        if (play != false) {
+          for (i = 0; i < rows.length; i ++) {
+            for (j = 0; j < rows[i].length; j++) {
+              if (rows[i][j] == "p") { // jump powerup
+                ctx.fillStyle = "#e79d03";
+                ctx.fillRect(scrollx + 4 + (j * 30), scrolly + 4 + (i * 30), 22, 26);
+                ctx.fillRect(scrollx + (j * 30), scrolly + 8 + (i * 30), 30, 22);
+                ctx.fillStyle = "#986002";
+                ctx.fillRect(scrollx + 13 + (j * 30), scrolly + 16 + (i * 30), 4, 8);
+                ctx.fillStyle = "#704325";
+                ctx.fillRect(scrollx + (j * 30), scrolly + 12 + (i * 30), 30, 4);
+              } else if (rows[i][j] == "cs") { // chest
+                ctx.fillStyle = "#e79d03";
+                ctx.fillRect(scrollx + 4 + (j * 30), scrolly + 4 + (i * 30), 22, 26);
+                ctx.fillRect(scrollx + (j * 30), scrolly + 8 + (i * 30), 30, 22);
+                ctx.fillStyle = "#986002";
+                ctx.fillRect(scrollx + 13 + (j * 30), scrolly + 16 + (i * 30), 4, 8);
+                ctx.fillStyle = "#704325";
+                ctx.fillRect(scrollx + (j * 30), scrolly + 12 + (i * 30), 30, 4);
+              } else if (rows[i][j] == "k") { // key
+                ctx.fillStyle = "#f7ad0c";
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 4 + (i * 30), 12, 4);
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 12 + (i * 30), 12, 4);
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 8 + (i * 30), 4, 4);
+                ctx.fillRect(scrollx + 16 + (j * 30), scrolly + 8 + (i * 30), 4, 4);
+                ctx.fillStyle = "#b88006";
+                ctx.fillRect(scrollx + 12 + (j * 30), scrolly + 16 + (i * 30), 4, 12);
+                ctx.fillRect(scrollx + 16 + (j * 30), scrolly + 24 + (i * 30), 4, 4);
+              } else if (rows[i][j] == "hc") { // happy creeper
+                ctx.fillStyle = "#02960d";
+                ctx.fillRect(scrollx + 4 + (j * 30), scrolly + (i * 30), 22, 30);
+                ctx.fillRect(scrollx + (j * 30), scrolly + 4 + (i * 30), 30, 22);
+                ctx.fillStyle = "#111";
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 8 + (i * 30), 4, 4);
+                ctx.fillRect(scrollx + 18 + (j * 30), scrolly + 8 + (i * 30), 4, 4);
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 16 + (i * 30), 4, 4);
+                ctx.fillRect(scrollx + 18 + (j * 30), scrolly + 16 + (i * 30), 4, 4);
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 20 + (i * 30), 14, 4);
+              } else if (rows[i][j] == "c") { // creeper
+                ctx.fillStyle = "#02960d";
+                ctx.fillRect(scrollx + 4 + (j * 30), scrolly + (i * 30), 22, 30);
+                ctx.fillRect(scrollx + (j * 30), scrolly + 4 + (i * 30), 30, 22);
+                ctx.fillStyle = "#111";
+                ctx.fillRect(scrollx + 4 + (j * 30), scrolly + 4 + (i * 30), 8, 8);
+                ctx.fillRect(scrollx + 18 + (j * 30), scrolly + 4 + (i * 30), 8, 8);
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 16 + (i * 30), 4, 11);
+                ctx.fillRect(scrollx + 19 + (j * 30), scrolly + 16 + (i * 30), 4, 11);
+                ctx.fillRect(scrollx + 12 + (j * 30), scrolly + 12 + (i * 30), 7, 11);
+              } else if (rows[i][j] == "br") { // barrier right
+                ctx.fillStyle = "#c2813c";
+                ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 15, 15);
+                ctx.fillStyle = "#b2713b";
+                ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 15, 15);
+              } else if (rows[i][j] == "s") { // stone
+                ctx.fillStyle = "#5b5959";
+                ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 30, 30);
+                ctx.fillStyle = "#504c4c";
+                ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 15, 15);
+                ctx.fillStyle = "#605a5a";
+                ctx.fillRect(scrollx + 15 + (j * 30), scrolly + 15 + (i * 30), 15, 15);
+                ctx.fillStyle = "#535252";
+                ctx.fillRect(scrollx + 15 + (j * 30), scrolly + (i * 30), 15, 15);
+              } else if (rows[i][j] == "t") { // grass
+                ctx.fillStyle = "#6e492c";
+                ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 30, 30);
+                ctx.fillStyle = "#7e593c";
+                ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 15, 15);
+                ctx.fillStyle = "#02960d";
+                ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 15, 15);
+                ctx.fillStyle = "#12a61d";
+                ctx.fillRect(scrollx + 15 + (j * 30), scrolly + (i * 30), 15, 15);
+              } else if (rows[i][j] == "pu") { // platform up
+                ctx.fillStyle = "#c2813c";
+                ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 30, 15);
+                ctx.fillStyle = "#b2713b";
+                ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 15, 15);
+              } else if (rows[i][j] == "pd") { // platform down
+                ctx.fillStyle = "#c2813c";
+                ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 30, 15);
+                ctx.fillStyle = "#b2713b";
+                ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 15, 15);
+              } else if (rows[i][j] == "a") { // block
+                ctx.fillStyle = "#6e492c";
+                ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 30, 30);
+                ctx.fillStyle = "#7e593c";
+                ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 15, 15);
+                ctx.fillStyle = "#755234";
+                ctx.fillRect(scrollx + 15 + (j * 30), scrolly + (i * 30), 15, 15);
+              } else if (rows[i][j] == "b") { // berry
+                ctx.fillStyle = "#c13101";
+                ctx.fillRect(scrollx + 5 + (j * 30), scrolly + 5 + (i * 30), 20, 20);
+                ctx.fillStyle = "#b12101";
+                ctx.fillRect(scrollx + 5 + (j * 30), scrolly + 5 + (i * 30), 10, 10);
+                ctx.fillStyle = "#c82908";
+                ctx.fillRect(scrollx + 15 + (j * 30), scrolly + 15 + (i * 30), 10, 10);
+                ctx.fillStyle = "#c52f15";
+                ctx.fillRect(scrollx + 15 + (j * 30), scrolly + 5 + (i * 30), 10, 10);
+              } else if (rows[i][j] == "l") { // lava
+                ctx.fillStyle = "#ff0000";
+                ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 30, 15);
+                ctx.fillStyle = "#e22122";
+                ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 15, 15);
+              } else if (rows[i][j] == "ll") { // lava left
+                ctx.fillStyle = "#ff0000";
+                ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 15, 30);
+                ctx.fillStyle = "#e22122";
+                ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 15, 15);
+              } else if (rows[i][j] == "lr") { // lava right
+                ctx.fillStyle = "#ff0000";
+                ctx.fillRect(scrollx + 15 + (j * 30), scrolly + (i * 30), 15, 30);
+                ctx.fillStyle = "#e22122";
+                ctx.fillRect(scrollx + 15 + (j * 30), scrolly + 15 + (i * 30), 15, 15);
+              } else if (rows[i][j] == "cp") { // checkpoint
+                ctx.fillStyle = "#854714";
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 10 + (i * 30), 5, 20);
+                ctx.fillStyle = "#04d928";
+                ctx.fillRect(scrollx + 13 + (j * 30), scrolly + 10 + (i * 30), 13, 8);
+              } else if (rows[i][j] == "lt") { // top lava
+                ctx.fillStyle = "#ff0000";
+                ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 30, 15);
+                ctx.fillStyle = "#e22122";
+                ctx.fillRect(scrollx + 15 + (j * 30), scrolly + (i * 30), 15, 15);
+              } else if (rows[i][j] == "ca") { // checkpoint active
+                ctx.fillStyle = "#854714";
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 10 + (i * 30), 5, 20);
+                ctx.fillStyle = "#ff00ee";
+                ctx.fillRect(scrollx + 13 + (j * 30), scrolly + 10 + (i * 30), 13, 8);
+              }
+            }
+          }
+          ctx.fillStyle = "#fff";
+          if (play == true || play == 2){
+            ctx.fillStyle = "#fff";
+            ctx.font = "60px Arial";
+            ctx.fillText ("Snaze 3", 280, 65);
+            ctx.font = "30px Arial";
+            ctx.fillText("Deaths: " + deaths, 70, 65);
+            // text
+            ctx.font = "30px Arial";
+            ctx.fillText("Berries: " + collectibles, 70, 555);
+            ctx.fillText("Level " + level, 600, 555);
+            ctx.font = "30px Arial";
+            if (hours < 10) {
+              ctx.fillText("0" + hours + ":", 522, 65);
+            } else {
+              ctx.fillText(hours + ":", 522, 65);
+            }
+            if (minutes < 10) {
+              ctx.fillText("0" + minutes + ":", 565, 65);
+            } else {
+              ctx.fillText(minutes + ":", 565, 65);
+            }
+            if (seconds < 10) {
+              ctx.fillText("0" + seconds + ".", 608, 65);
+            } else {
+              ctx.fillText(seconds + ".", 608, 65);
+            }
+            if (ms < 10) {
+              ctx.fillText("00" + ms, 651, 65);
+            } else if (ms < 100) {
+              ctx.fillText("0" + ms, 651, 65);
+            } else {
+              ctx.fillText(ms, 651, 65);
+            }
+          }
+          // COLLISION/PLATFORMING STUFF HERE //
+            p.yvel += gravity;
+            if (p.yvel > 12) {
+              p.yvel = 12;
+            }
+            p.xvel *= friction;
+            p.x += p.xvel;
+            p.y += p.yvel;
+            for (i = 0; i < rows.length; i++) {
+              for (j = 0; j < rows[i].length; j++) {
+                if (rows[i][j] == "s" || rows[i][j] == "t" || rows[i][j] == "a" || rows[i][j] == "c") {
+                  // downwards collision
+                  if (p.y + 30 > scrolly + (i * 30) && p.y + 30 < scrolly + 13 + (i * 30) && p.x + 30 > scrollx + (j * 30) && p.x < scrollx + 30 + (j * 30)) {
+                    p.y = scrolly - 30 + (i * 30);
+                    p.yvel = 0;
+                    if (k.up == 1) {
+                      p.yvel = -6;
+                    }
+                  } else if (p.y < scrolly + 30 + (i * 30) && p.y > scrolly + 16 + (i * 30) && p.x + 30 > scrollx + (j * 30) && p.x < scrollx + 30 + (j * 30)) {
+                    // upwards collision
+                    p.y = scrolly + 30 + (i * 30);
+                  }
+                  if (p.x + 30 > scrollx + (j * 30) && p.x + 30 < scrollx + 14 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
+                    // rightwards collision
+                    p.x = scrollx - 30 + (j * 30);
+                    p.xvel = 0;
+                  } else if (p.x < scrollx + 30 + (j * 30) && p.x > scrollx + 20 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
+                    // leftwards collision
+                    p.x = scrollx + 30 + (j * 30);
+                    p.xvel = 0;
+                  }
+                  if (rows[i][j] == "c") {
+                    if (p.x < scrollx + 40 + (j * 30) && p.x + 30 > scrollx - 10 + (j * 30) && p.y + 30 > scrolly - 10 + (i * 30) && p.y < scrolly + 40 + (i * 30)) {
+                      if (k.down == 1 && collectibles > 0) {
+                        collectibles--;
+                        rows[i][j] = "hc";
+                      }
+                    }
+                  }
+                }
+                // OTHER COLLISIONS //
+                // lava collisions
+                if (rows[i][j] == "l") {
+                  if (p.y + 30 > scrolly + 15 + (i * 30) && p.y < scrolly + 30 + (i * 30) && p.x + 30 > scrollx + (j * 30) && p.x < scrollx + 30 + (j * 30)) {
+                    p.xvel = 0;
+                    p.yvel = 0;
+                    scrollx = spawnScrollX;
+                    scrolly = spawnScrollY;
+                    oldScrollX = spawnScrollX;
+                    oldScrollY = spawnScrollY;
+                    p.x = spawnX;
+                    p.y = spawnY;
+                    deaths++;
+                  }
+                } else if (rows[i][j] == "lt") {
+                  if (p.y + 30 > scrolly + (i * 30) && p.y < scrolly + 15 + (i * 30) && p.x + 30 > scrollx + (j * 30) && p.x < scrollx + 30 + (j * 30)) {
+                    scrollx = spawnScrollX;
+                    scrolly = spawnScrollY;
+                    oldScrollX = spawnScrollX;
+                    oldScrollY = spawnScrollY;
+                    p.xvel = 0;
+                    p.yvel = 0;
+                    p.x = spawnX;
+                    p.y = spawnY;
+                    deaths++;
+                  }
+                } else if (rows[i][j] == "ll") {
+                  if (p.x + 30 > scrollx + (j * 30) && p.x < scrollx + 15 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
+                    scrollx = spawnScrollX;
+                    scrolly = spawnScrollY;
+                    oldScrollX = spawnScrollX;
+                    oldScrollY = spawnScrollY;
+                    p.xvel = 0;
+                    p.yvel = 0;
+                    p.x = spawnX;
+                    p.y = spawnY;
+                    deaths++;
+                  }
+                } else if (rows[i][j] == "lr") {
+                  if (p.x + 30 > scrollx + 15 + (j * 30) && p.x < scrollx + 30 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
+                    scrollx = spawnScrollX;
+                    scrolly = spawnScrollY;
+                    oldScrollX = spawnScrollX;
+                    oldScrollY = spawnScrollY;
+                    p.xvel = 0;
+                    p.yvel = 0;
+                    p.x = spawnX;
+                    p.y = spawnY;
+                    deaths++;
+                  }
+                } else if (rows[i][j] == "cp") {
+                  if (p.x + 30 > scrollx + 8 + (j * 30) && p.x < scrollx + 26 + (j * 30) && p.y + 30 > scrolly + 10 + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
+                    spawnY = p.y;
+                    spawnX = p.x;
+                    spawnScrollY = scrolly;
+                    spawnScrollX = scrollx;
+                    for (z = 0; z < rows.length; z++) {
+                      for (q = 0; q < rows[z].length; q++) {
+                        if (rows[z][q] == "ca") {
+                          rows[z][q] = "cp";
+                        }
+                      }
+                    }
+                    rows[i][j] = "ca";
+                  }
+                } else if (rows[i][j] == "k") {
+                  if (p.x + 30 > scrollx + 8 + (j * 30) && p.x < scrollx + 20 + (j * 30) && p.y + 30 > scrolly + 4 + (i * 30) && p.y < scrolly + 28 + (i * 30)) {
+                    key = true;
+                    rows[i][j] = "0";
+                    for (z = 0; z < rows.length; z++) {
+                      for (q = 0; q < rows[z].length; q++) {
+                        if (rows[z][q] == "cs") {
+                          rows[z][q] = "b";
+                        }
+                      }
+                    }
+                    key = false;
+                  }
+                } else if (rows[i][j] == "b") {
+                  if (p.x + 30 > scrollx + 5 + (j * 30) && p.x < scrollx + 25 + (j * 30) && p.y + 30 > scrolly + 5 + (i * 30) && p.y < scrolly + 25 + (i * 30)) {
+                    rows[i][j] = "0";
+                    collectibles++;
+                  }
+                } else if (rows[i][j] == "pu") {
+                  if (p.x + 30 > scrollx + (j * 30) && p.x < scrollx + 30 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y + 30 < scrolly + 13 + (i * 30)) {
+                    p.y = scrolly - 30 + (i * 30);
+                    if (k.up == 1) {
+                      p.yvel = -6;
+                    }
+                  }
+                }
+              }
+            }
+            // next/previous room
+            if (level == 1) {
+              if (p.x + 30 > 795) {
+                level = 2;
+                levelData();
+                scrollx = 0;
+                oldScrollX = 0;
+                p.x = 8;
+              }
+            }
+            if (level == 2) {
+              if (p.x < 0) {
+                level = 1;
+                levelData();
+                scrollx = -520;
+                oldScrollX = -520;
+                p.x = 764;
+                rows[14][43] = "hc";
+                rows[25][38] = "0";
+                rows[6][15] = "0";
+              }
+            }
+            // scrolling //
+            scrollx += (p.x - 385) * -1;
+            scrolly += (p.y - 285) * -1;
+            if (scrollx < 0 && scrollx > -520) {
+              oldScrollX = scrollx;
+              p.x = 385;
+            } else {
+              scrollx = oldScrollX;
+            }
+            if (scrolly < 0 && scrolly > -305) {
+              oldScrollY = scrolly;
+              p.y = 285;
+            } else {
+              scrolly = oldScrollY;
+            }
+            //           //
+          // // // // // // // // // // // // //
+          // player
+          ctx.fillStyle = "#1362a3";
+          ctx.fillRect(p.x + 4, p.y, 22, 30);
+          ctx.fillRect(p.x, p.y + 4, 30, 22);
+          ctx.fillStyle = "#111";
+          ctx.fillRect(p.x + 8, p.y + 8, 4, 4);
+          ctx.fillRect(p.x + 18, p.y + 8, 4, 4);
+          ctx.fillRect(p.x + 8, p.y + 16, 4, 4);
+          ctx.fillRect(p.x + 18, p.y + 16, 4, 4);
+          ctx.fillRect(p.x + 8, p.y + 20, 14, 4);
+        }
+        if (play == false) {
+          ctx.fillStyle = "#1362a3";
+          ctx.fillRect(364, 200, 22, 30);
+          ctx.fillRect(360, 204, 30, 22);
+          ctx.fillStyle = "#111";
+          ctx.fillRect(368, 208, 4, 4);
+          ctx.fillRect(378, 208, 4, 4);
+          ctx.fillRect(368, 216, 4, 4);
+          ctx.fillRect(378, 216, 4, 4);
+          ctx.fillRect(368, 220, 14, 4);
+        }
+      }
+      function update() {
+        renderCanvas();
+        // timer
+        if (play == true) {
+          ms += 20;
+          if (ms > 999) {
+            seconds++;
+            ms -= 1000;
+          }
+          if (seconds > 59) {
+            minutes++;
+            seconds -= 60;
+          }
+          if (minutes > 59) {
+            hours++;
+            minutes -= 60;
+          }
+        }
+        if (k.right == 1) {
+          p.xvel = 10;
+        }
+        if (k.left == 1) {
+          p.xvel = -10;
+        }
+        renderMap();
+      }
+      // set canvas size and stuff
+      function init() {
+        c.width = 800;
+        c.height = 600;
+        levelData();
+        renderCanvas();
+        renderMap();
+        window.setInterval(update, 20);
+        window.setInterval(move, 150);
+      }
+
+    </script>
+   </head>
+  <body onload="init()">
+  </body>
+</html>
