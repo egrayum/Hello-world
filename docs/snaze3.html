@@ -443,7 +443,7 @@
                   // creeper collision
                   if (rows[i][j] == "c") {
                     if (p.x < scrollx + 40 + (j * 30) && p.x + 30 > scrollx - 10 + (j * 30) && p.y + 30 > scrolly - 10 + (i * 30) && p.y < scrolly + 40 + (i * 30)) {
-                      if (k.down == 1 && collectibles > 0) {
+                      if (collectibles > 0) {
                         collectibles--;
                         if (level == 1) {
                           obtainables[1] = 1;
