@@ -10,7 +10,7 @@
       var q;
       var move = false;
       var jump = false;
-      var level = 1;
+      var level = 2;
       var collectibles = 0;
       var hours = 00;
       var minutes = 00;
@@ -30,15 +30,19 @@
       var levelBerry = 0;
       var found = false;
       var jumpgrade = 0; // jump upgrade
-      var spawnScrollY = -200;
       var spawnScrollX = -5;
-      var oldScrollX = -5;
-      var oldScrollY = -200;
+      var spawnScrollY = -200;
+      //var oldScrollX = -5;
+      var oldScrollX = 0;
+      //var oldScrollY = -200;
+      var oldScrollY = -135;
       var spawnX = 385;
       var spawnY = 285;
       var friction = 0.3;
-      var scrollx = -5;
-      var scrolly = -200;
+      //var scrollx = -5;
+      var scrollx = 0;
+      //var scrolly = -200;
+      var scrolly = -135;
       var gravity = 0.25;
       var obtainables = [];
       var k = {
@@ -52,10 +56,10 @@
       function levelData() {
         if (level == 1) {
           rows[0] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","a","a","a","s","s","a","a","s","s","0","0","0","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
-          rows[1] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","t","s","a","a","a","s","s","a","a","s","s","0","0","0","s","s","s","a","a","a","s","a","a","s","s","a","a","s","s","a","s"];
-          rows[2] = ["0","0","0","0","0","0","0","0","0","0","0","0","t","s","s","a","a","a","s","a","a","a","s","0","0","0","0","a","a","s","s","a","a","a","a","s","s","a","a","a","a","s","s","a"];
-          rows[3] = ["0","0","0","0","0","0","0","0","0","0","0","s","s","s","0","0","0","0","0","0","s","a","s","0","0","0","s","a","a","s","a","a","s","s","s","a","a","a","a","a","s","a","a","a"];
-          rows[4] = ["0","0","0","0","0","0","0","0","0","s","s","s","a","0","0","0","0","0","0","0","a","a","s","0","0","0","0","s","a","s","a","a","a","s","s","a","a","a","a","a","s","s","a","s"];
+          rows[1] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","t","s","a","a","a","s","s","a","a","s","s","0","0","0","s","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a"];
+          rows[2] = ["0","0","0","0","0","0","0","0","0","0","0","0","t","s","s","a","a","a","s","a","a","a","s","0","0","0","0","s","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a"];
+          rows[3] = ["0","0","0","0","0","0","0","0","0","0","0","s","s","s","0","0","0","0","0","0","s","a","s","0","0","0","s","s","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a"];
+          rows[4] = ["0","0","0","0","0","0","0","0","0","s","s","s","a","0","0","0","0","0","0","0","a","a","s","0","0","0","0","s","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a"];
           rows[5] = ["0","0","0","0","0","0","0","0","s","s","s","a","0","0","0","s","s","ll","0","0","s","a","a","t","0","0","0","0","0","0","0","a","a","s","a","a","a","a","a","a","s","s","a","a"];
           rows[6] = ["0","0","0","0","0","0","0","0","s","a","0","0","0","0","t","a","s","s","0","0","s","s","a","a","s","t","0","0","0","0","0","0","a","0","0","0","0","a","a","a","s","s","a","a"];
           rows[7] = ["0","0","0","0","0","0","0","t","s","0","0","0","0","t","a","0","0","0","0","0","s","a","a","s","s","s","t","t","0","0","0","0","0","0","0","0","0","0","a","a","s","s","a","a"];
@@ -78,7 +82,7 @@
           rows[24] = ["0","0","0","0","0","s","s","0","0","0","a","s","t","t","0","0","0","0","0","0","t","t","s","s","0","0","0","0","0","pu","pu","a","a","s","a","s","0","0","0","0","s","s","a","a"];
           rows[25] = ["0","0","0","0","0","s","s","0","0","0","a","s","a","a","t","t","s","l","l","s","a","a","s","0","0","0","0","0","0","0","0","s","s","s","a","0","0","0","0","0","0","s","a","a"];
           rows[26] = ["0","0","0","0","s","s","s","ll","0","s","a","s","a","a","s","s","a","s","s","s","0","0","0","0","0","0","0","0","t","0","0","0","0","0","0","0","0","s","s","s","0","s","s","a"];
-          rows[27] = ["0","0","t","s","s","s","s","s","0","a","0","0","0","0","0","lt","0","0","0","0","0","0","0","0","s","s","l","l","a","t","0","0","0","0","0","0","0","0","0","0","0","a","a","s"];
+          rows[27] = ["0","0","t","s","s","s","s","s","0","a","0","0","0","0","0","lt","0","0","0","0","0","0","0","0","s","s","l","l","a","t","0","0","0","0","0","0","0","0","0","0","0","s","a","s"];
           rows[28] = ["t","t","s","a","s","a","a","s","0","0","0","0","l","0","0","0","0","0","s","s","l","l","s","s","s","s","s","s","a","s","t","s","l","l","s","t","t","0","0","0","t","s","a","a"];
           rows[29] = ["a","s","s","s","s","s","a","s","t","t","t","s","s","s","t","t","t","t","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","t","t","t","s","s","a","a"];
         }
@@ -88,18 +92,18 @@
           rows[2] = ["a","0","0","0","0","0","0","s","s","0","0","s","s","0","0","0","s","s","s","s","a","a","s","s","s","s","s","s","s","s","s","s","s","s","a","a","a","s","s","a","s","s","a","a"];
           rows[3] = ["a","t","0","p","0","0","0","s","0","0","0","s","s","0","k","0","0","0","0","0","0","0","0","s","s","s","s","s","s","s","s","s","s","s","a","a","a","a","a","s","s","s","a","a"];
           rows[4] = ["a","s","t","t","t","0","0","c","0","0","0","0","s","0","t","0","0","0","0","0","0","0","0","lr","s","s","s","s","s","s","s","s","s","s","a","a","a","s","a","s","s","s","a","a"];
-          rows[5] = ["a","s","s","s","s","s","t","t","t","t","0","0","s","t","s","t","s","l","l","s","s","0","0","s","s","s","s","s","s","s","s","s","s","s","a","a","a","s","a","a","s","s","a","a"];
+          rows[5] = ["a","s","s","s","s","s","t","t","t","t","0","0","s","t","s","t","s","l","l","s","s","ll","0","s","s","s","s","s","s","s","s","s","s","s","a","a","a","s","a","a","s","s","a","a"];
           rows[6] = ["a","a","s","a","s","s","a","s","0","0","0","0","s","s","s","s","s","s","s","s","a","a","0","lr","s","s","s","s","s","s","s","a","s","s","a","a","a","s","s","a","s","s","a","a"];
           rows[7] = ["a","s","s","a","a","s","a","s","s","0","0","s","s","s","s","s","0","0","s","s","a","ll","0","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","s","t","s","s","a","a"];
           rows[8] = ["a","a","a","s","s","s","a","s","0","0","lr","s","s","s","s","s","0","0","0","0","0","a","0","0","0","0","0","0","0","0","0","a","s","s","a","a","a","s","a","s","s","s","a","a"];
           rows[9] = ["a","s","s","s","a","s","a","s","0","0","s","s","s","s","s","s","s","0","0","0","0","0","0","cp","0","0","0","0","0","0","0","0","0","s","a","a","a","a","a","a","s","s","a","a"];
           rows[10] = ["a","s","s","s","a","s","a","s","ll","0","0","s","s","s","s","s","0","0","t","t","t","t","t","t","t","t","t","t","s","l","0","0","0","0","a","s","a","s","a","a","s","s","a","a"];
-          rows[11] = ["a","s","a","a","s","s","a","s","s","0","0","s","s","s","s","s","0","0","s","s","s","s","s","s","s","s","s","s","s","s","s","s","0","0","0","a","0","0","0","s","s","s","a","a"];
-          rows[12] = ["a","s","s","s","s","a","a","s","a","0","0","0","s","s","a","s","0","0","a","a","s","a","s","s","s","a","s","a","a","a","s","s","ll","0","0","0","0","0","0","0","s","s","a","a"];
-          rows[13] = ["a","0","0","s","s","s","s","s","s","s","0","0","a","s","s","s","0","0","s","s","a","a","a","s","s","s","s","s","s","s","s","a","s","s","0","0","0","l","0","0","0","s","a","a"];
+          rows[11] = ["a","s","a","a","s","s","a","s","s","0","0","s","s","s","s","s","0","0","a","a","a","a","a","a","a","a","a","a","a","s","s","s","0","0","0","a","0","0","0","s","s","s","a","a"];
+          rows[12] = ["a","s","s","s","s","a","a","s","a","0","0","0","s","s","a","s","0","0","a","a","a","a","a","a","s","a","s","a","a","a","s","s","ll","0","0","0","0","0","0","0","s","s","a","a"];
+          rows[13] = ["a","0","0","s","s","s","s","s","s","s","0","0","a","s","s","s","0","0","s","s","a","a","a","a","s","s","s","s","s","s","s","a","s","s","0","0","0","l","0","0","0","s","a","a"];
           rows[14] = ["0","cp","0","0","0","a","s","s","a","0","0","0","s","lt","s","0","0","0","s","s","0","0","0","0","0","0","0","s","s","s","s","a","s","a","t","t","s","s","s","0","0","s","a","a"];
           rows[15] = ["t","t","0","0","0","0","a","0","0","0","0","s","s","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","s","s","0","0","0","s","a","a"];
-          rows[16] = ["a","a","t","0","0","0","s","0","0","cp","0","0","0","0","0","0","0","0","0","0","0","0","lr","s","s","ll","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","s","a","a"];
+          rows[16] = ["a","a","t","0","0","0","s","0","0","cp","0","0","0","0","t","0","0","0","0","0","0","0","lr","s","s","ll","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","s","a","a"];
           rows[17] = ["a","s","0","0","0","s","ll","0","0","t","t","0","0","s","a","s","l","l","s","0","0","t","s","s","s","s","t","t","t","0","0","0","0","0","0","0","0","0","0","s","s","s","a","a"];
           rows[18] = ["a","s","ll","0","0","a","ll","0","0","0","0","t","t","s","s","s","s","s","0","0","t","a","s","s","s","s","s","s","s","l","l","l","l","s","t","t","0","0","lr","s","s","s","a","a"];
           rows[19] = ["s","s","s","0","0","s","s","s","0","0","0","s","s","s","a","s","a","s","s","0","0","a","s","s","s","s","s","s","s","s","s","a","s","s","a","0","0","0","s","s","s","s","a","a"];
@@ -135,33 +139,15 @@
             rows[25][38] = "0";
           }
         }
-        if (level == 2) {
+        /*if (level == 2) {
           if (obtainables[3] == undefined) {
-            rows[3][3] = "p";
-          } else {
-            rows[3][3] = "0";
+            rows[4][7] =
           }
-          if (obtainables[4] == undefined) {
-            rows[4][7] = "c";
-          } else {
-            rows[4][7] = "hc";
-          }
-          if (obtainables[5] == undefined) {
-            rows[3][14] = "k";
-          } else {
-            rows[3][14] = "0";
-          }
-          if (obtainables[6] == undefined) {
-            rows[24][17] = "cs";
-          } else if (obtainables[6] == 1) {
-            rows[24][17] = "b";
-          } else {
-            rows[24][17] = "0";
-          }
-        }
+        }*/
       }
       var p = {
-        x: 385,
+        //x: 385,
+        x: 28,
         y: 285,
         xvel: 0,
         yvel: 0,
@@ -199,7 +185,7 @@
           hours = 0;
           deaths = 0;
           play = false;
-          jumpgrade = 1;
+          jumpgrade = 0;
           jump = false;
           scrollx = -5;
           scrolly = -200;
@@ -215,9 +201,11 @@
       document.addEventListener("keyup", function(event) {
         if (event.keyCode == 37 && play == true) {
           k.left = 0;
+          move = false
         }
         if (event.keyCode == 39 && play == true) {
           k.right = 0;
+          move = false
         }
         if (event.keyCode == 38 && play == true) {
           k.up = 0;
@@ -230,7 +218,7 @@
         move = false;
       }
       function renderCanvas() {
-        ctx.fillStyle = "#220000";
+        ctx.fillStyle = "#000033";
         ctx.fillRect(0, 0, c.width, c.height);
       }
       function renderMap() {
@@ -306,20 +294,20 @@
               } else if (rows[i][j] == "s") { // stone
                 ctx.fillStyle = "#5b5959";
                 ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 30, 30);
-                ctx.fillStyle = "#545252";
+                ctx.fillStyle = "#504c4c";
                 ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 15, 15);
-                ctx.fillStyle = "#635d5d";
+                ctx.fillStyle = "#605a5a";
                 ctx.fillRect(scrollx + 15 + (j * 30), scrolly + 15 + (i * 30), 15, 15);
                 ctx.fillStyle = "#535252";
                 ctx.fillRect(scrollx + 15 + (j * 30), scrolly + (i * 30), 15, 15);
-              } else if (rows[i][j] == "t") { // top
-                ctx.fillStyle = "#5b5959";
+              } else if (rows[i][j] == "t") { // grass
+                ctx.fillStyle = "#6e492c";
                 ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 30, 30);
-                ctx.fillStyle = "#555353";
+                ctx.fillStyle = "#7e593c";
                 ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 15, 15);
-                ctx.fillStyle = "#954717";
+                ctx.fillStyle = "#02960d";
                 ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 15, 15);
-                ctx.fillStyle = "#8d4112";
+                ctx.fillStyle = "#12a61d";
                 ctx.fillRect(scrollx + 15 + (j * 30), scrolly + (i * 30), 15, 15);
               } else if (rows[i][j] == "pu") { // platform up
                 ctx.fillStyle = "#c2813c";
@@ -331,12 +319,12 @@
                 ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 30, 15);
                 ctx.fillStyle = "#b2713b";
                 ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 15, 15);
-              } else if (rows[i][j] == "a") { // sandstone
-                ctx.fillStyle = "#954717";
+              } else if (rows[i][j] == "a") { // block
+                ctx.fillStyle = "#6e492c";
                 ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 30, 30);
-                ctx.fillStyle = "#8d4112";
+                ctx.fillStyle = "#7e593c";
                 ctx.fillRect(scrollx + (j * 30), scrolly + 15 + (i * 30), 15, 15);
-                ctx.fillStyle = "#843f1f";
+                ctx.fillStyle = "#755234";
                 ctx.fillRect(scrollx + 15 + (j * 30), scrolly + (i * 30), 15, 15);
               } else if (rows[i][j] == "b") { // berry
                 ctx.fillStyle = "#c13101";
@@ -380,6 +368,41 @@
               }
             }
           }
+          ctx.fillStyle = "#fff";
+          if (play == true || play == 2){
+            ctx.fillStyle = "#fff";
+            ctx.font = "60px Arial";
+            ctx.fillText ("Snaze 3", 280, 65);
+            ctx.font = "30px Arial";
+            ctx.fillText("Deaths: " + deaths, 70, 65);
+            // text
+            ctx.font = "30px Arial";
+            ctx.fillText("Berries: " + collectibles, 70, 555);
+            ctx.fillText("Level " + level, 600, 555);
+            ctx.font = "30px Arial";
+            if (hours < 10) {
+              ctx.fillText("0" + hours + ":", 522, 65);
+            } else {
+              ctx.fillText(hours + ":", 522, 65);
+            }
+            if (minutes < 10) {
+              ctx.fillText("0" + minutes + ":", 565, 65);
+            } else {
+              ctx.fillText(minutes + ":", 565, 65);
+            }
+            if (seconds < 10) {
+              ctx.fillText("0" + seconds + ".", 608, 65);
+            } else {
+              ctx.fillText(seconds + ".", 608, 65);
+            }
+            if (ms < 10) {
+              ctx.fillText("00" + ms, 651, 65);
+            } else if (ms < 100) {
+              ctx.fillText("0" + ms, 651, 65);
+            } else {
+              ctx.fillText(ms, 651, 65);
+            }
+          }
           // COLLISION/PLATFORMING STUFF HERE //
             p.yvel += gravity;
             if (p.yvel > 12) {
@@ -396,7 +419,7 @@
                     p.y = scrolly - 30 + (i * 30);
                     p.yvel = 0;
                     if (k.up == 1) {
-                      p.yvel = -6 * jumpgrade;
+                      p.yvel = -6;
                     }
                   }
                   if (move == false) {
@@ -405,33 +428,20 @@
                       p.y = scrolly + 30 + (i * 30);
                     }
                   } else {
-                    if (p.y < scrolly + 30 + (i * 30) && p.y + 30 > scrolly + 16 + (i * 30) && p.x + 30 > scrollx + 11 + (j * 30) && p.x < scrollx + 19 + (j * 30)) {
+                    if (p.y < scrolly + 30 + (i * 30) && p.y > scrolly + 16 + (i * 30) && p.x + 30 > scrollx + 11 + (j * 30) && p.x < scrollx + 19 + (j * 30)) {
                       // upwards collision
                       p.y = scrolly + 30 + (i * 30);
                     }
                   }
-                  if (move == false) {
-                    if (p.x + 30 > scrollx + (j * 30) && p.x + 30 < scrollx + 14 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
-                      // rightwards collision
-                      p.x = scrollx - 30 + (j * 30);
-                      p.xvel = 0;
-                    } else if (p.x < scrollx + 30 + (j * 30) && p.x > scrollx + 20 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
-                      // leftwards collision
-                      p.x = scrollx + 30 + (j * 30);
-                      p.xvel = 0;
-                    }
-                  } else {
-                    if (p.x + 30 > scrollx + (j * 30) && p.x + 30 < scrollx + 14 + (j * 30) && p.y + 30 > scrolly + 13 + (i * 30) && p.y < scrolly + 17 + (i * 30)) {
-                      // rightwards collision
-                      p.x = scrollx - 30 + (j * 30);
-                      p.xvel = 0;
-                    } else if (p.x < scrollx + 30 + (j * 30) && p.x > scrollx + 20 + (j * 30) && p.y + 30 > scrolly + 13 + (i * 30) && p.y < scrolly + 17 + (i * 30)) {
-                      // leftwards collision
-                      p.x = scrollx + 30 + (j * 30);
-                      p.xvel = 0;
-                    }
+                  if (p.x + 30 > scrollx + (j * 30) && p.x + 30 < scrollx + 14 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
+                    // rightwards collision
+                    p.x = scrollx - 30 + (j * 30);
+                    p.xvel = 0;
+                  } else if (p.x < scrollx + 30 + (j * 30) && p.x > scrollx + 20 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
+                    // leftwards collision
+                    p.x = scrollx + 30 + (j * 30);
+                    p.xvel = 0;
                   }
-                  // creeper collision
                   if (rows[i][j] == "c") {
                     if (p.x < scrollx + 40 + (j * 30) && p.x + 30 > scrollx - 10 + (j * 30) && p.y + 30 > scrolly - 10 + (i * 30) && p.y < scrolly + 40 + (i * 30)) {
                       if (k.down == 1 && collectibles > 0) {
@@ -439,10 +449,6 @@
                         if (level == 1) {
                           obtainables[1] = 1;
                           levelData();
-                          setObtainables();
-                        }
-                        if (level == 2) {
-                          obtainables[4] = 1;
                           setObtainables();
                         }
                       }
@@ -511,7 +517,6 @@
                     p.y = spawnY;
                     deaths++;
                   }
-                  // checkpoint collision
                 } else if (rows[i][j] == "cp") {
                   if (p.x + 30 > scrollx + 8 + (j * 30) && p.x < scrollx + 26 + (j * 30) && p.y + 30 > scrolly + 10 + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
                     spawnY = p.y;
@@ -528,7 +533,6 @@
                     }
                     rows[i][j] = "ca";
                   }
-                  // key collision
                 } else if (rows[i][j] == "k") {
                   if (p.x + 30 > scrollx + 8 + (j * 30) && p.x < scrollx + 20 + (j * 30) && p.y + 30 > scrolly + 4 + (i * 30) && p.y < scrolly + 28 + (i * 30)) {
                     if (level == 1) {
@@ -536,39 +540,20 @@
                       obtainables[2] = 1;
                       setObtainables();
                     }
-                    if (level == 2) {
-                      obtainables[5] = 1;
-                      obtainables[6] = 1;
-                      setObtainables();
-                    }
                   }
-                  // berry collision
                 } else if (rows[i][j] == "b") {
                   if (p.x + 30 > scrollx + 5 + (j * 30) && p.x < scrollx + 25 + (j * 30) && p.y + 30 > scrolly + 5 + (i * 30) && p.y < scrolly + 25 + (i * 30)) {
                     collectibles++;
                     if (level == 1) {
                       obtainables[2] = 2;
                       setObtainables();
-                    } else if (level == 2) {
-                      obtainables[6] = 2;
-                      setObtainables();
                     }
                   }
-                  // platform up collision
                 } else if (rows[i][j] == "pu") {
                   if (p.x + 30 > scrollx + (j * 30) && p.x < scrollx + 30 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y + 30 < scrolly + 13 + (i * 30)) {
                     p.y = scrolly - 30 + (i * 30);
                     if (k.up == 1) {
                       p.yvel = -6;
-                    }
-                  }
-                  // jump upgrade collision
-                } else if (rows[i][j] == "p") {
-                  if (p.x + 30 > scrollx + 7 + (j * 30) && p.x < scrollx + 23 + (j * 30) && p.y + 30 > scrolly + 7 + (i * 30) && p.y < scrolly + 23 + (i * 30)) {
-                    jumpgrade = 1.3;
-                    if (level == 2) {
-                      obtainables[3] = 1;
-                      setObtainables();
                     }
                   }
                 }
@@ -634,39 +619,6 @@
           ctx.fillRect(378, 216, 4, 4);
           ctx.fillRect(368, 220, 14, 4);
         }
-        if (play == true || play == 2){
-          ctx.fillStyle = "#fff";
-          ctx.font = "60px Arial";
-          ctx.fillText ("Snaze 3", 280, 55);
-          ctx.font = "30px Arial";
-          ctx.fillText("Deaths: " + deaths, 10, 35);
-          // text
-          ctx.font = "30px Arial";
-          ctx.fillText("Berries: " + collectibles, 10, 590);
-          ctx.font = "30px Arial";
-          if (hours < 10) {
-            ctx.fillText("0" + hours + ":", 587, 35);
-          } else {
-            ctx.fillText(hours + ":", 587, 35);
-          }
-          if (minutes < 10) {
-            ctx.fillText("0" + minutes + ":", 630, 35);
-          } else {
-            ctx.fillText(minutes + ":", 630, 35);
-          }
-          if (seconds < 10) {
-            ctx.fillText("0" + seconds + ".", 673, 35);
-          } else {
-            ctx.fillText(seconds + ".", 673, 35);
-          }
-          if (ms < 10) {
-            ctx.fillText("00" + ms, 716, 35);
-          } else if (ms < 100) {
-            ctx.fillText("0" + ms, 716, 35);
-          } else {
-            ctx.fillText(ms, 716, 35);
-          }
-        }
       }
       function update() {
         renderCanvas();
@@ -688,21 +640,17 @@
         }
         if (k.right == 1) {
           p.xvel = 10;
+          move = true
         }
         if (k.left == 1) {
           p.xvel = -10;
-        }
-        if (k.right == 1 || k.left == 1 || k.left == 1 && k.right == 1) {
-          move = true;
-        } else if (k.right == 0 && k.left == 0) {
-          move = false;
+          move = true
         }
         renderMap();
       }
       // set canvas size and stuff
       function init() {
-        level = 1;
-        jumpgrade = 1;
+        level = 2;
         c.width = 800;
         c.height = 600;
         levelData();
