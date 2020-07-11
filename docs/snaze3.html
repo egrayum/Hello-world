@@ -353,6 +353,16 @@
                 ctx.fillRect(scrollx + 15 + (j * 30), scrolly + 15 + (i * 30), 10, 10);
                 ctx.fillStyle = "#c52f15";
                 ctx.fillRect(scrollx + 15 + (j * 30), scrolly + 5 + (i * 30), 10, 10);
+              } else if (rows[i][j] == "cp") { // checkpoint
+                ctx.fillStyle = "#854714";
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 10 + (i * 30), 5, 20);
+                ctx.fillStyle = "#04d928";
+                ctx.fillRect(scrollx + 13 + (j * 30), scrolly + 10 + (i * 30), 13, 8);
+              } else if (rows[i][j] == "ca") { // checkpoint active
+                ctx.fillStyle = "#854714";
+                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 10 + (i * 30), 5, 20);
+                ctx.fillStyle = "#ff00ee";
+                ctx.fillRect(scrollx + 13 + (j * 30), scrolly + 10 + (i * 30), 13, 8);
               }
               if (nolava == false) {
                 if (rows[i][j] == "l") { // lava
@@ -370,27 +380,12 @@
                   ctx.fillRect(scrollx + 15 + (j * 30), scrolly + (i * 30), 15, 30);
                   ctx.fillStyle = "#e22122";
                   ctx.fillRect(scrollx + 15 + (j * 30), scrolly + 15 + (i * 30), 15, 15);
-                }
-              }
-              if (rows[i][j] == "cp") { // checkpoint
-                ctx.fillStyle = "#854714";
-                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 10 + (i * 30), 5, 20);
-                ctx.fillStyle = "#04d928";
-                ctx.fillRect(scrollx + 13 + (j * 30), scrolly + 10 + (i * 30), 13, 8);
-              }
-              if (nolava == false) {
-                if (rows[i][j] == "lt") { // top lava
+                } else if (rows[i][j] == "lt") { // top lava
                   ctx.fillStyle = "#ff0000";
                   ctx.fillRect(scrollx + (j * 30), scrolly + (i * 30), 30, 15);
                   ctx.fillStyle = "#e22122";
                   ctx.fillRect(scrollx + 15 + (j * 30), scrolly + (i * 30), 15, 15);
                 }
-              }
-              if (rows[i][j] == "ca") { // checkpoint active
-                ctx.fillStyle = "#854714";
-                ctx.fillRect(scrollx + 8 + (j * 30), scrolly + 10 + (i * 30), 5, 20);
-                ctx.fillStyle = "#ff00ee";
-                ctx.fillRect(scrollx + 13 + (j * 30), scrolly + 10 + (i * 30), 13, 8);
               }
             }
           }
@@ -527,8 +522,9 @@
                       deaths++;
                     }
                   }
-                  // checkpoint collision
-                } else if (rows[i][j] == "cp") {
+                }
+                // checkpoint collision
+                if (rows[i][j] == "cp") {
                   if (p.x + 30 > scrollx + 8 + (j * 30) && p.x < scrollx + 26 + (j * 30) && p.y + 30 > scrolly + 10 + (i * 30) && p.y < scrolly + 30 + (i * 30)) {
                     spawnY = p.y;
                     spawnX = p.x;
