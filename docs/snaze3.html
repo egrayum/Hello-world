@@ -9,6 +9,8 @@
       var z;
       var q;
       var move = false;
+      var gem = false;
+      var redhair = false;
       var jump = false;
       var nolava = false;
       var level = 1;
@@ -27,26 +29,29 @@
       var creepBerry = 0;
       var creep = false;
       var key = false;
-      var jumpgrade = 1;
       var levelBerry = 0;
       var found = false;
-      var jumpgrade = 0; // jump upgrade
       var spawnScrollY = -200;
       var spawnScrollX = -5;
       var oldScrollX = -5;
+      // var oldScrollX = -425;
       var oldScrollY = -200;
+      // var oldScrollY = -300;
       var spawnX = 385;
       var spawnY = 285;
-      var friction = 0.3;
+      var friction = 0.25;
       var scrollx = -5;
+      // var scrollx = -425;
       var scrolly = -200;
+      // var scrolly = -300;
       var gravity = 0.25;
       var obtainables = [];
       var k = {
         up: 0,
         left: 0,
         right: 0,
-        down: 0
+        jump: 0,
+        d: 0
       }
       var rows = [];
       // map
@@ -115,6 +120,38 @@
           rows[28] = ["a","s","l","l","s","t","t","s","a","a","a","s","a","a","s","a","a","a","s","s","a","a","s","s","s","s","s","s","s","s","a","s","s","s","a","a","a","s","a","a","s","s","a","a"];
           rows[29] = ["a","s","s","s","s","s","a","s","s","s","a","s","s","s","a","s","s","a","s","s","a","a","s","s","s","s","s","s","s","s","s","a","s","s","a","a","a","s","s","a","s","s","a","a"];
         }
+        if (level == 3) {
+          rows[0] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","0","0","s","a","a","a"];
+          rows[1] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","a","0","0","s","a","a","a"];
+          rows[2] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","a","a","0","0","s","a","a","a"];
+          rows[3] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","a","a","0","0","s","a","a","a"];
+          rows[4] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","a","a","0","0","s","a","a","a"];
+          rows[5] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","a","a","a","0","0","s","a","a","a"];
+          rows[6] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","t","a","a","a","a","a","0","0","s","a","a","a"];
+          rows[7] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","a","a","a","0","0","0","0","s","a","a","a"];
+          rows[8] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","s","a","a","0","0","0","0","0","s","a","a","a"];
+          rows[9] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","a","0","0","0","0","0","0","0","0","s","a","a","a"];
+          rows[10] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","t","a","a","0","0","0","0","0","0","lr","s","t","s","a","a","a"];
+          rows[11] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","a","0","0","0","0","0","0","0","lr","a","s","s","a","a","a"];
+          rows[12] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","s","0","0","0","s","a","l","l","l","s","a","s","s","a","a","a"];
+          rows[13] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","s","0","0","0","0","a","s","s","s","s","a","s","s","a","a","a"];
+          rows[14] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","a","a","s","a","a","0","0","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[15] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","s","s","0","0","0","a","0","0","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[16] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","t","s","0","0","0","0","0","0","0","0","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[17] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","0","0","0","0","0","0","0","0","0","s","a","a","a","a","a","s","s","a","a","a"];
+          rows[18] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","t","s","0","0","0","0","lr","s","s","l","l","s","a","a","a","a","a","s","s","a","a","a"];
+          rows[19] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","0","0","0","0","0","lr","s","s","s","s","s","s","a","a","a","a","s","s","a","a","a"];
+          rows[20] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","s","0","0","cp","0","0","lr","a","a","s","s","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[21] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","t","a","0","0","0","t","t","s","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[22] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","t","s","0","0","0","t","s","s","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[23] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","0","0","s","s","s","a","a","a","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[24] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","t","s","0","0","0","0","0","0","0","0","0","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[25] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","s","0","0","0","0","0","0","0","0","0","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[26] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","a","a","s","s","a","l","l","l","s","t","t","0","0","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[27] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","t","a","a","s","s","a","a","s","s","s","s","0","0","0","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[28] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","a","a","s","s","a","a","s","s","s","0","0","0","a","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
+          rows[29] = ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","s","a","a","a","s","s","a","a","s","s","0","0","0","t","s","a","a","a","s","a","a","a","a","a","a","s","s","a","a","a"];
+        }
       }
       function setObtainables() {
         if (level == 1) {
@@ -164,6 +201,7 @@
       var p = {
         x: 385,
         y: 285,
+        // y: 540,
         xvel: 0,
         yvel: 0,
         oldy: 130,
@@ -180,15 +218,19 @@
             k.right = 1;
           }
         }
-        if (event.keyCode == 38 || event.keyCode == 32 || event.keyCode == 90 || event.keyCode == 89 || event.keyCode == 67) {
+        if (event.keyCode == 32 || event.keyCode == 90 || event.keyCode == 89 || event.keyCode == 67) {
+          k.jump = 1;
+        }
+        if (event.keyCode == 38) {
           k.up = 1;
         }
-        if (event.keyCode == 40) {
-          k.down = 1;
+        if (event.keyCode == 88 || event.keyCode == 86) {
+          k.d = 1;
         }
         if (event.keyCode == 82) {
           obtainables = [];
           level = 1
+          gem = false
           levelBerry = 0;
           creepBerry = 0;
           collectibles = 0;
@@ -200,7 +242,6 @@
           hours = 0;
           deaths = 0;
           play = false;
-          jumpgrade = 1;
           jump = false;
           scrollx = -5;
           scrolly = -200;
@@ -225,11 +266,14 @@
         if (event.keyCode == 39 && play == true) {
           k.right = 0;
         }
-        if (event.keyCode == 38 || event.keyCode == 32 || event.keyCode == 90 || event.keyCode == 89 || event.keyCode == 67) {
+        if (event.keyCode == 32 || event.keyCode == 90 || event.keyCode == 89 || event.keyCode == 67) {
+          k.jump = 0;
+        }
+        if (event.keyCode == 38) {
           k.up = 0;
         }
-        if (event.keyCode == 40 && play == true) {
-          k.down = 0;
+        if (event.keyCode == 88 || event.keyCode == 86) {
+          k.d = 0;
         }
       })
       function mover() {
@@ -404,8 +448,11 @@
                   if (p.y + 30 > scrolly + (i * 30) && p.y + 30 < scrolly + 13 + (i * 30) && p.x + 30 > scrollx + (j * 30) && p.x < scrollx + 30 + (j * 30)) {
                     p.y = scrolly - 30 + (i * 30);
                     p.yvel = 0;
-                    if (k.up == 1) {
-                      p.yvel = -6 * jumpgrade;
+                    if (gem == true) {
+                      redhair = true;
+                    }
+                    if (k.jump == 1) {
+                      p.yvel = -6;
                     }
                   }
                   if (move == false) {
@@ -430,11 +477,11 @@
                       p.xvel = 0;
                     }
                   } else {
-                    if (p.x + 30 > scrollx + (j * 30) && p.x + 30 < scrollx + 14 + (j * 30) && p.y + 30 > scrolly + 13 + (i * 30) && p.y < scrolly + 17 + (i * 30)) {
+                    if (p.x + 30 > scrollx + (j * 30) && p.x < scrollx + 15 + (j * 30) && p.y + 30 > scrolly + 13 + (i * 30) && p.y < scrolly + 17 + (i * 30)) {
                       // rightwards collision
                       p.x = scrollx - 30 + (j * 30);
                       p.xvel = 0;
-                    } else if (p.x < scrollx + 30 + (j * 30) && p.x > scrollx + 20 + (j * 30) && p.y + 30 > scrolly + 13 + (i * 30) && p.y < scrolly + 17 + (i * 30)) {
+                    } else if (p.x < scrollx + 30 + (j * 30) && p.x + 30 > scrollx + 15 + (j * 30) && p.y + 30 > scrolly + 13 + (i * 30) && p.y < scrolly + 17 + (i * 30)) {
                       // leftwards collision
                       p.x = scrollx + 30 + (j * 30);
                       p.xvel = 0;
@@ -570,14 +617,17 @@
                 } else if (rows[i][j] == "pu") {
                   if (p.x + 30 > scrollx + (j * 30) && p.x < scrollx + 30 + (j * 30) && p.y + 30 > scrolly + (i * 30) && p.y + 30 < scrolly + 13 + (i * 30)) {
                     p.y = scrolly - 30 + (i * 30);
-                    if (k.up == 1) {
+                    if (gem == true) {
+                     redhair = true;
+                    }
+                    if (k.jump == 1) {
                       p.yvel = -6;
                     }
                   }
                   // jump upgrade collision
                 } else if (rows[i][j] == "p") {
                   if (p.x + 30 > scrollx + 7 + (j * 30) && p.x < scrollx + 23 + (j * 30) && p.y + 30 > scrolly + 7 + (i * 30) && p.y < scrolly + 23 + (i * 30)) {
-                    jumpgrade = 1.3;
+                    gem = true;
                     if (level == 2) {
                       obtainables[3] = 1;
                       setObtainables();
@@ -596,6 +646,14 @@
                 oldScrollX = 0;
                 p.x = 8;
               }
+              if (p.y < 5) {
+                level = 3;
+                levelData();
+                setObtainables();
+                scrolly = -300;
+                oldScrollY = -300;
+                p.y = 565;
+              }
             }
             if (level == 2) {
               if (p.x < 0) {
@@ -605,6 +663,16 @@
                 scrollx = -520;
                 oldScrollX = -520;
                 p.x = 764;
+              }
+            }
+            if (level == 3) {
+              if (p.y + 30 > 595) {
+                level = 1;
+                levelData();
+                setObtainables();
+                scrolly = 0;
+                oldScrollY = 0;
+                p.y = 5;
               }
             }
             // scrolling //
@@ -625,9 +693,15 @@
             //           //
           // // // // // // // // // // // // //
           // player
-          ctx.fillStyle = "#1362a3";
-          ctx.fillRect(p.x + 4, p.y, 22, 30);
-          ctx.fillRect(p.x, p.y + 4, 30, 22);
+          if (redhair == false) {
+            ctx.fillStyle = "#1362a3";
+            ctx.fillRect(p.x + 4, p.y, 22, 30);
+            ctx.fillRect(p.x, p.y + 4, 30, 22);
+          } else if (redhair == true) {
+            ctx.fillStyle = "#12a313";
+            ctx.fillRect(p.x + 4, p.y, 22, 30);
+            ctx.fillRect(p.x, p.y + 4, 30, 22);
+          }
           ctx.fillStyle = "#111";
           ctx.fillRect(p.x + 8, p.y + 8, 4, 4);
           ctx.fillRect(p.x + 18, p.y + 8, 4, 4);
@@ -646,7 +720,7 @@
           ctx.fillRect(378, 216, 4, 4);
           ctx.fillRect(368, 220, 14, 4);
         }
-        if (play == true || play == 2){
+        if (play == true || play == 2) {
           ctx.fillStyle = "#fff";
           ctx.font = "60px Arial";
           ctx.fillText ("Snaze 3", 280, 55);
@@ -686,6 +760,46 @@
         }
       }
       function update() {
+        if (k.right == 1) {
+          p.xvel += 10;
+        }
+        if (k.left == 1) {
+          p.xvel -= 10;
+        }
+        if (k.right == 1 || k.left == 1 || k.left == 1 && k.right == 1) {
+          move = true;
+        } else if (k.right == 0 && k.left == 0) {
+          move = false;
+        }
+        if (k.d == 1 && gem == true) {
+          if (k.left == 0 && k.right == 0 && k.up == 1 && redhair == true) {
+            p.yvel = -10;
+            gravity *= 1.4;
+            window.setTimeout(grav, 140);
+            window.setTimeout(hair, 100);
+          } else if (k.left == 0 && k.right == 1 && k.up == 0 && redhair == true) {
+            p.xvel = 35;
+            window.setTimeout(hair, 100);
+          } else if (k.left == 1 && k.right == 0 && k.up == 0 && redhair == true) {
+            p.xvel = -35;
+            window.setTimeout(hair, 100);
+          } else if (k.left == 0 && k.right == 1 && k.up == 1 && redhair == true) {
+            p.xvel = 35;
+            p.yvel = -10;
+            gravity *= 1.4;
+            window.setTimeout(grav, 140);
+            window.setTimeout(hair, 100);
+          } else if (k.left == 1 && k.right == 0 && k.up == 1 && redhair == true) {
+            p.xvel = -35;
+            p.yvel = -10;
+            gravity *= 1.4;
+            window.setTimeout(grav, 140);
+            window.setTimeout(hair, 100);
+          }
+        }
+        function hair() {
+          redhair = false;
+        }
         renderCanvas();
         // timer
         if (play == true) {
@@ -703,23 +817,14 @@
             minutes -= 60;
           }
         }
-        if (k.right == 1) {
-          p.xvel = 10;
-        }
-        if (k.left == 1) {
-          p.xvel = -10;
-        }
-        if (k.right == 1 || k.left == 1 || k.left == 1 && k.right == 1) {
-          move = true;
-        } else if (k.right == 0 && k.left == 0) {
-          move = false;
+        function grav() {
+          gravity /= 1.4;
         }
         renderMap();
       }
       // set canvas size and stuff
       function init() {
         level = 1;
-        jumpgrade = 1;
         c.width = 800;
         c.height = 600;
         levelData();
