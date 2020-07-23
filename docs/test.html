@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <canvas id="canvas" width="800" height="600" style="background-color: #666; display: block; margin: 0 auto;"></canvas>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+      var c = document.getElementById("canvas");
+      var ctx = c.getContext("2d");
+      var px = 385;
+      document.addEventListener("keydown", function(event) {
+        if (event.keyCode == 38) {
+
+        }
+      })
+      function init() {
+        ctx.fillStyle = "#4661b4";
+        ctx.fillRect(0, 0, c.width, c.height);
+      }
+      function player() {
+        ctx.fillStyle = "#eee";
+        ctx.fillRect(px, 200, 50, 50);
+      }
+    </script>
+  </head>
+  <body onload="init()">
+
+  </body>
+</html>
