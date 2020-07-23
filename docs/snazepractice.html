@@ -213,6 +213,13 @@
         } else {
           jumpgrade = 0;
         }
+        levelData();
+        p.x = 2;
+        p.y = 2;
+        ms = 0;
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
       }
       if (event.keyCode == 70) {
         ms = 0;
@@ -350,6 +357,10 @@
         k.left = 0;
         k.up = 0;
         collectibles = 0;
+        ms = 0;
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
         levelData();
       }
       // collect upgrade
