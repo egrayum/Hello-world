@@ -213,7 +213,9 @@
         p.x = 2;
         p.y = 2;
         play = false;
-        level++;
+        if (level < 6) {
+          level++;
+        }
         levelData();
       }
       if (event.keyCode == 83) {
@@ -224,7 +226,9 @@
         p.x = 2;
         p.y = 2;
         play = false;
-        level--;
+        if (level > 1) {
+          level--;
+        }
         levelData();
       }
     })
