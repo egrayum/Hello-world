@@ -8,6 +8,7 @@
       var c = document.getElementById("canvas");
       var ctx = c.getContext("2d");
       var px = 385;
+      var pinch = 0;
       var k = {
         left: 0,
         right: 0
@@ -22,7 +23,14 @@
         if (event.keyCode == 39) {
           k.right = 1;
         }
+        if (event.keyCode == 16) {
+          pinch = 1;
+          window.setTimeout(setpinch, 300);
+        }
       })
+      function setpinch() {
+        pinch = 0;
+      }
       document.addEventListener("keyup", function(event) {
         if (event.keyCode == 37) {
           k.left = 0;
@@ -48,6 +56,13 @@
       function player() {
         ctx.fillStyle = "#eee";
         ctx.fillRect(px, 200, 50, 50);
+        if (pinch == 0) {
+          ctx.fillRect(px + 5, 170, 8, 30);
+          ctx.fillRect(px + 37, 170, 8, 30);
+        } else {
+          ctx.fillRect(px + 10, 170, 8, 30);
+          ctx.fillRect(px + 32, 170, 8, 30);
+        }
       }
     </script>
   </head>

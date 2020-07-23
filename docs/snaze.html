@@ -159,25 +159,16 @@
     }
     document.addEventListener("keydown", function(event) {
       if (event.keyCode == 37) {
-        if (play == true) {
-          k.left = 1;
-        } else if (play == false) {
-          play = true;
-        }
+        k.left = 1;
+        play = true;
       }
       if (event.keyCode == 39) {
-        if (play == true) {
-          k.right = 1;
-        } else if (play == false) {
-          play = true;
-        }
+        k.right = 1;
+        play = true;
       }
       if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a") {
-        if (play == true) {
           jumpy();
-        } else if (play == false) {
           play = true;
-        }
       }
       if (event.keyCode == 82) {
         level = 1;
@@ -196,13 +187,13 @@
       }
     })
     document.addEventListener("keyup", function(event) {
-      if (event.keyCode == 37 && play == true) {
+      if (event.keyCode == 37) {
         k.left = 0;
       }
-      if (event.keyCode == 39 && play == true) {
+      if (event.keyCode == 39) {
         k.right = 0;
       }
-      if (event.keyCode == 38 && play == true) {
+      if (event.keyCode == 38) {
         k.up = 0;
       }
     })
