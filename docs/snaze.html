@@ -265,8 +265,13 @@
         }
       }
       // player
-      ctx.fillStyle = "#1362a3";
-      ctx.fillRect(70 + (p.x * 30), 70 + (p.y * 30), 30, 30);
+      if (jumpgrade == 0) {
+        ctx.fillStyle = "#1362a3";
+        ctx.fillRect(70 + (p.x * 30), 70 + (p.y * 30), 30, 30);
+      } else {
+        ctx.fillStyle = "#12a315";
+        ctx.fillRect(70 + (p.x * 30), 70 + (p.y * 30), 30, 30);
+      }
       if (play == 2) {
         ctx.font = "40px Arial";
         ctx.fillStyle = "#f17221";

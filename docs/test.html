@@ -8,14 +8,42 @@
       var c = document.getElementById("canvas");
       var ctx = c.getContext("2d");
       var px = 385;
+      var k = {
+        left: 0,
+        right: 0
+      }
       document.addEventListener("keydown", function(event) {
         if (event.keyCode == 38) {
-
+          window.setInterval(update, 20);
+        }
+        if (event.keyCode == 37) {
+          k.left = 1;
+        }
+        if (event.keyCode == 39) {
+          k.right = 1;
+        }
+      })
+      document.addEventListener("keyup", function(event) {
+        if (event.keyCode == 37) {
+          k.left = 0;
+        }
+        if (event.keyCode == 39) {
+          k.right = 0;
         }
       })
       function init() {
         ctx.fillStyle = "#4661b4";
         ctx.fillRect(0, 0, c.width, c.height);
+      }
+      function update() {
+        ctx.fillStyle = "#4661b4";
+        ctx.fillRect(0, 0, c.width, c.height);
+        if (k.left == 1) {
+          px -= 5;
+        } else if (k.right == 1) {
+          px += 5;
+        }
+        player();
       }
       function player() {
         ctx.fillStyle = "#eee";
