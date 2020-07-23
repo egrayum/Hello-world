@@ -204,9 +204,15 @@
         hours = 0;
         deaths = 0;
         play = false;
-        jumpgrade = 0;
         jump = false;
         levelData();
+      }
+      if (event.keyCode == 65 && level > 4) {
+        if (jumpgrade == 0) {
+          jumpgrade = 1;
+        } else {
+          jumpgrade = 0;
+        }
       }
       if (event.keyCode == 70) {
         ms = 0;
