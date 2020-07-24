@@ -17,6 +17,7 @@
     var deaths = 0;
     var play = false;
     var move = false;
+    var ok = true;
     var jumpgrade = 0; // jump upgrade
     var k = {
       up: 0,
@@ -159,39 +160,45 @@
     }
     document.addEventListener("keydown", function(event) {
       if (event.keyCode == 37) {
-        if (play != true) {
-          ms = 0;
-          seconds = 0;
-          minutes = 0;
-          hours = 0;
-          play = true;
-        }
-        if (play == true) {
-          k.left = 1;
+        if (ok == true) {
+          if (play != true) {
+            ms = 0;
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            play = true;
+          }
+          if (play == true) {
+            k.left = 1;
+          }
         }
       }
       if (event.keyCode == 39) {
-        if (play != true){
-          ms = 0;
-          seconds = 0;
-          minutes = 0;
-          hours = 0;
-          play = true;
-        }
-        if (play == true) {
-          k.right = 1;
+        if (ok == true) {
+          if (play != true) {
+            ms = 0;
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            play = true;
+          }
+          if (play == true) {
+            k.right = 1;
+          }
         }
       }
       if (event.keyCode == 38 && rows[p.y + 1][p.x] == "a") {
-        if (play != true) {
-          ms = 0;
-          seconds = 0;
-          minutes = 0;
-          hours = 0;
-          play = true;
-        }
-        if (play == true) {
-          jumpy();
+        if (ok == true) {
+          if (play != true) {
+            ms = 0;
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            play = true;
+          }
+          if (play == true) {
+            jumpy();
+          }
         }
       }
       if (event.keyCode == 82) {
@@ -337,6 +344,9 @@
     function update() {
       renderCanvas();
       renderMap();
+      function setok() {
+        ok = true;
+      }
       if (p.x == 21) {
         p.x = 2;
         p.y = 2;
@@ -349,6 +359,8 @@
         if (level == 4) {
           jumpgrade == 0;
         }
+        ok = false;
+        window.setTimeout(setok, 2000);
       }
       // collect berry
       if (rows[p.y][p.x] == "b") {
@@ -372,6 +384,8 @@
         if (level == 4) {
           jumpgrade == 0;
         }
+        ok = false;
+        window.setTimeout(setok, 2000);
       }
       // collect upgrade
       if (rows[p.y][p.x] == "p") {
