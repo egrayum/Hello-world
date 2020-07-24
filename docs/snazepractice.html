@@ -346,6 +346,9 @@
         play = false;
         levelData();
         collectibles = 0;
+        if (level == 4) {
+          jumpgrade == 0;
+        }
       }
       // collect berry
       if (rows[p.y][p.x] == "b") {
@@ -366,6 +369,9 @@
         minutes = 0;
         hours = 0;
         levelData();
+        if (level == 4) {
+          jumpgrade == 0;
+        }
       }
       // collect upgrade
       if (rows[p.y][p.x] == "p") {
