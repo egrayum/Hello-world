@@ -14,6 +14,9 @@
     var minutes = 00;
     var seconds = 00;
     var ms = 000;
+    var frame = 0;
+    var movecount = 0;
+    var fallcount = 0;
     var deaths = 0;
     var play = false;
     var move = false;
@@ -351,9 +354,9 @@
       levelData();
       renderCanvas();
       renderMap();
-      window.setInterval(update, 20);
-      window.setInterval(fall, 100);
-      window.setInterval(move, 150);
+      update, 20
+      fall, 100
+      move, 150
     }
     </script>
   </head>

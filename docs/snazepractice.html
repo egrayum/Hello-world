@@ -213,6 +213,9 @@
         play = false;
         jump = false;
         levelData();
+        if (level == 6) {
+          play = true;
+        }
       }
       if (event.keyCode == 65 && level > 4) {
         if (jumpgrade == 0) {
@@ -240,6 +243,9 @@
           level++;
         }
         levelData();
+        if (level == 6) {
+          play = true;
+        }
       }
       if (event.keyCode == 83) {
         ms = 0;
@@ -253,6 +259,9 @@
           level--;
         }
         levelData();
+        if (level == 6) {
+          play = true;
+        }
       }
     })
     document.addEventListener("keyup", function(event) {
@@ -384,6 +393,9 @@
         if (level == 4) {
           jumpgrade == 0;
         }
+        if (level == 6) {
+          play = true;
+        }
       }
       // collect upgrade
       if (rows[p.y][p.x] == "p") {
@@ -436,7 +448,7 @@
       renderMap();
       window.setInterval(update, 20);
       window.setInterval(fall, 100);
-      window.setInterval(move, 150);
+      window.setInterval(move, 140);
     }
     </script>
   </head>
